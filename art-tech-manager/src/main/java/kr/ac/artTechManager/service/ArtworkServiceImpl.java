@@ -40,14 +40,15 @@ public class ArtworkServiceImpl implements ArtworkService{
 	public boolean addArtworkInfo(ArtworkInfoVO artworkInfo, List<MultipartFile> multipartFile) throws Exception{
 		boolean result = false;
 		
-		/*
+		String id = "artwork" + dao.selectArtworkInfoId();
+		
 		//db에 저장 후 성공하면 트랜잭션 추가(admin 지갑에 추가)
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		JsonObject parameters = new	JsonObject();
-		parameters.addProperty("artId", "artwork1");
-		parameters.addProperty("value", "100");
+		parameters.addProperty("artId", id);
+		parameters.addProperty("value", artworkInfo.getTargetPiece());
 		
 		HttpEntity<Object> entity = new HttpEntity<Object>(parameters.toString(), headers);
 		
@@ -57,7 +58,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 		Object blockHash = restTemplate.postForObject(url,entity, Object.class);
 		
 		System.out.println(blockHash);
-		*/
+		
 		
 		
 		//작품 이미지 데이터 
@@ -66,7 +67,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 		String filePath = "C:/art-tech/artwork_img";
 		List<ArtworkInfoImg> artworkInfoImgList = new ArrayList<ArtworkInfoImg>();
 		
-		String id = "artwork" + dao.selectArtworkInfoId();
+		
 		
 		List<String> fileNameList = new ArrayList<>();
 		
