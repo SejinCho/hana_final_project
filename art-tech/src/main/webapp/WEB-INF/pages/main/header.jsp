@@ -54,9 +54,9 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-4 col-lg-4">
-                            <div class="logo">
+                            <div class="logo hana-logo">
                                 <a href="${pageContext.request.contextPath}/">
-                                    <img src="${pageContext.request.contextPath}/static/img/logo.png" alt="">
+                                    <img src="${pageContext.request.contextPath}/static/img/logo.PNG" alt="">
                                 </a>
                             </div>
                         </div>

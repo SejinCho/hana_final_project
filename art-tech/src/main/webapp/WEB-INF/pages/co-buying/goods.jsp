@@ -62,7 +62,7 @@
 	                        		</c:otherwise>
 	                        	</c:choose>
 	                            <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artworkInfo.id}">${artworkInfo.title }</a></h3>
-	                            <p>${artworkInfo.writerName }${artworkInfo.artworkImg }</p>
+	                            <p>${artworkInfo.writerName }</p>
 	                            
 	                            <div class="progress">
 								  <div class="progress-bar" role="progressbar" style="width: ${artworkInfo.achiePiece}%; background-color: #191970" aria-valuenow="${artworkInfo.achiePiece}" aria-valuemin="0" aria-valuemax="${artworkInfo.targetPiece }"></div>

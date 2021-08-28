@@ -95,9 +95,11 @@
 		<result column="writer_name" property="writerName"/>
 	</resultMap>
 	
+	<!-- 거래내역  -->
 	<select id="selectMyHistoryListAll" resultMap="myHistoryMap" parameterType="String">
 		<include refid="selectMyHistoryListSql"/>
 		and member_id = #{memberId}
+		order by p.reg_date desc
 	</select>
 	
 	

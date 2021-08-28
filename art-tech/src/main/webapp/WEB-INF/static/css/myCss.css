@@ -132,7 +132,7 @@
 	padding : 15px 200px ;
 	margin-top: 25px;
 	border: none;
-	background-color: #191970;
+	background-color: #008485;
 	color: white;
 }
 
@@ -312,7 +312,7 @@
 	padding : 15px 200px ;
 	margin-top: 50px;
 	border: none;
-	background-color: #191970;
+	background-color: #008485;
 	color: white;
 }
 
@@ -406,7 +406,7 @@
 	padding : 15px 200px ;
 	margin: auto;
 	border: none;
-	background-color: #191970;
+	background-color: #008485;
 	
 	color: white;
 }
@@ -415,7 +415,7 @@
 	height: 60px;
 	padding-top : 15px;
 	padding-bottom : 15px;
-	background-color: #191970;
+	background-color: #008485;
 	text-align: center;
 	margin-bottom: 50px;
 }
@@ -446,7 +446,7 @@
 	margin-top : 40px;
 	font-size: 28px;
 	font-weight: bold;
-	color : #191970;
+	color : #008485;
 }
 
 .writer_info_container {
@@ -558,7 +558,7 @@
 	color: #808080;
 }
 .p_tag_bold {
-	color: #191970;
+	color: #008485;
 	font-weight: bold;
 }
 
@@ -579,7 +579,7 @@
 	height : 100%;
 	width : 20%;
     float: left;
-    background-color: #191970;
+    background-color: #008485;
     text-align: center;
 }
 .div_right .detail p {
@@ -661,7 +661,7 @@
 }
 .ownership_inout_table tr td b {
 	font-weight: bold;
-	color: #191970;
+	color: #008485;
 }
 
 /* co-buying/disposal */
@@ -686,7 +686,7 @@
 	margin : 50px 20px 0px 20px;
 	padding-top : 20px;
 	border: 1px solid #F5F5F5;
-	border-left : 3px solid #191970;
+	border-left : 3px solid #008485;
 	box-shadow: 2px 2px 2px #F5F5F5;
 	height: 180px;
 }
@@ -822,7 +822,7 @@
 	margin-bottom: 0px;
 }
 .div_left .disposal_state .state_detail{
-	background-color : #191970;
+	background-color : #008485;
 	color : white;
 	font-size: 12px;
 	font-weight: bold;
@@ -950,7 +950,7 @@
 	color: white;
 	font-weight : bold;
 	font-size : 20px;
-	background-color: #191970;
+	background-color: #008485;
 }
 
 
@@ -985,7 +985,7 @@
 }
 .myPage_container .myInfoDetail .phoneChange_span button{
 	border: none;
-	background-color: #191970;
+	background-color: #008485;
 	color: white;
 	font-weight: bold;
 	text-align: center;
@@ -1005,7 +1005,7 @@
 	width: 20%; 
 	text-align: right;
 	font-size: 10px;
-	background-color: #191970;
+	background-color: #008485;
 	margin-left: 20px;
 	width: 80px;
 	border-radius: 10px; 
@@ -1029,7 +1029,7 @@
 	color: black;
 }
 .myPage_container .sns_container .kakao_p a:hover {
-	color: #191970;
+	color: #008485;
 }
 
 .mypage-publicKey {
@@ -1048,7 +1048,7 @@
 	font-size: 15px;
 	font-weight: bold;
 	color: white;
-	background-color: #191970;
+	background-color: #008485;
 }
 
 
@@ -1083,7 +1083,7 @@
 	padding-bottom: 10px;
 }
 .myGallery_menu_select_menu_active {
-	background-color: #191970;
+	background-color: #008485;
 	color: white;
 }
 .myGallery_menu_top {
@@ -1129,7 +1129,7 @@
 }
 .myGallery_main_container .div_center_artworkInfo .piece {
 	font-weight: bold;
-	color: #191970;
+	color: #008485;
 }
 .myGallery_main_container .div_right_certificate {
 	width: 30%;
@@ -1143,7 +1143,7 @@
 	margin: 30% 20px;
 	padding-top : 10px;
 	padding-bottom : 10px;
-	background-color: #191970;
+	background-color: #008485;
 	text-align: center;
 	
 }
@@ -1186,7 +1186,7 @@
 }
 .myHistory_menu_select_container .myHistory_menu_active {
 	font-weight: bold;
-	color: #191970;
+	color: #008485;
 }
 .myHistory_disposal_contain_hidden {
 	display: none;

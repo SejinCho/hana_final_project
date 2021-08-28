@@ -36,7 +36,7 @@ public class ArtCoinService {
             throw new ArtChainException("transaction is not valid");
         }
     	
-    	//블록생성
+    	//블록생성 (블록사이즈 다 차면)
         if (ArtChain.memPool.size() == ArtChain.BLOCKSIZE) {
             Block block = new Block(ArtChain.blockchain.get(ArtChain.blockchain.size() - 1).hash);
             ArtChain.memPool.forEach(tx -> {

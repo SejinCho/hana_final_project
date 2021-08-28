@@ -145,4 +145,9 @@
 		group by p.member_id, m.name
 	</select>
 	
+	<!-- wallet(publickey 가져오기) -->
+	<select id="selectWallet" resultType="String" parameterType="String">
+		select public_key from sj_member where id = #{memberId}	
+	</select>
+	
 </mapper>

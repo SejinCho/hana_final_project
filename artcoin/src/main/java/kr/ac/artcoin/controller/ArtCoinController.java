@@ -8,6 +8,7 @@ import kr.ac.artcoin.dto.Response;
 import kr.ac.artcoin.dto.TransactionDto;
 import kr.ac.artcoin.repository.WalletRepository;
 import kr.ac.artcoin.service.ArtCoinService;
+import kr.ac.artcoin.utils.StringUtil;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -41,9 +42,10 @@ public class ArtCoinController {
                 .build();
     }
 
-    // 트랜잭션 요청
+    // 트랜잭션 요청(생성)
     @PostMapping("/transaction")
     public Response<?> requestTransaction(@RequestBody ReqTransaction reqTransaction) {
+    	reqTransaction.setSendWallet(StringUtil.getStringFromKey(WalletRepository.admin.publicKey));
         artCoinService.transaction(reqTransaction);
         return Response.builder()
                 .code(1)
@@ -51,7 +53,7 @@ public class ArtCoinController {
                 .build();
     }
 
-    // 지갑 조회
+    // 지갑 조회 (return 잔액)
     @GetMapping("/wallet")
     public Response<?> getBalance(@RequestBody String address) {
         return Response.builder()

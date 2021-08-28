@@ -7,7 +7,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
+import kr.ac.arttech.artcoin.vo.ReqTransactionVO;
+import kr.ac.arttech.artcoin.vo.WalletInfoVO;
 import kr.ac.arttech.cobuying.dao.CobuyingDAO;
 import kr.ac.arttech.cobuying.vo.ArtworkInfoVO;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
@@ -59,6 +62,18 @@ public class CobuyingServiceImpl implements CobuyingService {
 		int cnt = dao.insertPurchaseInfo(purchaseInfo); //구매내역 insert
 		cnt += dao.updateArtworkPieceInfo(paramMap); //조각 update
 		
+		//artcoin api 트랜잭션 add
+		String wallet = dao.selectWallet(purchaseInfo.getMemberId());
+		ReqTransactionVO reqTransaction = new ReqTransactionVO();
+		reqTransaction.setArtId(purchaseInfo.getArtworkInfoId());
+		reqTransaction.setReceiveWallet(wallet);
+		reqTransaction.setValue(purchaseInfo.getPieceNo());
+		System.out.println("리퀘스트 정보 : " + reqTransaction);
+		String url = "http://localhost:18080/transaction";
+		RestTemplate restTemplate = new RestTemplate();
+		Map<String, String> data = (Map<String, String>) restTemplate.postForObject(url,reqTransaction, Object.class);
+		
+		System.out.println("구매 후 트랜잭션 생성 : " + data.get("msg"));
 		
 		if(cnt == 2) {
 			result = true;

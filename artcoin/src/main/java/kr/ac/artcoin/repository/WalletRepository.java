@@ -20,6 +20,10 @@ public class WalletRepository {
 
     @PostConstruct
     public void init() {
+    	// 지갑리스트에 저장
+    	walletList.put(StringUtil.getStringFromKey(coinbase.publicKey), coinbase);
+        walletList.put(StringUtil.getStringFromKey(admin.publicKey), admin);
+    	
     	/* test
         //유저1, 유저2 지갑 생성
         Wallet user1 = new Wallet();

@@ -76,4 +76,10 @@ public class CobuyingDAOImpl implements CobuyingDAO {
 		return sqlSession.selectList("kr.ac.arttech.cobuying.selectTotalOwnerList", id);
 	}
 	
+	//wallet (publickey 가져오기)
+	@Override
+	public String selectWallet(String memberId) {
+		return sqlSession.selectOne("kr.ac.arttech.cobuying.selectWallet", memberId);
+	}
+	
 }
