@@ -1,0 +1,11 @@
+package kr.ac.artTechManager.service;
+
+import java.util.List;
+
+import kr.ac.artTechManager.vo.ArtworkInfoImg;
+import kr.ac.artTechManager.vo.ArtworkInfoVO;
+
+public interface ArtworkService {
+	public boolean addArtworkInfo(ArtworkInfoVO artworkInfo, List<ArtworkInfoImg> artworkInfoImgList); //모집공고 추가(작품 올리기)
+	public List<ArtworkInfoVO> getArtworkInfoList(); //전체 리스트
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.ac.kopo.manage.writerInfo">
+	<resultMap type="member" id="memberMap">
+		<result column="user_id" property="userId"/>
+		<result column="easy_password" property="easyPassword"/>
+		<result column="jumin_no" property="juminNo"/>
+		<result column="addr1_load" property="addr1Load"/>
+		<result column="addr1_jibun" property="addr1Jibun"/>
+		<result column="kakao_id" property="kakaoId"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="withdrawal_date" property="withdrawalDate"/>
+		<result column="receive_kakao_yn" property="receiveKakaoYn"/>
+		<result column="mem_denied_yn" property="memDeniedYn"/>
+		<result column="privacy_agree_yn" property="privacyAgreeYn"/>
+		<result column="fintech_use_no" property="fintechUseNo"/>
+		<result column="private_Key" property="privateKey"/>
+		<result column="public_key" property="publicKey"/>
+	</resultMap>
+	
+	<select id="selectMemberInfo" parameterType="String" resultMap="memberMap">
+		select id, user_id , name, phone, email, birth, zipcode, 
+		addr1_load , addr1_jibun , addr2, gender, kakao_id , 
+		reg_date, withdrawal_date , receive_kakao_yn, public_key,
+		mem_denied_yn as memDeniedYn, privacy_agree_yn as privacyAgreeYn, 
+		fintech_use_no  as fintechUseNo
+		from sj_member where id = #{id}
+	</select>
+</mapper>

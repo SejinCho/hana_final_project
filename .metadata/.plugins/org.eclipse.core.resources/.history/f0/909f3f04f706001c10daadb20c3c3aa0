@@ -1,0 +1,23 @@
+package kr.ac.artTechManager.service;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+public class ArtworkAPIController {
+	private final ArtworkService service;
+	//매각투표 진행하기
+	@PostMapping("/vote")
+	public String vote(String url, String startDate,
+			String endDate, HttpSession session) {
+		String id = (String) session.getAttribute("memberId");
+		
+		System.out.println("매각투표 진행 url : " + url);
+		return "success";
+	}
+}

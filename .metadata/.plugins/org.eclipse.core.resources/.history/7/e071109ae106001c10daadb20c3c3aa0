@@ -1,0 +1,68 @@
+package kr.ac.arttech.member.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import kr.ac.arttech.member.vo.MemberVO;
+import kr.ac.arttech.member.vo.MyHistoryVO;
+import lombok.RequiredArgsConstructor;
+
+@Repository
+@RequiredArgsConstructor
+public class MemberDAOImpl implements MemberDAO {
+	
+	private final SqlSession sqlSession;
+	
+
+	//아이디 중복 확인
+	@Override
+	public int checkUserId(String userId) {
+		return sqlSession.selectOne("kr.ac.arttech.member.checkUserId", userId);
+	}
+	
+	//회원가입
+	@Override
+	public int insertMember(MemberVO member) {
+		return sqlSession.insert("kr.ac.arttech.member.insertMember", member);
+	}
+	
+	//member 정보 가져오기
+	@Override
+	public MemberVO selectMemberInfo(String id) {
+		return sqlSession.selectOne("kr.ac.arttech.member.selectMemberInfo", id);
+	}
+	
+	//member id(pk) 가져오기
+	@Override
+	public String selectMemberId(String userId) {
+		return sqlSession.selectOne("kr.ac.arttech.member.selectMemberId", userId);
+	}
+	
+	//아이디 비밀번호 확인 (count)
+	@Override
+	public int checkUserIdPassword(MemberVO member) {
+		return sqlSession.selectOne("kr.ac.arttech.member.checkUserIdPassword", member);
+	}
+	
+	//간편 비번 가져오기
+	@Override
+	public String selectEasyPassword(String id) {
+		return sqlSession.selectOne("kr.ac.arttech.member.selectEasyPassword", id);
+	}
+	
+	//myHistory 전체
+	@Override
+	public List<MyHistoryVO> selectMyHistoryListAll(String memberId) {
+		return sqlSession.selectList("kr.ac.arttech.member.selectMyHistoryListAll", memberId);
+	}
+	
+	//wallet update(지갑 생성 클릭)
+	@Override
+	public int updateWalletInfo(Map<String, String> wallet) {
+		return sqlSession.update("kr.ac.arttech.member.updateWalletInfo", wallet);
+	}
+	
+}

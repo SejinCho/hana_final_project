@@ -1,0 +1,5 @@
+package kr.ac.artTechManager.util;
+
+public class AuthUtil {
+
+}

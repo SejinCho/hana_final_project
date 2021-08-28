@@ -1,0 +1,20 @@
+.align-right {
+	text-align: right;
+}
+.table-main-title {
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.view-all {
+	font-size: 13px;
+}
+
+.a-style {
+	text-decoration: none;
+	color: black;
+}
+
+.nav-item {
+	padding-left: 20px;
+}

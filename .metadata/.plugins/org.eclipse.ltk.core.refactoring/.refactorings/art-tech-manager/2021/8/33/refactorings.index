@@ -1,0 +1,24 @@
+1628577912803	Delete element
+1628577934188	Delete element
+1628577951716	Move file
+1628577959443	Rename resource 'servlet-context.xml'
+1628578180505	Delete element
+1628579589092	Delete element
+1628582798400	Delete element
+1628591739582	Copy file
+1628592036214	Delete element
+1628592046737	Copy file
+1628592536470	Delete element
+1628658303012	Delete element
+1628664245339	Delete element
+1628664247203	Delete element
+1628664249531	Delete element
+1628664251351	Delete element
+1628664282558	Delete element
+1628671137022	Rename package 'kr.ac.artTechManager.writer.vo'
+1628671142616	Rename package 'kr.ac.artTechManager.writer.service'
+1628671146848	Rename package 'kr.ac.artTechManager.writer.dao'
+1628671152865	Rename package 'kr.ac.artTechManager.writer.controller'
+1628686776344	Rename type 'AddWriterInfoController'
+1628687773925	Rename type 'WriterInfoService'
+1628698143248	Rename resource 'writer.xml'

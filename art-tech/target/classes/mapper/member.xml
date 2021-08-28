@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.ac.arttech.member">
+	<sql id="countMember">
+		select count(*) from sj_member
+	</sql>
+
+	<select id="checkUserId" parameterType="String" resultType="int">
+		<include refid="countMember"/>
+		where user_id = #{userId}
+	</select>
+	<select id="checkUserIdPassword" parameterType="member" resultType="int">
+		<include refid="countMember"/>
+		where user_id = #{userId} and password = #{password}
+	</select>
+	
+	<resultMap type="member" id="memberMap">
+		<result column="user_id" property="userId"/>
+		<result column="easy_password" property="easyPassword"/>
+		<result column="jumin_no" property="juminNo"/>
+		<result column="addr1_load" property="addr1Load"/>
+		<result column="addr1_jibun" property="addr1Jibun"/>
+		<result column="kakao_id" property="kakaoId"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="withdrawal_date" property="withdrawalDate"/>
+		<result column="receive_kakao_yn" property="receiveKakaoYn"/>
+		<result column="mem_denied_yn" property="memDeniedYn"/>
+		<result column="privacy_agree_yn" property="privacyAgreeYn"/>
+		<result column="fintech_use_no" property="fintechUseNo"/>
+		<result column="private_Key" property="privateKey"/>
+		<result column="public_key" property="publicKey"/>
+	</resultMap>
+	
+	<insert id="insertMember" parameterType="member">
+		insert into sj_member(id, user_id, password, name, phone, 
+		email, easy_password, birth, jumin_no, zipcode, addr1_load,
+		addr1_jibun, addr2, gender, receive_kakao_yn) 
+		values('member'||seq_sj_member.nextval, #{userId}, #{password}, #{name}, #{phone},
+		#{email}, #{easyPassword}, #{birth}, #{juminNo}, #{zipcode}, #{addr1Load}, 
+		#{addr1Jibun}, #{addr2}, #{gender}, #{receiveKakaoYn}
+		 )
+	</insert>
+	
+	<select id="selectMemberInfo" parameterType="String" resultMap="memberMap">
+		select id, user_id , name, phone, email, birth, zipcode, 
+		addr1_load , addr1_jibun , addr2, gender, kakao_id , 
+		reg_date, withdrawal_date , receive_kakao_yn, public_key,
+		mem_denied_yn as memDeniedYn, privacy_agree_yn as privacyAgreeYn, 
+		fintech_use_no  as fintechUseNo
+		from sj_member where id = #{id}
+	</select>
+	
+	<select id="selectMemberId" parameterType="String" resultType="String">
+		select id from sj_member where user_id = #{userId}
+	</select>
+	
+	
+	<!-- 간편 비밀번호 가져오기 -->
+	<select id="selectEasyPassword" resultType="String">
+		select easy_password from sj_member where id = #{id}
+	</select>
+	
+	<!-- public key, private key 생성 -->
+	<update id="updateWalletInfo" parameterType="hashmap">
+		update sj_member set private_key = #{privateKey} , public_key = #{publicKey} where id = #{id}
+	</update>
+	
+	<!-- 나의 조각 산 내역 -->
+	<sql id="selectMyHistoryListSql">
+		select p.id, p.artwork_info_id, p.piece_no, to_char(p.reg_date,'yyyy-mm-dd') as regDate,
+		p.type, p.piece_amt, a.title, w.writer_name, a.state,
+		case 
+		    when a.state = '0' then '모집 예정'
+		    when a.state = '1' then '모집 중'
+		    when a.state = '2' then '모집 완료'
+		    when a.state = '3' then '매각 투표'
+		    when a.state = '4' then '투표 종료'
+		    when a.state = '5' then '매각 중'
+		    when a.state = '6' then '수익 분배'
+		    when a.state = '7' then '매각 완료'
+		end as state_name
+		from sj_purchase_info p, sj_artwork_info a, sj_writer_info w
+		where p.artwork_info_id = a.id
+		and a.writer_id = w.id
+	</sql>
+	
+	<resultMap type="myHistory" id="myHistoryMap">
+		<result column="artwork_info_id" property="artworkInfoId"/>
+		<result column="piece_no" property="pieceNo"/>
+		<result column="piece_amt" property="pieceAmt"/>
+		<result column="state_name" property="stateName"/>
+		<result column="writer_name" property="writerName"/>
+	</resultMap>
+	
+	<select id="selectMyHistoryListAll" resultMap="myHistoryMap" parameterType="String">
+		<include refid="selectMyHistoryListSql"/>
+		and member_id = #{memberId}
+	</select>
+	
+	
+</mapper>
