@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import kr.ac.arttech.artcoin.vo.WalletInfoVO;
+import kr.ac.arttech.artscan.vo.WalletInfoVO;
 import kr.ac.arttech.member.dao.MemberDAO;
 import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;

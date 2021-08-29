@@ -1,4 +1,4 @@
-package kr.ac.arttech.artcoin.vo;
+package kr.ac.arttech.artscan.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

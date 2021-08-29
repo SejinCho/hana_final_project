@@ -57,7 +57,7 @@ public class DepositController {
 	
 	//자동 예치금 이체설정한 계좌 안한 계좌 리스트 가져오기
 	@GetMapping("/autoTranDeposit")
-	public String autoTranDeposit(HttpServletRequest request, Model model, HttpServletResponse response) {
+	public String autoTranAccount(HttpServletRequest request, Model model, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		
@@ -79,8 +79,8 @@ public class DepositController {
 	}
 	
 	//자동이체 스케줄러
-	//@Scheduled(cron="0 0/10 * * * * ")
-	public void autoTranDeposit(HttpSession session) {
+	//@Scheduled(cron="0/3 * * * * * ")
+	public void autoTranDeposit() {
 		boolean result = service.startAutoTranDeposit();
 		System.out.println("최종 result : " + result + "");
 	}

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import kr.ac.arttech.artcoin.vo.ReqTransactionVO;
-import kr.ac.arttech.artcoin.vo.WalletInfoVO;
+import kr.ac.arttech.artscan.vo.ReqTransactionVO;
+import kr.ac.arttech.artscan.vo.WalletInfoVO;
 import kr.ac.arttech.cobuying.dao.CobuyingDAO;
 import kr.ac.arttech.cobuying.vo.ArtworkInfoVO;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
