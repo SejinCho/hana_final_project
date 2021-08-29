@@ -26,12 +26,12 @@
     			dataType : 'json',
     			success : function(result) {
     				console.log('block' + result)
+    				console.log(result)
     				
     				
     				//block data
     				for(let i = 0; i < (result.data.totalBlockSize <= 10 ? result.data.totalBlockSize : 10) ; ++i) {
     					let block = result.data.blocks[result.data.totalBlockSize - i - 1]
-    					
     					//block data
     					let blockRowData = `
 					    				<tr>
@@ -42,7 +42,7 @@
 						                    </td>
 						                    <td>` + block.blockHeight + `</td>
 			                                <td><span>` + block.hash + `</span></td>
-			                                <td><span>` + block.transactions.blockHeight + `</span></td>
+			                                <td><span>` + block.blockHeight + `</span></td>
 						                </tr>
 					               		` 
     					
@@ -73,7 +73,8 @@
     				
     				//tran data
     				for(let i = 0; i < (result.data.length <= 10 ? result.data.length : 10) ; ++i) {
-    					let tx = result.data[result.data.length - i - 1]
+    					//let tx = result.data[result.data.length - i - 1]
+    					let tx = result.data[i]
     					console.log(tx)
     					let txRowData = `
 	    					<tr>
@@ -85,7 +86,7 @@
 		                        <td><span> ` + tx.transactionId + ` </span></td>
 		                        <td><span>` + tx.reciepient + `</span></td>
 		                        <td><span>` + tx.sender + `</span></td>
-		                        <td><span></span></td>
+		                        <td><span>`+ tx.blockHeight +`</span></td>
 		                    </tr>
     					`
 					    $('#tranListTbody').prepend(txRowData)           		
@@ -167,7 +168,7 @@
 	                                <th>Hash</th>
 	                                <th>From</th>
 	                                <th>To</th>
-	                                <th>Block</th>
+	                                <th>Block Height </th>
 	                            </tr>
 	                        </thead>
 	                        <tbody id="tranListTbody">
