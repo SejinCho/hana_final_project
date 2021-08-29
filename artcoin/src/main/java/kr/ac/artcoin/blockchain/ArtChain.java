@@ -15,9 +15,10 @@ public class ArtChain {
     public static ArrayList<ReqTransaction> memPool = new ArrayList<>();
     public static HashMap<String, TransactionOutput> UTXOs = new HashMap<>();
 
-    public static int BLOCKSIZE = 10;
+    public static int BLOCKSIZE = 2;
     public static int difficulty = 3;
     public static float minimumTransaction = 0.1f;
+    public static int BlockSequence = 0;
     
     //체인 유효성 검사
     public static Boolean isChainValid(Transaction transaction) {
@@ -111,6 +112,7 @@ public class ArtChain {
     
     //블록 생성
     public static void addBlock(Block newBlock) {
+    	newBlock.blockHeight = ++BlockSequence;
         newBlock.mineBlock(difficulty);
         blockchain.add(newBlock);
     }

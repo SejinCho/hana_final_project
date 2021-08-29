@@ -15,6 +15,99 @@
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/artcoin/myCss.css">
     <link rel="shortcut icon" href="favicon.ico"> 
+    <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		
+    		//block data 가져오기 
+    		$.ajax({
+    			type: "GET",
+    			url : "http://localhost:18080/blocks",
+    			dataType : 'json',
+    			success : function(result) {
+    				console.log('block' + result)
+    				
+    				
+    				//block data
+    				for(let i = 0; i < (result.data.totalBlockSize <= 10 ? result.data.totalBlockSize : 10) ; ++i) {
+    					let block = result.data.blocks[result.data.totalBlockSize - i - 1]
+    					
+    					//block data
+    					let blockRowData = `
+					    				<tr>
+						                    <td>
+						                        <div class="round-img">
+						                            <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/blockimg.PNG" alt=""></a>
+						                        </div>
+						                    </td>
+						                    <td>` + block.blockHeight + `</td>
+			                                <td><span>` + block.hash + `</span></td>
+			                                <td><span>` + block.transactions.blockHeight + `</span></td>
+						                </tr>
+					               		` 
+    					
+    					$('#blockListTbody').append(blockRowData)
+					               		
+    				} //block for문
+    				
+    				
+    				
+    		        
+    			},
+    			error: function (request, status, error){
+    				var msg = "ERROR : " + request.status + "<br>"
+    				msg += + "내용 : " + request.responseText + "<br>" + error;
+    				console.log(msg);
+    				
+    			}
+    		}) //block ajax
+    		
+    		//tx data 가져오기
+    		$.ajax({
+    			type: "GET",
+    			url : "http://localhost:18080/transactions",
+    			dataType : 'json',
+    			success : function(result) {
+    				console.log('tran' + result)
+    				console.log(result)
+    				
+    				//tran data
+    				for(let i = 0; i < (result.data.length <= 10 ? result.data.length : 10) ; ++i) {
+    					let tx = result.data[result.data.length - i - 1]
+    					console.log(tx)
+    					let txRowData = `
+	    					<tr>
+		                        <td>
+		                            <div class="round-img">
+		                                <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
+		                            </div>
+		                        </td>
+		                        <td><span> ` + tx.transactionId + ` </span></td>
+		                        <td><span>` + tx.reciepient + `</span></td>
+		                        <td><span>` + tx.sender + `</span></td>
+		                        <td><span></span></td>
+		                    </tr>
+    					`
+					    $('#tranListTbody').prepend(txRowData)           		
+    				} //tran for문
+    				
+    		        
+    			},
+    			error: function (request, status, error){
+    				var msg = "ERROR : " + request.status + "<br>"
+    				msg += + "내용 : " + request.responseText + "<br>" + error;
+    				console.log(msg);
+    				
+    			}
+    		}) //tran ajax
+    		
+    		
+    		
+    		
+    	}) //document
+	    
+    
+    </script>
 </head> 
 
 <body>    
@@ -36,12 +129,12 @@
 	                            <tr>
 	                                <th>#</th>
 	                                <th>Block Height</th>
-	                                <th>Transactions</th>
-	                                <th>Timestamp</th>
-	                                <th>Pieces</th>
+	                                <th>hash</th>
+	                                <th>block size</th>
 	                            </tr>
 	                        </thead>
-	                        <tbody>
+	                        <tbody id="blockListTbody">
+	                        	<!-- 
 	                            <tr>
 	                                <td>
 	                                    <div class="round-img">
@@ -50,43 +143,9 @@
 	                                </td>
 	                                <td>13033805</td>
 	                                <td><span>artwork1</span></td>
-	                                <td><span>12</span></td>
 	                                <td><span>13</span></td>
 	                            </tr>
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/blockimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td>13033804</td>
-	                                <td><span>artwork1</span></td>
-	                                <td><span>12</span></td>
-	                                <td><span>13</span></td>
-	                            </tr>
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/blockimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td>13033803</td>
-	                                <td><span>artwork3</span></td>
-	                                <td><span>12</span></td>
-	                                <td><span>13</span></td>
-	                            </tr>
-	
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/blockimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td>13033802</td>
-	                                <td><span>artwork5</span></td>
-	                                <td><span>12</span></td>
-	                                <td><span>13</span></td>
-	                            </tr>
+	                             -->
 	                           
 	                        </tbody>
 	                    </table>
@@ -111,7 +170,8 @@
 	                                <th>Block</th>
 	                            </tr>
 	                        </thead>
-	                        <tbody>
+	                        <tbody id="tranListTbody">
+	                        <!-- 
 	                            <tr>
 	                                <td>
 	                                    <div class="round-img">
@@ -124,66 +184,7 @@
 	                                <td><span>13033805</span></td>
 	                            </tr>
 	                            
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td><span><c:out value="${fn:substring('0x8d0046134fce7657d0fb0f020312df4aaaa5ad871d4f464a32071679e8fadb38', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span>13033805</span></td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td><span><c:out value="${fn:substring('0x8d0046134fce7657d0fb0f020312df4aaaa5ad871d4f464a32071679e8fadb38', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span>13033805</span></td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td><span><c:out value="${fn:substring('0x8d0046134fce7657d0fb0f020312df4aaaa5ad871d4f464a32071679e8fadb38', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span>13033805</span></td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td><span><c:out value="${fn:substring('0x8d0046134fce7657d0fb0f020312df4aaaa5ad871d4f464a32071679e8fadb38', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span>13033805</span></td>
-	                            </tr>
-	                            
-	                            <tr>
-	                                <td>
-	                                    <div class="round-img">
-	                                        <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
-	                                    </div>
-	                                </td>
-	                                <td><span><c:out value="${fn:substring('0x8d0046134fce7657d0fb0f020312df4aaaa5ad871d4f464a32071679e8fadb38', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span><c:out value="${fn:substring('0xd06e2a2726f9c9bc7641cf225c68f86baf4a53cc', 0, 7)}"></c:out>...</span></td>
-	                                <td><span>13033805</span></td>
-	                            </tr>
-	                            
+                           -->  
 	                        </tbody>
 	                    </table>
 				    </div>

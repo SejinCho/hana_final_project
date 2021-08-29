@@ -43,7 +43,9 @@ public class AuthUtil {
 				+ "작품명 : " + vote.getTitle() + "\n"
 				+ "작가 : " + vote.getWriterName() + "\n"
 				+ "투표기간 : " + vote.getStartDate() + " ~ " + vote.getEndDate() + "\n"
-				+ "투표링크 : " + vote.getUrl());
+				+ "투표링크 : " + vote.getUrl() + "\n"
+				+ "투표 비밀번호 : " + vote.getEmailPw()
+    			);
 	    }
 	    
 	    
@@ -93,7 +95,18 @@ public class AuthUtil {
             message.setSubject("[아트하나] 매각투표를 위한 안내 이메일입니다."); //메일 제목을 입력
 
             // Text
-            message.setText("매각 투표를 위한 인증번호 : 645121" );    //메일 내용을 입력
+            message.setText("안녕하세요 아트하나입니다.  \n "
+            		       + vote.getWriterName() + " 화백의 <" + vote.getTitle() + "> 작품 매입을 "
+           				   + "원하는 매입자가 나타나 매각을 진행하고자 합니다. \n"
+           				   + "공동구매 시 동의한 서비스 이용약관 제11조 2항에 의거하여 작품 소유자분들의"
+           				   + "매각 동의 비율이 50% 초과일 때 매각은 진행됩니다. \n\n"
+           				   + "하기의 내용을 참고하시어 투표 부탁드립니다." + "\n\n"
+           				   + "작품명 : " + vote.getTitle() + "\n"
+           				   + "작가 : " + vote.getWriterName() + "\n"
+        				   + "투표기간 : " + vote.getStartDate() + " ~ " + vote.getEndDate() + "\n"
+        				   + "투표링크 : " + vote.getUrl() + "\n"
+        				   + "투표 비밀번호 : " + vote.getEmailPw()
+            		);    //메일 내용을 입력
 
             // send the message
             Transport.send(message); ////전송

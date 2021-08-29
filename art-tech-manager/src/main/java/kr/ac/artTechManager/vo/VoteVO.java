@@ -20,4 +20,5 @@ public class VoteVO {
 	private String writerName;
 	private String title;
 	private String type; //1. 투표  / 2. 투표 결과 / 3. 매각대금 분배안내 / 4. 분배완료
+	private String emailPw;
 }

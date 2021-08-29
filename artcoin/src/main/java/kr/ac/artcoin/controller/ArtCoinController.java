@@ -22,7 +22,7 @@ public class ArtCoinController {
 
     private final ArtCoinService artCoinService;
     
- // 지갑 생성
+    // 지갑 생성
     @PostMapping("/wallet")
     public Response<?> createWallet() {
         return Response.builder()
@@ -46,6 +46,7 @@ public class ArtCoinController {
     @PostMapping("/transaction")
     public Response<?> requestTransaction(@RequestBody ReqTransaction reqTransaction) {
     	reqTransaction.setSendWallet(StringUtil.getStringFromKey(WalletRepository.admin.publicKey));
+    	System.out.println("artcoin 컨트롤러reqTransaction : " + reqTransaction);
         artCoinService.transaction(reqTransaction);
         return Response.builder()
                 .code(1)

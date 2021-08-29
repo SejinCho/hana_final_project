@@ -43,8 +43,8 @@ public class ArtCoinService {
                 try {
                     Wallet sendWallet = walletRepository.findWallet(tx.getSendWallet());
                     Wallet receiveWallet = walletRepository.findWallet(tx.getReceiveWallet());
-
-                    Transaction transaction = sendWallet.sendFunds(receiveWallet.publicKey, reqTransaction.getValue(), reqTransaction.getArtId());
+                    
+                    Transaction transaction = sendWallet.sendFunds(receiveWallet.publicKey, tx.getValue(), tx.getArtId());
                     block.addTransaction(transaction);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -73,7 +73,14 @@ public class ArtCoinService {
     public List<TransactionDto.TransactionInfo> getTransactions() {
         List<TransactionDto.TransactionInfo> transactions = new ArrayList<>();
         ArtChain.blockchain.forEach(block -> {
-            transactions.addAll(block.transactions.stream().map(TransactionDto.TransactionInfo::new).collect(Collectors.toList()));
+        	int blockHeight = block.blockHeight;
+        	String blockHash = block.hash;
+            transactions.addAll(block.transactions.stream().map(tx -> {
+            	TransactionDto.TransactionInfo txInfo = new TransactionDto.TransactionInfo(tx);
+            	txInfo.setBlockHeight(blockHeight);
+            	txInfo.setBlockHash(blockHash);
+            	return txInfo;
+            }).collect(Collectors.toList()));
         });
         return transactions;
     }

@@ -21,6 +21,7 @@ public class BlockInfo {
     public ArrayList<TransactionDto.TransactionInfo> transactions = new ArrayList<>();
     public long timeStamp;
     public int nonce;
+    public int blockHeight;
 
     public BlockInfo(Block block) {
         this.hash = block.hash;
@@ -29,5 +30,6 @@ public class BlockInfo {
         this.transactions.addAll(block.transactions.stream().map(TransactionDto.TransactionInfo::new).collect(Collectors.toList()));
         this.timeStamp = block.timeStamp;
         this.nonce = block.nonce;
+        this.blockHeight = block.blockHeight;
     }
 }

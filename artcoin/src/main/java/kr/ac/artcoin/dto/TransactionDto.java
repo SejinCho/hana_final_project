@@ -17,6 +17,8 @@ public class TransactionDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class TransactionInfo {
+    	public int blockHeight ;
+    	public String blockHash ;
         public String transactionId; //Contains a hash of transaction*
         public String artId;
         public String sender; //Senders address/public key.

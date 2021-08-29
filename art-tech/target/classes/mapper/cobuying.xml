@@ -66,11 +66,14 @@
 		where a.writer_id = w.id 
 		and i.artwork_info_id = a.id
 	</sql>
+	
+	<!-- goods -->
 	<select id="selectArtworkInfoList" resultMap="artworkInfoMap">
 		<include refid="artworkList"/> 
 		order by a.reg_date desc
 	</select>
 	
+	<!-- 디테일 -->
 	<select id="selectArtworkInfo" resultMap="artworkInfoMap">
 		<include refid="artworkList"/> 
 		and a.id = #{id}

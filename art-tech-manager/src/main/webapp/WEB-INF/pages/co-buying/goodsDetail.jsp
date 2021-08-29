@@ -26,7 +26,8 @@
   					"endDate" : $('#endDate').val(),
   					"url" : $('#url').val(),
   					"writerName" : '${artworkInfo.writerName }',
-  					"title" : '${artworkInfo.title }'
+  					"title" : '${artworkInfo.title }',
+  					"emailPw" : $('#emailPw').val()
   				},
   				async: false,
   				success : function(result) {
@@ -91,8 +92,8 @@
 							</tr>
 							<tr>
 								<th>모집 기간</th>
-								<td>${artworkInfo.recruitStartDate } ${artworkInfo.recruitEndDate } ~ 
-								${artworkInfo.recruitStartTime } ${ artworkInfo.recruitEndTime}</td>
+								<td>${artworkInfo.recruitStartDate } ${artworkInfo.recruitStartTime } ~ 
+								${artworkInfo.recruitEndDate } ${ artworkInfo.recruitEndTime}</td>
 							</tr>
 							<tr>
 								<th>공동구매 목표 조각 개수</th>
@@ -115,7 +116,9 @@
 									</tr>
 									<tr id="change">
 										<th>설문조사 링크</th>
-										<td><input type="text" id="url" placeholder="설문조사 링크를 입력해주세요."><button onclick="vote()">투표하기</button></td>
+										<td><input type="text" id="url" placeholder="설문조사 링크를 입력해주세요.">
+										<input type="text" id="emailPw" placeholder="설문조사 비밀번호를 입력해주세요.">
+										<button onclick="vote()" >투표하기</button></td>
 									</tr>
 								</c:when>
 								<c:otherwise>

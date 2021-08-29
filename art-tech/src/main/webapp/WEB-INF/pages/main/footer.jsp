@@ -45,7 +45,7 @@
                                 Services
                             </h3>
                             <ul>
-                                <li><a href="#">(웹 서비스 명) 소개</a></li>
+                                <li><a href="#">아트하나 소개</a></li>
                                 <li><a href="#">서비스 이용약관</a></li>
                                 <li><a href="#">개인정보처리방침</a></li>
                                 <li><a href="#">공지사항</a></li>

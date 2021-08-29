@@ -152,8 +152,8 @@ public class ArtworkServiceImpl implements ArtworkService{
 			memberList.forEach(member -> {
 				String email = member.getEmail();
 				String phone = member.getPhone();
-				AuthUtil.authEmail(vote, email);
-				//AuthUtil.authPhone(vote, phone);
+				//AuthUtil.authEmail(vote, email);
+				AuthUtil.authPhone(vote, phone);
 			});
 			result = "success";
 		}

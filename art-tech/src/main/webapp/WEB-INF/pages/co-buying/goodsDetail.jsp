@@ -123,11 +123,14 @@
 						<div class="buying_btn_center">
 						
 							<c:choose>
+								<c:when test="${artworkInfo.state == 0 }">
+									<button class="buying_btn" disabled="disabled">모집예정</button>
+								</c:when>
                         		<c:when test="${artworkInfo.state == 1 }">
                         			<button class="buying_btn">구입</button>
                         		</c:when>
                         		<c:otherwise>
-                        			<button class="buying_btn" disabled="disabled">모집예정</button>
+                        			<button class="buying_btn" disabled="disabled">모집완료</button>
                         		</c:otherwise>
                         	</c:choose>
 							
