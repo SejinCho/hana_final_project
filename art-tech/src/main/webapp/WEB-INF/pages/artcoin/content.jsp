@@ -18,7 +18,7 @@
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-    		
+    		const fontSizeMax = 10;
     		//block data 가져오기 
     		$.ajax({
     			type: "GET",
@@ -41,8 +41,8 @@
 						                        </div>
 						                    </td>
 						                    <td>` + block.blockHeight + `</td>
-			                                <td><span>` + block.hash + `</span></td>
-			                                <td><span>` + block.blockHeight + `</span></td>
+			                                <td><span>` + (block.hash.length >= fontSizeMax ? block.hash.substring(0,fontSizeMax) + "..." : block.hash) + ` </span></td>
+			                                <td><span>` + block.transactions.length + `</span></td>
 						                </tr>
 					               		` 
     					
@@ -83,9 +83,9 @@
 		                                <a href=""><img width="35" src="${pageContext.request.contextPath}/static/img/artcoin/tranimg.PNG" alt=""></a>
 		                            </div>
 		                        </td>
-		                        <td><span> ` + tx.transactionId + ` </span></td>
-		                        <td><span>` + tx.reciepient + `</span></td>
-		                        <td><span>` + tx.sender + `</span></td>
+		                        <td><span> ` + (tx.transactionId.length >=fontSizeMax ?tx.transactionId.substring(0,fontSizeMax) + "..." : tx.transactionId  ) + ` </span></td>
+		                        <td><span>` + (tx.reciepient.length >=fontSizeMax ? tx.reciepient.substring(0,fontSizeMax) + "..." : tx.reciepient) + `</span></td>
+		                        <td><span>` + (tx.sender.length >= fontSizeMax ? tx.sender.substring(0,fontSizeMax) + "..." : tx.sender) + `</span></td>
 		                        <td><span>`+ tx.blockHeight +`</span></td>
 		                    </tr>
     					`
@@ -131,7 +131,7 @@
 	                                <th>#</th>
 	                                <th>Block Height</th>
 	                                <th>hash</th>
-	                                <th>block size</th>
+	                                <th>Txn</th>
 	                            </tr>
 	                        </thead>
 	                        <tbody id="blockListTbody">
