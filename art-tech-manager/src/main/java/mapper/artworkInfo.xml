@@ -155,4 +155,16 @@
 		where end_date = #{today})
 		and state = '3'
 	</update>
+	
+	<!-- 디테일 페이지 상태 변경 -->
+	<update id="updateArtworkState" parameterType="vote">
+		update sj_artwork_info set state = #{state} where id = #{artworkInfoId}
+	</update>
+	
+	<!-- 매각금액, 매각처, 매각일 update  -->
+	<update id="updateSellInfo" parameterType="vote">
+		update sj_artwork_info set sell_price = #{sellPrice}, sell_place = #{sellPlace},
+		sell_date = sysdate
+		where id = #{artworkInfoId}
+	</update>
 </mapper>

@@ -33,20 +33,44 @@ public class AuthUtil {
 	    params.put("to", phone); //받는 사람
 	    params.put("from", "01025235526"); //보내는 사람
 	    params.put("type", "LMS");
-	    if(vote.getType().equals("1")) { //투표
-	    	params.put("text", "안녕하세요 아트하나입니다.  \n "
-	    		+ vote.getWriterName() + " 화백의 <" + vote.getTitle() + "> 작품 매입을 "
-				+ "원하는 매입자가 나타나 매각을 진행하고자 합니다. \n"
-				+ "공동구매 시 동의한 서비스 이용약관 제11조 2항에 의거하여 작품 소유자분들의"
-				+ "매각 동의 비율이 50% 초과일 때 매각은 진행됩니다. \n\n"
-				+ "하기의 내용을 참고하시어 투표 부탁드립니다." + "\n\n"
-				+ "작품명 : " + vote.getTitle() + "\n"
-				+ "작가 : " + vote.getWriterName() + "\n"
-				+ "투표기간 : " + vote.getStartDate() + " ~ " + vote.getEndDate() + "\n"
-				+ "투표링크 : " + vote.getUrl() + "\n"
-				+ "투표 비밀번호 : " + vote.getEmailPw()
-    			);
-	    }
+	    
+	    switch (vote.getType()) {
+		case "1": //매각 투표하기 
+			params.put("text", "안녕하세요 아트하나입니다.  \n "
+		    		+ vote.getWriterName() + " 화백의 <" + vote.getTitle() + "> 작품 매입을 "
+					+ "원하는 매입자가 나타나 매각을 진행하고자 합니다. \n"
+					+ "공동구매 시 동의한 서비스 이용약관 제11조 2항에 의거하여 작품 소유자분들의"
+					+ "매각 동의 비율이 50% 초과일 때 매각은 진행됩니다. \n\n"
+					+ "하기의 내용을 참고하시어 투표 부탁드립니다." + "\n\n"
+					+ "작품명 : " + vote.getTitle() + "\n"
+					+ "작가 : " + vote.getWriterName() + "\n"
+					+ "투표기간 : " + vote.getStartDate() + " ~ " + vote.getEndDate() + "\n"
+					+ "투표링크 : " + vote.getUrl() + "\n"
+					+ "투표 비밀번호 : " + vote.getEmailPw()
+	    			);
+			break;
+
+		case "2": //매각 투표 결과 매각으로 결정
+			params.put("text", "안녕하세요 아트하나입니다.  \n "
+		    		+ vote.getWriterName() + " 화백의 <" + vote.getTitle() + "> 작품의"
+					+ "투표 결과를 공지드립니다. \n\n"
+					+ "작품명 : " + vote.getTitle() + "\n"
+					+ "작가 : " + vote.getWriterName() + "\n"
+					+ "투표기간 : " + vote.getStartDate() + " ~ " + vote.getEndDate() + "\n"
+					+ "동의 : " + vote.getAgreeNo() + "\n"
+					+ "거부 : " + vote.getTotalNo() + "\n"
+					+ "동의율 : " + Math.round((vote.getAgreeNo() / vote.getTotalNo()) * 100) / 1.0 + "%\n"
+	    			+ "위와 같이 매각의사 투표 동의율이 과반수가 넘어, 작품매각을 진행할 예정입니다.\n"
+					+ "자세한 사항은 홈페이지를 참고하시길 바랍니다."
+					);
+			break;
+		case "3": //투표결과(매각 기각)
+			break;
+		case "4": //4. 매각대금 분배안내
+			break;
+		case "5": //5. 분배완료
+			break;
+		}
 	    
 	    
 	    params.put("app_version", "test app 1.2"); // application name and version

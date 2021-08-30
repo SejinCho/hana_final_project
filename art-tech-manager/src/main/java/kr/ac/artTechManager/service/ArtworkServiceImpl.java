@@ -153,7 +153,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 				String email = member.getEmail();
 				String phone = member.getPhone();
 				//AuthUtil.authEmail(vote, email);
-				AuthUtil.authPhone(vote, phone);
+				//AuthUtil.authPhone(vote, phone);
 			});
 			result = "success";
 		}
@@ -173,5 +173,47 @@ public class ArtworkServiceImpl implements ArtworkService{
 	public int modifyStateVote() {
 		String today = LocalDate.now().toString();
 		return dao.updateStateVote(today);
+	}
+	
+	//디테일 페이지 업무
+	@Override
+	public boolean startGoodsDetailTast(VoteVO vote) {
+		boolean result = false;
+		switch (vote.getState()) {
+		case "4": //투표 종료 -> 매각 기각 또는 매각 진행 
+			if((vote.getTotalNo() - vote.getAgreeNo()) <= vote.getAgreeNo()) { //매각진행
+				//상태 변경(매각 중으로)
+				vote.setState("5");
+				int cnt = dao.updateArtworkState(vote);
+				
+				//매각처, 매각 금액 update
+				cnt += dao.updateSellInfo(vote);
+				
+				//문자 보내기
+				//member info 가져오기(해당 작품을 산 사람)
+				vote.setType("2");
+				List<MemberVO> memberList = dao.selectVoteMemberInfo(vote.getArtworkInfoId());
+				memberList.forEach(member -> {
+					String email = member.getEmail();
+					String phone = member.getPhone();
+					//AuthUtil.authEmail(vote, email);
+					AuthUtil.authPhone(vote, phone);
+				});
+				if(cnt == 2) {
+					result = true;
+				}
+			}else { //매각 기각
+				
+			}
+			break;
+		case "5": //수익분배 진행 
+			break;
+		
+		case "6" : //수익분배 완료(매각완료)
+			break;
+		
+		}
+		
+		return result;
 	}
 }

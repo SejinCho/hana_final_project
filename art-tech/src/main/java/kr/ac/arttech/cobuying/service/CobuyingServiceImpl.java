@@ -68,7 +68,6 @@ public class CobuyingServiceImpl implements CobuyingService {
 		reqTransaction.setArtId(purchaseInfo.getArtworkInfoId());
 		reqTransaction.setReceiveWallet(wallet);
 		reqTransaction.setValue(purchaseInfo.getPieceNo());
-		System.out.println("리퀘스트 정보 : " + reqTransaction);
 		String url = "http://localhost:18080/transaction";
 		RestTemplate restTemplate = new RestTemplate();
 		Map<String, String> data = (Map<String, String>) restTemplate.postForObject(url,reqTransaction, Object.class);

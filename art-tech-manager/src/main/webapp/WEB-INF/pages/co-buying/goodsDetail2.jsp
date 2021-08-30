@@ -33,11 +33,7 @@
   	  					'id' : '${voteInfo.id}',
   	  					'state' : '${artworkInfo.state}',
 	  	  				'writerName' : '${artworkInfo.writerName }',
-	  					'title' : '${artworkInfo.title }',
-	  					'sellPlace' : $('#sellPlace').val(),
-	  					'sellPrice' : $('#sellPrice').val(),
-	  					'startDate' : '${voteInfo.startDate}',
-	  					'endDate' : '${voteInfo.endDate}'
+	  					'title' : '${artworkInfo.title }'
   	  				},
   	  				async: false,
   	  				success : function(result) {
@@ -198,28 +194,6 @@
 												<th>투표결과</th> <!-- 투표 종료 다음부터  -->
 												<td><canvas id="pieChartCanvas" width="300px" height="300px"></canvas> </td>
 											</tr>
-											<c:choose>
-												<c:when test="${artworkInfo.state == 4 && agree >= disagree }">
-													<tr>
-														<th>매각처</th>
-														<td><input type="text" id="sellPlace"></td>
-													</tr>
-													<tr>
-														<th>매각 금액</th>
-														<td><input type="text" id="sellPrice"></td>
-													</tr>
-												</c:when>
-												<c:when test="${artworkInfo.state == 5 || artworkInfo.state == 6 }">
-													<tr>
-														<th>매각처</th>
-														<td><input type="text" id="sellPlace" readonly="readonly" ></td>
-													</tr>
-													<tr>
-														<th>매각 금액</th>
-														<td><input type="text" id="sellPrice" readonly="readonly"></td>
-													</tr>
-												</c:when>
-											</c:choose>
 											<tr>
 												<th>업무</th>
 												<c:if test="${artworkInfo.state == 4 && agree >= disagree }">
@@ -235,7 +209,6 @@
 													<td id="statusTd"><button id="statusBtn">매각완료하기</button> </td>
 												</c:if>
 											</tr>
-											
 										</c:otherwise>
 									</c:choose>
 									

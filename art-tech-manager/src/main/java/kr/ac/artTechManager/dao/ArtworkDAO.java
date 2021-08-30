@@ -20,4 +20,6 @@ public interface ArtworkDAO {
 	public int insertVoteInfo(VoteVO vote);//투표시작하면 table에 insert
 	public VoteVO selectVoteInfo(String artworkInfoId); //투표 정보 가져오기
 	public int updateStateVote(String today); //투표중(3) -> 투표종료(4)
+	public int updateArtworkState(VoteVO vote); //디테일 페이지 상태 변경
+	public int updateSellInfo(VoteVO vote); //매각금액, 매각처, 매각일 update 
 }

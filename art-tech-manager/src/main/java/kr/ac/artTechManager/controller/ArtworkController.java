@@ -1,7 +1,12 @@
 package kr.ac.artTechManager.controller;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -61,6 +66,38 @@ public class ArtworkController {
 		if(! artworkInfo.getState().equals("0") || ! artworkInfo.getState().equals("1")) {
 			//투표 정보 가져오기
 			model.addAttribute("voteInfo", service.getVoteInfo(artworkInfoId));
+			if(! artworkInfo.getState().equals("3")) { //투표 종료
+				BufferedReader br = null;
+				int agree = 0;
+				int disagree = 0;
+				try {
+					String path = "C:\\art-tech\\votefile\\" + artworkInfoId + ".csv";
+					br = Files.newBufferedReader(Paths.get(path));
+					//Charset.forName("UTF-8");
+		            String line = "";
+		            
+		            while((line = br.readLine()) != null){
+		                if(line.split(",")[2].equals("동의")) {
+		                	++ agree;
+		                }else if(line.split(",")[2].equals("반대")) {
+		                	++ disagree;
+		                }
+		            }
+		            model.addAttribute("agree", agree);
+		            model.addAttribute("disagree", disagree);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if(br != null) {
+							br.close();
+						}
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+			}
 		}
 		model.addAttribute("artworkInfo", artworkInfo);
 		return "manage/goodsDetail";
@@ -68,7 +105,7 @@ public class ArtworkController {
 	
 	//투표중(3) -> 투표종료(4)
 	//현재날짜 = 투표종료 날짜
-	@Scheduled(cron="59 59 23 * * * ")
+	//@Scheduled(cron="0 0 24 * * * ")
 	public void updateStateVote() {
 		int result = service.modifyStateVote();
 		System.out.println("총 " + result + "개의 상태가 update");

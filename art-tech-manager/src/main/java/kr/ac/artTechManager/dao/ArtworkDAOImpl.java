@@ -86,6 +86,16 @@ public class ArtworkDAOImpl implements ArtworkDAO {
 		return sqlSession.update("kr.ac.kopo.manage.artworkInfo.updateStateVote", today);
 	}
 	
+	//디테일 페이지 상태 변경
+	@Override
+	public int updateArtworkState(VoteVO vote) {
+		return sqlSession.update("kr.ac.kopo.manage.artworkInfo.updateArtworkState", vote);
+	}
 	
+	//매각금액, 매각처, 매각일 update 
+	@Override
+	public int updateSellInfo(VoteVO vote) {
+		return sqlSession.update("kr.ac.kopo.manage.artworkInfo.updateSellInfo", vote);
+	}
 	
 }

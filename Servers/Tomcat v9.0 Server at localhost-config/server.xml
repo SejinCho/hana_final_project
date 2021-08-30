@@ -157,7 +157,7 @@
       <Context docBase="art-tech-manager" path="/artTechManager" reloadable="true" source="org.eclipse.jst.jee.server:art-tech-manager"/>
       <Context docBase="C:/art-tech/artwork_img" path="/artworkImg" reloadable="true"/>
       <Context docBase="C:/art-tech/writerInfo_img" path="/writerImg" reloadable="true"/>
-      </Host>
+      <Context docBase="bank-api" path="/kopo" reloadable="true" source="org.eclipse.jst.jee.server:bank-api"/></Host>
     </Engine>
   </Service>
 </Server>
