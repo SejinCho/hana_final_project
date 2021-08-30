@@ -41,7 +41,12 @@
   	  				},
   	  				async: false,
   	  				success : function(result) {
-  	  					alert(result)
+  	  					if(result == 'success') {
+  	  						$("input[name='sellPrice']").attr("readonly", true);
+  	  						$("input[name='sellPlace']").attr("readonly", true)
+  	  						$('#statusBtn').text('수익분배하기')
+  	  						
+  	  					}
   	  				},
   	  				error: function (request, status, error){
   	  					var msg = "ERROR : " + request.status + "<br>"
@@ -202,21 +207,21 @@
 												<c:when test="${artworkInfo.state == 4 && agree >= disagree }">
 													<tr>
 														<th>매각처</th>
-														<td><input type="text" id="sellPlace"></td>
+														<td><input type="text" id="sellPlace" name="sellPlace"></td>
 													</tr>
 													<tr>
 														<th>매각 금액</th>
-														<td><input type="text" id="sellPrice"></td>
+														<td><input type="text" id="sellPrice" name="sellPrice"></td>
 													</tr>
 												</c:when>
 												<c:when test="${artworkInfo.state == 5 || artworkInfo.state == 6 }">
 													<tr>
 														<th>매각처</th>
-														<td><input type="text" id="sellPlace" readonly="readonly" ></td>
+														<td><input type="text" id="sellPlace" name="sellPlace" readonly="readonly" ></td>
 													</tr>
 													<tr>
 														<th>매각 금액</th>
-														<td><input type="text" id="sellPrice" readonly="readonly"></td>
+														<td><input type="text" id="sellPrice" name="sellPrice" readonly="readonly"></td>
 													</tr>
 												</c:when>
 											</c:choose>
