@@ -217,18 +217,18 @@
 												<c:when test="${artworkInfo.state == 5 || artworkInfo.state == 6 }">
 													<tr>
 														<th>매각처</th>
-														<td><input type="text" id="sellPlace" name="sellPlace" readonly="readonly" ></td>
+														<td><input type="text" id="sellPlace" name="sellPlace" value="${artworkInfo.sellPlace }" readonly="readonly" ></td>
 													</tr>
 													<tr>
 														<th>매각 금액</th>
-														<td><input type="text" id="sellPrice" name="sellPrice" readonly="readonly"></td>
+														<td><input type="text" id="sellPrice" name="sellPrice" value="${artworkInfo.sellPrice }" readonly="readonly"></td>
 													</tr>
 												</c:when>
 											</c:choose>
 											<tr>
 												<th>업무</th>
 												<c:if test="${artworkInfo.state == 4 && agree >= disagree }">
-													<td id="statusTd"><button id="statusBtn">매각진행</button> </td>
+													<td id="statusTd"><button id="statusBtn">매각진행하기</button> </td>
 												</c:if>
 												<c:if test="${artworkInfo.state == 4 && agree < disagree }">
 													<td id="statusTd"><button id="statusBtn">매각기각</button> </td>
