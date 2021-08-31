@@ -56,7 +56,8 @@
 			when a.state = '6' then '수익 분배'
 			when a.state = '7' then '매각 완료'
 		end as state_name, 
-		round(a.sell_date - a.reg_date, 0) as retentionPeriod
+		round(a.sell_date - a.reg_date, 0) as retentionPeriod,
+		round(sell_price / ((ESTIMATED_PRICE_MAX + ESTIMATED_PRICE_min)/2) * 100 - 100,2) as yield
 		from sj_artwork_info a, sj_writer_info w,
         (select artwork_info_id, file_chan_name as artwork_img
 	    from sj_artwork_info_img 

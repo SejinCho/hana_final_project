@@ -148,26 +148,30 @@
 								<p class="title">보유기간</p>
 								<p class="content">-</p>
 							</div>
+							<!-- 
 							<div class="disposal_revenue">
 								<p class="title">기간환산 수익률(연)</p>
 								<p class="content">-</p>
 							</div>
+							 -->
 			    		</div>
 		    		</c:when>
 		    		<c:otherwise>
 		    			<div class="div_right">
 							<div class="disposal_revenue">
 								<p class="title">수익률</p>
-								<p class="content">15.25%</p>
+								<p class="content">${disposal.yield }%</p>
 							</div>
 							<div class="disposal_revenue">
 								<p class="title">보유기간</p>
 								<p class="content">${ disposal.retentionPeriod}일</p>
 							</div>
+							<!-- 
 							<div class="disposal_revenue">
 								<p class="title">기간환산 수익률(연)</p>
 								<p class="content">11.25%</p>
 							</div>
+							 -->
 			    		</div>
 		    		</c:otherwise>
 	    		</c:choose>
