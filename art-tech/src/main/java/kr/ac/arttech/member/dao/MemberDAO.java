@@ -17,5 +17,8 @@ public interface MemberDAO {
 	public String selectEasyPassword(String id); //간편 비번 가져오기
 	
 	public List<MyHistoryVO> selectMyHistoryListAll(String memberId) ; //myHistory 전체
+	public List<MyHistoryVO> selectMyHistoryListRecruit(String memberId) ; //myHistory 모집중
+	public List<MyHistoryVO> selectMyHistoryListRecruitEnd(String memberId) ; //myHistory 모집완료(state:2,3,4,5,6)
+	
 	public int updateWalletInfo(Map<String, String> wallet); //wallet update(지갑 생성 클릭)
 }

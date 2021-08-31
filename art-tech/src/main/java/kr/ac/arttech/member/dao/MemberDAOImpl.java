@@ -58,6 +58,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MyHistoryVO> selectMyHistoryListAll(String memberId) {
 		return sqlSession.selectList("kr.ac.arttech.member.selectMyHistoryListAll", memberId);
 	}
+	//myHistory 모집중
+	@Override
+	public List<MyHistoryVO> selectMyHistoryListRecruit(String memberId) {
+		return sqlSession.selectList("kr.ac.arttech.member.selectMyHistoryListRecruit", memberId);
+	}
 	
 	//wallet update(지갑 생성 클릭)
 	@Override

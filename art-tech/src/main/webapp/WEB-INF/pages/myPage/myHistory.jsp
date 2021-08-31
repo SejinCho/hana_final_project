@@ -22,16 +22,76 @@
     	$(document).ready(function(){
     		$('.myHistory_menu_select').click(function(){
     			alert($(this).text())
+    			let option = '';
+    			//버튼
 				$(this).addClass('myHistory_menu_active');
-				$('.myHistory_menu_select').not(this).removeClass('myHistory_menu_active')
+				$('.myHistory_menu_select').not(this).removeClass('myHistory_menu_active') 
 				
 				if($(this).text() =='매각작품') {
 					$('#myHistory_disposal_contain').removeClass('myHistory_disposal_contain_hidden')
 					$('#myHistory_all_table_container').addClass('myHistory_disposal_contain_hidden')
-				}else {
+				}else { //매각작품이 아닐 경우 
 					$('#myHistory_disposal_contain').addClass('myHistory_disposal_contain_hidden')
 					$('#myHistory_all_table_container').removeClass('myHistory_disposal_contain_hidden')
+					
+					switch($(this).text()) {
+					case '전체' :
+						option = 'all'
+						break;
+					case '모집중' :
+						option = 'ing'
+						break;
+					case '모집완료' :
+						option = 'end'
+						break;
+					}
+				
+					getDataList();
 				}
+				
+				//list 가져오기
+				function getDataList() {
+					$.ajax({
+						type: "GET",
+						url : "${pageContext.request.contextPath}/member/myHistoryOption",
+						data : {
+							'option' : option
+						},
+						//async: false,
+						success : function(result) {
+					        $('#myHistoryTbodyTwo').empty()
+					        result.forEach(myHistory => {
+					        	$('myHistoryTbodyTwo').append('<tr>')
+					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.regDate + '</td>')
+					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.title + '</td>')
+					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.writerName + '</td>')
+					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.pieceNo + '</td>')
+					        	if(myHistory.type == '1') {
+					        		$('myHistoryTbodyTwo').append('<td>구매</td>')
+					        	}else if(myHistory.type == '2') {
+					        		$('myHistoryTbodyTwo').append('<td>판매</td>')
+					        	}
+					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.totalPrice + '</td>')
+					        	if(myHistory.state == '1') {
+					        		$('myHistoryTbodyTwo').append('<td>취소가능</td>')
+					        	}else {
+					        		$('myHistoryTbodyTwo').append('<td>취소불가</td>')
+					        	}
+					        	$('myHistoryTbodyTwo').append('<tr>')
+					        	
+					        })
+					        
+					        
+						},
+						error: function (request, status, error){
+							var msg = "ERROR : " + request.status + "<br>"
+							msg += + "내용 : " + request.responseText + "<br>" + error;
+							console.log(msg);
+							
+						}
+
+					})
+				} //getDataList()
 				
     		})
     	})
@@ -112,7 +172,7 @@
 					
 				</tr>
 				</thead>
-				<tbody id="myHistory_tbody">
+				<tbody id="myHistoryTbodyOne">
 				
 						<tr> 
 							<td>작품명</td>
@@ -167,12 +227,12 @@
 					<th>작가명</th>
 					<th>조각</th>
 					<th>상태</th>
-					<th>금액</th>
+					<th>결제금액</th>
 					<th>취소</th>
 					
 				</tr>
 				</thead>
-				<tbody id="myHistory_tbody">
+				<tbody id="myHistoryTbodyTwo">
 					<c:forEach items="${myHistoryListAll }" var="myHistory">
 						<tr> 
 							<td>${myHistory.regDate }</td>
@@ -187,7 +247,7 @@
 									<td>판매</td>
 								</c:when>
 							</c:choose>
-							<td>${myHistory.pieceNo * myHistory.pieceAmt }</td>
+							<td>${myHistory.totalPrice }</td>
 							<c:choose>
 								<c:when test="${myHistory.state == 1 }">
 									<td>취소가능</td>

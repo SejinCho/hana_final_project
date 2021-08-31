@@ -62,6 +62,32 @@ public class MemberServiceImpl implements MemberService{
 	public List<MyHistoryVO> getMyHistoryListAll(String memberId) {
 		return dao.selectMyHistoryListAll(memberId);
 	}
+	//myhistory 옵션 선택했을 때 list 
+	@Override
+	public List<MyHistoryVO> getMyHistoryListOption(Map<String, String> map) {
+		List<MyHistoryVO> myHistoryList = null;
+		String option = map.get("option");
+		String memberId = map.get("memberId");
+		
+		switch (option) {
+		case "all": //전체
+			myHistoryList = dao.selectMyHistoryListAll(memberId);
+			break;
+		
+		case "ing" : //모집중
+			myHistoryList = dao.selectMyHistoryListRecruit(memberId);
+			break;
+		
+		case "end" : //모집완료
+			
+			break;
+			
+		case "": //매각작품
+			break;
+		}
+		
+		return myHistoryList;
+	}
 	
 	//지갑 생성
 	@Override

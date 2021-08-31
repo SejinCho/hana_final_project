@@ -100,7 +100,7 @@
 						<p class="goods_info_title">${artworkInfo.title }</p>
 						<p class="goods_info_writer">${artworkInfo.writerName }</p>
 						<div class="progress">
-						  <div class="progress-bar" role="progressbar" style="width: ${artworkInfo.achiePiece}%; background-color: #191970" aria-valuenow="${artworkInfo.achiePiece }" aria-valuemin="0" aria-valuemax="${artworkInfo.targetPiece }"></div>
+						  <div class="progress-bar" role="progressbar" style="width: ${artworkInfo.achiePiece}%; background-color: #008485" aria-valuenow="${artworkInfo.achiePiece }" aria-valuemin="0" aria-valuemax="${artworkInfo.targetPiece }"></div>
 						</div>
 						<p> ${artworkInfo.achiePiece } / ${artworkInfo.targetPiece } 조각 </p>
 						<div class="buying_state_container">

@@ -14,6 +14,9 @@ public class MyHistoryVO {
 	private int pieceNo; //조각 개수
 	private String type ; //1.공동구매 2. 판매
 	private String pieceAmt; //구매 가격
+	private String vat; //부가세
+	private String platformUsageFee; //플랫폼 이용료
+	private String totalPrice; // 플랫폼 + 부가세 + 조각
 	
 	private String state; //상태(0. 모집 예정 1.모집중, 2.모집완료, 3.매각투표, 4.투표종료, 5.매각중, 6.수익분배 7.매각완료)
 	private String stateName;

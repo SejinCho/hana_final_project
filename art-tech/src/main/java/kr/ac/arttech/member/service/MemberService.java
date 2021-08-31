@@ -1,6 +1,7 @@
 package kr.ac.arttech.member.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
@@ -15,6 +16,8 @@ public interface MemberService {
 	public int checkSignin(MemberVO member); //아이디 비밀번호 chekc(count)
 	
 	public List<MyHistoryVO> getMyHistoryListAll(String memberId); //my history all
+	public List<MyHistoryVO> getMyHistoryListOption(Map<String, String> map); //myhistory 옵션 선택했을 때 list 
+	
 	public String createWalletInfo(String id); //지갑 생성하기
 
 }

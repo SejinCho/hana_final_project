@@ -14,14 +14,10 @@
 	    <div id="work_banner" class="banner-wrapper bg-light w-100 py-5">
 	        <div class="banner-vertical-center-work container text-light d-flex justify-content-center align-items-center py-5 p-0">
 	            <div class="banner-content col-lg-8 col-12 m-lg-auto text-center">
-	                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 typo-space-line-center">Our Goods</h1>
-	                <h3 class="h4 pb-2 regular-400">Elit, sed do eiusmod tempor incididunt</h3>
+	                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 ">Our Goods</h1>
+	                <h3 class="h4 pb-2 regular-400"></h3>
 	                <p class="banner-body pb-2 light-300">
-	                    Vector illustration <a class="text-white" href="http://freepik.com/" target="_blank">Freepik</a>.
-	                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-	                    sed do eiusmod tempor incididunt ut labore et dolore magna
-	                    aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-	                    commodo viverra maecenas accumsan lacus.
+	                    
 	                </p>
 	                <button type="button" class="btn rounded-pill btn-secondary text-light px-4 light-300" onclick="location.href='${pageContext.request.contextPath}/manage/goodsRegister'" >작품 등록</button>
 	            </div>
