@@ -21,7 +21,6 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		$('.myHistory_menu_select').click(function(){
-    			alert($(this).text())
     			let option = '';
     			//버튼
 				$(this).addClass('myHistory_menu_active');
@@ -57,27 +56,27 @@
 						data : {
 							'option' : option
 						},
-						//async: false,
+						async: false,
 						success : function(result) {
 					        $('#myHistoryTbodyTwo').empty()
 					        result.forEach(myHistory => {
-					        	$('myHistoryTbodyTwo').append('<tr>')
-					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.regDate + '</td>')
-					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.title + '</td>')
-					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.writerName + '</td>')
-					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.pieceNo + '</td>')
+					        	$('#myHistoryTbodyTwo').append('<tr>')
+					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.regDate + '</td>')
+					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.title + '</td>')
+					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.writerName + '</td>')
+					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.pieceNo + '</td>')
 					        	if(myHistory.type == '1') {
-					        		$('myHistoryTbodyTwo').append('<td>구매</td>')
+					        		$('#myHistoryTbodyTwo').append('<td>구매</td>')
 					        	}else if(myHistory.type == '2') {
-					        		$('myHistoryTbodyTwo').append('<td>판매</td>')
+					        		$('#myHistoryTbodyTwo').append('<td>판매</td>')
 					        	}
-					        	$('myHistoryTbodyTwo').append('<td>' + myHistory.totalPrice + '</td>')
+					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.totalPrice + '</td>')
 					        	if(myHistory.state == '1') {
-					        		$('myHistoryTbodyTwo').append('<td>취소가능</td>')
+					        		$('#myHistoryTbodyTwo').append('<td>취소가능</td>')
 					        	}else {
-					        		$('myHistoryTbodyTwo').append('<td>취소불가</td>')
+					        		$('#myHistoryTbodyTwo').append('<td>취소불가</td>')
 					        	}
-					        	$('myHistoryTbodyTwo').append('<tr>')
+					        	$('#myHistoryTbodyTwo').append('<tr>')
 					        	
 					        })
 					        

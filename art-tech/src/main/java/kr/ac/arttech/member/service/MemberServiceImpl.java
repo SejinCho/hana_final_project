@@ -79,7 +79,7 @@ public class MemberServiceImpl implements MemberService{
 			break;
 		
 		case "end" : //모집완료
-			
+			myHistoryList = dao.selectMyHistoryListRecruitEnd(memberId);
 			break;
 			
 		case "": //매각작품

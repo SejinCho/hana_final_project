@@ -105,7 +105,6 @@
 		and p.member_id = #{memberId}
 		order by p.reg_date desc
 	</select>
-	
 	<!-- 거래내역 모집중 -->
 	<select id="selectMyHistoryListRecruit" resultMap="myHistoryMap" parameterType="String">
 		<include refid="selectMyHistoryListSql"/>
@@ -113,6 +112,11 @@
 		and a.state = '1'
 		order by p.reg_date desc
 	</select>
-	
-	<!-- 거래내역 모집완료 -->
+	<!-- 거래내역 모집완료(state:2,3,4,5,6) -->
+	<select id="selectMyHistoryListRecruitEnd" resultMap="myHistoryMap" parameterType="String">
+		<include refid="selectMyHistoryListSql"/>
+		and p.member_id = #{memberId}
+		and a.state in ('2','3','4','5','6')
+		order by p.reg_date desc
+	</select>
 </mapper>
