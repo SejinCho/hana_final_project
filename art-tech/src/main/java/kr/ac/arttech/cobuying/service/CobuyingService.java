@@ -15,4 +15,6 @@ public interface CobuyingService {
 	public int modifyState();  //상태 update
 	public List<ArtworkInfoVO> getOwnershipList();//소유자 현황 list
 	public List<PurchaseInfoVO> getTotalOwnerList(String id); //해당 그림 소유 list
+	
+	public List<ArtworkInfoVO> getDisposalList(); //매각진행현황 list
 }

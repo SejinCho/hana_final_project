@@ -42,7 +42,7 @@
 		to_char(a.target_piece * 10000,'999,999,999,999,999,999') as target_price,
 		to_char(a.achie_piece * 10000,'999,999,999,999,999,999') as achie_price,
 		a.target_piece, a.estimated_price_max, a.estimated_price_min,
-		a.achie_piece, a.sell_price, a.total_transfer_tax, a.sell_date, a.state, 
+		a.achie_piece, a.sell_price, a.total_transfer_tax, to_char(a.sell_date,'yyyy-mm-dd') as sellDate, a.state, 
 		a.sell_place ,to_char(a.reg_date, 'yyyy-mm-dd') as regDate , w.writer_name, w.career,
 		w.award_history, w.writer_info, w.file_chan_name, w.file_path, w.orgn_file_name,
         i.artwork_img as artwork_img,
@@ -79,6 +79,11 @@
 		and a.id = #{id}
 	</select>
 	
+	<!-- 매각진행 현황 list -->
+	<select id="selectDisposalList" resultMap="artworkInfoMap">
+		<include refid="artworkList" />
+		and a.state in ('3', '4', '5', '6', '7')
+	</select>
 	
 	<resultMap type="artworkInfoImg" id="artworkInfoImgMap">
 		<result column="artwork_Info_id" property="artworkInfoId" />

@@ -26,4 +26,5 @@ public interface CobuyingDAO {
 	public List<PurchaseInfoVO> selectTotalOwnerList(String id); //해당 그림 소유 리스트
 	
 	public String selectWallet(String memberId);//wallet (publickey 가져오기)
+	public List<ArtworkInfoVO> selectDisposalList(); //매각진행현황 list
 }

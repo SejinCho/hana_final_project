@@ -57,15 +57,21 @@
 	                        		<c:when test="${artworkInfo.state == 1 }">
 	                        			<p>모집 중</p>
 	                        		</c:when>
-	                        		<c:otherwise>
+	                        		<c:when test="${artworkInfo.state == 2 || artworkInfo.state == 3 || artworkInfo.state == 4 }">
 	                        			<p>모집 완료</p>
+	                        		</c:when>
+	                        		<c:when test="${artworkInfo.state == 5 }">
+	                        			<p>매각 중</p>
+	                        		</c:when>
+	                        		<c:otherwise>
+	                        			<p>수익 분배</p>
 	                        		</c:otherwise>
 	                        	</c:choose>
 	                            <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artworkInfo.id}">${artworkInfo.title }</a></h3>
 	                            <p>${artworkInfo.writerName }</p>
 	                            
 	                            <div class="progress">
-								  <div class="progress-bar" role="progressbar" style="width: ${artworkInfo.achiePiece}%; background-color: #191970" aria-valuenow="${artworkInfo.achiePiece}" aria-valuemin="0" aria-valuemax="${artworkInfo.targetPiece }"></div>
+								  <div class="progress-bar" role="progressbar" style="width: ${artworkInfo.achiePiece}%; background-color: #008485" aria-valuenow="${artworkInfo.achiePiece}" aria-valuemin="0" aria-valuemax="${artworkInfo.targetPiece }"></div>
 								</div>
 	                            <p> ${artworkInfo.achiePiece } / ${artworkInfo.targetPiece } 조각 </p>
 	                       	</div>

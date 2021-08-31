@@ -100,7 +100,13 @@ public class CobuyingController {
 	}
 	
 	
-	
+	//매각 진행 현황
+	@RequestMapping("/disposal")
+	public String disposal(Model model) {
+		System.out.println(service.getDisposalList());
+		model.addAttribute("disposalList", service.getDisposalList());
+		return "co-buying/disposal";
+	}
 	
 	
 	

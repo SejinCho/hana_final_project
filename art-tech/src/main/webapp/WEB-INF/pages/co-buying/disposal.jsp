@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -88,9 +89,9 @@
 		    		<select>
 		    			<option>전체</option>
 		    			<option>매각투표</option>
-		    			<option>매각종료</option>
 		    			<option>매각중</option>
 		    			<option>수익분배</option>
+		    			<option>매각종료</option>
 		    		</select>
 	    		</span>
 	    		<span class="ownership_keyword">
@@ -101,57 +102,59 @@
     	
     	<div class="disposal_container">
     	
-    		<div class="div_left">
-				<div class="disposal_artwork_img">
-					<img alt="" src="${pageContext.request.contextPath}/static/img/23.PNG">
-					<p class="title">$ (Quadrant)</p>
-					<p class="writer">앤디 워홀 Andy Warhol</p>
-				</div>
-				
-				<div class="recruit_info">
-					<div>
-						<span class="title">모집완료일</span>
-						<span class="content">2021-12-12</span>
+    		<!-- 하나 -->
+    		<c:forEach items="${disposalList}" var="disposal">
+	    		<div class="div_left">
+					<div class="disposal_artwork_img">
+						<img alt="" src="${pageContext.request.contextPath}/static/img/23.PNG">
+						<p class="title">$ (Quadrant)</p>
+						<p class="writer">앤디 워홀 Andy Warhol</p>
 					</div>
-					<div>
-						<span class="title">모집금액</span>
-						<span class="content_middle">312,340,000KRW</span>
+					
+					<div class="recruit_info">
+						<div>
+							<span class="title">모집완료일</span>
+							<span class="content">2021-12-12</span>
+						</div>
+						<div>
+							<span class="title">모집금액</span>
+							<span class="content_middle">312,340,000KRW</span>
+						</div>
+						<div>
+							<span class="title">매각금액</span>
+							<span class="content_middle">360,000,000</span>
+						</div>
+						<div>
+							<span class="title">매각일</span>
+							<span class="content_short">2021-12-12</span>
+						</div>
+						<div>
+							<span class="title">매각처</span>
+							<span class="content_short">개인소유자</span>
+						</div>
 					</div>
-					<div>
-						<span class="title">매각금액</span>
-						<span class="content_middle">360,000,000</span>
+					<div class="disposal_state">
+						<p class="state_title">진행현황</p>
+						<p class="state_detail">수익분배</p>
+					</div>	    		
+	    		</div>
+	    		<div class="div_right">
+					<div class="disposal_revenue">
+						<p class="title">수익률</p>
+						<p class="content">15.25%</p>
 					</div>
-					<div>
-						<span class="title">매각일</span>
-						<span class="content_short">2021-12-12</span>
+					<div class="disposal_revenue">
+						<p class="title">보유기간</p>
+						<p class="content">483일</p>
 					</div>
-					<div>
-						<span class="title">매각처</span>
-						<span class="content_short">개인소유자</span>
+					<div class="disposal_revenue">
+						<p class="title">기간환산 수익률(연)</p>
+						<p class="content">11.25%</p>
 					</div>
-				</div>
-				<div class="disposal_state">
-					<p class="state_title">진행현황</p>
-					<p class="state_detail">수익분배</p>
-				</div>	    		
-    		</div>
-    		<div class="div_right">
-				<div class="disposal_revenue">
-					<p class="title">수익률</p>
-					<p class="content">15.25%</p>
-				</div>
-				<div class="disposal_revenue">
-					<p class="title">보유기간</p>
-					<p class="content">483일</p>
-				</div>
-				<div class="disposal_revenue">
-					<p class="title">기간환산 수익률(연)</p>
-					<p class="content">11.25%</p>
-				</div>
-    		</div>
-    		<div class="ownership_container_margin" ></div>
-    		
-    		
+	    		</div>
+	    		<div class="ownership_container_margin" ></div>
+    		</c:forEach>
+    		<!-- 하나 끝 -->
     	</div>
     	
     	<div class="myDeposit_paging_container">

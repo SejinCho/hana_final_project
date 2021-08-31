@@ -101,4 +101,10 @@ public class CobuyingServiceImpl implements CobuyingService {
 	public List<PurchaseInfoVO> getTotalOwnerList(String id) {
 		return dao.selectTotalOwnerList(id);
 	}
+	
+	//매각진행현황 list
+	@Override
+	public List<ArtworkInfoVO> getDisposalList() {
+		return dao.selectDisposalList();
+	}
 }

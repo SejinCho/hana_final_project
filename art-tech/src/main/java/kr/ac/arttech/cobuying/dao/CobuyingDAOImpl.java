@@ -82,4 +82,10 @@ public class CobuyingDAOImpl implements CobuyingDAO {
 		return sqlSession.selectOne("kr.ac.arttech.cobuying.selectWallet", memberId);
 	}
 	
+	//매각진행현황 list
+	@Override
+	public List<ArtworkInfoVO> selectDisposalList() {
+		return sqlSession.selectList("kr.ac.arttech.cobuying.selectDisposalList");
+	}
+	
 }
