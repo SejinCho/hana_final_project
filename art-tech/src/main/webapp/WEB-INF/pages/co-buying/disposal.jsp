@@ -88,7 +88,6 @@
 	    		<span>
 		    		<select>
 		    			<option>전체</option>
-		    			<option>매각투표</option>
 		    			<option>매각중</option>
 		    			<option>수익분배</option>
 		    			<option>매각종료</option>
@@ -106,52 +105,72 @@
     		<c:forEach items="${disposalList}" var="disposal">
 	    		<div class="div_left">
 					<div class="disposal_artwork_img">
-						<img alt="" src="${pageContext.request.contextPath}/static/img/23.PNG">
-						<p class="title">$ (Quadrant)</p>
-						<p class="writer">앤디 워홀 Andy Warhol</p>
+						<img alt="" src="/artworkImg/${disposal.artworkImg }">
+						<p class="title">${disposal.title}</p>
+						<p class="writer">${disposal.writerName }</p>
 					</div>
 					
 					<div class="recruit_info">
 						<div>
 							<span class="title">모집완료일</span>
-							<span class="content">2021-12-12</span>
+							<span class="content">${disposal.recruitEndDate }</span>
 						</div>
 						<div>
 							<span class="title">모집금액</span>
-							<span class="content_middle">312,340,000KRW</span>
+							<span class="content_middle">${disposal.achiePrice}KRW</span>
 						</div>
 						<div>
 							<span class="title">매각금액</span>
-							<span class="content_middle">360,000,000</span>
+							<span class="content_middle">${disposal.sellPrice }</span>
 						</div>
 						<div>
 							<span class="title">매각일</span>
-							<span class="content_short">2021-12-12</span>
+							<span class="content_short">${disposal.sellDate }</span>
 						</div>
 						<div>
 							<span class="title">매각처</span>
-							<span class="content_short">개인소유자</span>
+							<span class="content_short">${disposal.sellPlace }</span>
 						</div>
 					</div>
 					<div class="disposal_state">
 						<p class="state_title">진행현황</p>
-						<p class="state_detail">수익분배</p>
+						<p class="state_detail">${disposal.stateName }</p>
 					</div>	    		
 	    		</div>
-	    		<div class="div_right">
-					<div class="disposal_revenue">
-						<p class="title">수익률</p>
-						<p class="content">15.25%</p>
-					</div>
-					<div class="disposal_revenue">
-						<p class="title">보유기간</p>
-						<p class="content">483일</p>
-					</div>
-					<div class="disposal_revenue">
-						<p class="title">기간환산 수익률(연)</p>
-						<p class="content">11.25%</p>
-					</div>
-	    		</div>
+	    		<c:choose>
+	    			<c:when test="${disposal.state == 3 || disposal.state == 4 }">
+			    		<div class="div_right">
+							<div class="disposal_revenue">
+								<p class="title">수익률</p>
+								<p class="content">-</p>
+							</div>
+							<div class="disposal_revenue">
+								<p class="title">보유기간</p>
+								<p class="content">-</p>
+							</div>
+							<div class="disposal_revenue">
+								<p class="title">기간환산 수익률(연)</p>
+								<p class="content">-</p>
+							</div>
+			    		</div>
+		    		</c:when>
+		    		<c:otherwise>
+		    			<div class="div_right">
+							<div class="disposal_revenue">
+								<p class="title">수익률</p>
+								<p class="content">15.25%</p>
+							</div>
+							<div class="disposal_revenue">
+								<p class="title">보유기간</p>
+								<p class="content">${ disposal.retentionPeriod}일</p>
+							</div>
+							<div class="disposal_revenue">
+								<p class="title">기간환산 수익률(연)</p>
+								<p class="content">11.25%</p>
+							</div>
+			    		</div>
+		    		</c:otherwise>
+	    		</c:choose>
 	    		<div class="ownership_container_margin" ></div>
     		</c:forEach>
     		<!-- 하나 끝 -->

@@ -58,7 +58,7 @@ public class AuthUtil {
 					+ "작가 : " + vote.getWriterName() + "\n"
 					+ "투표기간 : " + vote.getStartDate() + " ~ " + vote.getEndDate() + "\n"
 					+ "동의 : " + vote.getAgreeNo() + "\n"
-					+ "거부 : " + vote.getTotalNo() + "\n"
+					+ "거부 : " + (vote.getTotalNo() - vote.getAgreeNo()) + "\n"
 					+ "동의율 : " + Math.round((vote.getAgreeNo() / vote.getTotalNo()) * 100) / 1.0 + "%\n"
 	    			+ "위와 같이 매각의사 투표 동의율이 과반수가 넘어, 작품매각을 진행할 예정입니다.\n"
 					+ "자세한 사항은 홈페이지를 참고하시길 바랍니다."

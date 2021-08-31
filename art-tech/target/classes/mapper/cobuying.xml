@@ -21,7 +21,6 @@
 		<result column="achie_piece" property="achiePiece"/>
 		<result column="sell_price" property="sellPrice"/>
 		<result column="total_transfer_tax" property="totalTransferTax"/>
-		<result column="sell_date" property="sellDate"/>
 		<result column="sell_place" property="sellPlace"/>
 		<result column="writer_name" property="writerName"/>
 		<result column="award_history" property="awardHistory"/>
@@ -42,7 +41,8 @@
 		to_char(a.target_piece * 10000,'999,999,999,999,999,999') as target_price,
 		to_char(a.achie_piece * 10000,'999,999,999,999,999,999') as achie_price,
 		a.target_piece, a.estimated_price_max, a.estimated_price_min,
-		a.achie_piece, a.sell_price, a.total_transfer_tax, to_char(a.sell_date,'yyyy-mm-dd') as sellDate, a.state, 
+		a.achie_piece, to_char(a.sell_price,'999,999,999,999,999,999') as sell_price, a.total_transfer_tax, 
+		to_char(a.sell_date,'yyyy-mm-dd') as sellDate, a.state, 
 		a.sell_place ,to_char(a.reg_date, 'yyyy-mm-dd') as regDate , w.writer_name, w.career,
 		w.award_history, w.writer_info, w.file_chan_name, w.file_path, w.orgn_file_name,
         i.artwork_img as artwork_img,
@@ -55,7 +55,8 @@
 			when a.state = '5' then '매각 중'
 			when a.state = '6' then '수익 분배'
 			when a.state = '7' then '매각 완료'
-		end as state_name
+		end as state_name, 
+		round(a.sell_date - a.reg_date, 0) as retentionPeriod
 		from sj_artwork_info a, sj_writer_info w,
         (select artwork_info_id, file_chan_name as artwork_img
 	    from sj_artwork_info_img 

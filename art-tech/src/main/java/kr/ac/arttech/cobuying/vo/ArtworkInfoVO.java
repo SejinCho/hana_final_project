@@ -37,7 +37,11 @@ public class ArtworkInfoVO {
 	private String orgnFileName;
 	private String artworkImg;
 	
-	private String targetPrice;
-	private String achiePrice;
+	private String targetPrice; //목표 가격
+	private String achiePrice; //달성 가격
+	private String retentionPeriod; //보유 기간
+	private String yield; //수익률
+	//기간환산 수익률
+	
 	
 }
