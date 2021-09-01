@@ -45,7 +45,7 @@
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="${pageContext.request.contextPath}/manage/writerList">작가관리</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="contact.html">투표만들기</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="${pageContext.request.contextPath}/manage/noticeList">공지</a>
                         </li>
                     </ul>
                 </div>

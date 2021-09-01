@@ -23,4 +23,14 @@
 	<definition name="manage/writerDetail" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/writer/writerDetail.jsp" />
 	</definition>
+	
+	<definition name="manage/noticeList" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/notice/list.jsp" />
+	</definition>
+	<definition name="manage/noticeDetail" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/notice/detail.jsp" />
+	</definition>
+	<definition name="manage/noticeRegister" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/notice/register.jsp" />
+	</definition>
 </tiles-definitions>

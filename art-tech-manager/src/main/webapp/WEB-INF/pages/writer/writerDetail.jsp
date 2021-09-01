@@ -23,7 +23,7 @@
 			<div class="row projects gx-lg-5">
 				<div class="writerRegister_container">
 					<div class="main_title">
-						<p>작가 등록</p>
+						<p>작가</p>
 					</div>
 					<form action="">
 						<table id="writerDetailTable">

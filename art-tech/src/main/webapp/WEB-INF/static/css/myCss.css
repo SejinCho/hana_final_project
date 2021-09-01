@@ -1262,3 +1262,67 @@
 	height: 210px;
 	width: 350px;
 }
+
+.bradcam_area .container .row .bradcam_text p {
+	font-size: 30px;
+	color: white;
+	font-weight: bold;
+}
+
+/*notice*/
+.notice_bg_1 {
+	background-image: url(../img/banner/notice_banner.PNG);
+}
+.notice-container {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	
+}
+.notice-table-div {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+.notice-container .table thead {
+	text-align: center;
+}
+.notice-container .table .title {
+	padding-left: 70px;
+}
+.notice-container .notice-table-div .table tbody a{
+	color: black;
+}
+
+
+.notice-detail-container {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.notice-detail-title-container {
+	display: flex;
+	background-color: #F5F5F5;
+	padding-top: 20px;
+}
+.notice-detail-title-container .title-name1 {
+	flex: 1;
+	padding-left: 15px;
+}
+.notice-detail-title-container .title-name2 {
+	flex: 6;
+}
+.notice-detail-title-container .title-name2 p{
+	font-weight: bold;
+}
+.notice-detail-title-container .title-date {
+	flex: 1;
+}
+.notice-detail-title-container .title-date p{
+	font-weight: bold;
+	font-size: 12px;
+}
+.notice-detail-content-container {
+	padding-top: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+}

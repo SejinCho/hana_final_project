@@ -43,8 +43,12 @@ public class ArtworkController {
 	
 	//작품등록
 	@PostMapping("/goodsRegister")
-	public String addArtworkInfoPost(ArtworkInfoVO artworkInfo, @RequestParam("file")List<MultipartFile> multipartFile) throws Exception{
-		service.addArtworkInfo(artworkInfo, multipartFile);
+	public String addArtworkInfoPost(ArtworkInfoVO artworkInfo, HttpSession session,
+			@RequestParam("file")List<MultipartFile> multipartFile) throws Exception{
+		boolean result = service.addArtworkInfo(artworkInfo, multipartFile);
+		if(result) {
+			session.setAttribute("register", "success");
+		}
 		
 		return "redirect:/manage/goods"; 
 	}
@@ -52,9 +56,13 @@ public class ArtworkController {
 	
 	//작품리스트
 	@GetMapping("/goods")
-	public String goodsList(Model model) {
+	public String goodsList(Model model, HttpSession session) {
+		String register = (String) session.getAttribute("register");
+		session.removeAttribute("register");
+		
 		List<ArtworkInfoVO> artworkInfoList = service.getArtworkInfoList();
 		model.addAttribute("artworkInfoList", artworkInfoList);
+		model.addAttribute("register", register);
 		return "manage/goods";
 	}
 	

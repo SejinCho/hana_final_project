@@ -306,7 +306,7 @@
 									<thead >
 								    <tr>
 								    	<th >공지사항 </th>
-								    	<td class="testimonial_area_td"><a href="#" >전체보기</a></td>
+								    	<td class="testimonial_area_td"><a href="${pageContext.request.contextPath }/notice/list" >전체보기</a></td>
 								    </tr>
 								    </thead>
 								    <tbody>

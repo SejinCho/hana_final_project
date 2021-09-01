@@ -46,8 +46,8 @@
 	    <div class="theme-bg-shapes-right"></div>
 	    <div class="theme-bg-shapes-left"></div>
 	    <div class="container">
-		    <h1 class="page-heading single-col-max mx-auto">The Ethereum Blockchain Explorer</h1>
-		    <div class="page-intro single-col-max mx-auto">The Ethereum Blockchain Explorer</div>
+		    <h1 class="page-heading single-col-max mx-auto">HANA ART Blockchain Explorer</h1>
+		    <div class="page-intro single-col-max mx-auto">HANA ART Blockchain Explorer</div>
 		    <div class="main-search-box pt-3 d-block mx-auto">
                  <form class="search-form w-100">
 		            <input type="text" placeholder="Search by Address / Txn Hash / Block"  name="search" class="form-control search-input">

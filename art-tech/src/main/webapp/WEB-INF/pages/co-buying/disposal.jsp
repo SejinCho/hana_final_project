@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>매각 진행현황</h3>
+                        <p>매각 진행현황</p>
                     </div>
                 </div>
             </div>

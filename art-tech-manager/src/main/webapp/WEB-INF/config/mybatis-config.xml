@@ -14,10 +14,12 @@
 		<typeAlias type="kr.ac.artTechManager.vo.ArtworkInfoImg" alias="artworkInfoImg"/>
 		<typeAlias type="kr.ac.artTechManager.vo.MemberVO" alias="member"/>
 		<typeAlias type="kr.ac.artTechManager.vo.VoteVO" alias="vote"/>
+		<typeAlias type="kr.ac.artTechManager.vo.NoticeVO" alias="notice"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/writerInfo.xml"/>
 		<mapper resource="mapper/artworkInfo.xml"/>
 		<mapper resource="mapper/member.xml"/>
+		<mapper resource="mapper/notice.xml"/>
 	</mappers>
 </configuration>

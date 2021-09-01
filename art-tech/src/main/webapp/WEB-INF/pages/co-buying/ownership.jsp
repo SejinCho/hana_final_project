@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
-                        <h3>작품별 소유자 현황</h3>
+                        <p>작품별 소유자 현황</p>
                     </div>
                 </div>
             </div>

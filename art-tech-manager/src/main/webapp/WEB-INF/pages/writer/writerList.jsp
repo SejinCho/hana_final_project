@@ -6,6 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
+<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		if('${register}' == 'success') {
+			$('#index_content_p').text()
+			$('#index_content_p').text('작가 정보가 등록되었습니다.')
+			$('.index_modal').css('display','block')
+			$('body').css("overflow", "hidden");
+		}
+		//모달 다시 숨기기
+		$('.index_modal_cancel').click(function(){
+			$('.index_modal').css('display','none')
+			$('body').css("overflow", "scroll");
+		})
+	})
+	
+</script>
 </head>
 <body>
 	<div class="contents-wrap1">
@@ -52,6 +71,21 @@
 			</div>
 			
 		</section>
+		
+		<!-- 모달 -->
+		<div class="index_modal">
+			<div class="index_body" >  
+				
+				<div class="content">
+					<p id="index_content_p"></p>
+				</div>
+				<hr>
+				<div class="select">
+					<p class="index_modal_cancel">확인</p>
+				</div>
+			</div>
+		</div>
+		<!-- 모달끝 -->
 	</div>
 	
 	

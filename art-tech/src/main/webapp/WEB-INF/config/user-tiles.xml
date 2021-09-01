@@ -60,10 +60,19 @@
 		<put-attribute name="content" value="/WEB-INF/pages/myPage/myGallery.jsp" />
 	</definition>
 	
+	<definition name="notice/list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/notice/list.jsp" />
+	</definition>
+	<definition name="notice/detail" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/notice/detail.jsp" />
+	</definition>
+	
 	<definition name="artscan/blocks" extends="artscanTemplate">
 		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/blocks.jsp" />
 	</definition>
 	<definition name="artscan/txns" extends="artscanTemplate">
 		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/txns.jsp" />
 	</definition>
+	
+	
 </tiles-definitions>
