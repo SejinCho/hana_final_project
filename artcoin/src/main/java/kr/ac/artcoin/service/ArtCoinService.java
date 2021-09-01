@@ -126,8 +126,13 @@ public class ArtCoinService {
         for (Block block : blockchain) {
             for (Transaction transaction : block.transactions) {
                 if (transaction.transactionId.equals(transactionHash)) {
-                    tx = transaction;
-                    return new TransactionDto.TransactionInfo(tx);
+                	int blockHeight = block.blockHeight;
+                	String blockHash = block.hash;
+                	tx = transaction;
+                	TransactionDto.TransactionInfo txInfo = new TransactionDto.TransactionInfo(tx);
+                	txInfo.setBlockHeight(blockHeight);
+                	txInfo.setBlockHash(blockHash);
+                    return txInfo;
                 }
             }
         }

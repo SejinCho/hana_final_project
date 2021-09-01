@@ -37,8 +37,8 @@ public class ArtscanController {
 		
 		return "artscan/txns";
 	}
-	@GetMapping("/txnDetail")
-	public String txnDetail() {
+	@GetMapping("/txnDetail/{transactionId}")
+	public String txnDetail(@PathVariable("transactionId") String transactionId) {
 		
 		return "artscan/txnDetail";
 	}

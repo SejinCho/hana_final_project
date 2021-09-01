@@ -34,7 +34,7 @@ public class ArtCoinController {
 
     // 트랜잭션 id 로 조회
     @GetMapping("/transaction")
-    public Response<?> getTransaction(@RequestBody String transactionHash) {
+    public Response<?> getTransaction(String transactionHash) {
         return Response.builder()
                 .code(1)
                 .msg("success")

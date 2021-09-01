@@ -25,7 +25,7 @@
     					let tx = result.data[i]
     					console.log(tx)
     					let txRowData = `
-	    					<tr>
+	    					<tr onclick="location.href='${pageContext.request.contextPath}/artscan/txnDetail/` + tx.transactionId + `'">
 		                        <td>` + (tx.transactionId.length >=fontSizeMax ?tx.transactionId.substring(0,fontSizeMax) + "..." : tx.transactionId  ) + `</td>
 		                        <td><span>` + (tx.sender.length >= fontSizeMax ? tx.sender.substring(0,fontSizeMax) + "..." : tx.sender) + `</span></td>
 		                        <td><span>` + (tx.reciepient.length >=fontSizeMax ? tx.reciepient.substring(0,fontSizeMax) + "..." : tx.reciepient) + `</span></td>
@@ -62,8 +62,8 @@
 	                            <th>Txn Hash</th>
 	                            <th>From</th>
 	                            <th>To</th>
-	                            <th>Artwork NO</th>
-	                            <th>Pieces</th>
+	                            <th>Art Id</th>
+	                            <th>Value</th>
 	                            <th>Block Hash</th>
 	                            <th>Block Height</th>
 	                        </tr>
