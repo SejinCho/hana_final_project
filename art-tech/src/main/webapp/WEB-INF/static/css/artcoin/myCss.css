@@ -18,3 +18,11 @@
 .nav-item {
 	padding-left: 20px;
 }
+
+.blockDetail-title-div {
+	padding-top: 50px;
+}
+.blockDetail-title-div p {
+	font-size: 20px;
+	font-weight: bold;
+}

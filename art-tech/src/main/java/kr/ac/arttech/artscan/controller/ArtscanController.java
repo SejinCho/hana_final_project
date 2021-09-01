@@ -20,9 +20,13 @@ public class ArtscanController {
 	}
 	
 	@GetMapping("/blocks")
-	public String blockDetail() {
+	public String blocks() {
 		
 		return "artscan/blocks";
+	}
+	@GetMapping("/blockDetail")
+	public String blockDetail() {
+		return "artscan/blockDetail";
 	}
 	
 	
@@ -30,5 +34,10 @@ public class ArtscanController {
 	public String txns() {
 		
 		return "artscan/txns";
+	}
+	@GetMapping("/txnDetail")
+	public String txnDetail() {
+		
+		return "artscan/txnDetail";
 	}
 }

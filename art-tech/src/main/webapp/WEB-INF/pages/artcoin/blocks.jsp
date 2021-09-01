@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>artscan</title>
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -26,11 +26,11 @@
 					let block = result.data.blocks[result.data.totalBlockSize - i - 1]
 					//block data
 					let blockRowData = `
-				    				<tr>
+				    				<tr onclick="location.href='${pageContext.request.contextPath}/artscan/blockDetail'">
 					                    <td>` + block.blockHeight + `</td>
 					                    <td>` + block.hash + `</td>
 		                                <td><span>` + block.transactions.length + ` </span></td>
-		                                <td><span>` + block.timeStamp + `</span></td>
+		                                <td><span> in ` + Math.round(((new Date().getTime() - block.timeStamp)/1000))  + ` secs </span></td>
 					                </tr>
 				               		` 
 					

@@ -134,6 +134,17 @@ public class ArtCoinService {
         }
         throw new ArtChainException("transactionId not found");
     }
+    
+    //블록 hash로 조회
+    public BlockInfo getBlock(String blockHash) {
+    	ArrayList<Block> blockchain = ArtChain.blockchain;
+    	for(Block block : blockchain) {
+    		if(block.hash.equals(blockHash)) {
+    			return new BlockInfo(block);
+    		}
+    	}
+    	throw new ArtChainException("BlockId not found");
+    }
 
 
 }

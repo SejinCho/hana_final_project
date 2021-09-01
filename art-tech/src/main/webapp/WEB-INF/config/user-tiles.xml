@@ -70,8 +70,14 @@
 	<definition name="artscan/blocks" extends="artscanTemplate">
 		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/blocks.jsp" />
 	</definition>
+	<definition name="artscan/blockDetail" extends="artscanTemplate">
+		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/blockDetail.jsp" />
+	</definition>
 	<definition name="artscan/txns" extends="artscanTemplate">
 		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/txns.jsp" />
+	</definition>
+	<definition name="artscan/txnDetail" extends="artscanTemplate">
+		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/txnDetail.jsp" />
 	</definition>
 	
 	

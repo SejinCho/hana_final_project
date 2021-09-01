@@ -46,7 +46,6 @@ public class ArtCoinController {
     @PostMapping("/transaction")
     public Response<?> requestTransaction(@RequestBody ReqTransaction reqTransaction) {
     	reqTransaction.setSendWallet(StringUtil.getStringFromKey(WalletRepository.admin.publicKey));
-    	System.out.println("artcoin 컨트롤러reqTransaction : " + reqTransaction);
         artCoinService.transaction(reqTransaction);
         return Response.builder()
                 .code(1)
@@ -71,6 +70,16 @@ public class ArtCoinController {
                 .code(1)
                 .msg("success")
                 .data(artCoinService.getBlocks())
+                .build();
+    }
+    
+    //블록 id로 조회
+    @GetMapping("/block")
+    public Response<?> getBlock(@RequestBody String blockHash) {
+    	return Response.builder()
+                .code(1)
+                .msg("success")
+                .data(artCoinService.getBlock(blockHash))
                 .build();
     }
 
