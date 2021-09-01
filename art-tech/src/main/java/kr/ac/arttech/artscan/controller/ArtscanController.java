@@ -2,6 +2,7 @@ package kr.ac.arttech.artscan.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.arttech.artscan.service.ArtscanService;
@@ -24,8 +25,9 @@ public class ArtscanController {
 		
 		return "artscan/blocks";
 	}
-	@GetMapping("/blockDetail")
-	public String blockDetail() {
+	@GetMapping("/blockDetail/{hash}")
+	public String blockDetail(@PathVariable("hash") String hash) {
+		System.out.println("디테일 hash : " + hash);
 		return "artscan/blockDetail";
 	}
 	

@@ -26,7 +26,7 @@
 					let block = result.data.blocks[result.data.totalBlockSize - i - 1]
 					//block data
 					let blockRowData = `
-				    				<tr onclick="location.href='${pageContext.request.contextPath}/artscan/blockDetail'">
+				    				<tr onclick="location.href='${pageContext.request.contextPath}/artscan/blockDetail/` + block.hash + `'">
 					                    <td>` + block.blockHeight + `</td>
 					                    <td>` + block.hash + `</td>
 		                                <td><span>` + block.transactions.length + ` </span></td>

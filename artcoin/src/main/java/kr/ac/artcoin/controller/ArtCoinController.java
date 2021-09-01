@@ -75,11 +75,11 @@ public class ArtCoinController {
     
     //블록 id로 조회
     @GetMapping("/block")
-    public Response<?> getBlock(@RequestBody String blockHash) {
+    public Response<?> getBlock(String hash) {
     	return Response.builder()
                 .code(1)
                 .msg("success")
-                .data(artCoinService.getBlock(blockHash))
+                .data(artCoinService.getBlock(hash))
                 .build();
     }
 

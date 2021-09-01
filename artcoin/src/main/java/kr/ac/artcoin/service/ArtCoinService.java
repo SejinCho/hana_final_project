@@ -10,7 +10,6 @@ import kr.ac.artcoin.exception.ArtChainException;
 import kr.ac.artcoin.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -136,11 +135,13 @@ public class ArtCoinService {
     }
     
     //블록 hash로 조회
-    public BlockInfo getBlock(String blockHash) {
+    public BlockInfo getBlock(String hash) {
     	ArrayList<Block> blockchain = ArtChain.blockchain;
+    	Block blockInfo;
     	for(Block block : blockchain) {
-    		if(block.hash.equals(blockHash)) {
-    			return new BlockInfo(block);
+    		if(block.hash.equals(hash)) {
+    			blockInfo = block;
+    			return new BlockInfo(blockInfo);
     		}
     	}
     	throw new ArtChainException("BlockId not found");
