@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -17,18 +19,28 @@
     <!-- Place favicon.ico in the root directory -->
 	
 	<script type="text/javascript">
+		var arr = new Array(${fn:length("myGalleryList")})
+
 		$(document).ready(function(){
+			<c:forEach items="${myGalleryList}" var="myGallery" varStatus="index">
+				arr[${index.index}] = new Array(5);
+				arr[${index.index}][0] = ${myGallery.totalPieceNo}
+				arr[${index.index}][1] = '${myGallery.firstRegDate}'
+				arr[${index.index}][2] = '${myGallery.title}'
+				arr[${index.index}][3] = '${myGallery.writerName}'
+				arr[${index.index}][4] = '${myGallery.artworkImg}'
+			</c:forEach>
+			
 			$('.select_menu').click(function(){
 				alert($(this).text())
 				$(this).addClass('myGallery_menu_select_menu_active');
 				$('.select_menu').not(this).removeClass('myGallery_menu_select_menu_active')
 				
-			})
-			
-			//모달 
-			$('#certificateP').click(function(){
-				$('.myGallery-modal').css('display','block')
-    			$('body').css("overflow", "hidden");
+				
+				//모집중, 모집완료, 매각완료
+				
+				
+				
 			})
 			
 			//모달 다시 숨기기
@@ -38,6 +50,19 @@
     		})
 		})//document
 		
+		//모달 
+		function certificate(idx) {
+			console.log(arr[idx][0])
+			let img = '/artworkImg/' + arr[idx][4]
+			$("#img_form_url").attr("src", img);
+			$('#index_content_p').text(arr[idx][2])
+			$('#modalWriterName').text(arr[idx][3])
+			$('#firstRegDate').text('최초 구입일 : ' + arr[idx][1])
+			$('#totalPieceNo').text('현재 보유 : ' + arr[idx][0])
+			
+			$('.myGallery-modal').css('display','block')
+			$('body').css("overflow", "hidden");
+		}
 	
 	</script>
     
@@ -73,65 +98,27 @@
 			
 			<!-- 마이갤러리 -->
 			<div class="row">
-			
-				<!-- 하나 -->
-				<div class="col-xl-6 ">
-					<div class="myGallery_main_container">
-						<div class="div_left_img">
-							<img alt="" src="${pageContext.request.contextPath}/static/img/blog/blog_2.png">
-						</div>
-						<div class="div_center_artworkInfo">
-							<p class="title">SARA Dancing 1</p>
-							<p class="writer">줄리안 오피 fulian opie</p>
-							<p class="piece">보유조각 : 1</p>
-						</div>
-						<div class="div_right_certificate">
-							<div class="certificate">
-								<p id="certificateP">온라인 권리증</p>
+				<c:forEach items="${myGalleryList }" var="myGallery" varStatus="index">
+					<!-- 하나 -->
+					<div class="col-xl-6 ">
+						<div class="myGallery_main_container">
+							<div class="div_left_img">
+								<img alt="" src="/artworkImg/${myGallery.artworkImg }">
+							</div>
+							<div class="div_center_artworkInfo">
+								<p class="title">${myGallery.title }</p>
+								<p class="writer">${myGallery.writerName }</p>
+								<p class="piece">보유조각 : ${myGallery.totalPieceNo }</p>
+							</div>
+							<div class="div_right_certificate">
+								<div class="certificate" onclick="certificate(${index.index})">
+									<p class="certificateP">온라인 권리증</p>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- 하나 끝 -->
-				<!-- 하나 -->
-				<div class="col-xl-6 ">
-					<div class="myGallery_main_container">
-						<div class="div_left_img">
-							<img alt="" src="${pageContext.request.contextPath}/static/img/blog/blog_2.png">
-						</div>
-						<div class="div_center_artworkInfo">
-							<p class="title">SARA Dancing 1</p>
-							<p class="writer">줄리안 오피 fulian opie</p>
-							<p class="piece">보유조각 : 1</p>
-						</div>
-						<div class="div_right_certificate">
-							<div class="certificate">
-								<p>온라인 권리증</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 하나 끝 -->
-				<!-- 하나 -->
-				<div class="col-xl-6 ">
-					<div class="myGallery_main_container">
-						<div class="div_left_img">
-							<img alt="" src="${pageContext.request.contextPath}/static/img/blog/blog_2.png">
-						</div>
-						<div class="div_center_artworkInfo">
-							<p class="title">SARA Dancing 1</p>
-							<p class="writer">줄리안 오피 fulian opie</p>
-							<p class="piece">보유조각 : 1</p>
-						</div>
-						<div class="div_right_certificate">
-							<div class="certificate">
-								<p>온라인 권리증</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- 하나 끝 -->
-				
+					<!-- 하나 끝 -->
+				</c:forEach>
 			</div>
 			
 			<div class="myDeposit_paging_container myGallery_paging">
@@ -148,25 +135,27 @@
 					<li><a href="#">10</a></li>
 				</ul>
 			</div>
-			<!-- 모달 -->
-			<div class="myGallery-modal">
-				<div class="myGallery-body" >  
-					
-					<div class="content">
-						<p class="certificateImg"><img alt="" src="${pageContext.request.contextPath}/static/img/23.PNG"> </p>
-						<p id="index_content_p">작품명적는공간입니다.</p>
-						<p>작가명적는공간입니다.</p>
-						<p>구입일적는공간입니다.</p>
-						<p>현재보유 : 3개</p>
-					</div>
-					<hr>
-					<div class="select">
-						<p class="myGallery-modal-cancel">확인</p>
-					</div>
-				</div>
-			</div>	
-			<!-- 모달 끝 -->
+			
 		</div>
+		
 	</div>
+	<!-- 모달 -->
+	<div class="myGallery-modal">
+		<div class="myGallery-body" >  
+			
+			<div class="content">
+				<p class="certificateImg"><img alt="" src="${pageContext.request.contextPath}/static/img/23.PNG" id="img_form_url"> </p>
+				<p id="index_content_p">작품명적는공간입니다.</p>
+				<p id="modalWriterName">작가명적는공간입니다.</p>
+				<p id="firstRegDate">구입일적는공간입니다.</p>
+				<p id="totalPieceNo">현재보유 : 3개</p>
+			</div>
+			<hr>
+			<div class="select">
+				<p class="myGallery-modal-cancel">확인</p>
+			</div>
+		</div>
+	</div>	
+	<!-- 모달 끝 -->
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.arttech.member.vo.MemberVO;
+import kr.ac.arttech.member.vo.MyGalleryVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
 import lombok.RequiredArgsConstructor;
 
@@ -68,6 +69,13 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MyHistoryVO> selectMyHistoryListRecruitEnd(String memberId) {
 		return sqlSession.selectList("kr.ac.arttech.member.selectMyHistoryListRecruitEnd", memberId);
 	}
+	
+	//myGallery all
+	@Override
+	public List<MyGalleryVO> selectMyGalleryAll(String memberId) {
+		return sqlSession.selectList("kr.ac.arttech.member.selectMyGalleryAll",memberId);
+	}
+	
 	
 	//wallet update(지갑 생성 클릭)
 	@Override

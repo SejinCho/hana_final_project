@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="kr.ac.arttech.member.vo.MemberVO" alias="member"/>
 		<typeAlias type="kr.ac.arttech.member.vo.MyHistoryVO" alias="myHistory"/>
+		<typeAlias type="kr.ac.arttech.member.vo.MyGalleryVO" alias="myGallery"/>
 		
 		<typeAlias type="kr.ac.arttech.openbanking.vo.AutoTranAccountVO" alias="autoAccountInfo"/>
 		<typeAlias type="kr.ac.arttech.openbanking.vo.AccountInfoVO" alias="accountInfo"/>

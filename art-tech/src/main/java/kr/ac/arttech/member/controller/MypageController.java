@@ -1,5 +1,8 @@
 package kr.ac.arttech.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,6 +38,18 @@ public class MypageController {
 		
 		model.addAttribute("member", service.getMemberInfo(id)) ;
 		return "myPage/myInfo";
+	}
+	
+	//myGallery
+	@GetMapping("/myGallery")
+	public String myGallery(HttpSession session, Model model) {
+		String memberId = (String) session.getAttribute("memberId");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("option", "all");
+		
+		model.addAttribute("myGalleryList", service.getMyGalleryList(map));
+		return "myPage/myGallery";
 	}
 	
 	

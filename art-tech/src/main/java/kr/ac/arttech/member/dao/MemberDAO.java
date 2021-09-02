@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.ac.arttech.member.vo.MemberVO;
+import kr.ac.arttech.member.vo.MyGalleryVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
 
 public interface MemberDAO {
@@ -19,6 +20,8 @@ public interface MemberDAO {
 	public List<MyHistoryVO> selectMyHistoryListAll(String memberId) ; //myHistory 전체
 	public List<MyHistoryVO> selectMyHistoryListRecruit(String memberId) ; //myHistory 모집중
 	public List<MyHistoryVO> selectMyHistoryListRecruitEnd(String memberId) ; //myHistory 모집완료(state:2,3,4,5,6)
+	
+	public List<MyGalleryVO> selectMyGalleryAll(String memberId); //myGallery all
 	
 	public int updateWalletInfo(Map<String, String> wallet); //wallet update(지갑 생성 클릭)
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.ac.arttech.member.vo.MemberVO;
+import kr.ac.arttech.member.vo.MyGalleryVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
 
 public interface MemberService {
@@ -17,6 +18,8 @@ public interface MemberService {
 	
 	public List<MyHistoryVO> getMyHistoryListAll(String memberId); //my history all
 	public List<MyHistoryVO> getMyHistoryListOption(Map<String, String> map); //myhistory 옵션 선택했을 때 list 
+	
+	public List<MyGalleryVO> getMyGalleryList(Map<String, String> map); //myGallery list
 	
 	public String createWalletInfo(String id); //지갑 생성하기
 

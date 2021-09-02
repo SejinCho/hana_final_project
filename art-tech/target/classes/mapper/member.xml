@@ -119,4 +119,40 @@
 		and a.state in ('2','3','4','5','6')
 		order by p.reg_date desc
 	</select>
+	
+	
+	<!-- 마이갤러리(myGallery) sql -->
+	<sql id="selectMyGallery">
+		select p.artwork_info_id, to_char(p.total_piece_no,'999,999,999') as total_piece_no, p.first_reg_date, a.title,
+		w.writer_name, i.artwork_img, a.state from 
+		(select artwork_info_id, count(piece_no) as total_piece_no,
+		to_char(min(reg_date),'yyyy-mm-dd') as first_reg_date
+		from sj_purchase_info
+		where member_id = #{memberId}
+		GROUP by artwork_info_id) p, 
+		sj_artwork_info a,
+		sj_writer_info w,
+		(select artwork_info_id, file_chan_name as artwork_img
+		from sj_artwork_info_img 
+		where (artwork_info_id, id) in (
+		select artwork_info_id, max(id) as id
+		from sj_artwork_info_img group by artwork_info_id
+		)) i
+		where p.artwork_info_id = a.id
+		and a.writer_id = w.id
+		and i.artwork_info_id = p.artwork_info_id
+	</sql>
+	<resultMap type="myGallery" id="myGalleryMap">
+		<result column="artwork_info_id" property="artworkInfoId"/>
+		<result column="total_piece_no" property="totalPieceNo"/>
+		<result column="first_reg_date" property="firstRegDate"/>
+		<result column="writer_name" property="writerName"/>
+		<result column="artwork_img" property="artworkImg"/>
+	</resultMap>
+	
+	
+	<!-- 마이갤러리 all -->
+	<select id="selectMyGalleryAll" parameterType="String" resultMap="myGalleryMap">
+		<include refid="selectMyGallery"/>
+	</select>
 </mapper>

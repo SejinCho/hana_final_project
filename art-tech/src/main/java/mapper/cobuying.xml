@@ -160,4 +160,7 @@
 		select public_key from sj_member where id = #{memberId}	
 	</select>
 	
+	
+	
+	
 </mapper>
