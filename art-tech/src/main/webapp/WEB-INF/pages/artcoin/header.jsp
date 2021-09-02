@@ -19,7 +19,27 @@
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/artcoin/theme.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
-
+    <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#searchBtn').click(function(){
+				let option = $("select[name=artscanSearch]").val();
+				let value = $('#search').val()
+				switch (option){
+				case 'addr':
+					
+					break;
+					
+				case 'txn' :
+					location.href='${pageContext.request.contextPath}/artscan/txnDetail/' + value
+					break;
+				case 'block' :
+					location.href='${pageContext.request.contextPath}/artscan/blockDetail/' + value
+					break;
+				}
+			})
+		})
+	</script>
 </head> 
 
 <body>    
@@ -48,11 +68,18 @@
 	    <div class="theme-bg-shapes-left"></div>
 	    <div class="container">
 		    <h1 class="page-heading single-col-max mx-auto">HANA ART Blockchain Explorer</h1>
-		    <div class="page-intro single-col-max mx-auto">HANA ART Blockchain Explorer</div>
+		    <!-- <div class="page-intro single-col-max mx-auto">HANA ART Blockchain Explorer</div>  -->
+		    <div class="page-intro single-col-max mx-auto artscan-searchBox">
+		    	<select id="artscanSearch" name="artscanSearch">
+		    		<option value="addr">Addresses</option>
+		    		<option value="txn">Txn Hash</option>
+		    		<option value="block">Block</option>
+		    	</select>
+		    </div>
 		    <div class="main-search-box pt-3 d-block mx-auto">
                  <form class="search-form w-100">
-		            <input type="text" placeholder="Search by Address / Txn Hash / Block"  name="search" class="form-control search-input">
-		            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+		            <input type="text" placeholder="Search by Address / Txn Hash / Block" id="search" name="search" class="form-control search-input">
+		            <button type="button" class="btn search-btn" value="Search" id="searchBtn"><i class="fas fa-search">search</i></button>
 		        </form>
              </div>
 	    </div>

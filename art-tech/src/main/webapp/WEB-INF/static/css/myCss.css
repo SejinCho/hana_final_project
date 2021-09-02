@@ -1335,3 +1335,11 @@
 	width: 180px;
 	height: 60px;
 }
+.artscan-searchBox {
+	margin-top : 30px;
+	padding-right: 480px;
+}
+.artscan-searchBox select {
+	border-radius: 5px;
+	border: 1px solid #F5F5F5;
+}
