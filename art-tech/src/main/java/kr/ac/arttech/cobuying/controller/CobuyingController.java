@@ -1,13 +1,7 @@
 package kr.ac.arttech.cobuying.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.arttech.cobuying.service.CobuyingService;
-import kr.ac.arttech.cobuying.vo.ArtworkInfoVO;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
 import kr.ac.arttech.openbanking.service.OpenBankingService;
-import kr.ac.arttech.openbanking.vo.AccountTransferInfoVO;
 import lombok.RequiredArgsConstructor;
-import oracle.sql.DATE;
 
 @Controller
 @RequestMapping("/co-buying")
@@ -73,7 +64,9 @@ public class CobuyingController {
 		 
 		//db 구매정보 insert & 조각 정보 update 
 		boolean result = service.addPurchaseInfo(purchaseInfo);
-		
+		if(result) {
+			session.setAttribute("resultPurchase", "success");
+		}
 		
 		//blockchain insert
 		

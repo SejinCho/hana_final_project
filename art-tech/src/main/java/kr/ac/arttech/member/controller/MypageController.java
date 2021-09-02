@@ -25,9 +25,12 @@ public class MypageController {
 	//구매내역
 	@GetMapping("/myHistory")
 	public String myHistory(HttpSession session, Model model) {
+		String resultPurchase = (String) session.getAttribute("resultPurchase");
+		session.removeAttribute("resultPurchase");
 		
 		String memberId = (String) session.getAttribute("memberId");
 		model.addAttribute("myHistoryListAll", service.getMyHistoryListAll(memberId));
+		model.addAttribute("resultPurchase", resultPurchase);
 		return "myPage/myHistory";
 	}
 	

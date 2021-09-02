@@ -20,6 +20,15 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     
+    $(document).ready(function(){
+    	$('.copy-mywallet').click(function(){
+    		$('#myWallet').attr('type','text')
+    		$('#myWallet').select()
+    		document.execCommand("copy")
+    		$('#myWallet').attr('type', 'hidden')
+    	})
+    })
+    
     function addWallet() {
     	$.ajax({
 			type: "POST",
@@ -49,6 +58,7 @@
 			<p>회원정보</p>
 		</div>
 		<form action="">
+		
 			<div class="myPage_container">
 				<div class="myInfoDetail">
 					<p id="name">${member.name }</p>
@@ -73,7 +83,9 @@
 					<c:choose>
 						<c:when test="${not empty member.publicKey }">
 							<div>
-								<p class="kakao_p mypage-publicKey">${member.publicKey }</p>
+								<p class="copy-mywallet"> 복사하기 </p>
+								<p class="kakao_p mypage-publicKey" >${member.publicKey }</p>
+								<input type="hidden" value="${member.publicKey }" id="myWallet">
 							</div>
 						</c:when>
 						<c:when test="${empty member.publicKey }">

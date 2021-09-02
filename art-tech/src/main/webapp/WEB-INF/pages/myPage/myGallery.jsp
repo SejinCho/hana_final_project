@@ -85,7 +85,6 @@
 				},
 				async: false,
 				success : function(result) {
-			        console.log(result)
 			        
 			        arr = new Array(result.length)
 			        

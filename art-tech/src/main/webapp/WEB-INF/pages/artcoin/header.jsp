@@ -18,6 +18,7 @@
     <!-- FontAwesome JS-->
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/artcoin/theme.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
 
 </head> 
 
@@ -27,14 +28,14 @@
         <div class="branding docs-branding">
             <div class="container-fluid position-relative py-2">
                 <div class="docs-logo-wrapper">
-	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2" src="assets/images/coderdocs-logo.svg" alt="logo"><span class="logo-text">Coder<span class="text-alt">Docs</span></span></a></div>    
+	                <div class="site-logo"><a class="navbar-brand" href="${pageContext.request.contextPath}/artscan/"><img class="logo-icon me-2 artscanlogo" src="${pageContext.request.contextPath}/static/img/artscanlogo.PNG" alt="logo"></a></div>    
                 </div><!--//docs-logo-wrapper-->
 	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
 	
 					<ul class=" list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
-						<li class="list-inline-item nav-item"><a class="a-style" href="#">Home</a></li>
-			            <li class="list-inline-item nav-item"><a class="a-style" href="#">view Blocks</a></li>
-		                <li class="list-inline-item nav-item"><a class="a-style" href="#">view Txns</a></li>
+						<li class="list-inline-item nav-item"><a class="a-style" href="${pageContext.request.contextPath}/artscan/">Home</a></li>
+			            <li class="list-inline-item nav-item"><a class="a-style" href="${pageContext.request.contextPath}/artscan/blocks">view Blocks</a></li>
+		                <li class="list-inline-item nav-item"><a class="a-style" href="${pageContext.request.contextPath}/artscan/txns">view Txns</a></li>
 		            </ul><!--//social-list-->
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->

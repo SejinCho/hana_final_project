@@ -11,6 +11,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
     
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
@@ -20,6 +21,20 @@
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+    		
+    		if('${resultPurchase}' == 'success') {
+    			$('#index_content_p').text('구매되었습니다.')
+    			$('.index_modal').css('display','block')
+    			$('body').css("overflow", "hidden");
+    		}
+    		
+    		//모달 다시 숨기기
+    		$('.index_modal_cancel').click(function(){
+    			$('.index_modal').css('display','none')
+    			$('body').css("overflow", "scroll");
+    		})
+    		
+    		
     		$('.myHistory_menu_select').click(function(){
     			let option = '';
     			//버튼
@@ -276,6 +291,20 @@
 				</ul>
 			</div>
 		</div>
+		<!-- 모달 -->
+		<div class="index_modal">
+			<div class="index_body" >  
+				
+				<div class="content">
+					<p id="index_content_p"></p>
+				</div>
+				<hr>
+				<div class="select">
+					<p class="index_modal_cancel">확인</p>
+				</div>
+			</div>
+		</div>
+		<!-- 모달끝 -->
 	</div>
 </body>
 </html>
