@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.arttech.member.service.MemberService;
 import kr.ac.arttech.member.vo.MemberVO;
+import kr.ac.arttech.member.vo.MyGalleryVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
 import lombok.RequiredArgsConstructor;
 
@@ -43,6 +44,15 @@ public class MemberAPIController {
 		map.put("option", option);
 		
 		return service.getMyHistoryListOption(map);
+	}
+	
+	@GetMapping("/myGalleryOption")
+	public List<MyGalleryVO> myGalleryOption(String option, HttpSession session) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberId", (String) session.getAttribute("memberId"));
+		map.put("option", option);
+		
+		return service.getMyGalleryList(map);
 	}
 	
 }

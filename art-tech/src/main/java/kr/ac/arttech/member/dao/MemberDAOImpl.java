@@ -75,6 +75,21 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MyGalleryVO> selectMyGalleryAll(String memberId) {
 		return sqlSession.selectList("kr.ac.arttech.member.selectMyGalleryAll",memberId);
 	}
+	//myGallery 모집중
+	@Override
+	public List<MyGalleryVO> selectMyGalleryRecruit(String memberId) {
+		return sqlSession.selectList("kr.ac.arttech.member.selectMyGalleryRecruit",memberId);
+	}
+	//myGallery 모집완료
+	@Override
+	public List<MyGalleryVO> selectMyGalleryRecruitEnd(String memberId) {
+		return sqlSession.selectList("kr.ac.arttech.member.selectMyGalleryRecruitEnd",memberId);
+	}
+	//myGallery 매각완료
+	@Override
+	public List<MyGalleryVO> selectMyGalleryDisposal(String memberId) {
+		return sqlSession.selectList("kr.ac.arttech.member.selectMyGalleryDisposal",memberId);
+	}
 	
 	
 	//wallet update(지갑 생성 클릭)

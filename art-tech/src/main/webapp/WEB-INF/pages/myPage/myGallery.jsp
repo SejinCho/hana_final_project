@@ -20,7 +20,7 @@
 	
 	<script type="text/javascript">
 		var arr = new Array(${fn:length("myGalleryList")})
-
+		var option = '';
 		$(document).ready(function(){
 			<c:forEach items="${myGalleryList}" var="myGallery" varStatus="index">
 				arr[${index.index}] = new Array(5);
@@ -31,15 +31,27 @@
 				arr[${index.index}][4] = '${myGallery.artworkImg}'
 			</c:forEach>
 			
+			//메뉴 클릭
 			$('.select_menu').click(function(){
-				alert($(this).text())
 				$(this).addClass('myGallery_menu_select_menu_active');
 				$('.select_menu').not(this).removeClass('myGallery_menu_select_menu_active')
 				
 				
-				//모집중, 모집완료, 매각완료
-				
-				
+				//모집중, 모집완료, 매각완료(disposal)
+				switch($(this).text()) {
+				case '전체' :
+					option = 'all'
+					break;
+				case '모집중' :
+					option = 'ing'
+					break;
+				case '모집완료' :
+					option = 'end'
+					break;
+				case '매각완료' : 
+					option = 'disposal'
+				}
+				getDataList();
 				
 			})
 			
@@ -52,7 +64,6 @@
 		
 		//모달 
 		function certificate(idx) {
-			console.log(arr[idx][0])
 			let img = '/artworkImg/' + arr[idx][4]
 			$("#img_form_url").attr("src", img);
 			$('#index_content_p').text(arr[idx][2])
@@ -63,7 +74,68 @@
 			$('.myGallery-modal').css('display','block')
 			$('body').css("overflow", "hidden");
 		}
-	
+		
+		//리스트 가져오기
+		function getDataList() {
+			$.ajax({
+				type: "GET",
+				url : "${pageContext.request.contextPath}/member/myGalleryOption",
+				data : {
+					'option' : option
+				},
+				async: false,
+				success : function(result) {
+			        console.log(result)
+			        
+			        arr = new Array(result.length)
+			        
+			        $('#myGalleryListDiv').empty()
+			        
+			        let rowData = '';
+			        
+			        for(let i=0 ; i<result.length; ++i) {
+			        	let myGallery = result[i]
+			        	arr[i] = new Array(5);
+			        	arr[i][0] = myGallery.totalPieceNo
+						arr[i][1] = myGallery.firstRegDate
+						arr[i][2] = myGallery.title
+						arr[i][3] = myGallery.writerName
+						arr[i][4] = myGallery.artworkImg
+						
+						
+			        	rowData += `
+			        		<div class="col-xl-6 ">
+			        			<div class="myGallery_main_container">
+			        				<div class="div_left_img">
+			        					<img alt="" src="/artworkImg/` + myGallery.artworkImg + `">
+		        					</div>
+		        					<div class="div_center_artworkInfo">
+		        						<p class="title">`+ myGallery.title +`</p>
+		        						<p class="writer">` + myGallery.writerName + `</p>
+										<p class="piece">보유조각 : ` + myGallery.totalPieceNo + `</p>
+									</div>
+									<div class="div_right_certificate">
+										<div class="certificate" onclick="certificate(`+ i +`)">
+											<p class="certificateP">온라인 권리증</p>
+										</div>
+									</div>
+								</div>
+							</div>
+				        `
+			        }
+			       
+			        $('#myGalleryListDiv').append(rowData)
+			        
+				},
+				error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					
+				}
+
+			})
+		} //getDataList()
 	</script>
     
 </head>
@@ -97,7 +169,7 @@
 			<!-- 메뉴 끝 -->
 			
 			<!-- 마이갤러리 -->
-			<div class="row">
+			<div class="row" id="myGalleryListDiv">
 				<c:forEach items="${myGalleryList }" var="myGallery" varStatus="index">
 					<!-- 하나 -->
 					<div class="col-xl-6 ">

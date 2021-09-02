@@ -94,15 +94,22 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<MyGalleryVO> getMyGalleryList(Map<String, String> map) {
 		String option = map.get("option");
-		
+		String memberId = map.get("memberId");
 		List<MyGalleryVO> myGalleryList = null;
 		switch (option) {
 		case "all":
-			myGalleryList = dao.selectMyGalleryAll(map.get("memberId"));
+			myGalleryList = dao.selectMyGalleryAll(memberId);
 			break;
-
-		default:
+		case "ing" : //모집중
+			myGalleryList = dao.selectMyGalleryRecruit(memberId);
 			break;
+		case "end" : //모집완료
+			myGalleryList = dao.selectMyGalleryRecruitEnd(memberId);
+			break;
+		case "disposal" : //매각완료
+			myGalleryList = dao.selectMyGalleryDisposal(memberId);
+			break;
+		
 		}
 		
 		return myGalleryList;
