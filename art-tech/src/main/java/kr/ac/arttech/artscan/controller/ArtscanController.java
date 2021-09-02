@@ -27,7 +27,6 @@ public class ArtscanController {
 	}
 	@GetMapping("/blockDetail/{hash}")
 	public String blockDetail(@PathVariable("hash") String hash) {
-		System.out.println("디테일 hash : " + hash);
 		return "artscan/blockDetail";
 	}
 	

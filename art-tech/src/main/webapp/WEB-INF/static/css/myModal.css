@@ -270,3 +270,61 @@
 	color: white;
 	border-radius: 10px; 
 }
+
+/*myGallery*/
+.myGallery-modal { 
+	margin-top : 70px;
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 100%; 
+	display: none; 
+	background-color: rgba(0, 0, 0, 0.4);
+
+} 
+.myGallery-modal.show { 
+	display: block; 
+} 
+.myGallery-body { 
+	position: absolute; 
+	top: 50%; 
+	left: 50%; 
+	width: 400px; 
+	height: 600px; 
+	padding: 40px; 
+	background-color: rgb(255, 255, 255);
+	background-image: url(../img/CERTIFICATE.PNG); 
+	background-repeat : no-repeat;
+    background-size : contain;
+	border-radius: 10px; 
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15); 
+	transform: translateX(-50%) translateY(-50%); 
+}
+.myGallery-body .content {
+	text-align: center;
+	padding-top: 100px;
+}
+.myGallery-body .content p {
+	font-size: 10px;
+	margin-bottom: 0px;
+}
+.myGallery-body .content #index_content_p {
+	font-weight: bold;
+	font-size: 15px;
+}
+.myGallery-body .select {
+	padding-top : 150px;
+	text-align: center;
+}
+.myGallery-body .select p {
+	margin-left: 30%;
+	margin-right: 30%;
+	background-color: #008485;
+	color: white;
+	border-radius: 10px; 
+}
+.myGallery-body .content .certificateImg img {
+	width: 100px;
+	height: 130px;
+}

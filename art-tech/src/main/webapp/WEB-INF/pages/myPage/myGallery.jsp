@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.png">
@@ -24,7 +24,19 @@
 				$('.select_menu').not(this).removeClass('myGallery_menu_select_menu_active')
 				
 			})
-		})
+			
+			//모달 
+			$('#certificateP').click(function(){
+				$('.myGallery-modal').css('display','block')
+    			$('body').css("overflow", "hidden");
+			})
+			
+			//모달 다시 숨기기
+    		$('.myGallery-modal-cancel').click(function(){
+    			$('.myGallery-modal').css('display','none')
+    			$('body').css("overflow", "scroll");
+    		})
+		})//document
 		
 	
 	</script>
@@ -75,7 +87,7 @@
 						</div>
 						<div class="div_right_certificate">
 							<div class="certificate">
-								<p>온라인 권리증</p>
+								<p id="certificateP">온라인 권리증</p>
 							</div>
 						</div>
 					</div>
@@ -136,7 +148,24 @@
 					<li><a href="#">10</a></li>
 				</ul>
 			</div>
-			
+			<!-- 모달 -->
+			<div class="myGallery-modal">
+				<div class="myGallery-body" >  
+					
+					<div class="content">
+						<p class="certificateImg"><img alt="" src="${pageContext.request.contextPath}/static/img/23.PNG"> </p>
+						<p id="index_content_p">작품명적는공간입니다.</p>
+						<p>작가명적는공간입니다.</p>
+						<p>구입일적는공간입니다.</p>
+						<p>현재보유 : 3개</p>
+					</div>
+					<hr>
+					<div class="select">
+						<p class="myGallery-modal-cancel">확인</p>
+					</div>
+				</div>
+			</div>	
+			<!-- 모달 끝 -->
 		</div>
 	</div>
 </body>
