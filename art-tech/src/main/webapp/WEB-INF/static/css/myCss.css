@@ -956,6 +956,9 @@
 
 
 /* mypage/myInfo */
+.easypw-title {
+	margin-bottom: 0px;
+}
 .copy-mywallet {
 	font-size: 13px;
 	margin-bottom: 0px;

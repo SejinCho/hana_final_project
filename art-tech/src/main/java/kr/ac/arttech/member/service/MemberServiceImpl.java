@@ -132,4 +132,10 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return result;
 	}
+	
+	//간편 비밀번호 가져오기
+	@Override
+	public String getEasyPassword(String memberId) {
+		return dao.selectEasyPassword(memberId);
+	}
 }

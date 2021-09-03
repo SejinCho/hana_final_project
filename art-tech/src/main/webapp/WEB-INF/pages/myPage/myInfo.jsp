@@ -27,19 +27,69 @@
     		document.execCommand("copy")
     		$('#myWallet').attr('type', 'hidden')
     	})
+    	
+    	$('#walletCreate').click(function(){
+    		//모달로 비밀번호 받기
+        	$('#index_content_p').text('간편 비밀번호를 입력해주세요.')
+     		$('.index_modal').css('display','block')
+    		$('body').css("overflow", "hidden");
+    	})
+    	
+    	//모달 다시 숨기기
+		$('.index_modal_cancel').click(function(){
+			$('.index_modal').css('display','none')
+			$('body').css("overflow", "scroll");
+		})
+    	
     })
     
+   
+    
     function addWallet() {
+		
+		let pw = $('#inputEasyPw').val() 
+    	
     	$.ajax({
-			type: "POST",
-			url : "${pageContext.request.contextPath}/member/wallet",
+			type: "GET",
+			url : "${pageContext.request.contextPath}/member/easypassword",
 			success : function(result) {
-		        $('.mypage-publickey-div').empty();
-		        $('.mypage-publickey-div').append('<p class="kakao_p mypage-publicKey">' + result + '</p>')
-		        
+				
+				if(pw == result) {
+					$.ajax({
+						type: "POST",
+						url : "${pageContext.request.contextPath}/member/wallet",
+						success : function(result) {
+					        $('.mypage-publickey-div').empty();
+					        $('.mypage-publickey-div').append('<p class="copy-mywallet"> 복사하기 </p>')
+					        $('.mypage-publickey-div').append('<p class="kakao_p mypage-publicKey">' + result + '</p>')
+					        $('.mypage-publickey-div').append('<input type="hidden" value="' + result + ' " id="myWallet">')
+					      	
+					        //창 닫기
+					    	$('.index_modal').css('display','none')
+							$('body').css("overflow", "scroll");
+							
+							//생성되었습니다 모달창
+					    	$('#index_content_p').text('지갑이 생성되었습니다.')
+				     		$('.index_modal').css('display','block')
+				     		$('#inputEasyPw').remove()
+				    		$('body').css("overflow", "hidden");
+						},
+						error: function (request, status, error){
+							var msg = "ERROR : " + request.status + "<br>"
+							msg += + "내용 : " + request.responseText + "<br>" + error;
+							console.log(msg);
+							
+						}
+
+					})
+					
+				}
+				
+				
 		        
 			},
 			error: function (request, status, error){
+				
 				var msg = "ERROR : " + request.status + "<br>"
 				msg += + "내용 : " + request.responseText + "<br>" + error;
 				console.log(msg);
@@ -47,6 +97,12 @@
 			}
 
 		})
+    	
+    	
+    	/* 지갑 생성
+    	
+		*/
+		
 		
     }
     </script>
@@ -90,7 +146,7 @@
 						</c:when>
 						<c:when test="${empty member.publicKey }">
 							<div class="mypage-publickey-div">
-								<p class="kakao_p" ><a onclick="addWallet()">생성하기</a></p>
+								<p class="kakao_p" ><a id="walletCreate">생성하기</a></p>
 							</div>
 						</c:when>
 					</c:choose>
@@ -135,7 +191,25 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 간편 비밀번호 모달 -->
+	<div class="index_modal">
+		<div class="index_body" >  
+			
+			<div class="content">
+				<p id="index_content_p" class="easypw-title"></p>
+				<input type="password" id="inputEasyPw">
+			</div>
+			<hr>
+			<div class="select">
+				<p class="index_modal_cancel" onclick="addWallet()">확인</p>
+			</div>
+		</div>
+	</div>
+	
 	<script type="text/javascript">
+		
+		
 		//핸드폰 번호 모달
 		const phone_modal = document.querySelector('.myInfo_phoneChange_modal');
 		const phone_btnOpenPopup = document.querySelector('.phoneNumChange_btn');

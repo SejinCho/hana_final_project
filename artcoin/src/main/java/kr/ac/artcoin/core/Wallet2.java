@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Wallet {
+public class Wallet2 {
 
     public PrivateKey privateKey;
     public PublicKey publicKey;
@@ -18,7 +18,7 @@ public class Wallet {
     public HashMap<String,TransactionOutput> UTXOs = new HashMap<String,TransactionOutput>();
 
     //객체 생성 시 키 생성
-    public Wallet() {
+    public Wallet2() {
         generateKeyPair();
     }
 
@@ -46,7 +46,7 @@ public class Wallet {
             TransactionOutput UTXO = item.getValue();
             if(UTXO.isMine(publicKey)) {
                 UTXOs.put(UTXO.id,UTXO);
-                float v = balance.get(UTXO.artId) == null ? UTXO.value : balance.get(UTXO.artId) + UTXO.value; //잔액 더해주기
+                float v = balance.get(UTXO.artId) == null ? UTXO.value : balance.get(UTXO.artId) + UTXO.value;
                 balance.put(UTXO.artId, v);
             }
         }

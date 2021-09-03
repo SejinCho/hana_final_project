@@ -79,6 +79,9 @@
 	<definition name="artscan/txnDetail" extends="artscanTemplate">
 		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/txnDetail.jsp" />
 	</definition>
+	<definition name="artscan/address" extends="artscanTemplate">
+		<put-attribute name="artscanContent" value="/WEB-INF/pages/artcoin/address.jsp" />
+	</definition>
 	
 	
 </tiles-definitions>

@@ -42,7 +42,7 @@ public class ArtCoinController {
                 .build();
     }
 
-    // 트랜잭션 요청(생성)
+    // 트랜잭션 요청(생성) - 사용자가 미술품 구매했을 경우 
     @PostMapping("/transaction")
     public Response<?> requestTransaction(@RequestBody ReqTransaction reqTransaction) {
     	reqTransaction.setSendWallet(StringUtil.getStringFromKey(WalletRepository.admin.publicKey));
@@ -55,7 +55,7 @@ public class ArtCoinController {
 
     // 지갑 조회 (return 잔액)
     @GetMapping("/wallet")
-    public Response<?> getBalance(@RequestBody String address) {
+    public Response<?> getBalance(String address) {
         return Response.builder()
                 .code(1)
                 .msg("success")
@@ -102,7 +102,18 @@ public class ArtCoinController {
                 .data(artCoinService.getTransactions())
                 .build();
     }
-
+    
+    //특정 wallet, art id의 트랜잭션 list
+    @GetMapping("/optionTransactions")
+    public Response<?> getOptionTransactions(ReqTransaction reqTransaction) {
+    	System.out.println("컨트롤러 : " + reqTransaction);
+        return Response.builder()
+                .code(1)
+                .msg("success")
+                .data(artCoinService.getOptionTransactions(reqTransaction))
+                .build();
+    }
+    
     // 미술품 추가
     @PostMapping("/art")
     public Response<?> addArt(@RequestBody ReqAddArt reqAddArt) {
@@ -112,4 +123,6 @@ public class ArtCoinController {
                 .data(artCoinService.addArt(reqAddArt))
                 .build();
     }
+    
+   
 }

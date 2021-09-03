@@ -55,4 +55,11 @@ public class MemberAPIController {
 		return service.getMyGalleryList(map);
 	}
 	
+	//간편 비밀번호 가져오기
+	@GetMapping("/easypassword")
+	public String getEasypassword(HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		return service.getEasyPassword(memberId);
+	}
+	
 }

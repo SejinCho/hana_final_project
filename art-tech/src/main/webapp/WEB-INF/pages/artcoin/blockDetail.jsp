@@ -54,7 +54,7 @@
 	<div class="page-content">
 	    <div class="container">
 	    	<div class="blockDetail-title-div">
-	    		<p>Block</p>
+	    		<p>Block Details</p>
 	    	</div>
 		    <div class="docs-overview py-5">
 			    <div class="row justify-content-center">

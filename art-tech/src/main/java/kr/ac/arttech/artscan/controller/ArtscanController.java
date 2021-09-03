@@ -1,6 +1,7 @@
 package kr.ac.arttech.artscan.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,18 @@ public class ArtscanController {
 	
 	@GetMapping("/txns")
 	public String txns() {
-		
 		return "artscan/txns";
 	}
+	
 	@GetMapping("/txnDetail/{transactionId}")
 	public String txnDetail(@PathVariable("transactionId") String transactionId) {
-		
 		return "artscan/txnDetail";
+	}
+	
+	@GetMapping("/address/{address}")
+	public String address(@PathVariable("address") String address, Model model) {
+		address = address.replace("!", "/");
+		model.addAttribute("address", address);
+		return "artscan/address";
 	}
 }

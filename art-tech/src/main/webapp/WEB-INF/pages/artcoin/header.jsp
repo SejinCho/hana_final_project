@@ -27,12 +27,14 @@
 				let value = $('#search').val()
 				switch (option){
 				case 'addr':
-					
+					value = value.replace('/','!')
+					location.href='${pageContext.request.contextPath}/artscan/address/' + value
 					break;
 					
 				case 'txn' :
 					location.href='${pageContext.request.contextPath}/artscan/txnDetail/' + value
 					break;
+					
 				case 'block' :
 					location.href='${pageContext.request.contextPath}/artscan/blockDetail/' + value
 					break;

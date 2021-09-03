@@ -8,6 +8,7 @@ import kr.ac.artcoin.core.Wallet;
 import kr.ac.artcoin.dto.*;
 import kr.ac.artcoin.exception.ArtChainException;
 import kr.ac.artcoin.repository.WalletRepository;
+import kr.ac.artcoin.utils.StringUtil;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -64,6 +65,7 @@ public class ArtCoinService {
     
     //지갑 조회
     public Map<String, Float> getBalance(String address) {
+    	address = address.replace(" ", "+");
         Wallet wallet = walletRepository.findWallet(address);
         return wallet.getBalance();
     }
@@ -82,6 +84,27 @@ public class ArtCoinService {
             }).collect(Collectors.toList()));
         });
         return transactions;
+    }
+    
+    //특정 wallet, art id 트랜잭션 조회
+    public List<TransactionDto.TransactionInfo> getOptionTransactions(ReqTransaction reqTransaction) {
+    	reqTransaction.setReceiveWallet(reqTransaction.getReceiveWallet().replace(" ", "+"));
+    	List<TransactionDto.TransactionInfo> transactions = new ArrayList<>();
+    	ArtChain.blockchain.forEach(block -> {
+    		int blockHeight = block.blockHeight;
+    		String blockHash = block.hash;
+    		block.transactions.forEach(tx -> {
+    			if(StringUtil.getStringFromKey(tx.reciepient).equals(reqTransaction.getReceiveWallet()) 
+    					&& tx.artId.equals(reqTransaction.getArtId())) {
+    				TransactionDto.TransactionInfo txInfo = new TransactionDto.TransactionInfo(tx);
+    				txInfo.setBlockHash(blockHash);
+    				txInfo.setBlockHeight(blockHeight);
+    				transactions.add(txInfo);
+    			}
+    		});
+    		
+    	});
+    	return transactions;
     }
 
     //모든 블록 조회
