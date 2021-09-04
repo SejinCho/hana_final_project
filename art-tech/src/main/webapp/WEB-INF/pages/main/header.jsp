@@ -97,10 +97,10 @@
                                         <ul id="navigation">
                                      		<li><a  href="${pageContext.request.contextPath}/">home</a></li>	
                                             <li><a  href="service.html">서비스</a></li>
-                                            <li><a  href="${pageContext.request.contextPath}/openBanking/myAccountList">계좌 조회</a></li>
                                             <li><a href="#">예치금 관리<i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="${pageContext.request.contextPath}/deposit/myDeposit">예치금 조회</a></li>
+                                                    <li><a href="${pageContext.request.contextPath}/openBanking/myAccountList">계좌 조회</a></li>
                                                     <li><a href="${pageContext.request.contextPath}/deposit/autoTranDeposit">자동이체 설정</a></li>
                                                     <li><a href="${pageContext.request.contextPath}/deposit/transferDeposit">예치금 입금(x)</a></li>
                                                 </ul>

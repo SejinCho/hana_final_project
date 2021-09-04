@@ -8,10 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.arttech.cobuying.service.CobuyingService;
+import kr.ac.arttech.notice.service.NoticeService;
 import kr.ac.arttech.util.ArttechCrawling;
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class IndexController {
+	
+	private final CobuyingService cobuyingService;
+	private final NoticeService noticeService;
 	
 	@GetMapping("/")
 	public ModelAndView main(HttpServletRequest request) {
@@ -28,6 +35,12 @@ public class IndexController {
 		
 		//뉴스기사 크롤링
 		mav.addObject("newsList", ArttechCrawling.getArttechNews()) ;
+		
+		//공동구매 
+		mav.addObject("artworkList", cobuyingService.getArtworkInfoList());
+		
+		//공지사항
+		mav.addObject("noticeList", noticeService.getNoticeList());
 		
 		mav.setViewName("index");
 		return mav;

@@ -35,9 +35,9 @@ public class ArttechCrawling {
 				Elements imgTag = element.select(".dsc_thumb img");
 				String imgLink = imgTag.attr("src");
 				
-				System.out.println("title : " + title);
-				System.out.println("newsLink : " + newsLink);
-				System.out.println("imgLink : " + imgLink);
+				//System.out.println("title : " + title);
+				//System.out.println("newsLink : " + newsLink);
+				//System.out.println("imgLink : " + imgLink);
 				map.put("title", title);
 				map.put("newsLink", newsLink);
 				map.put("imgLink", imgLink);

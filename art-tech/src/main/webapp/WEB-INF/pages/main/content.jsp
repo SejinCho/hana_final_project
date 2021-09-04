@@ -17,6 +17,7 @@
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/board/bootstrap.css">
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
@@ -78,58 +79,23 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="service_active owl-carousel">
+                    	<c:forEach items="${artworkList }" var="artwork" begin="0" end="4">
+                    	<!-- 한개 시작 -->
                         <div class="single_service">
                             <div class="thumb">
-                                <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+                                <img src="/artworkImg/${artwork.artworkImg }" alt="">
                             </div>
                             <div class="service_info">
-                                <h3><a href="service_details.html">작품명</a></h3>
-                                <p>로이 리히텐슈타인 Roy Lichtenstein</p>
+                                <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artwork.id}">${artwork.title }</a></h3>
+                                <p>${artwork.writerName }</p>
                             </div>
                             <div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							  <div class="progress-bar" role="progressbar" style="width: ${artwork.achiePiece}%; background-color: #008485" aria-valuenow="${artwork.achiePiece}" aria-valuemin="0" aria-valuemax="${artwork.targetPiece }"></div>
 							</div>
-                            <p> 0 / 4462 조각 </p>
+                            <p> ${artwork.achiePiece } / ${artwork.targetPiece } 조각 </p>
                         </div>
-                        <div class="single_service">
-                            <div class="thumb">
-                                <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
-                            </div>
-                            <div class="service_info">
-                                <h3><a href="service_details.html">작품명</a></h3>
-                                <p>로이 리히텐슈타인 Roy Lichtenstein</p>
-                            </div>
-                            <div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-                            <p> 0 / 4462 조각 </p>
-                        </div>
-                        <div class="single_service">
-                            <div class="thumb">
-                                <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
-                            </div>
-                            <div class="service_info">
-                                <h3><a href="service_details.html">작품명</a></h3>
-                                <p>로이 리히텐슈타인 Roy Lichtenstein</p>
-                            </div>
-                            <div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-                            <p> 0 / 4462 조각 </p>
-                        </div>
-                        <div class="single_service">
-                            <div class="thumb">
-                                <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
-                            </div>
-                            <div class="service_info">
-                                <h3><a href="service_details.html">작품명</a></h3>
-                                <p>로이 리히텐슈타인 Roy Lichtenstein</p>
-                            </div>
-                            <div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-                            <p> 0 / 4462 조각 </p>
-                        </div>
+                        <!-- 한개 끝 -->
+                        </c:forEach>
                         
                     </div>
                 </div>
@@ -311,21 +277,12 @@
 								    </tr>
 								    </thead>
 								    <tbody>
-									    <tr class="alert" role="alert">
-									        <td colspan="2">앤디 워홀 <$ (Quadrant)> 100조각 이상 구매시 엽서형 권리증 증정 이벤트</td>
-									    </tr>
-									    <tr class="alert" role="alert">
-									        <td colspan="2">앤디 워홀 <$ (Quadrant)> 100조각 이상 구매시 엽서형 권리증 증정 이벤트</td>
-									    </tr>
-									    <tr class="alert" role="alert">
-									        <td colspan="2">앤디 워홀 <$ (Quadrant)> 100조각 이상 구매시 엽서형 권리증 증정 이벤트</td>
-									    </tr>
-									    <tr class="alert" role="alert">
-									        <td colspan="2">앤디 워홀 <$ (Quadrant)> 100조각 이상 구매시 엽서형 권리증 증정 이벤트</td>
-									    </tr>
-									    <tr class="alert" role="alert">
-									        <td colspan="2">앤디 워홀 <$ (Quadrant)> 100조각 이상 구매시 엽서형 권리증 증정 이벤트</td>
-									    </tr>
+								    	<c:forEach items="${noticeList}" var="notice" begin="0" end="4">
+								    		<tr class="alert" role="alert" onclick="location.href='${pageContext.request.contextPath}/notice/detail/${notice.id}'">
+										        <td id="indexNoticeTd" colspan="2">${notice.title }</td>
+										    </tr>
+								    	</c:forEach>
+									    
 								  </tbody>
 								</table>
 		                	</div>
@@ -347,7 +304,7 @@
         <div class="container">
             <div class="row">
             
-            	<c:forEach items="${newsList}" var="news" begin="1" end="3">
+            	<c:forEach items="${newsList}" var="news" begin="0" end="2">
 	            	<!-- 하나 -->
 	                <div class="col-md-6 col-lg-4">
 	                    <div class="single_service">

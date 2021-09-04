@@ -154,21 +154,25 @@
 	<!-- 마이갤러리 all -->
 	<select id="selectMyGalleryAll" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
+		order by p.first_reg_date desc
 	</select>
 	<!-- 마이갤러리 모집중 -->
 	<select id="selectMyGalleryRecruit" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
 		and a.state = '1'
+		order by p.first_reg_date desc
 	</select>
 	<!-- 마이갤러리 모집완료 -->
 	<select id="selectMyGalleryRecruitEnd" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
 		and a.state in ('2','3','4','5','6')
+		order by p.first_reg_date desc
 	</select>
 	<!-- 마이갤러리 매각완료 -->
 	<select id="selectMyGalleryDisposal" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
 		and a.state = '7'
+		order by p.first_reg_date desc
 	</select>
 	
 	<!-- 카카오id update -->
