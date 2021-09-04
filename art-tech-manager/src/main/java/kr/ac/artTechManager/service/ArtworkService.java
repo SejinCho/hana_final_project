@@ -17,6 +17,6 @@ public interface ArtworkService {
 	public int modifyStateVote();//투표중(3) -> 투표종료(4) : 스케줄러 
 	
 	//디테일 페이지 업무
-	public boolean startGoodsDetailTast(VoteVO vote);
+	public String startGoodsDetailTast(VoteVO vote);
 	
 }

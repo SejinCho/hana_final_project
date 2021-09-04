@@ -22,14 +22,8 @@ public class ArtworkAPIController {
 	//작품 디테일 페이지에서 업무 버튼 클릭했을 때
 	@PostMapping("/goodsDetailTast")
 	public String goodsDetailTast(VoteVO vote) {
-		
-		
-		boolean result = service.startGoodsDetailTast(vote);
-		if(result) {
-			return "success";
-		}
-		
-		return "fail";
+		System.out.println("vote 컨트롤러 : " + vote);
+		return service.startGoodsDetailTast(vote);
 	}
 	
 }

@@ -167,4 +167,42 @@
 		sell_date = sysdate
 		where id = #{artworkInfoId}
 	</update>
+	
+	<resultMap type="purchase" id="purchaseMap">
+		<result column="artwork_info_id" property="artworkInfoId"/>
+		<result column="member_id" property="memberId"/>
+		<result column="piece_no" property="pieceNo"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="piece_amt" property="pieceAmt"/>
+		<result column="platform_usage_fee" property="platformUsageFee"/>
+		<result column="transfer_tax" property="transferTax"/>
+		<result column="total_piece_no" property="totalPieceNo"/>
+	</resultMap>
+	
+	<!-- 해당 미술품 조각을 몇개 샀는지 -->
+	<select id="selectPurchaseListByArtworkInfoId" resultMap="purchaseMap" parameterType="String">
+		select member_id, sum(piece_no) as total_piece_no from sj_purchase_info 
+		where artwork_info_id = #{artworkInfoId} group by member_id
+	</select>
+	
+	<select id="selectPurchaseInfoSeq" resultType="int">
+		select seq_sj_purchase_info.nextval from dual
+	</select>
+	
+	<!-- 수익분배  -->
+	<!-- sj_purchase_info 매각정보 insert  -->
+	<insert id="insertPurchaseInfoDisposal" parameterType="java.util.HashMap">
+		<foreach collection="paramMap" item="map" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">	
+			into sj_purchase_info (
+				id, artwork_info_id, member_id, piece_no, piece_amt, type) 
+			values(
+				#{map.id}, 
+				#{map.artworkInfoId} , 
+				#{map.memberId} , 
+				#{map.pieceNo} , 
+				#{map.pieceAmt} , 
+				#{map.type}  
+			)
+		</foreach>
+	</insert>
 </mapper>

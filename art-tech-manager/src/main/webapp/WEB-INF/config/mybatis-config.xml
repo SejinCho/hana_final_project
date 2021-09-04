@@ -15,6 +15,7 @@
 		<typeAlias type="kr.ac.artTechManager.vo.MemberVO" alias="member"/>
 		<typeAlias type="kr.ac.artTechManager.vo.VoteVO" alias="vote"/>
 		<typeAlias type="kr.ac.artTechManager.vo.NoticeVO" alias="notice"/>
+		<typeAlias type="kr.ac.artTechManager.vo.PurchaseInfoVO" alias="purchase"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/writerInfo.xml"/>

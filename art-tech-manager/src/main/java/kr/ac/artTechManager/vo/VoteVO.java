@@ -24,4 +24,5 @@ public class VoteVO {
 	private String title;
 	private String type; //1. 투표  / 2. 투표 결과(매각) / 3. 투표결과(매각 기각) / 4. 매각대금 분배안내 / 5. 분배완료
 	private String emailPw;
+	private String targetPiece;
 }

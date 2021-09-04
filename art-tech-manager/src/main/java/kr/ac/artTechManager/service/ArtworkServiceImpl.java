@@ -25,6 +25,7 @@ import kr.ac.artTechManager.util.AuthUtil;
 import kr.ac.artTechManager.vo.ArtworkInfoImg;
 import kr.ac.artTechManager.vo.ArtworkInfoVO;
 import kr.ac.artTechManager.vo.MemberVO;
+import kr.ac.artTechManager.vo.PurchaseInfoVO;
 import kr.ac.artTechManager.vo.VoteVO;
 import lombok.RequiredArgsConstructor;
 
@@ -177,8 +178,8 @@ public class ArtworkServiceImpl implements ArtworkService{
 	
 	//디테일 페이지 업무
 	@Override
-	public boolean startGoodsDetailTast(VoteVO vote) {
-		boolean result = false;
+	public String startGoodsDetailTast(VoteVO vote) {
+		String result = "";
 		switch (vote.getState()) {
 		case "4": //투표 종료 -> 매각 기각 또는 매각 진행 
 			if((vote.getTotalNo() - vote.getAgreeNo()) <= vote.getAgreeNo()) { //매각진행
@@ -186,7 +187,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 				vote.setState("5");
 				int cnt = dao.updateArtworkState(vote);
 				
-				//매각처, 매각 금액 update
+				//매각처, 매각 금액, 매각 update
 				cnt += dao.updateSellInfo(vote);
 				
 				//문자 보내기
@@ -200,16 +201,46 @@ public class ArtworkServiceImpl implements ArtworkService{
 					AuthUtil.authPhone(vote, phone);
 				});
 				if(cnt == 2) {
-					result = true;
+					result = "1";
 				}
 			}else { //매각 기각
-				
+				result = "2";
 			}
 			break;
-		case "5": //수익분배 진행 
+		case "5": //수익분배 진행 (5->6)
+			vote.setState("6");
+			//상태 변경(수익분배)
+			int cnt = dao.updateArtworkState(vote);
+			
+			//sj_purchase_info에 insert(map에 list 넣기)
+			List<PurchaseInfoVO> paramList = new ArrayList<>();
+			//조각 산 사람들 list (몇개 샀는지)
+			List<PurchaseInfoVO> purchaseList = dao.selectPurchaseListByArtworkInfoId(vote.getArtworkInfoId());
+			purchaseList.forEach(purchase -> {
+				System.out.println("서비스 확인 : " + vote);
+				PurchaseInfoVO vo = new PurchaseInfoVO();
+				vo.setId("purchase" + dao.selectPurchaseInfoSeq());
+				vo.setArtworkInfoId(vote.getArtworkInfoId());
+				vo.setMemberId(purchase.getMemberId());
+				vo.setPieceNo(-Integer.parseInt(purchase.getTotalPieceNo()));
+				vo.setPieceAmt(String.format("%d" ,Integer.parseInt(vote.getSellPrice()) / Integer.parseInt(vote.getTargetPiece()))  );
+				vo.setType("3");
+				paramList.add(vo);
+			});
+			Map<String, Object> paramMap = new HashMap<>();
+			paramMap.put("paramMap", paramList);
+			System.out.println("paramMap : " +paramList.toString() );
+			dao.insertPurchaseInfoDisposal(paramMap);
+			
+			result ="3";
 			break;
 		
-		case "6" : //수익분배 완료(매각완료)
+		case "6" : //수익분배 완료(매각완료) 6->7
+			vote.setState("7");
+			//상태 변경(매각완료)
+			dao.updateArtworkState(vote);
+			
+			result = "4";
 			break;
 		
 		}

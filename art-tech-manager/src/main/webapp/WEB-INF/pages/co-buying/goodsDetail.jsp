@@ -37,16 +37,24 @@
 	  					'sellPlace' : $('#sellPlace').val(),
 	  					'sellPrice' : $('#sellPrice').val(),
 	  					'startDate' : '${voteInfo.startDate}',
-	  					'endDate' : '${voteInfo.endDate}'
+	  					'endDate' : '${voteInfo.endDate}',
+	  					'targetPiece' : '${artworkInfo.targetPiece }'
   	  				},
   	  				async: false,
   	  				success : function(result) {
-  	  					if(result == 'success') {
+  	  					if(result == '1') {
   	  						$("input[name='sellPrice']").attr("readonly", true);
   	  						$("input[name='sellPlace']").attr("readonly", true)
   	  						$('#statusBtn').text('수익분배하기')
+  	  					}else if(result == '3') {
+  	  						$('#statusBtn').text('매각완료하기')
+  	  					}else if(result == '4') {
+  	  						$('#statusBtn').text('매각완료')
+  	  						$('#statusBtn').attr('disabled',true)
   	  						
   	  					}
+  	  					
+  	  					
   	  				},
   	  				error: function (request, status, error){
   	  					var msg = "ERROR : " + request.status + "<br>"
@@ -238,6 +246,9 @@
 												</c:if>
 												<c:if test="${artworkInfo.state == 6 }">
 													<td id="statusTd"><button id="statusBtn">매각완료하기</button> </td>
+												</c:if>
+												<c:if test="${artworkInfo.state == 7 }">
+													<td id="statusTd"><button id="statusBtn" disabled="disabled">매각완료</button> </td>
 												</c:if>
 											</tr>
 											

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.artTechManager.vo.ArtworkInfoVO;
 import kr.ac.artTechManager.vo.MemberVO;
+import kr.ac.artTechManager.vo.PurchaseInfoVO;
 import kr.ac.artTechManager.vo.VoteVO;
 import lombok.RequiredArgsConstructor;
 
@@ -96,6 +97,25 @@ public class ArtworkDAOImpl implements ArtworkDAO {
 	@Override
 	public int updateSellInfo(VoteVO vote) {
 		return sqlSession.update("kr.ac.kopo.manage.artworkInfo.updateSellInfo", vote);
+	}
+	
+	//해당 미술품 조각을 몇개 샀는지
+	@Override
+	public List<PurchaseInfoVO> selectPurchaseListByArtworkInfoId(String artworkInfoId) {
+		return sqlSession.selectList("kr.ac.kopo.manage.artworkInfo.selectPurchaseListByArtworkInfoId", artworkInfoId);
+	}
+	
+	//매각정보 insert
+	@Override
+	public int insertPurchaseInfoDisposal(Map<String, Object> paramMap) {
+		return sqlSession.insert("kr.ac.kopo.manage.artworkInfo.insertPurchaseInfoDisposal", paramMap);
+	}
+	
+	//구매정보 시퀀스 가져오기
+	// selectPurchaseInfoSeq 시퀀스 가져오기
+	@Override
+	public int selectPurchaseInfoSeq() {
+		return sqlSession.selectOne("kr.ac.kopo.manage.artworkInfo.selectPurchaseInfoSeq");
 	}
 	
 }

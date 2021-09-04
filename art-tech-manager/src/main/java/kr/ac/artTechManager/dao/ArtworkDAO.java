@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.ac.artTechManager.vo.ArtworkInfoVO;
 import kr.ac.artTechManager.vo.MemberVO;
+import kr.ac.artTechManager.vo.PurchaseInfoVO;
 import kr.ac.artTechManager.vo.VoteVO;
 
 public interface ArtworkDAO {
@@ -22,4 +23,7 @@ public interface ArtworkDAO {
 	public int updateStateVote(String today); //투표중(3) -> 투표종료(4)
 	public int updateArtworkState(VoteVO vote); //디테일 페이지 상태 변경
 	public int updateSellInfo(VoteVO vote); //매각금액, 매각처, 매각일 update 
+	public List<PurchaseInfoVO> selectPurchaseListByArtworkInfoId(String artworkInfoId); //해당 미술품 조각을 몇개 샀는지
+	public int insertPurchaseInfoDisposal(Map<String, Object> paramMap); //매각정보 insert
+	public int selectPurchaseInfoSeq();// selectPurchaseInfoSeq 시퀀스 가져오기
 }
