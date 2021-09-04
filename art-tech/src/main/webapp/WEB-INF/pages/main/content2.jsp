@@ -347,20 +347,39 @@
         <div class="container">
             <div class="row">
             
-            	<c:forEach items="${newsList}" var="news" begin="1" end="3">
-	            	<!-- 하나 -->
-	                <div class="col-md-6 col-lg-4">
-	                    <div class="single_service">
-	                        <div class="thumb">
-	                            <img src="${news.imgLink }" alt="">
-	                        </div>
-	                        <div class="service_info">
-	                            <p><a href="${news.newsLink }">${news.title}</a></p>
-	                        </div>
-	                    </div>
-	                </div>
-	                <!-- 하나 끝 -->
-                </c:forEach>
+            	
+            	<!-- 하나 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="single_service">
+                        <div class="thumb">
+                            <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+                        </div>
+                        <div class="service_info">
+                            <p><a href="service_details.html">기사 제목 작성하기</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 하나 끝 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="single_service">
+                        <div class="thumb">
+                            <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+                        </div>
+                        <div class="service_info">
+                            <p><a href="service_details.html">기사 제목 작성하기</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="single_service">
+                        <div class="thumb">
+                            <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+                        </div>
+                        <div class="service_info">
+                            <p><a href="service_details.html">기사 제목 작성하기</a></p>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
             
