@@ -171,4 +171,9 @@
 		and a.state = '7'
 	</select>
 	
+	<!-- 카카오id update -->
+	<update id="updateKakaoId" parameterType="hashmap">
+		update sj_member set kakao_id = #{kakaoId} where id = #{memberId}
+	</update>
+	
 </mapper>

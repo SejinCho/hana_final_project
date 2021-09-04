@@ -138,4 +138,16 @@ public class MemberServiceImpl implements MemberService{
 	public String getEasyPassword(String memberId) {
 		return dao.selectEasyPassword(memberId);
 	}
+	
+	//카카오id update
+	@Override
+	public boolean addKakaoId(Map<String, String> map) {
+		boolean result = false;
+		
+		int cnt = dao.updateKakaoId(map);
+		if(cnt == 1) {
+			result = true;
+		}
+		return result;
+	}
 }

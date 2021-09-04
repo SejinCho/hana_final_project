@@ -24,5 +24,7 @@ public interface MemberService {
 	public String createWalletInfo(String id); //지갑 생성하기
 	
 	public String getEasyPassword(String memberId); //간편 비밀번호 가져오기
+	
+	public boolean addKakaoId(Map<String, String> map); //카카오id update
 
 }

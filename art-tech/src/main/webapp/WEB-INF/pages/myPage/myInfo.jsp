@@ -17,10 +17,14 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     
     $(document).ready(function(){
+    	Kakao.init('d1823ddd57768c060556deb5cad1d563');
+    	Kakao.isInitialized();
+    	
     	$('.copy-mywallet').click(function(){
     		$('#myWallet').attr('type','text')
     		$('#myWallet').select()
@@ -97,14 +101,40 @@
 			}
 
 		})
-    	
-    	
-    	/* 지갑 생성
-    	
-		*/
-		
-		
+    } //add wallet end
+
+    function kakaoLogin() {
+    	Kakao.Auth.login({
+			success: function(response) {
+		    	console.log(response);
+		    	Kakao.API.request({
+		    	    url: '/v2/user/me',
+		    	    success: function(response) {
+		    	        console.log(response.id);
+		    	        $.ajax({
+		    	        	type : "POST",
+		    	        	url : "${pageContext.request.contextPath}/member/kakaoId",
+		    	        	data : {
+		    	        		'kakaoId' : response.id
+		    	        	},
+		    	        	success : function(result) {
+		    	        		if(result == 'success') {
+		    	        			alert('카카오 id update')
+		    	        		}
+		    	        	}
+		    	        })
+		    	    },
+		    	    fail: function(error) {
+		    	        console.log(error);
+		    	    }
+		    	});
+			},
+			fail: function(error) {
+			    console.log(error);
+			},
+		});
     }
+    
     </script>
 </head>
 <body>
@@ -154,8 +184,13 @@
 				</div>
 				
 				<div class="sns_container">
-					<p class="my_sns_title">SNS 계정연동</p>
-					<p class="kakao_p"><a href="#">카카오 계정 연동하기</a></p>
+					<p class="my_sns_title">연동된 SNS 계정</p>
+					<c:if test="${empty member.kakaoId}">
+						<p class="kakao_p"><a onclick="kakaoLogin()">카카오 계정 연동하기</a></p>
+					</c:if>
+					<c:if test="${not empty member.kakaoId}">
+						<p class="kakao_p">카카오 계정</p>
+					</c:if>
 				</div>
 				
 				<div class="input_container">

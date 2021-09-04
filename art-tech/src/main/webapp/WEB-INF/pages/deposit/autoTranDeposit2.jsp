@@ -8,12 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		Kakao.init('d1823ddd57768c060556deb5cad1d563');
-    	Kakao.isInitialized();
-	})
+	
 	//변수 설정
 	var accountArr = []
 	var bankNameArr = [];
@@ -75,11 +71,13 @@
 		"autoAmtArr" : autoAmtArr,
 		"type" : type
 		}
+		alert(accountArr.length)
 		$.ajax({
 			type: "POST",
 			url : "${pageContext.request.contextPath}/openbanking/autoSetting",
 			method : 'post',
 			data : objParams,
+			async: false,
 			success : function(data) {
 				getAutoAccountList()
 		        getNonAutoAccountList()
@@ -88,17 +86,18 @@
 		        let kakaoDescription = ''
 		        
 		        if(type == 'nonAuto') { //자동이체 취소
-		        	kakaoTitle = '예치금 자동이체 설정 취소'
+		        	kakaoTitle = '자동이체 설정 취소'
 		        	for(let i=0; i < bankNameArr.length ; ++i) {
-	        			kakaoDescription += bankNameArr[i] + ' ' + accountArr[i] + '\n '
+	        			kakaoDescription += bankNameArr[i] + ' ' + accountArr[i] + '/ '
 		        	}
 		        }else if(type == 'auto') { //자동이체 설정
-		        	kakaoTitle = '예치금 자동이체 설정'
+		        	kakaoTitle = '자동이체 설정'
 	        		for(let i=0; i < bankNameArr.length ; ++i) {
-	        			kakaoDescription += bankNameArr[i] + ' ' + accountArr[i] + ' : ' + autoAmtArr[i] + '원 \n'
+	        			kakaoDescription += bankNameArr[i] + ' ' + accountArr[i] + ' : ' + autoAmtArr[i] + '원 /'
 		        	}
 		        }
-				
+				alert(kakaoDescription)
+				/*
 				//카카오 메시지
 				Kakao.API.request({
 				  url: '/v2/api/talk/memo/default/send',
@@ -106,10 +105,10 @@
 				    template_object: {
 				      object_type: 'feed',
 				      content: {
-				        title: kakaoTitle,
-				        description: kakaoDescription,
+				        title: '카카오톡 링크 4.0',
+				        description: '디폴트 템플릿 FEED',
 				        image_url:
-				          'https://pbs.twimg.com/profile_images/1223128080727691265/yp_bP9cU.jpg',
+				          'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
 				        link: {
 				          web_url: 'https://developers.kakao.com',
 				          mobile_web_url: 'https://developers.kakao.com',
@@ -129,7 +128,8 @@
 				    console.log(error);
 				  },
 				});
-				//카카오 메시지 끝
+				카카오 메시지 끝
+				*/
 				
 			},
 			error: function (request, status, error){
@@ -184,6 +184,7 @@
 				$('#nonAutoAccountTable > tbody').empty()
 				for(var i=0 in data) {
 					let info = data[i]
+					
 					$('#nonAutoAccountTable > tbody').append('<tr>')
 		        		$('#nonAutoAccountTable > tbody').append('<td><input type="checkbox" id="check_non" name="chkList1" value="' + info.bankCode + '"> </td>')
 		        		$('#nonAutoAccountTable > tbody').append('<td id="bankName_non">' + info.bankName + '</td>')

@@ -49,7 +49,7 @@ public class OpenBankingAPIController {
 	@RequestMapping("/autoSetting")
 	public String setAutoAccount(AutoTranAccountVO autoAccountInfo, 
 			HttpServletRequest request) {
-		
+		System.out.println("컨트롤러 : " + autoAccountInfo);
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		

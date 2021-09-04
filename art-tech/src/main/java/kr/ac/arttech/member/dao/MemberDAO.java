@@ -27,4 +27,6 @@ public interface MemberDAO {
 	public List<MyGalleryVO> selectMyGalleryDisposal(String memberId); //myGallery 매각완료
 	
 	public int updateWalletInfo(Map<String, String> wallet); //wallet update(지갑 생성 클릭)
+	
+	public int updateKakaoId(Map<String, String> map); //카카오id update
 }

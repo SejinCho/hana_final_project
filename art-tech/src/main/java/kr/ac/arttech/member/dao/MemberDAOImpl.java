@@ -98,6 +98,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update("kr.ac.arttech.member.updateWalletInfo", wallet);
 	}
 	
-	
+	//카카오id update
+	@Override
+	public int updateKakaoId(Map<String, String> map) {
+		return sqlSession.update("kr.ac.arttech.member.updateKakaoId", map);
+	}
 	
 }

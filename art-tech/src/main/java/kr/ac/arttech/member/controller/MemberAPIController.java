@@ -62,4 +62,19 @@ public class MemberAPIController {
 		return service.getEasyPassword(memberId);
 	}
 	
+	//카카오 id insert
+	@PostMapping("/kakaoId")
+	public String addKakaoId(String kakaoId, HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		Map<String, String> map = new HashMap<>();
+		map.put("kakaoId", kakaoId);
+		map.put("memberId", memberId);
+		
+		String result = "fail" ;
+		if(service.addKakaoId(map)) {
+			result = "success";
+		}
+		
+		return result;
+	}
 }
