@@ -125,7 +125,7 @@
 	<sql id="selectMyGallery">
 		select p.artwork_info_id, to_char(p.total_piece_no,'999,999,999') as total_piece_no, p.first_reg_date, a.title,
 		w.writer_name, i.artwork_img, a.state from 
-		(select artwork_info_id, count(piece_no) as total_piece_no,
+		(select artwork_info_id, sum(piece_no) as total_piece_no,
 		to_char(min(reg_date),'yyyy-mm-dd') as first_reg_date
 		from sj_purchase_info
 		where member_id = #{memberId}

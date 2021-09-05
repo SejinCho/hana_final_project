@@ -126,9 +126,10 @@
 	
 	<!-- 조각 산 총 금액 -->
 	<select id="selectTotalPurchaseAmt" resultType="String">
-		select (select nvl(sum(piece_no * piece_amt + platform_usage_fee + vat),0) from sj_purchase_info 
-		where member_id = #{memberId} and type = '1') - (select nvl(sum(piece_no * (piece_amt + platform_usage_fee + vat)),0) from sj_purchase_info 
-		where member_id = #{memberId} and type = '2') as total from dual
+		select (select nvl(sum(piece_no * piece_amt + platform_usage_fee + vat),0) from sj_purchase_info where member_id = #{memberId} and type = '1') - 
+		(select nvl(sum(piece_no * (piece_amt + platform_usage_fee + vat)),0) from sj_purchase_info where member_id = #{memberId} and type = '2') -
+		(select nvl(sum(piece_no * piece_amt),0) from sj_purchase_info where member_id = #{memberId} and type = '3')
+		as total from dual
 	</select>
 	
 	<!-- 소유자 현황 list -->

@@ -148,7 +148,7 @@
 			<div class="myPage_container">
 				<div class="myInfoDetail">
 					<p id="name">${member.name }</p>
-					<p id="email">whtpwls777@naver.com</p>
+					<p id="email">${member.email }</p>
 					<p><span>010-2523-5521</span><span class="phoneChange_span"><button type="button" class="phoneNumChange_btn">변경</button></span></p>
 					<div class="addr_container">
 						<p class="dddr_title">주소</p>

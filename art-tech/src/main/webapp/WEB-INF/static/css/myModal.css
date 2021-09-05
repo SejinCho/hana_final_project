@@ -288,7 +288,7 @@
 	top: 50%; 
 	left: 50%; 
 	width: 400px; 
-	height: 600px; 
+	height: 630px; 
 	padding: 40px; 
 	background-color: rgb(255, 255, 255);
 	background-image: url(../img/CERTIFICATE.PNG); 
@@ -308,7 +308,7 @@
 }
 .myGallery-body .content #index_content_p {
 	font-weight: bold;
-	font-size: 15px;
+	font-size: 13px;
 }
 .myGallery-body .select {
 	padding-top : 150px;

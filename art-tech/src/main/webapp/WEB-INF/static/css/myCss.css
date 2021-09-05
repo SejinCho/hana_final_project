@@ -1065,6 +1065,9 @@
 
 
 /* myPage/myHistory */
+.myGallery_contain {
+	margin-bottom: 300px;
+}
 .myGallery_contain .main_title {
 	text-align: center;
 	padding-top : 70px;
@@ -1127,20 +1130,23 @@
     float: left;
     height : 150px;
     padding-top: 20px;
-    padding-left: 30px;
+    padding-left: 15px;
     border-top: 1px solid #DCDCDC;
     border-bottom: 1px solid #DCDCDC;
 }
 .myGallery_main_container .div_center_artworkInfo .title {
 	margin-bottom: 0px;
 	font-weight: bold;
+	font-size: 15px;
 }
 .myGallery_main_container .div_center_artworkInfo .writer {
-	font-size: 13px;
+	font-size: 12px;
+	margin-bottom: 0px;
 }
 .myGallery_main_container .div_center_artworkInfo .piece {
 	font-weight: bold;
 	color: #008485;
+	font-size: 13px;
 }
 .myGallery_main_container .div_right_certificate {
 	width: 30%;
