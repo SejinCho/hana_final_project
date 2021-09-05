@@ -65,7 +65,7 @@
                                 <div class="short_contact_list">
                                     <ul>
                                     	<c:if test="${not empty sessionScope.memberId}">
-                                    		<li><a href="${pageContext.request.contextPath}/member/signin"> Sign out</a></li>
+                                    		<li><a href="${pageContext.request.contextPath}/member/signout"> Sign out</a></li>
                                     	</c:if>
                                     	<c:if test="${empty sessionScope.memberId}">
                                     		<li><a href="${pageContext.request.contextPath}/member/signin"> Sign in</a></li>
@@ -102,7 +102,7 @@
                                                     <li><a href="${pageContext.request.contextPath}/deposit/myDeposit">예치금 조회</a></li>
                                                     <li><a href="${pageContext.request.contextPath}/openBanking/myAccountList">계좌 조회</a></li>
                                                     <li><a href="${pageContext.request.contextPath}/deposit/autoTranDeposit">자동이체 설정</a></li>
-                                                    <li><a href="${pageContext.request.contextPath}/deposit/transferDeposit">예치금 입금(x)</a></li>
+                                                    <li><a href="${pageContext.request.contextPath}/deposit/transferDeposit">예치금 입금</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">공동구매 <i class="ti-angle-down"></i></a>

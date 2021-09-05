@@ -85,6 +85,12 @@ public class MemberController {
 		return "redirect:/member/signin";
 	}
 	
+	//로그아웃
+	@GetMapping("/signout")
+	public String signout(HttpSession session) {
+		session.removeAttribute("memberId");
+		return "redirect:/";
+	}
 	
 	
 }

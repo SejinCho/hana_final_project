@@ -49,7 +49,9 @@ public class DepositController {
 		String totalDeposit = service.getDeposit(memberId);
 		
 		//이체 성공 시
-		model.addAttribute("resultTran", (String)session.getAttribute("resultTran")) ;
+		String resultTran = (String)session.getAttribute("resultTran");
+		session.removeAttribute("resultTran");
+		model.addAttribute("resultTran", resultTran) ;
 		
 		//데이터 보내기
 		model.addAttribute("totalDeposit", totalDeposit);
@@ -99,8 +101,9 @@ public class DepositController {
 	
 	//자동이체 스케줄러
 	//@Scheduled(cron="0/3 * * * * * ")
+	//@Scheduled(cron="* 0/5 * * * * ")
 	public void autoTranDeposit() {
 		boolean result = service.startAutoTranDeposit();
-		System.out.println("최종 result : " + result + "");
+		System.out.println("[자동이체]최종 result : " + result + "");
 	}
 }

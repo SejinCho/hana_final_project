@@ -312,7 +312,7 @@
 	                            <img src="${news.imgLink }" alt="">
 	                        </div>
 	                        <div class="service_info">
-	                            <p><a href="${news.newsLink }">${news.title}</a></p>
+	                            <p><a href="${news.newsLink }" target="_blank">${news.title}</a></p>
 	                        </div>
 	                    </div>
 	                </div>
