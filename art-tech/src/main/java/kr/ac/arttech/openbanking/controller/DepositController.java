@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.arttech.openbanking.service.OpenBankingService;
@@ -85,6 +86,12 @@ public class DepositController {
 		model.addAttribute("token", service.getToken(memberId));
 		return "deposit/transferDeposit";
 	}
+	@PostMapping("/transferDeposit")
+	public String transferDepositPost(HttpSession session, Model model) {
+		
+		return "";
+	}
+	
 	
 	//자동이체 스케줄러
 	//@Scheduled(cron="0/3 * * * * * ")
