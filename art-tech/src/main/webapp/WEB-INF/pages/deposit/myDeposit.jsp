@@ -138,7 +138,7 @@
 							<hr>
 						</div>
 						<div class="deposit_account_content">
-							<span>가상 계좌번호</span><span class="text_right_one">하나은행 1232-1411-2412</span><br>
+							<span>가상 계좌번호</span><span class="text_right_one">하나은행 412-910652-66607</span><br>
 							
 							<span>예치금</span><span class="text_right_two">${totalDeposit } KRW</span>
 						</div>

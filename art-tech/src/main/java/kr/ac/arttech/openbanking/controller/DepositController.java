@@ -78,6 +78,14 @@ public class DepositController {
 		return "deposit/autoTranDeposit";
 	}
 	
+	//예치금 입금
+	@GetMapping("/transferDeposit")
+	public String transferDeposit(HttpSession session, Model model) {
+		String memberId = (String)session.getAttribute("memberId");
+		model.addAttribute("token", service.getToken(memberId));
+		return "deposit/transferDeposit";
+	}
+	
 	//자동이체 스케줄러
 	//@Scheduled(cron="0/3 * * * * * ")
 	public void autoTranDeposit() {

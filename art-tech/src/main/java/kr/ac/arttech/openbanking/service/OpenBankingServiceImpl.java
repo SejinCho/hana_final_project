@@ -320,4 +320,10 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		return result;
 	}
 	
+	//토큰 가져오기
+	@Override
+	public String getToken(String memberId) {
+		return dao.selectToken(memberId);
+	}
+	
 }

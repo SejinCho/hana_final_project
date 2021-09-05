@@ -30,4 +30,7 @@ public interface OpenBankingService {
 	//자동으로 예치금 충전
 	public boolean startAutoTranDeposit();
 	
+	//토큰 가져오기
+	public String getToken(String memberId) ;
+	
 }

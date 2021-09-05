@@ -13,6 +13,43 @@
 
 	
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		let accountList;
+		$(document).ready(function(){
+			
+			//전체 계좌 리스트 가져오기
+			$.ajax ({
+				type: 'POST',
+				url : 'http://localhost:18081/accountList',
+				data : JSON.stringify({
+					token : '${token}'
+				}),
+				contentType: "application/json",
+				success : function(result){
+					console.log(result)
+					accountList = result.data;
+					
+					//은행 select box 옵션추가
+					$('#select_bank_name').append('<option value="b">하시발</option>');
+					
+					/*
+					result.data.forEach(accountInfo => {
+						console.log('하나')
+						console.log(accountInfo)
+						//$('#select_bank_name').append('<option value="' + accountInfo.bankCode + '">'+ accountInfo.bankName +'</option>')
+					})
+					*/
+				},
+				error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					
+				}
+			})
+			
+		})
+	</script>
 </head>
 <body>
 	<div class="transferDeposit_container">
@@ -29,9 +66,6 @@
 							<td>
 								<select id="select_bank_name" name="send_bank_code">
 									<option value="all">전체</option>
-									<option value="J">JBMorgan</option>
-									<option value="D">DONJO</option>
-									<option value="Y">YGBank</option>
 								</select>
 							</td>
 						</tr>
@@ -63,23 +97,15 @@
 					<tbody>
 						<tr>
 							<th class="text-center">입금은행</th>
-							<td>회사 계좌 은행</td>
+							<td>하나은행</td>
 						</tr>
 						<tr>
 							<th class="text-center" >입금 계좌번호</th>
-							<td>회사 계좌번호</td>
+							<td>412-910652-66607</td>
 						</tr>
 						<tr>
 							<th class="text-center">이체금액</th>
 							<td><input type="text" name="tran_amt" class="input-text-box" required></td>
-						</tr>
-						<tr>
-							<th class="text-center" >받는 통장 메모</th>
-							<td><input type="text" class="input-text-box" name ="receive_content"></td>
-						</tr>
-						<tr>
-							<th class="text-center" >내 통장 메모</th>
-							<td><input type="text" class="input-text-box" name ="my_content"></td>
 						</tr>
 						
 					</tbody>

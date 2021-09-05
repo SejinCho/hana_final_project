@@ -64,7 +64,7 @@
 			and token = #{token}
 			<choose>
 				<when test='selectDepositYn == "Y"'>
-					and OTHER_ACCOUNT_NUMBER = '110420340941'
+					and OTHER_ACCOUNT_NUMBER = '41291065266607'
 				</when>
 				<when test='selectDepositYn == "N"'>
 					and account_number = #{accountNumber}
@@ -96,13 +96,13 @@
 		<![CDATA[
 			select 
 			nvl((select sum(tran_amt) from sj_account_transfer_info 
-			where other_account_number = '110420340941' -- other이 회사
+			where other_account_number = '41291065266607' -- other이 회사
 			and other_bank_code = '081'
 			and token = #{token}
 			group by inout_type
 			having inout_type = 'O'),0) - 
 			nvl((select sum(tran_amt)  from sj_account_transfer_info 
-			where other_account_number = '110420340941' -- other이 회사
+			where other_account_number = '41291065266607' -- other이 회사
 			and other_bank_code = '081'
 			and token = #{token}
 			group by inout_type

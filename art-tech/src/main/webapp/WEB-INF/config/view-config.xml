@@ -8,9 +8,6 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	
-	
-	<view-controller path="/deposit/transferDeposit" view-name="deposit/transferDeposit"/>
-	
 	<view-controller path="/co-buying/ownershipDetail" view-name="co-buying/ownershipDetail"/>
 	<view-controller path="/co-buying/disposal" view-name="co-buying/disposal"/>
 
