@@ -26,11 +26,11 @@
 					accountList = result.data;
 					
 					//은행 select box 옵션추가
-					$('#bankSelectTd').append('<select id="bankNameList">')
+					$('#bankSelectTd').append('<select id="bankNameList" name="bankCode">')
 					$('#bankNameList').append('<option value="all">전체</option>')
 					
 					//계좌 list 
-					$('#accountSelectTd').append('<select id="accountList" name="send_account_number">')
+					$('#accountSelectTd').append('<select id="accountList" name="accountNumber">')
 					
 					let bankArr = []
 					
@@ -139,7 +139,8 @@
 		</div>
 		<div class="container">
 			<h4>출금정보</h4>
-			<form  method="post" >	
+			<form action="${pageContext.request.contextPath}/deposit/transferDeposit" method="post" >	
+				<input type="hidden" name="token" value="${token }">
 				<table class="table">
 					<tbody>
 						<tr>
@@ -182,7 +183,7 @@
 						</tr>
 						<tr>
 							<th class="text-center">이체금액</th>
-							<td><input type="text" name="tran_amt" class="input-text-box" required></td>
+							<td><input type="text" name="tranAmt" class="input-text-box" required></td>
 						</tr>
 						
 					</tbody>

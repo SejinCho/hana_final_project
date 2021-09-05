@@ -33,4 +33,7 @@ public interface OpenBankingService {
 	//토큰 가져오기
 	public String getToken(String memberId) ;
 	
+	//계좌이체
+	public boolean addTranInfo(AccountTransferInfoVO tranInfo);
+	
 }

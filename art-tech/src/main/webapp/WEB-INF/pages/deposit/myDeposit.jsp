@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/signup.css">	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/board/myCss.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	
     <!-- <link rel="manifest" href="site.webmanifest"> -->
@@ -21,6 +22,18 @@
 
     <script type="text/javascript">
 		$(document).ready(function(){
+			
+			if('${resultTran}' == 'success') {
+				$('#index_content_p').text('예치금 입금이 성공적으로 진행되었습니다.')
+    			$('.index_modal').css('display','block')
+    			$('body').css("overflow", "hidden");
+			}
+			
+			//모달 다시 숨기기
+    		$('.index_modal_cancel').click(function(){
+    			$('.index_modal').css('display','none')
+    			$('body').css("overflow", "scroll");
+    		})
 			
 			//조회 기간에 현재 시간 넣기
 			Date.prototype.toDateInputValue = (function() {
@@ -251,7 +264,19 @@
 		
 	</div>
 	
-	
+	<!-- 모달 -->
+	<div class="index_modal">
+		<div class="index_body" >  
+			
+			<div class="content">
+				<p id="index_content_p"></p>
+			</div>
+			<hr>
+			<div class="select">
+				<p class="index_modal_cancel">확인</p>
+			</div>
+		</div>
+	</div>
 	
 	
 	

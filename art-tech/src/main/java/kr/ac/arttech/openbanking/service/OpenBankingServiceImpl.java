@@ -326,4 +326,49 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		return dao.selectToken(memberId);
 	}
 	
+	//계좌이체
+	@Override
+	public boolean addTranInfo(AccountTransferInfoVO tranInfo) {
+		boolean result = false;
+		//회사 계좌 정보 가져오기
+		ManageAccountInfoVO manageAccountInfo = dao.selectManageAccountInfo();
+		
+		//param
+		List<AccountTransferInfoVO> accountTranInfoList = new ArrayList<>(); 
+		
+		AccountTransferInfoVO accountTranInfo = new AccountTransferInfoVO();
+		//출금(유저 기준)
+		accountTranInfo.setInoutType("O");
+		accountTranInfo.setTranAmt(tranInfo.getTranAmt());
+		accountTranInfo.setAccountNumber(tranInfo.getAccountNumber());
+		accountTranInfo.setBankCode(tranInfo.getBankCode());
+		accountTranInfo.setOtherAccountNumber(manageAccountInfo.getAccountNumber());
+		accountTranInfo.setOtherBankCode(manageAccountInfo.getBankCode());
+		accountTranInfo.setToken(tranInfo.getToken());
+		accountTranInfoList.add(accountTranInfo);
+		
+		accountTranInfo = new AccountTransferInfoVO();
+		//입금(회사 기준)
+		accountTranInfo.setInoutType("I");
+		accountTranInfo.setTranAmt(tranInfo.getTranAmt());
+		accountTranInfo.setAccountNumber(manageAccountInfo.getAccountNumber());
+		accountTranInfo.setBankCode(manageAccountInfo.getBankCode());
+		accountTranInfo.setOtherAccountNumber(tranInfo.getAccountNumber());
+		accountTranInfo.setOtherBankCode(tranInfo.getBankCode());
+		accountTranInfo.setToken(manageAccountInfo.getToken());
+		accountTranInfoList.add(accountTranInfo);
+		
+		String url = "http://localhost:18081/tran";
+		RestTemplate restTemplate = new RestTemplate();
+		Map<String, String> data = (Map<String, String>) restTemplate.postForObject(url,accountTranInfoList, Object.class);
+		
+		String apiResult = data.get("data");
+		
+		if(apiResult.equals("success")) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
 }

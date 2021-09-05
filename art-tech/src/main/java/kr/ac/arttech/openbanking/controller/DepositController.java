@@ -48,7 +48,8 @@ public class DepositController {
 		//예치금 총 금액 가져오기
 		String totalDeposit = service.getDeposit(memberId);
 		
-		
+		//이체 성공 시
+		model.addAttribute("resultTran", (String)session.getAttribute("resultTran")) ;
 		
 		//데이터 보내기
 		model.addAttribute("totalDeposit", totalDeposit);
@@ -87,9 +88,12 @@ public class DepositController {
 		return "deposit/transferDeposit";
 	}
 	@PostMapping("/transferDeposit")
-	public String transferDepositPost(HttpSession session, Model model) {
-		
-		return "";
+	public String transferDepositPost(AccountTransferInfoVO tranInfo, HttpSession session) {
+		boolean result = service.addTranInfo(tranInfo);
+		if(result) {
+			session.setAttribute("resultTran", "success");
+		}
+		return "redirect:/deposit/myDeposit";
 	}
 	
 	
