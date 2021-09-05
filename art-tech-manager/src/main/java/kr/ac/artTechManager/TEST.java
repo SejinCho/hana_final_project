@@ -3,9 +3,9 @@ package kr.ac.artTechManager;
 public class TEST {
 
 	public static void main(String[] args) {
-		int a = 1293;
-		int b = 5;
-		System.out.println(a/b);
+		int a = 4;
+		int b = 2;
+		System.out.println( ((float)4/6) *100  );
 	}
 
 }

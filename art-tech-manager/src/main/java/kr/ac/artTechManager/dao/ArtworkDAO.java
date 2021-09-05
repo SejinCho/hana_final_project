@@ -17,6 +17,8 @@ public interface ArtworkDAO {
 	public ArtworkInfoVO selectArtworkInfo(String artworkInfoId); //goodsDetail
 	public int insertArtworkAmt(String id); //가격정보 테이블에 insert
 	public List<MemberVO> selectVoteMemberInfo(String artwortInfoId); //투표해야할 유저 list
+	public List<MemberVO> selectDisposalSMSMemberInfo(String artwortInfoId);//매각진행 후 문자보낼 유저 
+	
 	public int updateArtworkInfoStateVote(String artwortInfoId); //투표중으로 상태 update
 	public int insertVoteInfo(VoteVO vote);//투표시작하면 table에 insert
 	public VoteVO selectVoteInfo(String artworkInfoId); //투표 정보 가져오기

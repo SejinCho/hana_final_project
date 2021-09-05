@@ -63,6 +63,11 @@ public class ArtworkDAOImpl implements ArtworkDAO {
 	public List<MemberVO> selectVoteMemberInfo(String artwortInfoId) {
 		return sqlSession.selectList("kr.ac.kopo.manage.artworkInfo.selectVoteMemberInfo", artwortInfoId);
 	}
+	//매각진행 후 문자보낼 유저 
+	@Override
+	public List<MemberVO> selectDisposalSMSMemberInfo(String artwortInfoId) {
+		return sqlSession.selectList("kr.ac.kopo.manage.artworkInfo.selectDisposalSMSMemberInfo", artwortInfoId);
+	}
 	
 	//투표중으로 상태 update
 	@Override

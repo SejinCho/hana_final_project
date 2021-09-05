@@ -121,6 +121,14 @@
 		(select member_id from sj_purchase_info where artwork_info_id = #{artwortInfoId} group by member_id having sum(piece_no) > 0) t
 		where t.member_id = m.id
 	</select>
+	<!-- 매각진행 후 문자보낼 유저 -->
+	<select id="selectDisposalSMSMemberInfo" resultType="member" parameterType="String">
+		<![CDATA[
+		select m.id, m.email, m.phone from sj_member m , 
+		(select member_id from sj_purchase_info where artwork_info_id = #{artwortInfoId} and type='3' group by member_id having sum(piece_no) < 0) t
+		where t.member_id = m.id
+		]]>
+	</select>
 	
 	<!-- 투표중으로 상태 변경 -->
 	<update id="updateArtworkInfoStateVote" parameterType="String">

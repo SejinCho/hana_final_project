@@ -154,7 +154,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 				String email = member.getEmail();
 				String phone = member.getPhone();
 				//AuthUtil.authEmail(vote, email);
-				//AuthUtil.authPhone(vote, phone);
+				AuthUtil.authPhone(vote, phone);
 			});
 			result = "success";
 		}
@@ -177,11 +177,13 @@ public class ArtworkServiceImpl implements ArtworkService{
 	}
 	
 	//디테일 페이지 업무
+	@Transactional
 	@Override
 	public String startGoodsDetailTast(VoteVO vote) {
 		String result = "";
 		switch (vote.getState()) {
 		case "4": //투표 종료 -> 매각 기각 또는 매각 진행 
+			
 			if((vote.getTotalNo() - vote.getAgreeNo()) <= vote.getAgreeNo()) { //매각진행
 				//상태 변경(매각 중으로)
 				vote.setState("5");
@@ -190,21 +192,26 @@ public class ArtworkServiceImpl implements ArtworkService{
 				//매각처, 매각 금액, 매각 update
 				cnt += dao.updateSellInfo(vote);
 				
+				//문자 type
+				vote.setType("2");
 				//문자 보내기
 				//member info 가져오기(해당 작품을 산 사람)
-				vote.setType("2");
-				List<MemberVO> memberList = dao.selectVoteMemberInfo(vote.getArtworkInfoId());
+				List<MemberVO>  memberList = dao.selectVoteMemberInfo(vote.getArtworkInfoId());
 				memberList.forEach(member -> {
 					String email = member.getEmail();
 					String phone = member.getPhone();
 					//AuthUtil.authEmail(vote, email);
-					AuthUtil.authPhone(vote, phone);
+					//AuthUtil.authPhone(vote, phone);
 				});
+				
 				if(cnt == 2) {
 					result = "1";
 				}
+				
 			}else { //매각 기각
+				vote.setType("3"); //문자 타입
 				result = "2";
+				
 			}
 			break;
 		case "5": //수익분배 진행 (5->6)
@@ -212,27 +219,39 @@ public class ArtworkServiceImpl implements ArtworkService{
 			//상태 변경(수익분배)
 			int cnt = dao.updateArtworkState(vote);
 			
+			//문자 type
+			vote.setType("4");
+			
+			
 			//sj_purchase_info에 insert(map에 list 넣기)
 			List<PurchaseInfoVO> paramList = new ArrayList<>();
 			//조각 산 사람들 list (몇개 샀는지)
 			List<PurchaseInfoVO> purchaseList = dao.selectPurchaseListByArtworkInfoId(vote.getArtworkInfoId());
 			purchaseList.forEach(purchase -> {
-				System.out.println("서비스 확인 : " + vote);
 				PurchaseInfoVO vo = new PurchaseInfoVO();
 				vo.setId("purchase" + dao.selectPurchaseInfoSeq());
 				vo.setArtworkInfoId(vote.getArtworkInfoId());
 				vo.setMemberId(purchase.getMemberId());
 				vo.setPieceNo(-Integer.parseInt(purchase.getTotalPieceNo()));
 				vo.setPieceAmt(String.format("%d" ,Integer.parseInt(vote.getSellPrice()) / Integer.parseInt(vote.getTargetPiece()))  );
-				vo.setType("3");
+				vo.setType("3"); //sj_purchase_info의 타입임
 				paramList.add(vo);
 			});
 			Map<String, Object> paramMap = new HashMap<>();
 			paramMap.put("paramMap", paramList);
-			System.out.println("paramMap : " +paramList.toString() );
 			dao.insertPurchaseInfoDisposal(paramMap);
 			
 			result ="3";
+			
+			//문자 보내기
+			//member info 가져오기(해당 작품을 산 사람)
+			List<MemberVO>  memberList2 = dao.selectDisposalSMSMemberInfo(vote.getArtworkInfoId());
+			memberList2.forEach(member -> {
+				String email = member.getEmail();
+				String phone = member.getPhone();
+				//AuthUtil.authEmail(vote, email);
+				//AuthUtil.authPhone(vote, phone);
+			});
 			break;
 		
 		case "6" : //수익분배 완료(매각완료) 6->7
@@ -240,10 +259,23 @@ public class ArtworkServiceImpl implements ArtworkService{
 			//상태 변경(매각완료)
 			dao.updateArtworkState(vote);
 			
+			//문자 type
+			vote.setType("5");
+			//문자 보내기
+			//member info 가져오기(해당 작품을 산 사람)
+			List<MemberVO>  memberList3 = dao.selectDisposalSMSMemberInfo(vote.getArtworkInfoId());
+			memberList3.forEach(member -> {
+				String email = member.getEmail();
+				String phone = member.getPhone();
+				//AuthUtil.authEmail(vote, email);
+				//AuthUtil.authPhone(vote, phone);
+			});
+			
 			result = "4";
 			break;
 		
-		}
+		} //switch
+		
 		
 		return result;
 	}
