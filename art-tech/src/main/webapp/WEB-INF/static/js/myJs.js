@@ -67,3 +67,4 @@ function getCookie(cookie_name) {
     }
 }
 
+/*알림*/

@@ -26,7 +26,9 @@
     			$('#index_content_p').text('구매되었습니다.')
     			$('.index_modal').css('display','block')
     			$('body').css("overflow", "hidden");
-    		}
+    			
+        		
+    		} //if end
     		
     		//모달 다시 숨기기
     		$('.index_modal_cancel').click(function(){

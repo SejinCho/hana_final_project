@@ -13,7 +13,8 @@
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
-
+	
+	
     <!-- CSS here -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/owl.carousel.min.css">
@@ -27,9 +28,73 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/slick.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/slicknav.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" /> <!-- 토스터 -->
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!-- 토스터 -->
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <script type="text/javascript">
+    	let ws;
+	    function openSocket(){
+	        if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
+	            writeResponse("WebSocket is already opened.");
+	            return;
+	        }
+	        //웹소켓 객체 만드는 코드
+	        ws=new WebSocket("ws://localhost:8080/arttech/echo");
+	        
+	        ws.onopen=function(event){
+	            if(event.data===undefined) return;
+	            
+	            //writeResponse(event.data);
+	        };
+	        ws.onmessage=function(event){
+	            writeResponse(event.data);
+	        };
+	        ws.onclose=function(event){
+	            writeResponse("Connection closed");
+	        }
+	    }
+	    
+	    function send(){
+            let text="조각 구매 완료" + "," + '${memberId}';
+            ws.send(text);
+            text="";
+        }
+        
+        function closeSocket(){
+            ws.close();
+        }
+        
+        function writeResponse(text){
+            toastr.options.escapeHtml = true;
+			toastr.options.closeButton = true;
+			toastr.options.newestOnTop = false;
+			toastr.options.progressBar = false;
+			toastr.info('알림', text, {timeOut: 5000});
+        }
+    	/*
+	  	//토스터 test
+		if('${test}' == 'test') {
+			toastr.options.escapeHtml = true;
+			toastr.options.closeButton = true;
+			toastr.options.newestOnTop = false;
+			toastr.options.progressBar = false;
+			toastr.info('예제', '명월일지', {timeOut: 5000});
+			
+		}
+    	*/
+    	$(document).ready(function(){
+    		openSocket()  
+    		if('${test}' == 'test') {
+    			alert('여기') 
+    			setTimeout(function() {
+   					send()
+   				}, 5000);
+				
+    		} //if end
+    	})
+    
+    </script>
 </head>
 
 <body>
@@ -135,7 +200,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <script src="${pageContext.request.contextPath}/static/js/main.js"></script>
-
+	
 
 
 </body>

@@ -10,11 +10,12 @@
     
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+		
+    
+    
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="${pageContext.request.contextPath}/static/image/x-icon" href="img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
-    
     <!-- font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,10 +37,13 @@
     
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-
+	
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    
+    
+
 </head>
 
 <body>
