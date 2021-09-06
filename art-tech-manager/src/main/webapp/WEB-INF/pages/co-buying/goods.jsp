@@ -10,8 +10,50 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+	//웹소켓 시작
+	let ws;
+	function openSocket(){
+	    if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
+	        writeResponse("WebSocket is already opened.");
+	        return;
+	    }
+	    //웹소켓 객체 만드는 코드
+	    ws=new WebSocket("ws://localhost:8080/arttech/echo");
+	    
+	    ws.onopen=function(event){
+	        if(event.data===undefined) return;
+	        
+	        console.log("onopen : " + event.data)
+	        //writeResponse(event.data);
+	    };
+	    ws.onmessage=function(event){
+	    	console.log("onmessage : " + event.data)
+	        //writeResponse(event.data);
+	    };
+	    ws.onclose=function(event){
+	    	console.log("onclose : " + event.data)
+	        //writeResponse("Connection closed");
+	    }
+	}
+	
+	function send(){
+	    let text="공동구매 예정인 작품이 등록되었습니다." + "," + 'admin';
+	    ws.send(text);
+	    text="";
+	}
+	
+	function closeSocket(){
+	    ws.close();
+	}
+	
+	openSocket()  
+	
+	//웹소켓 끝
+	
 	$(document).ready(function(){
+		
 		if('${register}' == 'success'){
+			send()
 			$('#index_content_p').text()
 			$('#index_content_p').text('작품이 등록되었습니다.')
 			$('.index_modal').css('display','block')

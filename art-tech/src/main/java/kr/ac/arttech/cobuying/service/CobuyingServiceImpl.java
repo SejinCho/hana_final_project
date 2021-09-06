@@ -82,13 +82,22 @@ public class CobuyingServiceImpl implements CobuyingService {
 	
 	//상태 update
 	@Override
-	public int modifyState() {
+	public Map<String, Integer> modifyState() {
 		int result = 0;
 		
-		result += dao.updateStateByStartDate(LocalDate.now().toString());
-		result += dao.updateStateByEndDate(LocalDate.now().toString());
+		int resultStart = 0;
+		int resultEnd = 0;
 		
-		return result;
+		Map<String, Integer> map = new HashMap<>();
+		resultStart = dao.updateStateByStartDate(LocalDate.now().toString());
+		resultEnd = dao.updateStateByEndDate(LocalDate.now().toString());
+		result = resultEnd + resultStart;
+		
+		map.put("start", resultStart);
+		map.put("end", resultEnd);
+		map.put("total", result);
+		
+		return map;
 	}
 	
 	//소유자 현황 list

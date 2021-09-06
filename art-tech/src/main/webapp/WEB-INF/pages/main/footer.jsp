@@ -28,8 +28,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/slick.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/slicknav.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" /> <!-- 토스터 -->
-	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!-- 토스터 -->
+	
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <script type="text/javascript">
@@ -45,21 +44,19 @@
 	        ws.onopen=function(event){
 	            if(event.data===undefined) return;
 	            
+	            console.log("onopen : " + event.data)
 	            //writeResponse(event.data);
 	        };
 	        ws.onmessage=function(event){
+	        	console.log("onmessage : " + event.data)
 	            writeResponse(event.data);
 	        };
 	        ws.onclose=function(event){
-	            writeResponse("Connection closed");
+	        	console.log("onclose : " + event.data)
+	            //writeResponse("Connection closed");
 	        }
 	    }
 	    
-	    function send(){
-            let text="조각 구매 완료" + "," + '${memberId}';
-            ws.send(text);
-            text="";
-        }
         
         function closeSocket(){
             ws.close();
@@ -70,29 +67,10 @@
 			toastr.options.closeButton = true;
 			toastr.options.newestOnTop = false;
 			toastr.options.progressBar = false;
-			toastr.info('알림', text, {timeOut: 5000});
+			toastr.info(text,'[하나Art] 알림', {timeOut: 5000});
         }
-    	/*
-	  	//토스터 test
-		if('${test}' == 'test') {
-			toastr.options.escapeHtml = true;
-			toastr.options.closeButton = true;
-			toastr.options.newestOnTop = false;
-			toastr.options.progressBar = false;
-			toastr.info('예제', '명월일지', {timeOut: 5000});
-			
-		}
-    	*/
-    	$(document).ready(function(){
-    		openSocket()  
-    		if('${test}' == 'test') {
-    			alert('여기') 
-    			setTimeout(function() {
-   					send()
-   				}, 5000);
-				
-    		} //if end
-    	})
+    	
+    	openSocket()  
     
     </script>
 </head>

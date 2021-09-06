@@ -44,8 +44,6 @@ public class IndexController {
 		
 		mav.setViewName("index");
 		
-		//알림창 test
-		mav.addObject("test", "test");
 		return mav;
 	}
 }

@@ -35,9 +35,10 @@ public class ArtworkController {
 	private final WriterInfoService writerSerivce;
 	
 	@GetMapping("/goodsRegister")
-	public String addArtworkInfoGet(Model model) {
+	public String addArtworkInfoGet(Model model, HttpSession session) {
 		List<WriterInfoVO> writerInfoList = writerSerivce.getWriterInfoList();
 		model.addAttribute("writerInfoList", writerInfoList);
+		
 		return "manage/goodsRegister";
 	}
 	
@@ -48,6 +49,7 @@ public class ArtworkController {
 		boolean result = service.addArtworkInfo(artworkInfo, multipartFile);
 		if(result) {
 			session.setAttribute("register", "success");
+			
 		}
 		
 		return "redirect:/manage/goods"; 
@@ -63,6 +65,7 @@ public class ArtworkController {
 		List<ArtworkInfoVO> artworkInfoList = service.getArtworkInfoList();
 		model.addAttribute("artworkInfoList", artworkInfoList);
 		model.addAttribute("register", register);
+		
 		return "manage/goods";
 	}
 	
@@ -118,4 +121,6 @@ public class ArtworkController {
 		int result = service.modifyStateVote();
 		System.out.println("총 " + result + "개의 상태가 update");
 	}
+	
+	
 }

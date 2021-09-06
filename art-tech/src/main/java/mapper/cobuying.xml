@@ -140,10 +140,10 @@
 	
 	<!-- 상태 변경 -->
 	<update id="updateStateByStartDate">
-		update sj_artwork_info set state = 1 where recruit_start_date = #{today}
+		update sj_artwork_info set state = 1 where recruit_start_date = #{today} and state = 0
 	</update>
 	<update id="updateStateByEndDate">
-		update sj_artwork_info set state = 2 where recruit_end_date = #{today}
+		update sj_artwork_info set state = 2 where recruit_end_date = #{today} and state = 1
 	</update>
 
 	

@@ -1,5 +1,7 @@
 package kr.ac.arttech.cobuying.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.scheduling.annotation.Scheduled;
@@ -113,8 +115,10 @@ public class CobuyingController {
 	//@Scheduled(cron="0 0 14 * * * ")
 	//@Scheduled(cron="0/3 * * * * * ")
 	public void updateState() {
-		int result = service.modifyState();
-		System.out.println("[아트테크 상태 update]총 " + result + "개의 상태가 update");
+		Map<String, Integer> map = service.modifyState();
+		int resultStart = map.get("start");
+		
+		System.out.println("[아트테크 상태 update]총 " + map.get("total") + "개의 상태가 update");
 	}
 	
 	

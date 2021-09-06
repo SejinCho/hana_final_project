@@ -38,10 +38,11 @@ public class WebSocket {
     @OnOpen //클라이언트가 웹소켓에 들어오고 서버에 아무런 문제 없이 들어왔을때 실행하는 메소드
     public void onOpen(Session session) {
     	System.out.println("onopen 메소드");
+    	System.out.println("open session id : " + session.getId());
         logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("Connection Established");
+            //basic.sendText("Connection Established");
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -55,10 +56,12 @@ public class WebSocket {
      */
     private void sendAllSessionToMessage(Session self,String message) {
     	System.out.println("sendAllSessionToMessage : " + message);
+    	String send = message.split(",")[0];
+    	
         try {
             for(Session session : WebSocket.sessionList) {
                 if(!self.getId().equals(session.getId())) {
-                    session.getBasicRemote().sendText(message.split(",")[1]+" : "+message);
+                    session.getBasicRemote().sendText(send);
                 }
             }
         }catch (Exception e) {

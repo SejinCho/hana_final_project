@@ -23,7 +23,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/board/bootstrap.css">
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
-	
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" /> <!-- 토스터 -->
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!-- 토스터 -->
 	
 
     <script type="text/javascript">
