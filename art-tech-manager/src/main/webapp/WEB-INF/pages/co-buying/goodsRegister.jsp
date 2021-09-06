@@ -57,6 +57,19 @@
 </head>
 <body>
 	<div class="contents-wrap1">
+		<!-- Start Banner Hero -->
+	    <div id="work_banner" class="banner-wrapper bg-light w-100 py-5">
+	        <div class="banner-vertical-center-work container text-light d-flex justify-content-center align-items-center py-5 p-0">
+	            <div class="banner-content col-lg-8 col-12 m-lg-auto text-center">
+	                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 ">Our Goods</h1>
+	                <h3 class="h4 pb-2 regular-400"></h3>
+	                <p class="banner-body pb-2 light-300">
+	                </p>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- End Banner Hero -->
+	    
 		<section class="container py-5">
 			<div class="row projects gx-lg-5">
 				<div class="artworkRegister_container">
@@ -85,11 +98,11 @@
 							</tr>
 							<tr>
 								<th>작품 사이즈</th>
-								<td><input type="text" name="sizeWidth"> X <input type="text" name="sizeHeight"></td>
+								<td><input type="text" id="sizeWidth" name="sizeWidth"> X <input id="sizeHeight" type="text" name="sizeHeight"></td>
 							</tr>
 							<tr>
 								<th>제작 연도</th>
-								<td><input type="text" name="productionYear"></td>
+								<td><input type="text" name="productionYear" id="productionYear"></td>
 							</tr>
 							<tr>
 								<th>모집 시작 날짜</th>
@@ -101,11 +114,12 @@
 							</tr>
 							<tr>
 								<th>공동구매 목표 조각 개수</th>
-								<td><input type="text" name="targetPiece"></td>
+								<td><input type="text" name="targetPiece" id="targetPiece"></td>
 							</tr>
 							<tr>
 								<th>작품 추정가</th>
-								<td><input type="text" name="estimatedPriceMin"> ~ <input type="text" name="estimatedPriceMax"></td>
+								<td><input type="text" name="estimatedPriceMin" id ="estimatedPriceMin"> ~ 
+								<input type="text" name="estimatedPriceMax" id="estimatedPriceMax"></td>
 							</tr>
 							<tr>
 								<th>작품 사진(여러 장 선택 가능)</th>
@@ -118,7 +132,7 @@
 						</table>
 						<p>작품 정보</p>
 						<textarea class="summernote" name="artworkContent"></textarea>  
-						<div class="div_center">
+						<div class="div_center register-div">
 							<input type="submit" value="등록하기">
 						</div>
 					</form>

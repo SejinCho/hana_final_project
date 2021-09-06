@@ -122,6 +122,12 @@ p, a {font-weight: 400;}
 }
 /* About */
 #work_banner {
+  background-image: url('./../img/my/banner2.PNG');
+  background-position: center center; background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+#work_banner_writer {
   background-image: url('./../img/my/banner.jpg');
   background-position: center center; background-size: cover;
   height: 100%;

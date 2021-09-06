@@ -68,7 +68,7 @@
 </script>
 </head>
 <body>
-	<div class="contents-wrap">
+	<div class="contents-wrap1">
 		<!-- Start Banner Hero -->
 	    <div id="work_banner" class="banner-wrapper bg-light w-100 py-5">
 	        <div class="banner-vertical-center-work container text-light d-flex justify-content-center align-items-center py-5 p-0">
@@ -117,7 +117,7 @@
 	           
 	        </div>
 	        
-	        <div class="row">
+	        <div class="row button-margin">
 	            <div class="btn-toolbar justify-content-center pb-4" role="toolbar" aria-label="Toolbar with button groups">
 	                <div class="btn-group me-2" role="group" aria-label="First group">
 	                    <button type="button" class="btn btn-secondary text-white">Previous</button>

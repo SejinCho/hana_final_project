@@ -11,7 +11,13 @@
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font CSS -->
     <link href="${pageContext.request.contextPath}/static/css/boxicon.min.css" rel="stylesheet">
+    <!-- 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+     -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
     <!-- Load Tempalte CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/templatemo.css">
     <!-- Custom CSS -->

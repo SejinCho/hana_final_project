@@ -1,4 +1,7 @@
 /*footer 고정*/
+* { 
+	font-family: 'Noto Sans KR', sans-serif;
+}
 
 html {
 	height: 100%;
@@ -15,7 +18,7 @@ body {
 .contents-wrap1 {
 	min-height:100%;
     float : none;
-    margin-bottom: 500px;
+    margin-bottom: 1000px;
 }
 .contents-wrap2 {
 	min-height:100%;
@@ -30,6 +33,11 @@ body {
 	height: 400px;
 }
 
+
+/* manage/goods */
+.button-margin {
+	margin-top: 100px;
+}
 
 /* manage/goodsRegister */
 
@@ -48,13 +56,16 @@ body {
 	font-weight: bold;
 }
 .artworkRegister_container table {
+	margin-left : auto;
+	margin-right : auto;
 	margin-bottom: 50px;
+	border-collapse: separate;
+ 	border-spacing: 0 15px;
 }
+
 .artworkRegister_container table th {
 	width: 300px;
-}
-.artworkRegister_container table input{
-	width: 100px;
+	font-size: 20px;
 }
 
 #recruitEndDate, #recruitStartDate,
@@ -65,26 +76,50 @@ body {
 .div_center {
 	text-align: center;
 }
+.artworkRegister_container .register-div {
+	margin-top: 30px;	
+}
 .artworkRegister_container .div_center input {
-	margin-top : 30px;
-	width: 100px;
-	height: 40px;
+	margin-top : 60px;
+	width: 200px;
+	height: 60px;
 	font-size: 20px;
+	color : white;
+	background-color : #008485;
+	border-radius: 10px 10px;
 }
 .goodsRegisterImg {
 	width: 400px;
 }
 
 #goodsName, #material{
-	width: 500px;
+	width: 800px;
+	height: 35px;
+	border: 1px solid #D3D3D3;
+}
+.artworkRegister_container #sizeWidth, #sizeHeight, #productionYear,
+#targetPiece, #estimatedPriceMin,  #estimatedPriceMax{
+	width: 120px;
+	height: 35px;
+	border: 1px solid #D3D3D3;
 }
 /* manage/writerList */
+.writerList-registerbtn-div button {
+	margin-top : 50px;
+	width: 100px;
+	height: 40px;
+	font-size: 20px;
+	color : white;
+	background-color : #008485;
+	border-radius: 10px 10px;
+}
 .writerList_container {
 	margin-top: 70px;
 }
 .writerList_container .main_title p {
 	font-size: 30px;
 	font-weight: bold;
+	margin-bottom: 50px;
 }
 
 /* manage/writerRegister */
@@ -117,9 +152,18 @@ body {
 	height: 500px;
 }
 #writerDetailTable {
-	margin: auto;
+	margin-left : auto;
+	margin-right : auto;
+	width: 1000px;
+	border-top: 1px solid #bcbcbc; 
+	border-bottom: 1px solid #bcbcbc;
+	border-collapse: collapse;
+	border-spacing: 0 15px;
 }
-
+#writerDetailTable tr{
+	border-bottom: 1px solid #F5F5F5;
+	height: 30px;
+}
 
 .goodsImg {
 	height: 210px;
@@ -128,4 +172,23 @@ body {
 .notice-title-input {
 	width: 100%;
 }
+
+/* manage/goodsDetail */
+.goodsDetail-inputbtn-div {
+	margin-top: 100px;
+}
+.goodsDetail-inputbtn-div button {
+	width: 150px;
+	height: 45px;
+	font-size: 20px;
+	color : white;
+	background-color : #008485;
+	border-radius: 10px 10px;
+}
+.writerDetailTable tr, th, td {
+	font-size: 20px;
+}
+
+
+
 

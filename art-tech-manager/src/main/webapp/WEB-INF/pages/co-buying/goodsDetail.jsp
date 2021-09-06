@@ -124,6 +124,20 @@
 </head>
 <body>
 	<div class="contents-wrap2">
+		<!-- Start Banner Hero -->
+	    <div id="work_banner" class="banner-wrapper bg-light w-100 py-5">
+	        <div class="banner-vertical-center-work container text-light d-flex justify-content-center align-items-center py-5 p-0">
+	            <div class="banner-content col-lg-8 col-12 m-lg-auto text-center">
+	                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 ">Our Goods</h1>
+	                <h3 class="h4 pb-2 regular-400"></h3>
+	                <p class="banner-body pb-2 light-300">
+	                    
+	                </p>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- End Banner Hero -->
+	    
 		<section class="container py-5">
 			<div class="row projects gx-lg-5">
 				<div class="writerRegister_container">
@@ -259,7 +273,7 @@
 							</c:choose>
 							
 						</table>
-						<div class="div_center">
+						<div class="div_center goodsDetail-inputbtn-div">
 							<button type="button" onclick="location.href='${pageContext.request.contextPath}/manage/goods'">목록</button>
 						</div>
 				</div>

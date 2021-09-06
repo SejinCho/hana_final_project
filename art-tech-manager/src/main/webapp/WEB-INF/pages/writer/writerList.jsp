@@ -28,6 +28,19 @@
 </head>
 <body>
 	<div class="contents-wrap1">
+		<!-- Start Banner Hero -->
+	    <div id="work_banner_writer" class="banner-wrapper bg-light w-100 py-5">
+	        <div class="banner-vertical-center-work container text-light d-flex justify-content-center align-items-center py-5 p-0">
+	            <div class="banner-content col-lg-8 col-12 m-lg-auto text-center">
+	                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 ">Writer</h1>
+	                <h3 class="h4 pb-2 regular-400"></h3>
+	                <p class="banner-body pb-2 light-300">
+	                </p>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- End Banner Hero -->
+	    
 		<section class="container py-5">
 			<div class="row projects gx-lg-5">
 				<div class="writerList_container div_center">
@@ -41,16 +54,18 @@
 							<th>등록날짜</th>
 						</tr>
 						<c:forEach items="${writerInfoList}" var="writerInfo" varStatus="status">
-							<tr>
+							<tr onclick="location.href='${pageContext.request.contextPath}/manage/writerDetail?id=${writerInfo.id}'">
 								<td>${status.count }</td>
-								<td><a href="${pageContext.request.contextPath}/manage/writerDetail?id=${writerInfo.id}">${writerInfo.writerName }</a></td>
+								<td>${writerInfo.writerName }</td>
 								<td>${writerInfo.regDate }</td>
 							</tr>
 						</c:forEach>
 						
 						
 					</table>
-					<button type="button" onclick="location.href='${pageContext.request.contextPath}/manage/writerRegister'">등록</button> <br><br><br><br>
+					<div class="writerList-registerbtn-div">
+						<button type="button" onclick="location.href='${pageContext.request.contextPath}/manage/writerRegister'">등록</button> <br><br><br><br>
+					</div>
 					<div class="row">
 			            <div class="btn-toolbar justify-content-center pb-4" role="toolbar" aria-label="Toolbar with button groups">
 			                <div class="btn-group me-2" role="group" aria-label="First group">
