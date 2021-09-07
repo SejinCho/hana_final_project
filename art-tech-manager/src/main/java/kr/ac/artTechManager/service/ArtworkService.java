@@ -19,7 +19,7 @@ public interface ArtworkService {
 	//디테일 페이지 업무
 	public String startGoodsDetailTast(VoteVO vote);
 	
-	//작품 당 클릭 수 그래프
-	public Map<String, Object> getGoodsClickGraph() throws Exception;
-	
+	//로그분석
+	public Map<String, Object> getGoodsClickGraph() throws Exception;//작품 당 클릭 수 그래프
+	public Map<String, Object> getloginTime() throws Exception; //로그인 시간 데이터
 }

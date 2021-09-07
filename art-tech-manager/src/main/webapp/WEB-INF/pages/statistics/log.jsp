@@ -74,6 +74,68 @@
 			}
 		}) //ajax end
 		
+		//로그인 시간 그래프
+		$.ajax({
+			type : 'GET',
+			url : '${pageContext.request.contextPath}/manage/loginTimeGraph',
+			success : function(result) {
+				console.log(result)
+				let col = []
+				let row = []
+				
+				result.keyList.forEach(key => {
+					col.push(key)
+					row.push(result.data[key])
+				})
+				
+				console.log(col)
+				console.log(row)
+				var ctx = document.getElementById('loginTimeGraph').getContext('2d'); 
+				var chart = new Chart(ctx, 
+					{ 
+						type: 'bar', // 
+						data: { 
+							labels: col, 
+							datasets: [{ 
+								label: '색상', 
+								backgroundColor: [ 
+									'rgba(255, 99, 132, 1)',
+									'rgba(54, 162, 235, 1)',
+									'rgba(255, 206, 86, 1)',
+									'rgba(75, 192, 192, 1)'
+											], 
+								borderColor: 'rgb(255, 99, 132)', 
+								data: row 
+							}] 
+						},  //data
+						options : {
+							maintainAspectRatio: false,
+							//responsive: false,
+							legend : {
+								display : false
+							},
+							scales: {
+								yAxes: [{
+									ticks : {
+										min : 0,
+										stepSize : 1,
+										fontSize : 10,
+									}
+								}]
+							}
+						}
+					}
+				);
+
+			},
+			error: function (request, status, error){
+				var msg = "ERROR : " + request.status + "<br>"
+				msg += + "내용 : " + request.responseText + "<br>" + error;
+				console.log(msg);
+				
+			}
+		}) //ajax end
+		
 	})
 
 </script>
@@ -101,6 +163,7 @@
         				<div>
 							<p>로그인 시간</p>
 						</div>
+						<canvas id="loginTimeGraph"></canvas>
         			</div>
 
 				</div>

@@ -281,6 +281,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 		return result;
 	}
 	
+	//로그분석
 	//작품 당 클릭 수 그래프
 	@Override
 	public Map<String, Object> getGoodsClickGraph() throws Exception {
@@ -295,5 +296,10 @@ public class ArtworkServiceImpl implements ArtworkService{
 		
 		map.put("title", title);
 		return map;
+	}
+	//로그인 시간 데이터
+	@Override
+	public Map<String, Object> getloginTime() throws Exception {
+		return new LogFileReader().getLoginTime();
 	}
 }

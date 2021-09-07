@@ -32,10 +32,16 @@ public class ArtworkAPIController {
 		return service.startGoodsDetailTast(vote);
 	}
 	
-	//작품 당 클릭 수 그래프
+	//작품 당 클릭 수 그래프 (로그분석)
 	@GetMapping("/goodsClickGraph")
 	public Map<String, Object> goodsClickGraph() throws Exception {
 		return service.getGoodsClickGraph();
+	}
+	
+	//로그인 시간 그래프(로그분석)
+	@GetMapping("/loginTimeGraph")
+	public Map<String, Object> loginTimeGraph() throws Exception {
+		return service.getloginTime();
 	}
 	
 }
