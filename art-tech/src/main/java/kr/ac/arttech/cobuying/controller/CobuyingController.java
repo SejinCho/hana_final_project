@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,8 @@ public class CobuyingController {
 	private final OpenBankingService openBankingService;
 	private final CobuyingService service;
 	
+	private Logger log = Logger.getLogger(CobuyingController.class);
+	
 	@GetMapping("/goods")
 	public String goodsList(Model model) {
 		model.addAttribute("artworkInfoList", service.getArtworkInfoList());
@@ -33,6 +36,9 @@ public class CobuyingController {
 	@GetMapping("/goodsDetail/{id}")
 	public String goodsDetail(@PathVariable("id") String id, 
 			Model model) {
+		
+		log.info(id); //로그 찍기
+		
 		model.addAttribute("artworkInfo", service.getArtworkInfo(id).get("artworkInfo"));
 		model.addAttribute("artworkInfoImg", service.getArtworkInfo(id).get("artworkInfoImg"));
 		return "co-buying/goodsDetail";

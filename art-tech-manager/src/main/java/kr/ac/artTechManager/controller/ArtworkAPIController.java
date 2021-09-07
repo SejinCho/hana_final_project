@@ -1,11 +1,17 @@
 package kr.ac.artTechManager.controller;
 
 
+import java.io.IOException;
+import java.util.Map;
+
+import org.rosuda.REngine.Rserve.RserveException;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.artTechManager.service.ArtworkService;
+import kr.ac.artTechManager.util.LogFileReader;
 import kr.ac.artTechManager.vo.VoteVO;
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +30,12 @@ public class ArtworkAPIController {
 	@PostMapping("/goodsDetailTast")
 	public String goodsDetailTast(VoteVO vote) {
 		return service.startGoodsDetailTast(vote);
+	}
+	
+	//작품 당 클릭 수 그래프
+	@GetMapping("/goodsClickGraph")
+	public Map<String, Object> goodsClickGraph() throws Exception {
+		return service.getGoodsClickGraph();
 	}
 	
 }

@@ -11,6 +11,7 @@
 	<view-controller path="/" view-name="index"/>
 		
 	<view-controller path="/manage/writerRegister" view-name="manage/writerRegister"/>
+	<view-controller path="/manage/statistics" view-name="manage/statistics"/>
 	
 	
 </beans:beans>

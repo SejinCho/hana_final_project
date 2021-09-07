@@ -28,4 +28,6 @@ public interface ArtworkDAO {
 	public List<PurchaseInfoVO> selectPurchaseListByArtworkInfoId(String artworkInfoId); //해당 미술품 조각을 몇개 샀는지
 	public int insertPurchaseInfoDisposal(Map<String, Object> paramMap); //매각정보 insert
 	public int selectPurchaseInfoSeq();// selectPurchaseInfoSeq 시퀀스 가져오기
+	
+	public String selectArtworkTitle(String id);//작품명 가져오기
 }

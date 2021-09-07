@@ -55,4 +55,6 @@ public class NoticeController {
 		
 		return "redirect:/manage/noticeList";
 	}
+	
+	
 }

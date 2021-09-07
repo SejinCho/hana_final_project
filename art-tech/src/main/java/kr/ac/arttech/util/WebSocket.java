@@ -39,7 +39,7 @@ public class WebSocket {
     public void onOpen(Session session) {
     	System.out.println("onopen 메소드");
     	System.out.println("open session id : " + session.getId());
-        logger.info("Open session id:"+session.getId());
+        //logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
             //basic.sendText("Connection Established");
@@ -73,7 +73,7 @@ public class WebSocket {
     @OnMessage //클라이언트에게 메시지가 들어왔을 때, 실행되는 메소드
     public void onMessage(String message,Session session) {
     	System.out.println("onMessage : " + message);
-        logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]);
+        //logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]);
         try {
             final Basic basic=session.getBasicRemote();
             basic.sendText("to : "+message);
@@ -92,7 +92,7 @@ public class WebSocket {
     @OnClose //클라이언트와 웹소켓과의 연결이 끊기면 실행되는 메소드
     public void onClose(Session session) {
     	System.out.println("onClose 메소드");
-        logger.info("Session "+session.getId()+" has ended");
+        //logger.info("Session "+session.getId()+" has ended");
         sessionList.remove(session);
     }
 }

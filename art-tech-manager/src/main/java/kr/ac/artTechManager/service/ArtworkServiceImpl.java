@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 import kr.ac.artTechManager.dao.ArtworkDAO;
 import kr.ac.artTechManager.dao.MemberDAO;
 import kr.ac.artTechManager.util.AuthUtil;
+import kr.ac.artTechManager.util.LogFileReader;
 import kr.ac.artTechManager.vo.ArtworkInfoImg;
 import kr.ac.artTechManager.vo.ArtworkInfoVO;
 import kr.ac.artTechManager.vo.MemberVO;
@@ -278,5 +279,21 @@ public class ArtworkServiceImpl implements ArtworkService{
 		
 		
 		return result;
+	}
+	
+	//작품 당 클릭 수 그래프
+	@Override
+	public Map<String, Object> getGoodsClickGraph() throws Exception {
+		Map<String, Object> map = new LogFileReader().getGoodsClickGraph();
+		List<String> keyList = (List<String>) map.get("keyList");
+		
+		List<String> title = new ArrayList<>();
+		
+		keyList.forEach(key -> {
+			title.add(dao.selectArtworkTitle(key)) ;
+		});
+		
+		map.put("title", title);
+		return map;
 	}
 }

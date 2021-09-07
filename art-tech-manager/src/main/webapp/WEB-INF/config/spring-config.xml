@@ -62,7 +62,6 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 	
-	
 	<!-- =====================db관련 작업============================== -->
 	<beans:bean id="ds"
 		class="org.springframework.jndi.JndiObjectFactoryBean">

@@ -123,4 +123,9 @@ public class ArtworkDAOImpl implements ArtworkDAO {
 		return sqlSession.selectOne("kr.ac.kopo.manage.artworkInfo.selectPurchaseInfoSeq");
 	}
 	
+	//작품명 가져오기
+	@Override
+	public String selectArtworkTitle(String id) {
+		return sqlSession.selectOne("kr.ac.kopo.manage.artworkInfo.selectArtworkTitle", id);
+	}
 }

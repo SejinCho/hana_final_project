@@ -56,7 +56,7 @@
 			when a.state = '6' then '수익 분배'
 			when a.state = '7' then '매각 완료'
 		end as state_name, 
-		round(a.sell_date - a.reg_date, 0) as retentionPeriod,
+		trunc(a.sell_date - a.reg_date, 0) + 1 as retentionPeriod,
 		round(sell_price / ((ESTIMATED_PRICE_MAX + ESTIMATED_PRICE_min)/2) * 100 - 100,2) as yield
 		from sj_artwork_info a, sj_writer_info w,
         (select artwork_info_id, file_chan_name as artwork_img
@@ -147,13 +147,15 @@
 	</update>
 
 	
-	<!-- 한 그림의 소유자 리스트 -->
+	<!-- 한 그림의 소유자 리스트co-buying/ownershipDetail -->
 	<select id="selectTotalOwnerList" resultMap="purchaseInfoMap" parameterType="String">
 		select p.member_id, m.name, sum(piece_no) as total_piece_no 
 		from sj_purchase_info p, sj_member m 
 		where p.member_id = m.id 
 		and p.artwork_info_id = #{id}
+		and type in ('1','2')
 		group by p.member_id, m.name
+		order by total_piece_no desc
 	</select>
 	
 	<!-- wallet(publickey 가져오기) -->

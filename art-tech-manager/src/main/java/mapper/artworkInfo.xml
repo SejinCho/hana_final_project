@@ -213,4 +213,9 @@
 			)
 		</foreach>
 	</insert>
+	
+	<!-- 작품명 가져오기 -->
+	<select id="selectArtworkTitle" parameterType="String" resultType="String">
+		select title from sj_artwork_info where id = #{id}
+	</select>
 </mapper>

@@ -33,4 +33,8 @@
 	<definition name="manage/noticeRegister" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/pages/notice/register.jsp" />
 	</definition>
+	
+	<definition name="manage/statistics" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/pages/statistics/log.jsp" />
+	</definition>
 </tiles-definitions>

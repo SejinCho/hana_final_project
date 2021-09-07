@@ -42,9 +42,6 @@
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="${pageContext.request.contextPath}/manage/goods">작품관리</a>
                         </li>
                         <li class="nav-item">
@@ -52,6 +49,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="${pageContext.request.contextPath}/manage/noticeList">공지</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="${pageContext.request.contextPath}/manage/statistics">통계</a>
                         </li>
                     </ul>
                 </div>
