@@ -14,7 +14,7 @@
     
     
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="${pageContext.request.contextPath}/static/image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="${pageContext.request.contextPath}/static/image/x-icon" >
     <!-- Place favicon.ico in the root directory -->
     <!-- font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">

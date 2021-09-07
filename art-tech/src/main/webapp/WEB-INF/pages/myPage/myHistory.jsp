@@ -13,11 +13,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
     
-
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
-	
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){

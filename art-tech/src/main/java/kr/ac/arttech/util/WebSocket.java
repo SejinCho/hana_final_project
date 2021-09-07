@@ -37,8 +37,6 @@ public class WebSocket {
     
     @OnOpen //클라이언트가 웹소켓에 들어오고 서버에 아무런 문제 없이 들어왔을때 실행하는 메소드
     public void onOpen(Session session) {
-    	System.out.println("onopen 메소드");
-    	System.out.println("open session id : " + session.getId());
         //logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
@@ -55,7 +53,6 @@ public class WebSocket {
      * @param message
      */
     private void sendAllSessionToMessage(Session self,String message) {
-    	System.out.println("sendAllSessionToMessage : " + message);
     	String send = message.split(",")[0];
     	
         try {
@@ -72,7 +69,6 @@ public class WebSocket {
     
     @OnMessage //클라이언트에게 메시지가 들어왔을 때, 실행되는 메소드
     public void onMessage(String message,Session session) {
-    	System.out.println("onMessage : " + message);
         //logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]);
         try {
             final Basic basic=session.getBasicRemote();

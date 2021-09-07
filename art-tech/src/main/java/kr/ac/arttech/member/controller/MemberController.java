@@ -3,12 +3,15 @@ package kr.ac.arttech.member.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ac.arttech.cobuying.controller.CobuyingController;
 import kr.ac.arttech.member.service.MemberService;
 import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.util.SecurityUtil;
@@ -20,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	private final MemberService service;
 	
+	private Logger log = Logger.getLogger(CobuyingController.class);
 	
 	//회원가입
 	@GetMapping("/signup")
@@ -48,22 +52,21 @@ public class MemberController {
 	
 	//로그인
 	@GetMapping("/signin")
-	public ModelAndView singinGet(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+	public String singinGet(HttpSession session, Model model) {
+
 		
 		String resultSignin = (String)session.getAttribute("resultSignin");
-		
 		session.removeAttribute("resultSignin");
+		model.addAttribute("resultSignin", resultSignin);
 		
-		mav.setViewName("member/signin");
-		mav.addObject("resultSignin", resultSignin);
-		
-		return mav;
+		return "member/signin";
 	}
 	
 	
 	@PostMapping("/signin")
 	public String singinPost(MemberVO member, HttpSession session) {
+		
+		
 		
 		//password 암호화
 		String password = new SecurityUtil().encryptSHA256(member.getPassword());
@@ -79,6 +82,17 @@ public class MemberController {
 			//id(pk) 가져오기
 			String memberId = service.getMemberId(member.getUserId());
 			session.setAttribute("memberId", memberId);
+			
+			log.info("로그인:"+memberId); //로그인 log 찍기
+			
+			//인터셉터 확인
+			String dest = (String) session.getAttribute("dest");
+			if(dest != null) {
+				System.out.println("dest 확인 : " + dest);
+				session.removeAttribute(dest);
+				return "redirect:" + dest;
+			}
+			
 			return "redirect:/" ;
 		}
 		

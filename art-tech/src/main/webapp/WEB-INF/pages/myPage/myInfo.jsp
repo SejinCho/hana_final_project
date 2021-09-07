@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/img/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
     <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
