@@ -2,6 +2,7 @@ package kr.ac.artTechManager.controller;
 
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.rosuda.REngine.Rserve.RserveException;
@@ -40,7 +41,7 @@ public class ArtworkAPIController {
 	
 	//로그인 시간 그래프(로그분석)
 	@GetMapping("/loginTimeGraph")
-	public Map<String, Object> loginTimeGraph() throws Exception {
+	public LinkedHashMap<String, Integer> loginTimeGraph() throws Exception {
 		return service.getloginTime();
 	}
 	

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -299,7 +300,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 	}
 	//로그인 시간 데이터
 	@Override
-	public Map<String, Object> getloginTime() throws Exception {
+	public LinkedHashMap<String, Integer> getloginTime() throws Exception {
 		return new LogFileReader().getLoginTime();
 	}
 }

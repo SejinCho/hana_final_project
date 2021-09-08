@@ -5,8 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,7 +57,8 @@ public class LogFileReader {
 				
 			}
 		}
-		//내림차순
+		
+		//value를 기준으로 내림차순 정렬
 		keySetList = new ArrayList<String>(map.keySet());
 		
 		Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))) );
@@ -70,9 +74,8 @@ public class LogFileReader {
 	} //클릭수 함수 
 	
 	//로그인 시간
-	public Map<String, Object> getLoginTime() throws IOException {
+	public LinkedHashMap<String, Integer> getLoginTime() throws IOException {
 		Map<String, Integer> map = new HashMap<String, Integer>(); //데이터
-		List<String> keySetList = null; //key 내림차순(클릭 수 기준)
 		
 		for(File file : fileList) {
 			if(file.exists()) {
@@ -91,19 +94,17 @@ public class LogFileReader {
 			}
 		}
 		
-		//내림차순
-		keySetList = new ArrayList<String>(map.keySet());
+		//key기준으로 오름차순 정렬
+		List<Map.Entry<String, Integer>> entries = new LinkedList<>(map.entrySet());
+		Collections.sort(entries, (o1, o2) -> o1.getKey().compareTo(o2.getKey()));
 		
-		Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))) );
-		for(String key : keySetList) {
-			System.out.println("key : " + key + " / " + "value : " + map.get(key));
+		LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+		for(Map.Entry<String, Integer> entry : entries) {
+			result.put(entry.getKey(), entry.getValue());
 		}
 		
-		Map<String, Object> resultMap = new HashMap<>();
-		resultMap.put("data", map);
-		resultMap.put("keyList", keySetList);
 		
-		return resultMap;
+		return result;
 	}
 	
 	

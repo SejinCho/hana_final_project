@@ -18,7 +18,6 @@
 			type : 'GET',
 			url : '${pageContext.request.contextPath}/manage/goodsClickGraph',
 			success : function(result) {
-				console.log(result)
 				let col = []
 				let row = []
 		        for(let i = 0; i < 4; ++i) {
@@ -26,8 +25,6 @@
 		        	col.push(result.title[i])
 		        	row.push(result.data[data])
 		        }
-				console.log(col)
-				console.log(row)
 				var ctx = document.getElementById('goodsClickGraph').getContext('2d'); 
 				var chart = new Chart(ctx, 
 					{ 
@@ -47,8 +44,8 @@
 							}] 
 						},  //data
 						options : {
-							maintainAspectRatio: false,
-							//responsive: false,
+							//maintainAspectRatio: false,
+							responsive: false,
 							legend : {
 								display : false
 							},
@@ -58,6 +55,14 @@
 										min : 0,
 										stepSize : 1,
 										fontSize : 10,
+									},
+									gridLines : {
+										display : false
+									}
+								}],
+								xAxes : [{
+									gridLines : {
+										display : false
 									}
 								}]
 							}
@@ -79,21 +84,18 @@
 			type : 'GET',
 			url : '${pageContext.request.contextPath}/manage/loginTimeGraph',
 			success : function(result) {
-				console.log(result)
 				let col = []
 				let row = []
-				
-				result.keyList.forEach(key => {
+				let keys = Object.keys(result)
+				keys.forEach(key => {
 					col.push(key)
-					row.push(result.data[key])
+					row.push(result[key])
 				})
 				
-				console.log(col)
-				console.log(row)
 				var ctx = document.getElementById('loginTimeGraph').getContext('2d'); 
 				var chart = new Chart(ctx, 
 					{ 
-						type: 'bar', // 
+						type: 'line', // 
 						data: { 
 							labels: col, 
 							datasets: [{ 
@@ -104,13 +106,15 @@
 									'rgba(255, 206, 86, 1)',
 									'rgba(75, 192, 192, 1)'
 											], 
-								borderColor: 'rgb(255, 99, 132)', 
+								borderColor: "rgba(255, 201, 14, 1)",
+								backgroundColor: "rgba(255, 201, 14, 0.5)",
+								fill : false,
 								data: row 
 							}] 
 						},  //data
 						options : {
-							maintainAspectRatio: false,
-							//responsive: false,
+							//maintainAspectRatio: false,
+							responsive: false,
 							legend : {
 								display : false
 							},
@@ -120,12 +124,21 @@
 										min : 0,
 										stepSize : 1,
 										fontSize : 10,
+									},
+									gridLines : {
+										display : true
+									}
+								}],
+								xAxes : [{
+									gridLines : {
+										display : true
 									}
 								}]
 							}
 						}
 					}
 				);
+				
 
 			},
 			error: function (request, status, error){
@@ -153,7 +166,7 @@
 					<!-- 첫 번째 작품 별 클릭 수 -->
 					<div class="left">
 						<div>
-							<p>작품 별 클릭 수</p>
+							<p>조회를 많이 한 작품 Top4</p>
 						</div>
 						<canvas id="goodsClickGraph"></canvas>
 					</div>
@@ -161,7 +174,7 @@
 					<!-- 두 번째 로그인 시간 -->
         			<div class="right">
         				<div>
-							<p>로그인 시간</p>
+							<p>시간대별 로그인 횟수</p>
 						</div>
 						<canvas id="loginTimeGraph"></canvas>
         			</div>

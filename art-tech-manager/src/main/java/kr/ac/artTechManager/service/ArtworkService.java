@@ -1,5 +1,6 @@
 package kr.ac.artTechManager.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,5 +22,5 @@ public interface ArtworkService {
 	
 	//로그분석
 	public Map<String, Object> getGoodsClickGraph() throws Exception;//작품 당 클릭 수 그래프
-	public Map<String, Object> getloginTime() throws Exception; //로그인 시간 데이터
+	public LinkedHashMap<String, Integer> getloginTime() throws Exception; //로그인 시간 데이터
 }

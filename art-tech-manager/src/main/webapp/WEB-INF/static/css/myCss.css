@@ -192,17 +192,22 @@ body {
 
 /*log 분석 그래프 manage/statistics*/
 .statistics-container {
+	padding-top : 30px;
 	padding-left: 10%;
 	padding-right: 10%;
 	width: 100%;
 	margin-top: 50px;
 }
 .statistics-container .main_title p {
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: bold;
-	margin-bottom: 50px;
+	margin-bottom: 90px;
 }
-
+.statistics-container .left p, .statistics-container .right p {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
 .statistics-container .left {
     width: 50%;
     float: left;
@@ -218,6 +223,7 @@ body {
     padding-right: 10px;
 }
 .statistics-container canvas {
-	height: 600px;
+	width : 500px;
+	height: 800px;
 }
 
