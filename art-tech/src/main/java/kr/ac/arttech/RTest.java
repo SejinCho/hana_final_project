@@ -6,17 +6,25 @@ import org.rosuda.REngine.Rserve.RConnection;
 public class RTest {
 	public static void main(String[] args) throws Exception {
 		RConnection conn = new RConnection();
-		System.out.println("하나");
-		conn.eval("source('C:/art-tech/rscript/collaborative-filtering.R')");
-		System.out.println("둘");
-		String id = conn.eval("a").asString();
-		System.out.println("id : " + id);
 		
+		conn.eval("source('C:/art-tech/rscript/collaborative-filtering.R')"); //스크립트 실행
+		
+		String id = "member2";
 		//리스트 받아오기
+		conn.eval("who <- as.numeric(which(pivot_data$MEMBER_ID=='"+ id+"'))");
+		RList list = conn.eval("as(predict(rec_UBCF, matrix_data[who, ], type = 'topNList', n = 2), 'list')").asList();
+		String[] ids = list.at(0).asStrings();
+		for(String i : ids) {
+			System.out.println(i);
+		}
+		
+		
+		/*
 		RList list = conn.eval("list_data").asList();
 		String[] ids = list.at(0).asStrings();
 		for(String i : ids) {
 			System.out.println(i);
 		}
+		*/
 	}
 }
