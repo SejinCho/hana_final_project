@@ -56,7 +56,6 @@
 						$('#user_idCheck').html('아이디는 대소문자, 숫자만 입력가능합니다.(4자리에서 20자리까지 가능)')
 						document.querySelector('#user_idCheck').style.display = "block";
 					} else {
-						alert('여기왜안돼시벌')
 						$.ajax({
 							type: "POST",
 							url : "${pageContext.request.contextPath}/member/idCheck",
