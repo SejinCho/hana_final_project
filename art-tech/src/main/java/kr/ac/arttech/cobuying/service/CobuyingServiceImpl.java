@@ -1,6 +1,7 @@
 package kr.ac.arttech.cobuying.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import kr.ac.arttech.cobuying.vo.ArtworkInfoVO;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
 import kr.ac.arttech.member.dao.MemberDAO;
 import kr.ac.arttech.openbanking.vo.AccountTransferInfoVO;
+import kr.ac.arttech.util.CollaborativeFilteringUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -115,5 +117,24 @@ public class CobuyingServiceImpl implements CobuyingService {
 	@Override
 	public List<ArtworkInfoVO> getDisposalList() {
 		return dao.selectDisposalList();
+	}
+	
+	//협업필터링으로 추천한 작품 정보 리스트
+	@Override
+	public List<ArtworkInfoVO> getRecommendArtworkInfoList(String memberId) {
+		List<String> ids = CollaborativeFilteringUtil.getRecommendArtwork(memberId);
+		
+		if(ids == null) {
+			return null;
+			
+		}else {
+			
+			List<ArtworkInfoVO> result = new ArrayList<>();
+			ids.forEach(id -> {
+				result.add(dao.selectArtworkInfo(id));
+			});
+			return result;
+		}
+		
 	}
 }

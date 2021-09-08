@@ -109,40 +109,76 @@
     </div>
 	<!-- service_area end -->
 	
-	<c:if test="${not empty recommendArtworkInfoList }">
-		<!-- recommend_goods -->
-		<div class="recommend_goods_contain">
-			<div class="recommendGoods_main">
-		  		<p class="recommendGoods_main_title">이런 작품은 어떤가요?</p>
-		  		<p>나와 비슷한 투자성향을 가진 사용자들이 고른 작품</p>
-		  	</div>
-			<div class="container">
-		        <div class="row">
-		        	<!-- 하나  -->
-		        	<c:forEach items="${recommendArtworkInfoList }" var="artwork">
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="thumb">
-			                        <img src="/artworkImg/${artwork.artworkImg }" alt="">
-			                    </div>
-			                    <div class="service_info">
-			                        <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artwork.id}">${artwork.title }</a></h3>
-                                	<p>${artwork.writerName }</p>
-			                        <div class="progress">
-									  <div class="progress-bar" role="progressbar" style="width: ${artwork.achiePiece}%; background-color: #008485" aria-valuenow="${artwork.achiePiece}" aria-valuemin="0" aria-valuemax="${artwork.targetPiece }"></div>
-									</div>
-		                            <p> ${artwork.achiePiece } / ${artwork.targetPiece } 조각 </p>
-			                   	</div>
-			                </div>
-			            </div>
-		            </c:forEach>
-		            <!-- 하나 끝  -->
-		            
-		        </div>
-		    </div>
+	<!-- recommend_goods -->
+	<div class="recommend_goods_contain">
+		<div class="recommendGoods_main">
+	  		<p class="recommendGoods_main_title">이런 작품은 어떤가요?</p>
+	  		<p>나와 비슷한 투자성향을 가진 사용자들이 고른 작품</p>
+	  	</div>
+		<div class="container">
+	        <div class="row">
+	        	<!-- 하나  -->
+	            <div class="col-md-6 col-lg-4">
+	                <div class="single_service">
+	                    <div class="thumb">
+	                        <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+	                    </div>
+	                    <div class="service_info">
+	                        <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail">Still Life with Picasso from Hom</a></h3>
+	                        <p>로이 리히텐슈타인 Roy Lichtenstein</p>
+	                        
+	                        <div class="progress">
+					  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+	                        <p> 0 / 4462 조각 </p>
+	                   	</div>
+	                </div>
+	            </div>
+	            <!-- 하나 끝  -->
+	            
+	            <!-- 하나  -->
+	            <div class="col-md-6 col-lg-4">
+	                <div class="single_service">
+	                    <div class="thumb">
+	                        <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+	                    </div>
+	                    <div class="service_info">
+	                        <h3><a href="service_details.html">Still Life with Picasso from Hom</a></h3>
+	                        <p>로이 리히텐슈타인 Roy Lichtenstein</p>
+	                        
+	                        <div class="progress">
+					  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+	                        <p> 0 / 4462 조각 </p>
+	                   	</div>
+	                </div>
+	            </div>
+	            <!-- 하나 끝  -->
+	            
+	            <!-- 하나  -->
+	            <div class="col-md-6 col-lg-4">
+	                <div class="single_service">
+	                    <div class="thumb">
+	                        <img src="${pageContext.request.contextPath}/static/img/service/1.png" alt="">
+	                    </div>
+	                    <div class="service_info">
+	                        <h3><a href="service_details.html">Still Life with Picasso from Hom</a></h3>
+	                        <p>로이 리히텐슈타인 Roy Lichtenstein</p>
+	                        
+	                        <div class="progress">
+					  <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #008485" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+	                        <p> 0 / 4462 조각 </p>
+	                   	</div>
+	                </div>
+	            </div>
+	            <!-- 하나 끝  -->
+	            
+	        </div>
 	    </div>
-		<!-- recommend_goods end -->
-   </c:if>
+    </div>
+	<!-- recommend_goods end -->
+   
 
     <!-- counter_area  -->
     <div class="counter_area">

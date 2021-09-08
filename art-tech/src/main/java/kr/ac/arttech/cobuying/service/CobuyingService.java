@@ -17,4 +17,6 @@ public interface CobuyingService {
 	public List<PurchaseInfoVO> getTotalOwnerList(String id); //해당 그림 소유 list
 	
 	public List<ArtworkInfoVO> getDisposalList(); //매각진행현황 list
+	
+	public List<ArtworkInfoVO> getRecommendArtworkInfoList(String memberId); //협업필터링으로 추천한 작품 정보 리스트
 }
