@@ -122,7 +122,7 @@
 		        	<c:forEach items="${recommendArtworkInfoList }" var="artwork">
 			            <div class="col-md-6 col-lg-4">
 			                <div class="single_service">
-			                    <div class="thumb">
+			                    <div class="thumb recommend-img-div">
 			                        <img src="/artworkImg/${artwork.artworkImg }" alt="">
 			                    </div>
 			                    <div class="service_info">
@@ -211,7 +211,7 @@
                         <div class="single_carousel">
                             <div class="single_testmonial text-center">
                             	<div>
-                            		<img alt="" src="${pageContext.request.contextPath}/static/img/about/counter.png">
+                            		<img alt="" src="${pageContext.request.contextPath}/static/img/notice1.PNG">
                             	</div>
                             </div>
                         </div>
@@ -219,7 +219,7 @@
                         <div class="single_carousel">
                             <div class="single_testmonial text-center">
                             	<div>
-                            		<img alt="" src="${pageContext.request.contextPath}/static/img/about/counter.png">
+                            		<img alt="" src="${pageContext.request.contextPath}/static/img/notice2.PNG">
                             	</div>
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                         <div class="single_carousel">
                             <div class="single_testmonial text-center">
                             	<div>
-                            		<img alt="" src="${pageContext.request.contextPath}/static/img/about/counter.png">
+                            		<img alt="" src="${pageContext.request.contextPath}/static/img/notice3.PNG">
                             	</div>
                             </div>
                         </div>

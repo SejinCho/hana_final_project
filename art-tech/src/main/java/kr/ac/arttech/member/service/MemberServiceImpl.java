@@ -22,6 +22,7 @@ public class MemberServiceImpl implements MemberService{
 	//아이디 중복검사
 	@Override
 	public int checkUserId(String userId) {
+		System.out.println("service : " + dao.checkUserId(userId));
 		return dao.checkUserId(userId);
 	}
 	

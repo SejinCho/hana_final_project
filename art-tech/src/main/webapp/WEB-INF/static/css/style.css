@@ -2210,7 +2210,8 @@ h3 {
 /* line 57, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_testmonial.scss */
 .testimonial_area .owl-carousel .owl-item img {
   display: inline-block;
-  width: auto;
+  width: 550px;
+  height: 400px;
 }
 
 /* line 61, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_testmonial.scss */

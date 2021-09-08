@@ -15,7 +15,11 @@
 .testimonial_area_td {
 	padding-left: 221px;
 }
-
+.recommend-img-div img {
+	height: 350px;
+	width: 300px;
+	
+}
 
 /*myDeposit.jsp*/
 

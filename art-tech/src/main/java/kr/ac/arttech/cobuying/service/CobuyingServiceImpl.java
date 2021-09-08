@@ -123,7 +123,6 @@ public class CobuyingServiceImpl implements CobuyingService {
 	@Override
 	public List<ArtworkInfoVO> getRecommendArtworkInfoList(String memberId) {
 		List<String> ids = CollaborativeFilteringUtil.getRecommendArtwork(memberId);
-		
 		if(ids == null) {
 			return null;
 			
