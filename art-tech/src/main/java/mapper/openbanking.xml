@@ -99,4 +99,13 @@
 		select * from sj_manage_account_info
 	</select>
 	
+	<!-- 자동이체 신청한 계좌정보 + 유저정보(문자 보내기 위해서) -->
+	<select id="selectAutoTranInfoSMS" resultType="autoTranInfoSMS">
+		select m.id, m.name, m.phone, a.bank_name as bankName, 
+		to_char(a.auto_amt,'999,999,999,999,999,999') as autoAmt, 
+		a.account_number as accountNumber 
+		from sj_auto_tran_account a, sj_member m
+		where a.member_id = m.id
+		order by m.id
+	</select>
 </mapper>

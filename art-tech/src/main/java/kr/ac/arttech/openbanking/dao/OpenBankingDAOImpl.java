@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.openbanking.vo.AccountInfoVO;
 import kr.ac.arttech.openbanking.vo.AutoTranAccountVO;
+import kr.ac.arttech.openbanking.vo.AutoTranInfoSMSVO;
 import kr.ac.arttech.openbanking.vo.ManageAccountInfoVO;
 import lombok.RequiredArgsConstructor;
 
@@ -86,5 +87,11 @@ public class OpenBankingDAOImpl implements OpenBankingDAO{
 	@Override
 	public ManageAccountInfoVO selectManageAccountInfo() {
 		return sqlSession.selectOne("kr.ac.arttech.openbanking.selectManageAccountInfo");
+	}
+	
+	//자동이체 신청한 계좌정보와 사람 정보 가져와서 문자보내기
+	@Override
+	public List<AutoTranInfoSMSVO> selectAutoTranInfoSMS() {
+		return sqlSession.selectList("kr.ac.arttech.openbanking.selectAutoTranInfoSMS");
 	}
 }

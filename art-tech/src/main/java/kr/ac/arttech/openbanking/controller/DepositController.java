@@ -114,7 +114,7 @@ public class DepositController {
 	
 	//자동이체 스케줄러
 	//@Scheduled(cron="0/3 * * * * * ")
-	//@Scheduled(cron="* 0/5 * * * * ")
+	@Scheduled(cron="0 */4 * * * * ") //4분마다
 	public void autoTranDeposit() {
 		boolean result = service.startAutoTranDeposit();
 		System.out.println("[자동이체]최종 result : " + result + "");

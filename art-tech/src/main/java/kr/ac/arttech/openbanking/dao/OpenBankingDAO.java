@@ -7,6 +7,7 @@ import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.openbanking.vo.AccountInfoVO;
 import kr.ac.arttech.openbanking.vo.AccountTransferInfoVO;
 import kr.ac.arttech.openbanking.vo.AutoTranAccountVO;
+import kr.ac.arttech.openbanking.vo.AutoTranInfoSMSVO;
 import kr.ac.arttech.openbanking.vo.ManageAccountInfoVO;
 
 public interface OpenBankingDAO {
@@ -28,6 +29,8 @@ public interface OpenBankingDAO {
 	public List<AutoTranAccountVO> selectAutoTranAccountInfoList(); //자동이체할 계좌 list 가져오기
 	
 	public ManageAccountInfoVO selectManageAccountInfo(); //회사 계좌 정보
+	
+	public List<AutoTranInfoSMSVO> selectAutoTranInfoSMS();//자동이체 신청한 계좌정보와 사람 정보 가져와서 문자보내기
 	
 	
 	

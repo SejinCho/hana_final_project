@@ -21,7 +21,9 @@ import kr.ac.arttech.openbanking.dao.OpenBankingDAO;
 import kr.ac.arttech.openbanking.vo.AccountInfoVO;
 import kr.ac.arttech.openbanking.vo.AccountTransferInfoVO;
 import kr.ac.arttech.openbanking.vo.AutoTranAccountVO;
+import kr.ac.arttech.openbanking.vo.AutoTranInfoSMSVO;
 import kr.ac.arttech.openbanking.vo.ManageAccountInfoVO;
+import kr.ac.arttech.util.AutoTranInfoSMS;
 import kr.ac.arttech.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
@@ -317,6 +319,24 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		
 		if(apiResult.equals("success")) {
 			result = true;
+			
+			String msg = "";
+			//자동이체 했다는 문자 보내기
+			List<AutoTranInfoSMSVO> list = dao.selectAutoTranInfoSMS();
+			for(int i = 0; i < list.size(); ++i) {
+				if(i==0) {
+					msg += "[ 자동이체 정보 ] \n"
+						+ "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
+				}else if(! list.get(i).getId().equals(list.get(i-1).getId())) {
+					AutoTranInfoSMS.autoTranInfoPhone(list.get(i-1).getPhone(), msg);
+					msg = "";
+					msg += "[ 자동이체 정보 ] \n";
+					msg += "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
+				}else if(list.get(i).getId().equals(list.get(i-1).getId())) {
+					msg += "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
+				}
+			}
+			
 		}
 		
 		return result;
