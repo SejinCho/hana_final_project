@@ -15,6 +15,7 @@ import kr.ac.arttech.member.service.MemberService;
 import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.member.vo.MyGalleryVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
+import kr.ac.arttech.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -55,11 +56,18 @@ public class MemberAPIController {
 		return service.getMyGalleryList(map);
 	}
 	
-	//간편 비밀번호 가져오기
+	//간편 비밀번호 확인
 	@GetMapping("/easypassword")
-	public String getEasypassword(HttpSession session) {
+	public String getEasypassword(HttpSession session, String easyPassword) {
 		String memberId = (String) session.getAttribute("memberId");
-		return service.getEasyPassword(memberId);
+		System.out.println("간편 비밀번호 확인 : " + easyPassword);
+		
+		String result = "fail";
+		String userEasyPasswork = service.getEasyPassword(memberId);
+		if(SecurityUtil.encryptSHA256(easyPassword).equals(userEasyPasswork)) {
+			result = "success";
+		}
+		return result;
 	}
 	
 	//카카오 id insert

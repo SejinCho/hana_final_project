@@ -54,9 +54,12 @@
     	$.ajax({
 			type: "GET",
 			url : "${pageContext.request.contextPath}/member/easypassword",
+			data : {
+				easyPassword : pw
+			},
 			success : function(result) {
-				
-				if(pw == result) {
+				alert(result)
+				if(result == 'success') {
 					$.ajax({
 						type: "POST",
 						url : "${pageContext.request.contextPath}/member/wallet",

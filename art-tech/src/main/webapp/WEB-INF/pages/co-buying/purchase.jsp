@@ -49,13 +49,16 @@
 		let pieceInput = $('#purchasePiece').val()
 		let pieceP = ${artworkInfo.targetPiece - artworkInfo.achiePiece }
 		
-		//간편 비밀번호 가져오기
+		//간편 비밀번호 확인
 		$.ajax({
-			type: "POST",
-			url : "${pageContext.request.contextPath}/co-buying/easyPassword",
-			method : 'post',
+			type: "GET",
+			url : "${pageContext.request.contextPath}/member/easypassword",
 			async : false,
+			data : {
+				easyPassword : $('#easyPwInput').val()
+			},
 			success : function(data) {
+				alert(data)
 				easyPw = data;
 		        
 			},
@@ -68,14 +71,14 @@
 
 		})
 		
-		if(! checkPurchase(easyPwInput, easyPw, pieceInput, pieceP)) {
+		if(! checkPurchase(easyPw, pieceInput, pieceP)) {
    			$('#purchas_content_p').text('정보 입력을 확인해주세요.')
    			$('.purchas_modal').css('display','block')
    			$('body').css("overflow", "hidden");
    			
 		}
 		
-		return checkPurchase(easyPwInput, easyPw, pieceInput, pieceP) ;
+		return checkPurchase(easyPw, pieceInput, pieceP) ;
 	}
 	
 	</script>

@@ -11,6 +11,7 @@ import kr.ac.arttech.member.dao.MemberDAO;
 import kr.ac.arttech.member.vo.MemberVO;
 import kr.ac.arttech.member.vo.MyGalleryVO;
 import kr.ac.arttech.member.vo.MyHistoryVO;
+import kr.ac.arttech.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -29,6 +30,13 @@ public class MemberServiceImpl implements MemberService{
 	//회원가입
 	@Override
 	public boolean addMember(MemberVO member) {
+		//password 암호화
+		String password = SecurityUtil.encryptSHA256(member.getPassword());
+		member.setPassword(password);
+		
+		//간편 비밀번호 암호화
+		member.setEasyPassword(SecurityUtil.encryptSHA256(member.getEasyPassword()));
+		
 		boolean result = false;
 		if(dao.insertMember(member) == 1) {
 			result = true;

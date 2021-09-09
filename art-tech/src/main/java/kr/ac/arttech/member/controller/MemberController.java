@@ -35,9 +35,6 @@ public class MemberController {
 	
 	@PostMapping("/signup")
 	public String joinPost(MemberVO member, HttpSession session) {
-		//password 암호화
-		String password = new SecurityUtil().encryptSHA256(member.getPassword());
-		member.setPassword(password);
 		
 		//insert
 		boolean resultJoin = service.addMember(member);
@@ -69,7 +66,7 @@ public class MemberController {
 		
 		
 		//password 암호화
-		String password = new SecurityUtil().encryptSHA256(member.getPassword());
+		String password = SecurityUtil.encryptSHA256(member.getPassword());
 		member.setPassword(password);
 		
 		int result = service.checkSignin(member);

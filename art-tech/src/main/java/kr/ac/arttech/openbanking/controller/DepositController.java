@@ -34,6 +34,10 @@ public class DepositController {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		
+		if(! service.checkServiceAgree(memberId)) {
+			return "openBanking/termsOfService";
+		}
+		
 		//거래내역 가져오기 (예치금 - 전체, 오늘 날짜, 기본적 세팅)
 		AccountTransferInfoVO tranInfo = new AccountTransferInfoVO();
 		List<AccountTransferInfoVO> tranInfoList = null;
@@ -65,6 +69,10 @@ public class DepositController {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		
+		if(! service.checkServiceAgree(memberId)) {
+			return "openBanking/termsOfService";
+		}
+		
 		//내 전체 계좌 리스트 가져오기
 		List<AccountInfoVO> accountInfoList = service.getAccountInfoList(memberId);
 		
@@ -86,6 +94,11 @@ public class DepositController {
 	@GetMapping("/transferDeposit")
 	public String transferDeposit(HttpSession session, Model model) {
 		String memberId = (String)session.getAttribute("memberId");
+		
+		if(! service.checkServiceAgree(memberId)) {
+			return "openBanking/termsOfService";
+		}
+		
 		model.addAttribute("token", service.getToken(memberId));
 		return "deposit/transferDeposit";
 	}

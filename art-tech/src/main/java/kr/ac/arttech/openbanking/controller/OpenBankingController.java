@@ -72,6 +72,8 @@ public class OpenBankingController {
 		
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
+		
+		
 		List<AccountInfoVO> result = service.getAccountInfo(memberId, accountInfo);
 		model.addAttribute("accountInfo", result);
 		return "openBanking/myAccountDetail";

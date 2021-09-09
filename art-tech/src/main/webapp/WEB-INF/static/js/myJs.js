@@ -22,9 +22,9 @@ function numberWithCommas(x) {
 
 
 /* 구매하기 페이지에서 검사 */
-function checkPurchase(easyPwInput, easyPw, pieceInput, pieceP) {
+function checkPurchase(easyPw, pieceInput, pieceP) {
 	document.getElementById('easypwErr').innerText = ''
-	if(easyPwInput != easyPw) {
+	if(easyPw != 'success') {
 		document.getElementById('easypwErr').innerText = '비밀번호가 일치하지 않습니다.'
 		return false;
 	}
