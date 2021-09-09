@@ -22,6 +22,7 @@ import kr.ac.arttech.openbanking.vo.AccountInfoVO;
 import kr.ac.arttech.openbanking.vo.AccountTransferInfoVO;
 import kr.ac.arttech.openbanking.vo.AutoTranAccountVO;
 import kr.ac.arttech.openbanking.vo.ManageAccountInfoVO;
+import kr.ac.arttech.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -46,23 +47,25 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 	}
 	
 	
-	//오픈뱅킹 동의
 	@Override
 	public boolean changeServiceAgreeState(String memberId) {
 		
 		//주민번호랑 이름 가져오기
 		MemberVO member = dao.selectMemberNameJumin(memberId);
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		JsonObject parameters = new	JsonObject();
-		parameters.addProperty("name", member.getName());
-		parameters.addProperty("juminNo", member.getJuminNo());
-		HttpEntity<Object> entity = new HttpEntity<Object>(parameters.toString(), headers);
+		String nameJuminNo = member.getName() + ":" + member.getJuminNo();
+		String encryptData = "";
+		
+		try {
+			encryptData = new SecurityUtil().encryptAES256(nameJuminNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		String url = "http://localhost:18081/newToken";
 		RestTemplate restTemplate = new RestTemplate();
-		Map<String, String> data = (Map<String, String>) restTemplate.postForObject(url,entity, Object.class);
+		Map<String, String> data = (Map<String, String>) restTemplate.postForObject(url,encryptData, Object.class);
 		
 		String token = data.get("data");
 		
@@ -79,7 +82,6 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		
 		return result;
 	}
-	
 	
 	//나의 계좌 리스트 가져오기 
 	@Override

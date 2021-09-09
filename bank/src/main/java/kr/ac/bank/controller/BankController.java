@@ -23,11 +23,11 @@ public class BankController {
 	
 	//토큰 생성
 	@PostMapping("/newToken")
-	public Response<?> createToken(@RequestBody MemberInfoDTO memberInfoDTO) {
+	public Response<?> createToken(@RequestBody String nameJuminNo) {
 		return Response.builder()
 				.code(1)
 				.msg("sucess")
-				.data(service.createToken(memberInfoDTO))
+				.data(service.createToken(nameJuminNo))
 				.build();
 	}
 	

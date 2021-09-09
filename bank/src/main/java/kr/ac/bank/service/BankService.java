@@ -12,7 +12,7 @@ import kr.ac.bank.dto.MemberInfoDTO;
 public interface BankService {
 	
 	//토큰 생성
-	public String createToken(MemberInfoDTO memberInfoDTO);
+	public String createToken(String nameJuminNo);
 	
 	//계좌리스트
 	public List<AccountInfoDTO> getAccountList(MemberInfoDTO memberInfoDTO); 

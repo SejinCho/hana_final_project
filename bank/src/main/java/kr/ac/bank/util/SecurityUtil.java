@@ -1,4 +1,4 @@
-package kr.ac.arttech.util;
+package kr.ac.bank.util;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -28,7 +28,6 @@ public class SecurityUtil {
 			reader = Resources.getResourceAsReader(resource);
 			properties.load(reader);
 			AES256Key = properties.getProperty("AES256Key");
-			System.out.println("test : " + properties.getProperty("AES256Key"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

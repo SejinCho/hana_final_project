@@ -13,6 +13,7 @@ import kr.ac.bank.dto.AccountInfoDTO;
 import kr.ac.bank.dto.AccountTransferInfoDTO;
 import kr.ac.bank.dto.MemberInfoDTO;
 import kr.ac.bank.mapper.BankMapper;
+import kr.ac.bank.util.SecurityUtil;
 import kr.ac.bank.util.Token;
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +24,16 @@ public class BankServiceImpl implements BankService{
 	
 	//토큰 생성
 	@Override
-	public String createToken(MemberInfoDTO memberInfoDTO) {
+	public String createToken(String nameJuminNo) {
+		String decryptData = "";
+		try {
+			decryptData = new SecurityUtil().decryptAES256(nameJuminNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		MemberInfoDTO memberInfoDTO = new MemberInfoDTO();
+		memberInfoDTO.setName(decryptData.split(":")[0]);
+		memberInfoDTO.setJuminNo(decryptData.split(":")[1]);
 		return Token.createToken(memberInfoDTO);
 	}
 	
