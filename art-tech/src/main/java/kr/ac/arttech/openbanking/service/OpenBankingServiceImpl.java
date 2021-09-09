@@ -327,12 +327,22 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 				if(i==0) {
 					msg += "[ 자동이체 정보 ] \n"
 						+ "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
-				}else if(! list.get(i).getId().equals(list.get(i-1).getId())) {
+				
+				} else if(! list.get(i).getId().equals(list.get(i-1).getId()) && i != list.size() - 1 ) {
 					AutoTranInfoSMS.autoTranInfoPhone(list.get(i-1).getPhone(), msg);
 					msg = "";
 					msg += "[ 자동이체 정보 ] \n";
 					msg += "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
-				}else if(list.get(i).getId().equals(list.get(i-1).getId())) {
+				} else if(! list.get(i).getId().equals(list.get(i-1).getId()) && i == list.size() - 1) {
+					AutoTranInfoSMS.autoTranInfoPhone(list.get(i-1).getPhone(), msg);
+					msg = "";
+					msg += "[ 자동이체 정보 ] \n";
+					msg += "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
+					AutoTranInfoSMS.autoTranInfoPhone(list.get(i).getPhone(), msg);
+				} else if(list.get(i).getId().equals(list.get(i-1).getId()) && i == list.size() - 1) {
+					msg += "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
+					AutoTranInfoSMS.autoTranInfoPhone(list.get(i).getPhone(), msg);
+				}else if(list.get(i).getId().equals(list.get(i-1).getId()) && i != list.size() - 1) {
 					msg += "* " + list.get(i).getBankName() + " " + list.get(i).getAccountNumber() + " : " + list.get(i).getAutoAmt() + "원\n";
 				}
 			}

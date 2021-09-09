@@ -10,6 +10,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class AutoTranInfoSMS {
 	
 	public static void autoTranInfoPhone(String phone, String msg) {
+		
 		String api_key = "NCSYPTNBUIL12T6I";
 	    String api_secret = "MJBLDTP2MEQBH6UTOO4C8F5D1PIEO94Q";
 	    Message coolsms = new Message(api_key, api_secret);
@@ -34,5 +35,6 @@ public class AutoTranInfoSMS {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
+	    
 	}
 }
