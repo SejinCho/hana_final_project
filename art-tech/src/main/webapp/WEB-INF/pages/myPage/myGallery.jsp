@@ -21,12 +21,14 @@
 		var option = '';
 		$(document).ready(function(){
 			<c:forEach items="${myGalleryList}" var="myGallery" varStatus="index">
-				arr[${index.index}] = new Array(5);
+				arr[${index.index}] = new Array(6);
 				arr[${index.index}][0] = ${myGallery.totalPieceNo}
 				arr[${index.index}][1] = '${myGallery.firstRegDate}'
 				arr[${index.index}][2] = '${myGallery.title}'
 				arr[${index.index}][3] = '${myGallery.writerName}'
 				arr[${index.index}][4] = '${myGallery.artworkImg}'
+				arr[${index.index}][5] = '${myGallery.artworkInfoId}'
+				
 			</c:forEach>
 			
 			//메뉴 클릭
@@ -68,6 +70,7 @@
 			$('#modalWriterName').text(arr[idx][3])
 			$('#firstRegDate').text('최초 구입일 : ' + arr[idx][1])
 			$('#totalPieceNo').text('현재 보유 : ' + arr[idx][0])
+			$('#artId').text('Art id : ' + arr[idx][5])
 			
 			$('.myGallery-modal').css('display','block')
 			$('body').css("overflow", "hidden");
@@ -98,6 +101,7 @@
 						arr[i][2] = myGallery.title
 						arr[i][3] = myGallery.writerName
 						arr[i][4] = myGallery.artworkImg
+						arr[i][5] = myGallery.artworkInfoId
 						
 						
 			        	rowData += `
@@ -110,6 +114,7 @@
 		        						<p class="title">`+ myGallery.title +`</p>
 		        						<p class="writer">` + myGallery.writerName + `</p>
 										<p class="piece">보유조각 : ` + myGallery.totalPieceNo + `</p>
+										<p class="piece">Art id : ` + myGallery.artworkInfoId + `</p>
 									</div>
 									<div class="div_right_certificate">
 										<div class="certificate" onclick="certificate(`+ i +`)">
@@ -218,6 +223,7 @@
 				<p id="modalWriterName">작가명적는공간입니다.</p>
 				<p id="firstRegDate">구입일적는공간입니다.</p>
 				<p id="totalPieceNo">현재보유 : 3개</p>
+				<p id="artId">Art id : artwork1</p>
 			</div>
 			<hr>
 			<div class="select">
