@@ -33,7 +33,7 @@ public class AuthAPIController {
 		//System.out.println("핸드폰 ran : " + ran);
 		
 		//여기부터 끝까지 주석
-		/*
+		
 		String api_key = "NCSYPTNBUIL12T6I";
 	    String api_secret = "MJBLDTP2MEQBH6UTOO4C8F5D1PIEO94Q";
 	    Message coolsms = new Message(api_key, api_secret);
@@ -56,7 +56,7 @@ public class AuthAPIController {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
-	    */
+	    
 		
 		return ran;
 	}

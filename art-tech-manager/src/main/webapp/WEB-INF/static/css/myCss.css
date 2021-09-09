@@ -23,7 +23,7 @@ body {
 .contents-wrap2 {
 	min-height:100%;
     float : none;
-    margin-bottom: 3000px;
+    margin-bottom: 4000px;
 }
 .footer {
 	position: absolute;
@@ -163,6 +163,9 @@ body {
 #writerDetailTable tr{
 	border-bottom: 1px solid #F5F5F5;
 	height: 30px;
+}
+#writerDetailTable td {
+	width: 65%;
 }
 
 .goodsImg {

@@ -58,7 +58,6 @@
 				easyPassword : $('#easyPwInput').val()
 			},
 			success : function(data) {
-				alert(data)
 				easyPw = data;
 		        
 			},

@@ -236,7 +236,7 @@
 						success : function(data) {
 							console.log(data)
 					        emailAuthNum = data
-					        $('#emailCheck').html('문자가 전송되었습니다 인증번호를 입력하세요.')
+					        $('#emailCheck').html('이메일이 전송되었습니다 인증번호를 입력하세요.')
 							document.querySelector('#emailCheck').style.display = "block";
 						},
 						error: function (request, status, error){
