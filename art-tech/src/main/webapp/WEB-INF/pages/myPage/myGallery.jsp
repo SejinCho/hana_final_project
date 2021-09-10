@@ -103,7 +103,7 @@
 						arr[i][4] = myGallery.artworkImg
 						arr[i][5] = myGallery.artworkInfoId
 						
-						
+						let totalPieceNo = myGallery.totalPieceNo.trim()
 			        	rowData += `
 			        		<div class="col-xl-6 ">
 			        			<div class="myGallery_main_container">
@@ -112,21 +112,28 @@
 		        					</div>
 		        					<div class="div_center_artworkInfo">
 		        						<p class="title">`+ myGallery.title +`</p>
-		        						<p class="writer">` + myGallery.writerName + `</p>
-		        						<c:choose>
-											<c:when test="${fn:trim(`+ myGallery.totalPieceNo + `) eq '0' }">
-												<p class="piece">매각 완료</p>
-											</c:when>
-											<c:otherwise>
-												<p class="piece">보유조각 : ` + myGallery.totalPieceNo + `</p>
-											</c:otherwise>
-										</c:choose>
-										<p class="piece">Art id : ` + myGallery.artworkInfoId + `</p>
+		        						<p class="writer">` + myGallery.writerName + `</p>`
+		        						if(totalPieceNo == 0) {
+		        							rowData += `<p class="piece">매각 완료</p>`
+		        						}else {
+		        							rowData += `<p class="piece">보유조각 : ` + totalPieceNo + `</p>`
+		        						}
+										rowData += `<p class="piece">Art id : ` + myGallery.artworkInfoId + `</p>
 									</div>
-									<div class="div_right_certificate">
-										<div class="certificate" onclick="certificate(`+ i +`)">
+									<div class="div_right_certificate">`
+									if(totalPieceNo == 0) {
+										rowData += `<div class="certificate-non" >
 											<p class="certificateP">온라인 권리증</p>
-										</div>
+											</div>
+											`
+									}else {
+										rowData += `
+											<div class="certificate" onclick="certificate(`+ i +`)">
+												<p class="certificateP">온라인 권리증</p>
+											</div>
+										`
+									}
+									rowData += `
 									</div>
 								</div>
 							</div>
