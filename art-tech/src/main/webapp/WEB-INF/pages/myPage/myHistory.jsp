@@ -268,7 +268,12 @@
 			            <div class="col-md-6 col-lg-4">
 			                <div class="single_service">
 			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><canvas id="test"></canvas> <p>수익률 : 40%</p></div>
+	       						<div class="item back">
+	       							<canvas id="test"></canvas> 
+	       							<p id="yield">수익률 : 40%</p>
+	       							<p id="title">작품명 : ~~~~~~~~~~~~</p>
+	       							<p id="writer">작가 : ~~~~~~~~~~~~</p>
+	       						</div>
 			                </div>
 			            </div>
 			            <!-- 하나 끝  -->

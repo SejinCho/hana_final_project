@@ -1229,8 +1229,17 @@
 .myHistory-disposal-card canvas {
 	height:200px !important;
 }
-.myHistory-disposal-card .back p {
-	padding-top: 20px;
+.myHistory-disposal-card .back #yield {
+	padding-top: 15px;
+	margin-bottom : 5px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #A52A2A;
+}
+.myHistory-disposal-card .back #title,
+.myHistory-disposal-card .back #writer {
+	margin-bottom: 0px;
+	font-size: 15px;
 }
 
 
