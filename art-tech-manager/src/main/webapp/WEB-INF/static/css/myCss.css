@@ -159,13 +159,17 @@ body {
 	border-bottom: 1px solid #bcbcbc;
 	border-collapse: collapse;
 	border-spacing: 0 15px;
+	table-layout: fixed
 }
 #writerDetailTable tr{
 	border-bottom: 1px solid #F5F5F5;
 	height: 30px;
 }
+#writerDetailTable th {
+	width: 100px;
+}
 #writerDetailTable td {
-	width: 65%;
+	width: 300px;
 }
 
 .goodsImg {

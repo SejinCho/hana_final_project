@@ -1184,6 +1184,7 @@
 .myHistory-disposal-card {
 	margin-top: 50px;
 }
+
 .myHistory-disposal-card .item img {
 	border-radius : 10px;
 }
@@ -1209,6 +1210,7 @@
 	z-index:1;
 	transform: rotateY(180deg);
 	backface-visibility: hidden;
+	
 }
 
 

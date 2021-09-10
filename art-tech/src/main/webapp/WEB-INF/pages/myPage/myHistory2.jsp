@@ -15,8 +15,8 @@
     
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="${pageContext.request.contextPath}/static/js/myJs.js"></script>
     <script type="text/javascript">
+  	
     
     	$(document).ready(function(){
     		//그래프 그리기
@@ -33,11 +33,7 @@
     							'rgba(54, 162, 235, 1)'
     							], 
     						borderColor: 'rgb(255, 99, 132)',
-    						data : [10000, 15200],
-    						datalabels: {
-    							  display: true,
-    							  align : 'end'
-   							}
+    						data : [10000, 15200]
     					}, {
     						type : 'line',
     						fill : false,
@@ -60,6 +56,7 @@
     					scales: {
     						yAxes: [{
     							ticks : {
+    								barPercentage: 0.2,
     								min : 0,
     								stepSize : 10000/5,
     								fontSize : 10,
@@ -70,41 +67,12 @@
     							}
     						}],
     						xAxes : [{
-    							barPercentage: 0.3,
     							gridLines : {
     								display : false
     							}
     						}]
-    					},
-    					plugins : {
-    						datalabels: {
-    					      align: 'top',
-  							  formatter: function(context, chart_obj) {
-								  	return calculate(chart_obj.dataIndex)
-						  	  }
- 						    }
-    					},
-    					animation: {
-   		                  duration: 1,
-   		                  onComplete: function () {
-   		                     var chartInstance = this.chart,
-   		                        ctx = chartInstance.ctx;
-   		                     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-   		                     ctx.fillStyle = '#808080';
-   		                     ctx.textAlign = 'center';
-   		                     ctx.textBaseline = 'bottom';
-
-   		                     this.data.datasets.forEach(function (dataset, i) {
-   		                        var meta = chartInstance.controller.getDatasetMeta(i);
-   		                        meta.data.forEach(function (bar, index) {
-   		                           //var data = dataset.data[index] + 'KRW';                     
-   		                           var data = numberWithCommas(dataset.data[index]) + 'KRW';                     
-   		                           ctx.fillText(data, bar._model.x, bar._model.y - 5);
-   		                        });
-   		                     });
-   		                  }
-   		               } //animation
-    				} //option
+    					}
+    				}
     			}
     		); //그래프 그리기 끝 
     		
