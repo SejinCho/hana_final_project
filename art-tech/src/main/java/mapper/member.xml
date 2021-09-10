@@ -74,7 +74,7 @@
 		p.type, p.piece_amt, a.title, w.writer_name, a.state,
 		to_char(p.vat,'999,999,999,999,999,999') as vat , 
 		to_char(p.platform_usage_fee,'999,999,999,999,999,999') as platform_usage_fee, 
-		to_char((piece_no * piece_amt) + platform_usage_fee + vat,'999,999,999,999,999,999') as totalPrice ,
+		to_char((piece_no * piece_amt) + nvl(platform_usage_fee, 0) + nvl(vat,0),'999,999,999,999,999,999') as totalPrice ,
 		case 
 		    when a.state = '0' then '모집 예정'
 		    when a.state = '1' then '모집 중'

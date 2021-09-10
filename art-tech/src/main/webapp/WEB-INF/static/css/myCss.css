@@ -1069,6 +1069,7 @@
 
 
 /* myPage/myHistory */
+
 .myGallery_contain {
 	margin-bottom: 300px;
 }
@@ -1174,6 +1175,19 @@
 	color: white;
 	margin-bottom: 0px;
 }
+.myGallery_main_container .div_right_certificate .certificate-non {
+	margin: 30% 20px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+	background-color: #DCDCDC;
+	text-align: center;
+	
+}
+.myGallery_main_container .div_right_certificate .certificate-non p{
+	font-weight: bold;
+	color: white;
+	margin-bottom: 0px;
+}
 
 .myGallery_paging {
 	margin-bottom: 100px;
@@ -1212,8 +1226,12 @@
 	backface-visibility: hidden;
 	
 }
-
-
+.myHistory-disposal-card canvas {
+	height:200px !important;
+}
+.myHistory-disposal-card .back p {
+	padding-top: 20px;
+}
 
 
 /* recommend/recommendGoods */

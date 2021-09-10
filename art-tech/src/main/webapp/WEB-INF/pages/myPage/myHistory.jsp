@@ -33,7 +33,7 @@
     							'rgba(54, 162, 235, 1)'
     							], 
     						borderColor: 'rgb(255, 99, 132)',
-    						data : [10000, 15200],
+    						data : [100000, 152000],
     						datalabels: {
     							  display: true,
     							  align : 'end'
@@ -45,7 +45,7 @@
     						backgroundColor: 'rgb(089, 089, 089)',
     	                    borderColor: 'rgb(089, 089, 089)',
     	                    borderWidth: 1, // 선 굵기
-    						data : [10000, 15200]
+    						data : [100000, 152000]
     					}] 
     				},  //data
     				options : {
@@ -61,7 +61,7 @@
     						yAxes: [{
     							ticks : {
     								min : 0,
-    								stepSize : 10000/5,
+    								stepSize : 100000/5,
     								fontSize : 10,
     								display : false
     							},
@@ -172,6 +172,8 @@
 					        		$('#myHistoryTbodyTwo').append('<td>구매</td>')
 					        	}else if(myHistory.type == '2') {
 					        		$('#myHistoryTbodyTwo').append('<td>판매</td>')
+					        	}else if(myHistory.type == '3') {
+					        		$('#myHistoryTbodyTwo').append('<td>판매</td>')
 					        	}
 					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.totalPrice + '</td>')
 					        	if(myHistory.state == '1') {
@@ -266,7 +268,7 @@
 			            <div class="col-md-6 col-lg-4">
 			                <div class="single_service">
 			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><canvas id="test"></canvas></div>
+	       						<div class="item back"><canvas id="test"></canvas> <p>수익률 : 40%</p></div>
 			                </div>
 			            </div>
 			            <!-- 하나 끝  -->
@@ -359,6 +361,9 @@
 									<td>구매</td>
 								</c:when>
 								<c:when test="${myHistory.type == 2 }">
+									<td>판매</td>
+								</c:when>
+								<c:when test="${myHistory.type == 3 }">
 									<td>판매</td>
 								</c:when>
 							</c:choose>

@@ -15,8 +15,8 @@
     
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="${pageContext.request.contextPath}/static/js/myJs.js"></script>
     <script type="text/javascript">
-  	
     
     	$(document).ready(function(){
     		//그래프 그리기
@@ -33,7 +33,11 @@
     							'rgba(54, 162, 235, 1)'
     							], 
     						borderColor: 'rgb(255, 99, 132)',
-    						data : [10000, 15200]
+    						data : [100000, 152000],
+    						datalabels: {
+    							  display: true,
+    							  align : 'end'
+   							}
     					}, {
     						type : 'line',
     						fill : false,
@@ -41,7 +45,7 @@
     						backgroundColor: 'rgb(089, 089, 089)',
     	                    borderColor: 'rgb(089, 089, 089)',
     	                    borderWidth: 1, // 선 굵기
-    						data : [10000, 15200]
+    						data : [100000, 152000]
     					}] 
     				},  //data
     				options : {
@@ -56,9 +60,8 @@
     					scales: {
     						yAxes: [{
     							ticks : {
-    								barPercentage: 0.2,
     								min : 0,
-    								stepSize : 10000/5,
+    								stepSize : 100000/5,
     								fontSize : 10,
     								display : false
     							},
@@ -67,12 +70,41 @@
     							}
     						}],
     						xAxes : [{
+    							barPercentage: 0.3,
     							gridLines : {
     								display : false
     							}
     						}]
-    					}
-    				}
+    					},
+    					plugins : {
+    						datalabels: {
+    					      align: 'top',
+  							  formatter: function(context, chart_obj) {
+								  	return calculate(chart_obj.dataIndex)
+						  	  }
+ 						    }
+    					},
+    					animation: {
+   		                  duration: 1,
+   		                  onComplete: function () {
+   		                     var chartInstance = this.chart,
+   		                        ctx = chartInstance.ctx;
+   		                     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+   		                     ctx.fillStyle = '#808080';
+   		                     ctx.textAlign = 'center';
+   		                     ctx.textBaseline = 'bottom';
+
+   		                     this.data.datasets.forEach(function (dataset, i) {
+   		                        var meta = chartInstance.controller.getDatasetMeta(i);
+   		                        meta.data.forEach(function (bar, index) {
+   		                           //var data = dataset.data[index] + 'KRW';                     
+   		                           var data = numberWithCommas(dataset.data[index]) + 'KRW';                     
+   		                           ctx.fillText(data, bar._model.x, bar._model.y - 5);
+   		                        });
+   		                     });
+   		                  }
+   		               } //animation
+    				} //option
     			}
     		); //그래프 그리기 끝 
     		
@@ -139,6 +171,8 @@
 					        	if(myHistory.type == '1') {
 					        		$('#myHistoryTbodyTwo').append('<td>구매</td>')
 					        	}else if(myHistory.type == '2') {
+					        		$('#myHistoryTbodyTwo').append('<td>판매</td>')
+					        	}else if(myHistory.type == '3') {
 					        		$('#myHistoryTbodyTwo').append('<td>판매</td>')
 					        	}
 					        	$('#myHistoryTbodyTwo').append('<td>' + myHistory.totalPrice + '</td>')
@@ -234,7 +268,7 @@
 			            <div class="col-md-6 col-lg-4">
 			                <div class="single_service">
 			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><canvas id="test"></canvas></div>
+	       						<div class="item back"><canvas id="test"></canvas> <p>수익률 : 40%</p></div>
 			                </div>
 			            </div>
 			            <!-- 하나 끝  -->
@@ -327,6 +361,9 @@
 									<td>구매</td>
 								</c:when>
 								<c:when test="${myHistory.type == 2 }">
+									<td>판매</td>
+								</c:when>
+								<c:when test="${myHistory.type == 3 }">
 									<td>판매</td>
 								</c:when>
 							</c:choose>

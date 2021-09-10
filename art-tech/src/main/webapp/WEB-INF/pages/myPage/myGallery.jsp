@@ -113,7 +113,14 @@
 		        					<div class="div_center_artworkInfo">
 		        						<p class="title">`+ myGallery.title +`</p>
 		        						<p class="writer">` + myGallery.writerName + `</p>
-										<p class="piece">보유조각 : ` + myGallery.totalPieceNo + `</p>
+		        						<c:choose>
+											<c:when test="${fn:trim(`+ myGallery.totalPieceNo + `) eq '0' }">
+												<p class="piece">매각 완료</p>
+											</c:when>
+											<c:otherwise>
+												<p class="piece">보유조각 : ` + myGallery.totalPieceNo + `</p>
+											</c:otherwise>
+										</c:choose>
 										<p class="piece">Art id : ` + myGallery.artworkInfoId + `</p>
 									</div>
 									<div class="div_right_certificate">
@@ -182,13 +189,30 @@
 							<div class="div_center_artworkInfo">
 								<p class="title">${myGallery.title }</p>
 								<p class="writer">${myGallery.writerName }</p>
-								<p class="piece">보유조각 : ${myGallery.totalPieceNo }</p>
+								<c:choose>
+									<c:when test="${fn:trim(myGallery.totalPieceNo) eq '0' }">
+										<p class="piece">매각 완료</p>
+									</c:when>
+									<c:otherwise>
+										<p class="piece">보유조각 : ${myGallery.totalPieceNo }</p>
+									</c:otherwise>
+								</c:choose>
 								<p class="piece">Art id : ${myGallery.artworkInfoId }</p>
 							</div>
 							<div class="div_right_certificate">
-								<div class="certificate" onclick="certificate(${index.index})">
-									<p class="certificateP">온라인 권리증</p>
-								</div>
+								<c:choose>
+									<c:when test="${fn:trim(myGallery.totalPieceNo) eq '0' }">
+										<div class="certificate-non" onclick="certificate(${index.index})">
+											<p class="certificateP">온라인 권리증</p>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="certificate" onclick="certificate(${index.index})">
+											<p class="certificateP">온라인 권리증</p>
+										</div>
+									</c:otherwise>
+								</c:choose>
+								
 							</div>
 						</div>
 					</div>
