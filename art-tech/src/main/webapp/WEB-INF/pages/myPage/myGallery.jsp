@@ -183,6 +183,7 @@
 								<p class="title">${myGallery.title }</p>
 								<p class="writer">${myGallery.writerName }</p>
 								<p class="piece">보유조각 : ${myGallery.totalPieceNo }</p>
+								<p class="piece">Art id : ${myGallery.artworkInfoId }</p>
 							</div>
 							<div class="div_right_certificate">
 								<div class="certificate" onclick="certificate(${index.index})">

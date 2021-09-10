@@ -14,8 +14,55 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
     
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script type="text/javascript">
+  	
+    
     	$(document).ready(function(){
+    		//그래프 그리기
+    		var ctx = document.getElementById('test').getContext('2d'); 
+    		var chart = new Chart(ctx, 
+    			{ 
+    				type: 'bar', // 
+    				data: { 
+    					labels: ['2020-12-15', '2020-08-23'], 
+    					datasets: [{ 
+    						label: '색상', 
+    						backgroundColor: [ 
+    							'rgba(255, 99, 132, 1)',
+    							'rgba(54, 162, 235, 1)'
+    							], 
+    						borderColor: 'rgb(255, 99, 132)', 
+    						data: [10000, 15000] 
+    					}] 
+    				},  //data
+    				options : {
+    					//maintainAspectRatio: false,
+    					responsive: false,
+    					legend : {
+    						display : false
+    					},
+    					scales: {
+    						yAxes: [{
+    							ticks : {
+    								min : 0,
+    								stepSize : 10000/5,
+    								fontSize : 10,
+    								display : false
+    							},
+    							gridLines : {
+    								display : false
+    							}
+    						}],
+    						xAxes : [{
+    							gridLines : {
+    								display : false
+    							}
+    						}]
+    					}
+    				}
+    			}
+    		); //그래프 그리기 끝 
     		
     		if('${resultPurchase}' == 'success') {
     			$('#index_content_p').text('구매되었습니다.')
@@ -105,7 +152,8 @@
 				} //getDataList()
 				
     		})
-    	})
+    		
+    	}) //document.ready
     </script>
 </head>
 <body>
@@ -167,51 +215,63 @@
 		    	</div>
 	    	</div>
 	    	
-	    	<table class="table table-hover myDeposit_inout_table" id="deposit_table">
-				<thead id="myHistory_thead">
-				<tr>
-					<th>작품명</th>
-					<th>작가명</th>
-					<th>보유조각 수</th>
-					<th>구입금액</th>
-					<th>매각금액</th>
-					<th>양도세</th>
-					<th>플랫폼 이용료</th>
-					<th>부가세</th>
-					<th>실 지급액</th>
-					<th>매각 수익률</th>
-					
-				</tr>
-				</thead>
-				<tbody id="myHistoryTbodyOne">
-				
-						<tr> 
-							<td>작품명</td>
-							<td>작가명</td>
-							<td>보유조각 수</td>
-							<td>구입금액</td>
-							<td>매각금액</td>
-							<td>양도세</td>
-							<td>플랫폼 이용료</td>
-							<td>부가세</td>
-							<td>실 지급액</td>
-							<td>매각 수익률</td>
-						</tr>
-						<tr> 
-							<td>작품명</td>
-							<td>작가명</td>
-							<td>보유조각 수</td>
-							<td>구입금액</td>
-							<td>매각금액</td>
-							<td>양도세</td>
-							<td>플랫폼 이용료</td>
-							<td>부가세</td>
-							<td>실 지급액</td>
-							<td>매각 수익률</td>
-						</tr>
-					
-				</tbody>
-			</table>
+	    	<div class="myHistory-disposal-card">
+		    	<div class="container">
+			        <div class="row">
+			            <!-- 하나  -->
+			            <div class="col-md-6 col-lg-4">
+			                <div class="single_service">
+			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
+	       						<div class="item back"><canvas id="test"></canvas></div>
+			                </div>
+			            </div>
+			            <!-- 하나 끝  -->
+			            <!-- 하나  -->
+			            <div class="col-md-6 col-lg-4">
+			                <div class="single_service">
+			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
+	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
+			                </div>
+			            </div>
+			            <!-- 하나 끝  -->
+			            <!-- 하나  -->
+			            <div class="col-md-6 col-lg-4">
+			                <div class="single_service">
+			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
+	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
+			                </div>
+			            </div>
+			            <!-- 하나 끝  -->
+			            <!-- 하나  -->
+			            <div class="col-md-6 col-lg-4">
+			                <div class="single_service">
+			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
+	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
+			                </div>
+			            </div>
+			            <!-- 하나 끝  -->
+			            <!-- 하나  -->
+			            <div class="col-md-6 col-lg-4">
+			                <div class="single_service">
+			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
+	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
+			                </div>
+			            </div>
+			            <!-- 하나 끝  -->
+			            <!-- 하나  -->
+			            <div class="col-md-6 col-lg-4">
+			                <div class="single_service">
+			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
+	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
+			                </div>
+			            </div>
+			            <!-- 하나 끝  -->
+			        </div>
+			    </div>
+	    	</div>
+	    	
+	    	
+	    	
 			<div class="myDeposit_paging_container">
 				<ul	class="pagination">
 					<li><a href="#">1</a></li>

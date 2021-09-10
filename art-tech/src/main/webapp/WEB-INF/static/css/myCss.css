@@ -1151,6 +1151,7 @@
 	font-weight: bold;
 	color: #008485;
 	font-size: 13px;
+	margin-bottom: 0px;
 }
 .myGallery_main_container .div_right_certificate {
 	width: 30%;
@@ -1177,6 +1178,41 @@
 .myGallery_paging {
 	margin-bottom: 100px;
 }
+
+/*카드 뒤집기...*/
+
+.myHistory-disposal-card {
+	margin-top: 50px;
+}
+.myHistory-disposal-card .item img {
+	border-radius : 10px;
+}
+.myHistory-disposal-card .col-md-6 {
+	margin-bottom: 30px;
+}
+.myHistory-disposal-card .col-md-6 {
+	/*position:relative;*/
+	transform-style: preserve-3d; 
+	transition: all 1s;
+
+}
+.myHistory-disposal-card .col-md-6:hover {
+	transform: rotateY(180deg);
+}
+.myHistory-disposal-card .col-md-6 .front {
+	position:absolute;
+	z-index:2;
+	transform: rotateY(0deg);
+	backface-visibility: hidden;
+}
+.myHistory-disposal-card .col-md-6 .back {
+	z-index:1;
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+}
+
+
+
 
 /* recommend/recommendGoods */
 .recommend_goods_contain {
