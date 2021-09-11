@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.artTechManager.vo.ArtworkInfoVO;
+import kr.ac.artTechManager.vo.MemberVO;
 import kr.ac.artTechManager.vo.VoteVO;
 
 public interface ArtworkService {
@@ -23,4 +24,5 @@ public interface ArtworkService {
 	//로그분석
 	public Map<String, Object> getGoodsClickGraph() throws Exception;//작품 당 클릭 수 그래프
 	public LinkedHashMap<String, Integer> getloginTime() throws Exception; //로그인 시간 데이터
+	public List<MemberVO> geLoginTopMemberList() throws Exception; //로그인 많이 한 회원
 }

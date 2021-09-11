@@ -31,5 +31,7 @@ public class MemberVO  {
 	private String token; //오픈뱅킹 토큰
 	private String fintechUseNo;
 	
+	//로그인 몇번했니
+	private int frequencyLogin; 
 	
 }

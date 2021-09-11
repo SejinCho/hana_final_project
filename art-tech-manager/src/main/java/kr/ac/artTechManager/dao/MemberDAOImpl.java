@@ -20,4 +20,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList("kr.ac.kopo.manage.member.selectMemberInfoList");
 	}
 	
+	//해당 id의 이름 가져오기
+	@Override
+	public String selectMemberName(String id) {
+		return sqlSession.selectOne("kr.ac.kopo.manage.member.selectMemberName", id);
+	}
+	
 }

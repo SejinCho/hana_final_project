@@ -47,14 +47,8 @@ public class LogFileReader {
 						}else if(map.containsKey(artworkInfoId)){
 							map.put(artworkInfoId, map.get(artworkInfoId) + 1);
 						}
-						
-						
-						
 					}
 				}
-				
-				
-				
 			}
 		}
 		
@@ -107,5 +101,42 @@ public class LogFileReader {
 		return result;
 	}
 	
-	//로그인 많이 한 사람 4명 뽑기
+	//로그인 많이 한 사람 
+	public Map<String, Object> getLoginTopMember() throws IOException {
+		Map<String, Integer> map = new HashMap<String, Integer>(); //데이터
+		List<String> keySetList = null; //key 내림차순(클릭 수 기준)
+		//로그파일 읽기
+		for(File file : fileList) {
+			if(file.exists()) {
+				BufferedReader inFile = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((line = inFile.readLine())!= null) {
+					if(line.contains("MemberController.java:86")) {
+						String memberId = line.split(" ")[4].split(":")[1];
+						if(map.size() == 0 || ! map.containsKey(memberId)) {
+							map.put(memberId, 1);
+						}else if(map.containsKey(memberId)) {
+							map.put(memberId, map.get(memberId) + 1);
+						}
+					}
+				}
+			}
+		}
+		
+		//value를 기준으로 내림차순 정렬
+		keySetList = new ArrayList<String>(map.keySet());
+		
+		Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))) );
+		for(String key : keySetList) {
+			System.out.println("key : " + key + " / " + "value : " + map.get(key));
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("data", map);
+		resultMap.put("keyList", keySetList);
+		System.out.println("data : " + map.toString());
+		System.out.println("keyList : " + keySetList.toString());
+		return resultMap;
+		
+	}
 }

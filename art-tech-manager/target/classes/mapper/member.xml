@@ -32,4 +32,8 @@
 	<select id="selectMemberInfoList" parameterType="String" resultMap="memberMap">
 		<include refid="selectMemberInfoSql"></include>
 	</select>
+	
+	<select id="selectMemberName" parameterType="String" resultType="String">
+		select name from sj_member where id = #{id}
+	</select>
 </mapper>

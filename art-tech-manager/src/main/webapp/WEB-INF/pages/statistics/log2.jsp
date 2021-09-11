@@ -233,32 +233,52 @@ $(document).ready(function(){
 
                 <div class="col-md-9 col-sm-9 ">
                   <div id="chart_plot_01" class="demo-placeholder">
-                  	<canvas id="loginTimeGraph" class="flot-base" width="900" height="280" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 280px;"></canvas>
+                  	<canvas id="loginTimeGraph" class="flot-base" width="800" height="280" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 280px;"></canvas>
                   </div>
                 </div>
                 <div class="col-md-3 col-sm-3  bg-white">
                   <div class="x_title">
-                    <h2>로그인 많이 한 회원 Top5 </h2>
+                    <h2>Top Campaign Performance</h2>
                     <div class="clearfix"></div>
                   </div>
-				  
-				  <div class="col-md-12 col-sm-12 loginTopmemberId-div">
+
+                  <div class="col-md-12 col-sm-12 ">
                     <div>
-                      <span class="loginTopmemberIdTitle">member Id</span>
-                      <span class="loginTopmemberNameTitle">name</span>
-                      <span class="loginTopmemberFreTitle">frequency</span>
+                      <p>Facebook Campaign</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p>Twitter Campaign</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  
-                  <c:forEach items="${loginTopMemberList}" var="member">
-	                  <div class="col-md-12 col-sm-12 loginTopmemberId-div">
-	                    <div>
-	                      <span class="loginTopmemberId">${member.id }</span>
-	                      <span class="loginTopmemberName">${member.name }</span>
-	                      <span class="loginTopmemberFre">${member.frequencyLogin }</span>
-	                    </div>
-	                  </div>
-                  </c:forEach>
+                  <div class="col-md-12 col-sm-12 ">
+                    <div>
+                      <p>Conventional Media</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p>Bill boards</p>
+                      <div class="">
+                        <div class="progress progress_sm" style="width: 76%;">
+                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="clearfix"></div>

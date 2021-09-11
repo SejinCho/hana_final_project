@@ -114,6 +114,20 @@ public class ArtworkController {
 		return "manage/goodsDetail";
 	}
 	
+	@GetMapping("/statistics")
+	public String statistics(Model model) {
+		
+		//로그인 많이 한 회원 리스트
+		try {
+			model.addAttribute("loginTopMemberList", service.geLoginTopMemberList());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "manage/statistics";
+	}
+	
 	//투표중(3) -> 투표종료(4)
 	//현재날짜 = 투표종료 날짜
 	//@Scheduled(cron="0 0 24 * * * ")

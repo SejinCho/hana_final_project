@@ -72,9 +72,12 @@ public class MemberController {
 		int result = service.checkSignin(member);
 		if(result == 0) {
 			session.setAttribute("resultSignin", "0");
+			
 	    }else if(result == 1) {
 	    	session.setAttribute("resultSignin", "1");
+	    	
 		}else if(result == 2) { //로그인 성공
+			
 			//세션 저장하기 하기
 			//id(pk) 가져오기
 			String memberId = service.getMemberId(member.getUserId());

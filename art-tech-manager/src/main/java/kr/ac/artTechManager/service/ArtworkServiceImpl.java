@@ -36,6 +36,7 @@ import lombok.RequiredArgsConstructor;
 public class ArtworkServiceImpl implements ArtworkService{
 	
 	private final ArtworkDAO dao;
+	private final MemberDAO memberDao;
 	
 	//add artwork
 	@Transactional
@@ -302,5 +303,34 @@ public class ArtworkServiceImpl implements ArtworkService{
 	@Override
 	public LinkedHashMap<String, Integer> getloginTime() throws Exception {
 		return new LogFileReader().getLoginTime();
+	}
+	//로그인 많이 한 회원
+	@Override
+	public List<MemberVO> geLoginTopMemberList() throws Exception {
+		List<MemberVO> memberList = new ArrayList<>();
+		Map<String, Object> map = new LogFileReader().getLoginTopMember();
+		List<String> keySetList = (List<String>) map.get("keyList") ; 
+		Map<String, Integer> frequency = (Map<String, Integer>) map.get("data") ; 
+		
+		if(keySetList.size() < 5) { //5개보다 적을 때
+			for(int i = 0 ; i < keySetList.size() ; ++i) {
+				MemberVO member = new MemberVO();
+				member.setId(keySetList.get(i));
+				member.setName(memberDao.selectMemberName(keySetList.get(i)));
+				member.setFrequencyLogin(frequency.get(keySetList.get(i)));
+				memberList.add(member);
+			}
+			
+		}else { //5개보다 많을 때
+			for(int i = 0; i < 5; ++i) {
+				MemberVO member = new MemberVO();
+				member.setId(keySetList.get(i));
+				member.setName(memberDao.selectMemberName(keySetList.get(i)));
+				member.setFrequencyLogin(frequency.get(keySetList.get(i)));
+				memberList.add(member);
+			}
+		}
+		
+		return memberList;
 	}
 }

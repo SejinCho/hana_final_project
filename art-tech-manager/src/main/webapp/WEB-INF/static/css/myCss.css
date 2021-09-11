@@ -234,3 +234,37 @@ body {
 	height: 800px;
 }
 
+/*로그인 많이 한 회원*/
+.col-md-12 .loginTopmemberIdTitle {
+	font-weight: bold;
+	font-size: 15px;
+	padding-left: 10px;
+}
+.col-md-12 .loginTopmemberNameTitle {
+	font-weight: bold;
+	font-size: 15px;
+	padding-left: 30px;
+}
+.col-md-12 .loginTopmemberFreTitle {
+	font-weight: bold;
+	font-size: 15px;
+	padding-left: 30px;
+}
+
+.col-md-12 .loginTopmemberId {
+	font-size: 13px;
+	padding-left: 20px;
+}
+.col-md-12 .loginTopmemberName {
+	font-size: 13px;
+	padding-left: 30px;
+}
+.col-md-12 .loginTopmemberFre {
+	font-size: 13px;
+	padding-left: 50px;
+}
+
+.loginTopmemberId-div {
+	padding-top : 5px;
+	padding-bottom: 5px;
+}

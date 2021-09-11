@@ -11,7 +11,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		try {
-			new LogFileReader().getLoginTime();
+			new LogFileReader().getLoginTopMember();
 		} catch (RserveException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
