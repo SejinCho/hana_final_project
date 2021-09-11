@@ -1220,6 +1220,11 @@
 	transform: rotateY(0deg);
 	backface-visibility: hidden;
 }
+.myHistory-disposal-card .col-md-6 .front img{
+	width: 300px;
+	height: 350px;
+	object-fit: cover;
+}
 .myHistory-disposal-card .col-md-6 .back {
 	z-index:1;
 	transform: rotateY(180deg);

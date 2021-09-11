@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class MypageController {
 	private final MemberService service;
 	
-	//구매내역
+	//구매내역 myHistory
 	@GetMapping("/myHistory")
 	public String myHistory(HttpSession session, Model model) {
 		String resultPurchase = (String) session.getAttribute("resultPurchase");
@@ -30,6 +30,7 @@ public class MypageController {
 		
 		String memberId = (String) session.getAttribute("memberId");
 		model.addAttribute("myHistoryListAll", service.getMyHistoryListAll(memberId));
+		model.addAttribute("myHistoryDisposalInfoList", service.getMyHistoryDisposalInfoList(memberId));
 		model.addAttribute("resultPurchase", resultPurchase);
 		return "myPage/myHistory";
 	}

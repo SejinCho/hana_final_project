@@ -71,6 +71,11 @@ public class MemberServiceImpl implements MemberService{
 	public List<MyHistoryVO> getMyHistoryListAll(String memberId) {
 		return dao.selectMyHistoryListAll(memberId);
 	}
+	//my history disposal
+	@Override
+	public List<MyHistoryVO> getMyHistoryDisposalInfoList(String memberId) {
+		return dao.selectMyHistoryDisposalInfoList(memberId);
+	}
 	//myhistory 옵션 선택했을 때 list 
 	@Override
 	public List<MyHistoryVO> getMyHistoryListOption(Map<String, String> map) {
@@ -91,7 +96,8 @@ public class MemberServiceImpl implements MemberService{
 			myHistoryList = dao.selectMyHistoryListRecruitEnd(memberId);
 			break;
 			
-		case "": //매각작품
+		case "disposal": //매각작품
+			myHistoryList = dao.selectMyHistoryDisposalInfoList(memberId);
 			break;
 		}
 		

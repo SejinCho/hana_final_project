@@ -20,6 +20,7 @@ public interface MemberDAO {
 	public List<MyHistoryVO> selectMyHistoryListAll(String memberId) ; //myHistory 전체
 	public List<MyHistoryVO> selectMyHistoryListRecruit(String memberId) ; //myHistory 모집중
 	public List<MyHistoryVO> selectMyHistoryListRecruitEnd(String memberId) ; //myHistory 모집완료(state:2,3,4,5,6)
+	public List<MyHistoryVO> selectMyHistoryDisposalInfoList(String memberId); //myHistory 매각완료 정보 
 	
 	public List<MyGalleryVO> selectMyGalleryAll(String memberId); //myGallery all
 	public List<MyGalleryVO> selectMyGalleryRecruit(String memberId); //myGallery 모집중
@@ -29,4 +30,5 @@ public interface MemberDAO {
 	public int updateWalletInfo(Map<String, String> wallet); //wallet update(지갑 생성 클릭)
 	
 	public int updateKakaoId(Map<String, String> map); //카카오id update
+	
 }

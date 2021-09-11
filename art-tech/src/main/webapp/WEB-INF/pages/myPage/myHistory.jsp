@@ -19,95 +19,98 @@
     <script type="text/javascript">
     
     	$(document).ready(function(){
-    		//그래프 그리기
-    		var ctx = document.getElementById('test').getContext('2d'); 
-    		var chart = new Chart(ctx, 
-    			{ 
-    				type: 'bar', // 
-    				data: { 
-    					labels: ['2020-12-15', '2020-08-23'], 
-    					datasets: [{ 
-    						type : 'bar',
-    						backgroundColor: [ 
-    							'rgba(255, 99, 132, 1)',
-    							'rgba(54, 162, 235, 1)'
-    							], 
-    						borderColor: 'rgb(255, 99, 132)',
-    						data : [100000, 152000],
-    						datalabels: {
-    							  display: true,
-    							  align : 'end'
-   							}
-    					}, {
-    						type : 'line',
-    						fill : false,
-    						pointRadius : 0,
-    						backgroundColor: 'rgb(089, 089, 089)',
-    	                    borderColor: 'rgb(089, 089, 089)',
-    	                    borderWidth: 1, // 선 굵기
-    						data : [100000, 152000]
-    					}] 
-    				},  //data
-    				options : {
-    					title : {
-    						display : true,
-    						text : '매각현황'
-    					},
-    					responsive: false,
-    					legend : {
-    						display : false
-    					},
-    					scales: {
-    						yAxes: [{
-    							ticks : {
-    								min : 0,
-    								stepSize : 100000/5,
-    								fontSize : 10,
-    								display : false
-    							},
-    							gridLines : {
-    								display : false
-    							}
-    						}],
-    						xAxes : [{
-    							barPercentage: 0.3,
-    							gridLines : {
-    								display : false
-    							}
-    						}]
-    					},
-    					plugins : {
-    						datalabels: {
-    					      align: 'top',
-  							  formatter: function(context, chart_obj) {
-								  	return calculate(chart_obj.dataIndex)
-						  	  }
- 						    }
-    					},
-    					animation: {
-   		                  duration: 1,
-   		                  onComplete: function () {
-   		                     var chartInstance = this.chart,
-   		                        ctx = chartInstance.ctx;
-   		                     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-   		                     ctx.fillStyle = '#808080';
-   		                     ctx.textAlign = 'center';
-   		                     ctx.textBaseline = 'bottom';
-
-   		                     this.data.datasets.forEach(function (dataset, i) {
-   		                        var meta = chartInstance.controller.getDatasetMeta(i);
-   		                        meta.data.forEach(function (bar, index) {
-   		                           //var data = dataset.data[index] + 'KRW';                     
-   		                           var data = numberWithCommas(dataset.data[index]) + 'KRW';                     
-   		                           ctx.fillText(data, bar._model.x, bar._model.y - 5);
-   		                        });
-   		                     });
-   		                  }
-   		               } //animation
-    				} //option
-    			}
-    		); //그래프 그리기 끝 
-    		
+    		<c:forEach items='${myHistoryDisposalInfoList}' var='disposalInfo'>	
+	    		//그래프 그리기
+	    		var ctx = document.getElementById('${disposalInfo.artworkInfoId}').getContext('2d'); 
+	    		var chart = new Chart(ctx, 
+	    			{ 
+	    				type: 'bar', // 
+	    				data: { 
+	    					labels: ['${disposalInfo.recruitEndDate}', '${disposalInfo.sellDate}'], 
+	    					datasets: [{ 
+	    						type : 'bar',
+	    						backgroundColor: [ 
+	    							'rgba(255, 99, 132, 1)',
+	    							'rgba(54, 162, 235, 1)'
+	    							], 
+	    						borderColor: 'rgb(255, 99, 132)',
+	    						data : [${disposalInfo.initiaCost}, ${disposalInfo.revenue}],
+	    						datalabels: {
+	    							  display: true,
+	    							  align : 'end'
+	   							}
+	    					}, {
+	    						type : 'line',
+	    						fill : false,
+	    						pointRadius : 0,
+	    						backgroundColor: 'rgb(089, 089, 089)',
+	    	                    borderColor: 'rgb(089, 089, 089)',
+	    	                    borderWidth: 1, // 선 굵기
+	    						data : [${disposalInfo.initiaCost}, ${disposalInfo.revenue}]
+	    					}] 
+	    				},  //data
+	    				options : {
+	    					title : {
+	    						display : true,
+	    						text : '매각현황'
+	    					},
+	    					responsive: false,
+	    					legend : {
+	    						display : false
+	    					},
+	    					scales: {
+	    						yAxes: [{
+	    							ticks : {
+	    								min : 0,
+	    								stepSize : ${disposalInfo.initiaCost}/5,
+	    								fontSize : 10,
+	    								display : false
+	    							},
+	    							gridLines : {
+	    								display : false
+	    							}
+	    						}],
+	    						xAxes : [{
+	    							barPercentage: 0.3,
+	    							gridLines : {
+	    								display : false
+	    							}
+	    						}]
+	    					},
+	    					plugins : {
+	    						datalabels: {
+	    					      align: 'top',
+	  							  formatter: function(context, chart_obj) {
+									  	return calculate(chart_obj.dataIndex)
+							  	  }
+	 						    }
+	    					},
+	    					animation: {
+	   		                  duration: 1,
+	   		                  onComplete: function () {
+	   		                     var chartInstance = this.chart,
+	   		                        ctx = chartInstance.ctx;
+	   		                     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+	   		                     ctx.fillStyle = '#808080';
+	   		                     ctx.textAlign = 'center';
+	   		                     ctx.textBaseline = 'bottom';
+	
+	   		                     this.data.datasets.forEach(function (dataset, i) {
+	   		                        var meta = chartInstance.controller.getDatasetMeta(i);
+	   		                        meta.data.forEach(function (bar, index) {
+	   		                           //var data = dataset.data[index] + 'KRW';                     
+	   		                           var data = numberWithCommas(dataset.data[index]) + 'KRW';                     
+	   		                           ctx.fillText(data, bar._model.x, bar._model.y - 5);
+	   		                        });
+	   		                     });
+	   		                  }
+	   		               } //animation
+	    				} //option
+	    			}
+	    		); //그래프 그리기 끝 
+    		</c:forEach>	
+	    		
+	    		
     		if('${resultPurchase}' == 'success') {
     			$('#index_content_p').text('구매되었습니다.')
     			$('.index_modal').css('display','block')
@@ -264,59 +267,21 @@
 	    	<div class="myHistory-disposal-card">
 		    	<div class="container">
 			        <div class="row">
-			            <!-- 하나  -->
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back">
-	       							<canvas id="test"></canvas> 
-	       							<p id="yield">수익률 : 40%</p>
-	       							<p id="title">작품명 : ~~~~~~~~~~~~</p>
-	       							<p id="writer">작가 : ~~~~~~~~~~~~</p>
-	       						</div>
-			                </div>
-			            </div>
-			            <!-- 하나 끝  -->
-			            <!-- 하나  -->
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
-			                </div>
-			            </div>
-			            <!-- 하나 끝  -->
-			            <!-- 하나  -->
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
-			                </div>
-			            </div>
-			            <!-- 하나 끝  -->
-			            <!-- 하나  -->
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
-			                </div>
-			            </div>
-			            <!-- 하나 끝  -->
-			            <!-- 하나  -->
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
-			                </div>
-			            </div>
-			            <!-- 하나 끝  -->
-			            <!-- 하나  -->
-			            <div class="col-md-6 col-lg-4">
-			                <div class="single_service">
-			                    <div class="item front"><img src="https://placeimg.com/300/350/animals" alt="img front"/></div>
-	       						<div class="item back"><img src="https://placeimg.com/300/350/people" alt="img back"/></div>
-			                </div>
-			            </div>
-			            <!-- 하나 끝  -->
+			        	<c:forEach items="${myHistoryDisposalInfoList}" var="disposalInfo">
+				            <!-- 하나  -->
+				            <div class="col-md-6 col-lg-4">
+				                <div class="single_service">
+				                    <div class="item front"><img src="/artworkImg/${disposalInfo.artworkImg }" alt="img front"/></div>
+		       						<div class="item back">
+		       							<canvas id="${disposalInfo.artworkInfoId }"></canvas> 
+		       							<p id="yield">수익률 : ${disposalInfo.yield }%</p>
+		       							<p id="title">작품명 : ${disposalInfo.title }</p>
+		       							<p id="writer">작가 : ${disposalInfo.writerName }</p>
+		       						</div>
+				                </div>
+				            </div>
+				            <!-- 하나 끝  -->
+			            </c:forEach>
 			        </div>
 			    </div>
 	    	</div>

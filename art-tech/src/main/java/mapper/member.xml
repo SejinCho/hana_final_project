@@ -69,6 +69,7 @@
 	</update>
 	
 	<!-- 나의 조각 산 내역 -->
+	<!-- myHistory -->
 	<sql id="selectMyHistoryListSql">
 		select p.id, p.artwork_info_id, p.piece_no, to_char(p.reg_date,'yyyy-mm-dd') as regDate,
 		p.type, p.piece_amt, a.title, w.writer_name, a.state,
@@ -99,13 +100,13 @@
 		<result column="platform_usage_fee" property="platformUsageFee"/>
 	</resultMap>
 	
-	<!-- 거래내역(전체)  -->
+	<!-- 거래내역(전체)myHistory List all  -->
 	<select id="selectMyHistoryListAll" resultMap="myHistoryMap" parameterType="String">
 		<include refid="selectMyHistoryListSql"/>
 		and p.member_id = #{memberId}
 		order by p.reg_date desc
 	</select>
-	<!-- 거래내역 모집중 -->
+	<!-- 거래내역 모집중 myHistory -->
 	<select id="selectMyHistoryListRecruit" resultMap="myHistoryMap" parameterType="String">
 		<include refid="selectMyHistoryListSql"/>
 		and p.member_id = #{memberId}
@@ -119,7 +120,28 @@
 		and a.state in ('2','3','4','5','6')
 		order by p.reg_date desc
 	</select>
-	
+	<!-- myHistory 매각작품 -->
+	<select id="selectMyHistoryDisposalInfoList" parameterType="String" resultType="myHistory">
+		select p.artwork_info_id as artworkInfoId, p.revenue, p.initiaCost, i.artwork_img as artworkImg, 
+		round(sell_price / ((ESTIMATED_PRICE_MAX + ESTIMATED_PRICE_min)/2) * 100 - 100,2) as yield,
+		a.title, w.writer_name as writerName, a.recruit_end_date as recruitEndDate, 
+		to_char(a.sell_date,'yyyy-mm-dd') as sellDate from 
+		(select artwork_info_id, -sum(piece_no * piece_amt) as revenue, 
+		-sum(piece_no * 10660) as initiaCost from sj_purchase_info 
+		where member_id = #{memberId} 
+		and type = '3'
+		GROUP by artwork_info_id) p,
+		(select artwork_info_id, file_chan_name as artwork_img
+		from sj_artwork_info_img 
+		where (artwork_info_id, id) in (
+		select artwork_info_id, max(id) as id
+		from sj_artwork_info_img group by artwork_info_id)) i,
+		sj_artwork_info a,
+		sj_writer_info w
+		where p.artwork_info_id = i.artwork_info_id
+		and p.artwork_info_id = a.id
+		and a.writer_id = w.id
+	</select>
 	
 	<!-- 마이갤러리(myGallery) sql -->
 	<sql id="selectMyGallery">

@@ -21,4 +21,12 @@ public class MyHistoryVO {
 	private String state; //상태(0. 모집 예정 1.모집중, 2.모집완료, 3.매각투표, 4.투표종료, 5.매각중, 6.수익분배 7.매각완료)
 	private String stateName;
 	private String writerName;
+	
+	//매각 관련
+	private String revenue; //매각 후 받는 돈
+	private String initiaCost; //처음 조각 산 돈(조각 가격 + 수수료)
+	private String artworkImg; //작품 이미지
+	private String yield; //수익률
+	private String recruitEndDate; //모집 종료
+	private String sellDate; //판매 날짜
 }
