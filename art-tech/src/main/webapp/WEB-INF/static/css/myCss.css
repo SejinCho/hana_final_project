@@ -20,6 +20,11 @@
 	width: 300px;
 	
 }
+.thumb .mainArtworkImg {
+	width: 300px;
+	height: 350px;
+	object-fit: contain;
+}
 
 /*myDeposit.jsp*/
 

@@ -87,7 +87,7 @@
                     	<!-- 한개 시작 -->
                         <div class="single_service">
                             <div class="thumb">
-                                <img src="/artworkImg/${artwork.artworkImg }" alt="">
+                                <img  class="mainArtworkImg" src="/artworkImg/${artwork.artworkImg }" alt="">
                             </div>
                             <div class="service_info">
                                 <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artwork.id}">${artwork.title }</a></h3>
