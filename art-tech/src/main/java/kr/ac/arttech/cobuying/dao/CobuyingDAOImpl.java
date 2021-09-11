@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.arttech.cobuying.vo.ArtworkInfoImgVO;
 import kr.ac.arttech.cobuying.vo.ArtworkInfoVO;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
+import kr.ac.arttech.util.PagingVO;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -21,6 +22,10 @@ public class CobuyingDAOImpl implements CobuyingDAO {
 	@Override
 	public List<ArtworkInfoVO> selectArtworkInfoList() {
 		return sqlSession.selectList("kr.ac.arttech.cobuying.selectArtworkInfoList");
+	}
+	@Override
+	public List<ArtworkInfoVO> selectArtworkInfoListPaging(PagingVO paging) {
+		return sqlSession.selectList("kr.ac.arttech.cobuying.selectArtworkInfoListPaging", paging);
 	}
 	
 	//goods detail
@@ -86,6 +91,12 @@ public class CobuyingDAOImpl implements CobuyingDAO {
 	@Override
 	public List<ArtworkInfoVO> selectDisposalList() {
 		return sqlSession.selectList("kr.ac.arttech.cobuying.selectDisposalList");
+	}
+	
+	//작품 총 개수
+	@Override
+	public int selectArtworkCount() {
+		return sqlSession.selectOne("kr.ac.arttech.cobuying.selectArtworkCount");
 	}
 	
 }

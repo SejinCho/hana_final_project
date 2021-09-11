@@ -1,6 +1,8 @@
 package kr.ac.arttech.cobuying.controller;
 
+import java.awt.print.Pageable;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.ac.arttech.cobuying.service.CobuyingService;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
 import kr.ac.arttech.openbanking.service.OpenBankingService;
+import kr.ac.arttech.util.PagingVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -27,9 +30,31 @@ public class CobuyingController {
 	
 	private Logger log = Logger.getLogger(CobuyingController.class);
 	
-	@GetMapping("/goods")
+	
+	//@GetMapping("/goods")
+	/*
 	public String goodsList(Model model) {
-		model.addAttribute("artworkInfoList", service.getArtworkInfoList());
+		//model.addAttribute("artworkInfoList", service.getArtworkInfoList());
+		return "co-buying/goods";
+	}
+	*/
+	@GetMapping({"/goods", "/goods/{nowPage}"})
+	public String goodsList(Model model, 
+			@PathVariable Optional<String> nowPage,
+			PagingVO vo) {
+		int total = service.getArtworkCount();
+		String nowPageRe = "";
+		if(! nowPage.isPresent()) {
+			nowPageRe = "1";
+		}else {
+			nowPageRe = nowPage.get();
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPageRe), 9);
+		System.out.println("컨트롤러 vo : " + vo.toString());
+		model.addAttribute("paging", vo);
+		System.out.println("artworkInfoList : " + service.getArtworkInfoListPaging(vo));
+		model.addAttribute("artworkInfoList", service.getArtworkInfoListPaging(vo));
 		return "co-buying/goods";
 	}
 	

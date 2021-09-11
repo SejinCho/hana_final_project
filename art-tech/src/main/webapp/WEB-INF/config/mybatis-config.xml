@@ -23,6 +23,8 @@
 		<typeAlias type="kr.ac.arttech.cobuying.vo.PurchaseInfoVO" alias="purchaseInfo"/>
 		
 		<typeAlias type="kr.ac.arttech.notice.vo.NoticeVO" alias="notice"/>
+		
+		<typeAlias type="kr.ac.arttech.util.PagingVO" alias="paging"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/member.xml"/>

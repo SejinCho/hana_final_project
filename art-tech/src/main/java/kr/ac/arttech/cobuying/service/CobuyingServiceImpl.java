@@ -18,6 +18,7 @@ import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
 import kr.ac.arttech.member.dao.MemberDAO;
 import kr.ac.arttech.openbanking.vo.AccountTransferInfoVO;
 import kr.ac.arttech.util.CollaborativeFilteringUtil;
+import kr.ac.arttech.util.PagingVO;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -30,6 +31,16 @@ public class CobuyingServiceImpl implements CobuyingService {
 	@Override
 	public List<ArtworkInfoVO> getArtworkInfoList() {
 		return dao.selectArtworkInfoList();
+	}
+	@Override
+	public List<ArtworkInfoVO> getArtworkInfoListPaging(PagingVO paging) {
+		return dao.selectArtworkInfoListPaging(paging);
+	}
+	
+	//작품 총 개수
+	@Override
+	public int getArtworkCount() {
+		return dao.selectArtworkCount();
 	}
 	
 	//goods detail

@@ -44,7 +44,7 @@
             <div class="row">
             	<c:forEach items="${artworkInfoList }" var="artworkInfo" >
 	            	<!-- 하나  -->
-	                <div class="col-md-6 col-lg-4">
+	                <div class="col-md-6 col-lg-4 goodsItem-div">
 	                    <div class="single_service">
 	                        <div class="thumb ">
 	                            <img class="goodsImg" src="/artworkImg/${artworkInfo.artworkImg }" alt="">
@@ -87,16 +87,24 @@
             </div>
             <div class="myDeposit_paging_container">
 				<ul	class="pagination">
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li><a href="#">10</a></li>
+					<c:if test="${paging.startPage != 1 }">
+						<li><a href="${pageContext.request.contextPath}/co-buying/goods/${paging.startPage - 1 }"> &lt; </a></li>
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<li><a href="#">${p }</a></li>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<li><a href="${pageContext.request.contextPath}/co-buying/goods/${p }">${p }</a></li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<li><a href="${pageContext.request.contextPath}/co-buying/goods/${paging.endPage+1 }"> &gt; </a></li>
+					</c:if>
+					
+					
 				</ul>
 			</div>
         </div>

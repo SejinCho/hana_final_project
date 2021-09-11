@@ -115,7 +115,7 @@
 			<exclude-mapping path="/openbanking/autoAccountInfoList"/>
 			<exclude-mapping path="/openbanking/autoSetting"/>
 			<exclude-mapping path="/openbanking/nonAutoAccountInfoList"/>
-			<exclude-mapping path="/co-buying/goods"/>
+			<exclude-mapping path="/co-buying/goods/**"/>
 			<exclude-mapping path="/co-buying/easyPassword"/>
 			<exclude-mapping path="/co-buying/goodsDetail/**"/>
 			<exclude-mapping path="/co-buying/ownership"/>

@@ -69,10 +69,59 @@
 		and i.artwork_info_id = a.id
 	</sql>
 	
+	<sql id="artworkListPaging">
+		select *
+		from (
+		select rownum rn, pa.*
+		from (select a.id, a.title, a.writer_id, a.material, a.size_width,
+		a.size_height,a.production_year, a.artwork_content, a.recruit_start_date,
+		a.recruit_end_date, a.recruit_start_time, a.recruit_end_time, 
+		to_char(a.target_piece * 10000,'999,999,999,999,999,999') as target_price,
+		to_char(a.achie_piece * 10000,'999,999,999,999,999,999') as achie_price,
+		a.target_piece, a.estimated_price_max, a.estimated_price_min,
+		a.achie_piece, to_char(a.sell_price,'999,999,999,999,999,999') as sell_price, a.total_transfer_tax, 
+		to_char(a.sell_date,'yyyy-mm-dd') as sellDate, a.state, 
+		a.sell_place ,to_char(a.reg_date, 'yyyy-mm-dd') as regDate , w.writer_name, w.career,
+		w.award_history, w.writer_info, w.file_chan_name, w.file_path, w.orgn_file_name,
+        i.artwork_img as artwork_img,
+		case 
+			when a.state = '0' then '모집 예정'
+			when a.state = '1' then '모집 중'
+			when a.state = '2' then '모집 완료'
+			when a.state = '3' then '매각 투표'
+			when a.state = '4' then '투표 종료'
+			when a.state = '5' then '매각 중'
+			when a.state = '6' then '수익 분배'
+			when a.state = '7' then '매각 완료'
+		end as state_name, 
+		trunc(a.sell_date - a.reg_date, 0) + 1 as retentionPeriod,
+		round(sell_price / ((ESTIMATED_PRICE_MAX + ESTIMATED_PRICE_min)/2) * 100 - 100,2) as yield
+		from sj_artwork_info a, sj_writer_info w,
+        (select artwork_info_id, file_chan_name as artwork_img
+	    from sj_artwork_info_img 
+	    where (artwork_info_id, id) in (
+	        select artwork_info_id, max(id) as id
+	        from sj_artwork_info_img group by artwork_info_id
+	    )) i
+		where a.writer_id = w.id 
+		and i.artwork_info_id = a.id order by a.reg_date desc) pa
+		)
+		where rn between #{start} and #{end}
+	</sql>
+	
 	<!-- goods -->
 	<select id="selectArtworkInfoList" resultMap="artworkInfoMap">
 		<include refid="artworkList"/> 
 		order by a.reg_date desc
+	</select>
+	<!-- goods paging -->
+	<select id="selectArtworkInfoListPaging" resultMap="artworkInfoMap" parameterType="paging">
+		<include refid="artworkListPaging"/>
+	</select>
+	
+	<!-- goods 총 개수 출력 -->
+	<select id="selectArtworkCount" resultType="int" parameterType="paging"> 
+		select count(*) as cnt from sj_artwork_info
 	</select>
 	
 	<!-- 디테일 -->

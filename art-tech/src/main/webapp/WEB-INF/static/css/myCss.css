@@ -18,6 +18,7 @@
 .recommend-img-div img {
 	height: 350px;
 	width: 300px;
+	object-fit: contain;
 	
 }
 .thumb .mainArtworkImg {
@@ -342,6 +343,11 @@
 }
 .depositSelectTableContainer {
 	margin-bottom: 80px;
+}
+
+/*co-buying/goods*/
+.goodsItem-div {
+	margin-bottom: 60px;
 }
 
 /*co-buying/goodsDetail*/
@@ -1354,9 +1360,10 @@
 	margin-bottom: 70px;
 }
 
-.goodsImg {
-	height: 210px;
-	width: 350px;
+.single_service .goodsImg {
+	height: 350px;
+	width: 210px;
+	object-fit : contain;
 }
 
 .bradcam_area .container .row .bradcam_text p {

@@ -6,9 +6,12 @@ import java.util.Map;
 import kr.ac.arttech.cobuying.vo.ArtworkInfoImgVO;
 import kr.ac.arttech.cobuying.vo.ArtworkInfoVO;
 import kr.ac.arttech.cobuying.vo.PurchaseInfoVO;
+import kr.ac.arttech.util.PagingVO;
 
 public interface CobuyingDAO {
 	public List<ArtworkInfoVO> selectArtworkInfoList(); //goods list
+	public List<ArtworkInfoVO> selectArtworkInfoListPaging(PagingVO paging); //goods list paging
+	
 	public ArtworkInfoVO selectArtworkInfo(String id) ; //goods detail
 	public List<ArtworkInfoImgVO> selectArtworkInfoImgList(String id); //goods detail img
 	
@@ -27,4 +30,6 @@ public interface CobuyingDAO {
 	
 	public String selectWallet(String memberId);//wallet (publickey 가져오기)
 	public List<ArtworkInfoVO> selectDisposalList(); //매각진행현황 list
+	
+	public int selectArtworkCount(); //작품 총 개수 
 }
