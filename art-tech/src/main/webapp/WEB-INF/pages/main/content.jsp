@@ -145,7 +145,7 @@
    </c:if>
 
     <!-- counter_area  -->
-    <div class="counter_area">
+    <div class="counter_area ">
       	<div class="section_title mb-50 text-center">
              <h3>
                 1023일 동안 <br> 누적 거래현황
