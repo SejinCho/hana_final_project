@@ -1370,7 +1370,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/banner.jpg);
+  background-image: url(../img/banner/mainbanner.png);
 }
 
 /* line 4, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_slider.scss */
@@ -1386,7 +1386,7 @@ h3 {
 
 /* line 10, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_slider.scss */
 .slider_area::before {
-  background: #001D38;
+  /*background: #001D38;*/
   position: absolute;
   left: 0;
   top: 0;

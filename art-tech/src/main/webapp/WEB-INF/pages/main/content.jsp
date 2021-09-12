@@ -56,10 +56,10 @@
                 <div class="row align-items-center justify-content-center">
                     <div class="col-xl-8">
                         <div class="slider_text text-center justify-content-center">
-                            <p>For Personal & Business</p>
-                            <h3>Global Logistic Service
-                                For Business</h3>
-                                <a class="boxed-btn3" href="service.html">Our Services</a>
+                            <p></p>
+                            <h3></h3>
+                                <!-- <a class="boxed-btn3" href="service.html">Our Services</a>
+                       				 -->
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ public class CollaborativeFilteringUtil {
 		
 		try {
 			RConnection conn = new RConnection();
-			conn.eval("source('C:/art-tech/rscript/collaborative-filtering.R')"); //스크립트 실행
+			conn.eval("source('C:/art-tech/rscript/collaborative-filtering-run.R')"); //스크립트 실행
 			
 			//리스트 받아오기 (try - catch문 사용)
 			conn.eval("who <- as.numeric(which(pivot_data$MEMBER_ID=='"+ memberId +"'))");
@@ -22,6 +22,7 @@ public class CollaborativeFilteringUtil {
 			result = new ArrayList<>();
 			for(String id : ids) {
 				result.add(id);
+				System.out.println("id : " + id);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
