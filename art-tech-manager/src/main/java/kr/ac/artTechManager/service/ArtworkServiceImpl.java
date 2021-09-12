@@ -333,4 +333,9 @@ public class ArtworkServiceImpl implements ArtworkService{
 		
 		return memberList;
 	}
+	//성별 수
+	@Override
+	public MemberVO getGenderNo() {
+		return memberDao.selectGenderNo();
+	}
 }

@@ -125,6 +125,7 @@ public class ArtworkController {
 			e.printStackTrace();
 		}
 		
+		model.addAttribute("genderNo", service.getGenderNo());
 		return "manage/statistics";
 	}
 	

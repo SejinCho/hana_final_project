@@ -235,6 +235,30 @@ body {
 }
 
 /*로그인 많이 한 회원*/
+.loginTopTable {
+	margin-left : 0;
+	margin-right : auto;
+	border-collapse: collapse;
+	border-spacing: 0 35px;
+	width : 300px;
+	table-layout: fixed
+}
+.loginTopTable .loginTopmemberIdTitle th,
+.loginTopTable .loginTopmemberId td {
+	width: 100px;
+}
+.loginTopTable .loginTopmemberNameTitle th,
+.loginTopTable .loginTopmemberName td {
+	width: 80px;
+}
+.loginTopTable th {
+	font-size: 15px;
+}
+.loginTopTable td {
+	font-size: 13px;
+}
+
+/*
 .col-md-12 .loginTopmemberIdTitle {
 	font-weight: bold;
 	font-size: 15px;
@@ -267,4 +291,30 @@ body {
 .loginTopmemberId-div {
 	padding-top : 5px;
 	padding-bottom: 5px;
+}
+*/
+/*성비*/
+
+
+#genderDoughnut {
+	padding-left: 25px;
+}
+.x_content .legend-div {
+    position: absolute;
+    top: 62px;
+    left: 250px;
+}
+
+.x_content .legend-div ul li {
+    margin: 10px 0;
+    color: #666;
+}
+
+.x_content .legend-div ul li span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
 }

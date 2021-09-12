@@ -32,7 +32,53 @@
 <!-- Custom Theme Style -->
 <link href="${pageContext.request.contextPath}/static/css/custom.min.css" rel="stylesheet">
 <script type="text/javascript">
+let customLegend = function (chart) {
+    let ul = document.createElement('ul');
+    let color = chart.data.datasets[0].backgroundColor;
+
+    chart.data.labels.forEach(function (label, index) {
+        ul.innerHTML += `<li><span style="background-color: ` + color[index] + `"></span>` +  label + `</li>`;
+    });
+
+    return ul.outerHTML;
+};
 $(document).ready(function(){
+	
+	//성비 그래프
+	var ctx1 = document.getElementById('genderDoughnut').getContext('2d'); 
+	var chart1 = new Chart(ctx1, 
+		{ 
+			type: 'doughnut', // 
+			data: { 
+				labels: ['남', '여'], 
+				datasets: [{ 
+					data: ['${genderNo.manNo}','${genderNo.womanNo}'],
+					backgroundColor: [ 
+						'#F0E68C',
+						'#F08080'], 
+					label: '성비', 
+				}] 
+			},  //data
+			options : {
+				//maintainAspectRatio: false,
+				responsive: false,
+				legend : {
+					display : false
+				},
+				legendCallback: customLegend,
+				plugins : {
+					datalabels: {
+				      align: 'top',
+						  formatter: function(context, chart_obj) {
+						  	return calculate(chart_obj.dataIndex)
+				  	  }
+					    }
+				},
+			}
+		})
+	//성비 도넛 그래프 끝
+	document.getElementById('legend-div').innerHTML = chart1.generateLegend();
+	
 	//작품 당 click 그래프
 	$.ajax({
 		type : 'GET',
@@ -73,7 +119,8 @@ $(document).ready(function(){
 							yAxes: [{
 								ticks : {
 									min : 0,
-									stepSize : 1,
+									//max : row[row.length - 1] + 10,
+									stepSize : Math.round((row[row.length - 1] + 10) /5) ,
 									fontSize : 10,
 								},
 								gridLines : {
@@ -85,7 +132,27 @@ $(document).ready(function(){
 									display : false
 								}
 							}]
-						}
+						},
+						animation: {
+   		                  duration: 1,
+   		                  onComplete: function () {
+   		                     var chartInstance = this.chart,
+   		                        ctx = chartInstance.ctx;
+   		                     ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+   		                     ctx.fillStyle = '#808080';
+   		                     ctx.textAlign = 'center';
+   		                     ctx.textBaseline = 'bottom';
+
+   		                     this.data.datasets.forEach(function (dataset, i) {
+   		                        var meta = chartInstance.controller.getDatasetMeta(i);
+   		                        meta.data.forEach(function (bar, index) {
+   		                           //var data = dataset.data[index] + 'KRW';                     
+   		                           var data = dataset.data[index] ;                     
+   		                           ctx.fillText(data, bar._model.x, bar._model.y - 5);
+   		                        });
+   		                     });
+   		                  }
+   		               } //animation
 					}
 				}
 			);
@@ -182,34 +249,34 @@ $(document).ready(function(){
           <div class="row" style="display: inline-block;" >
           <div class="tile_count">
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+              <span class="count_top">Total Users</span>
               <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <span class="count_bottom">From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
+              <span class="count_top">Average Time</span>
               <div class="count">123.50</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+              <span class="count_bottom"><i class="green">3%</i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
+              <span class="count_top"> Total Males</span>
               <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green">34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
+              <span class="count_top">Total Females</span>
               <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+              <span class="count_bottom"><i class="red">12% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
+              <span class="count_top"> Total Collections</span>
               <div class="count">2,315</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green">34% </i> From last Week</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
+              <span class="count_top"> Total Connections</span>
               <div class="count">7,325</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green">34% </i> From last Week</span>
             </div>
           </div>
         </div>
@@ -243,22 +310,21 @@ $(document).ready(function(){
                   </div>
 				  
 				  <div class="col-md-12 col-sm-12 loginTopmemberId-div">
-                    <div>
-                      <span class="loginTopmemberIdTitle">member Id</span>
-                      <span class="loginTopmemberNameTitle">name</span>
-                      <span class="loginTopmemberFreTitle">frequency</span>
-                    </div>
+				  	<table class="loginTopTable">
+				  		<tr>	
+				  			<th class="loginTopmemberIdTitle">member Id</th>
+				  			<th class="loginTopmemberNameTitle">name</th>
+				  			<th class="loginTopmemberFreTitle">frequency</th>
+				  		</tr>
+				  		<c:forEach items="${loginTopMemberList}" var="member">
+				  			<tr>
+								<td class="loginTopmemberId">${member.id }</td>
+								<td class="loginTopmemberName">${member.name }</td>
+								<td class="loginTopmemberFre">${member.frequencyLogin }</td>
+				  			</tr>
+				  		</c:forEach>
+				  	</table>
                   </div>
-                  
-                  <c:forEach items="${loginTopMemberList}" var="member">
-	                  <div class="col-md-12 col-sm-12 loginTopmemberId-div">
-	                    <div>
-	                      <span class="loginTopmemberId">${member.id }</span>
-	                      <span class="loginTopmemberName">${member.name }</span>
-	                      <span class="loginTopmemberFre">${member.frequencyLogin }</span>
-	                    </div>
-	                  </div>
-                  </c:forEach>
                 </div>
 
                 <div class="clearfix"></div>
@@ -269,6 +335,7 @@ $(document).ready(function(){
           <br />
 
           <div class="row">
+          <!-- 조회 많이 한 작품 -->
             <div class="col-md-4 col-sm-4 ">
               <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
@@ -278,90 +345,27 @@ $(document).ready(function(){
                 </div>
                 <div class="x_content">
                   <div class="widget_summary">
-                    <canvas id="goodsClickGraph" class="flot-base" width="400" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 280px;"></canvas>
+                    <canvas id="goodsClickGraph" class="flot-base" width="400" height="230" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 515px; height: 280px;"></canvas>
                   </div>
               </div>
             </div>
             </div>
+            <!-- 조회 많이 한 작품 끝-->
             
+            <!-- 성비 -->
             <div class="col-md-4 col-sm-4 ">
               <div class="x_panel tile fixed_height_320 overflow_hidden">
                 <div class="x_title">
-                  <h2>Device Usage</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Settings 1</a>
-                          <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
+                  <h2>남녀 비율</h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <table class="" style="width:100%">
-                    <tr>
-                      <th style="width:37%;">
-                        <p>Top 5</p>
-                      </th>
-                      <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 ">
-                          <p class="">Device</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 ">
-                          <p class="">Progress</p>
-                        </div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                      </td>
-                      <td>
-                        <table class="tile_info">
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square blue"></i>IOS </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square green"></i>Android </p>
-                            </td>
-                            <td>10%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square purple"></i>Blackberry </p>
-                            </td>
-                            <td>20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td>30%</td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+                	<canvas class="canvasDoughnut" id="genderDoughnut" height="200" width="250" style="margin: 15px 10px 10px 0"></canvas>
+                	<div id="legend-div" class="legend-div"></div>
                 </div>
               </div>
             </div>
-
+			<!-- 끝 -->
 
             <div class="col-md-4 col-sm-4 ">
               <div class="x_panel tile fixed_height_320">

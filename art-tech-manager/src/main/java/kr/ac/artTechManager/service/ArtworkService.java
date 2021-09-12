@@ -25,4 +25,5 @@ public interface ArtworkService {
 	public Map<String, Object> getGoodsClickGraph() throws Exception;//작품 당 클릭 수 그래프
 	public LinkedHashMap<String, Integer> getloginTime() throws Exception; //로그인 시간 데이터
 	public List<MemberVO> geLoginTopMemberList() throws Exception; //로그인 많이 한 회원
+	public MemberVO getGenderNo() ; //성별 수
 }

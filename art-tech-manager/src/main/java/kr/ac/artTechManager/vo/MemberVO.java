@@ -34,4 +34,8 @@ public class MemberVO  {
 	//로그인 몇번했니
 	private int frequencyLogin; 
 	
+	//남자여자 수
+	public String manNo;
+	public String womanNo;
+	
 }

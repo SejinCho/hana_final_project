@@ -36,4 +36,11 @@
 	<select id="selectMemberName" parameterType="String" resultType="String">
 		select name from sj_member where id = #{id}
 	</select>
+	
+	<!-- 성별 수 -->
+	<select id="selectGenderNo" resultType="member">
+		select f.*, m.* from
+		(select count(*) as manNo from sj_member where gender='F') f, 
+		(select count(*) as womanNo from sj_member where gender='M') m
+	</select>
 </mapper>
