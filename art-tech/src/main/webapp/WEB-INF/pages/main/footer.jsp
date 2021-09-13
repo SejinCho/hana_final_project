@@ -60,14 +60,27 @@
             ws.close();
         }
         
+        /*
         function writeResponse(text){
             toastr.options.escapeHtml = true;
 			toastr.options.closeButton = true;
 			toastr.options.newestOnTop = false;
 			toastr.options.progressBar = false;
-			toastr.info(text,'[하나Art] 알림', {timeOut: 5000});
+			toastr.info(text,'[하나Art] 알림', {timeOut: 7000});
         }
-    	
+        */
+        function writeResponse(text){
+            toastr.options = {
+           		"closeButton": false,	
+           		"positionClass": "toast-top-right",
+           		"showDuration": "300",
+           	    "hideDuration": "1000",
+           		"timeOut": "7000",
+           		"onclick": function (){ location.href ="${ pageContext.request.contextPath }/" },
+           		"hideMethod": "fadeOut"
+            }
+			toastr.info(text,'[하나Art] 알림');
+        }
     	openSocket()  
     
     </script>

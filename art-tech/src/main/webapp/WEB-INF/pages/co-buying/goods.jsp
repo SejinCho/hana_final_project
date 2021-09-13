@@ -45,29 +45,29 @@
             	<c:forEach items="${artworkInfoList }" var="artworkInfo" >
 	            	<!-- 하나  -->
 	                <div class="col-md-6 col-lg-4 goodsItem-div">
-	                    <div class="single_service">
+	                    <div class="single_service goods-items-div">
 	                        <div class="thumb ">
 	                            <img class="goodsImg" src="/artworkImg/${artworkInfo.artworkImg }" alt="">
 	                        </div>
-	                        <div class="service_info">
+	                        <div class="service_info goods-items-content-div">
 	                        	<c:choose>
 	                        		<c:when test="${artworkInfo.state == 0 }">
-	                        			<p>모집 예정</p>
+	                        			<span class="goods-state1">모집 예정</span>
 	                        		</c:when>
 	                        		<c:when test="${artworkInfo.state == 1 }">
-	                        			<p>모집 중</p>
+	                        			<span class="goods-state1">모집 중</span>
 	                        		</c:when>
 	                        		<c:when test="${artworkInfo.state == 2 || artworkInfo.state == 3 || artworkInfo.state == 4 }">
-	                        			<p>모집 완료</p>
+	                        			<span class="goods-state2">모집 완료</span>
 	                        		</c:when>
 	                        		<c:when test="${artworkInfo.state == 5 }">
-	                        			<p>매각 중</p>
+	                        			<span class="goods-state2">매각 중</span>
 	                        		</c:when>
 	                        		<c:otherwise>
-	                        			<p>수익 분배</p>
+	                        			<span class="goods-state2">수익 분배</span>
 	                        		</c:otherwise>
 	                        	</c:choose>
-	                            <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artworkInfo.id}">${artworkInfo.title }</a></h3>
+	                            <p class="goods-title"><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artworkInfo.id}">${artworkInfo.title }</a></p>
 	                            <p>${artworkInfo.writerName }</p>
 	                            
 	                            <div class="progress">

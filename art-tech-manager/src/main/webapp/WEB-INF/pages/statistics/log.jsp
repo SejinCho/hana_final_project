@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
+
 <!-- Bootstrap -->
 <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
 <!-- Font Awesome -->
@@ -46,13 +48,14 @@ $(document).ready(function(){
 	
 	//성비 그래프
 	var ctx1 = document.getElementById('genderDoughnut').getContext('2d'); 
+        
 	var chart1 = new Chart(ctx1, 
 		{ 
 			type: 'doughnut', // 
 			data: { 
 				labels: ['남', '여'], 
 				datasets: [{ 
-					data: ['${genderNo.manNo}','${genderNo.womanNo}'],
+					data: [${genderNo.manNo},${genderNo.womanNo}],
 					backgroundColor: [ 
 						'#F0E68C',
 						'#F08080'], 
@@ -65,6 +68,13 @@ $(document).ready(function(){
 				legend : {
 					display : false
 				},
+				pieceLabel: { 
+	                  mode:"percentage",
+	                  position:"default",
+	                  fontSize: 12,
+	                  fontColor : 'rgb(2,2,2)',
+	                  fontStyle: 'bold'
+	               },
 				legendCallback: customLegend,
 				plugins : {
 					datalabels: {
@@ -74,6 +84,7 @@ $(document).ready(function(){
 				  	  }
 					    }
 				},
+				
 			}
 		})
 	//성비 도넛 그래프 끝

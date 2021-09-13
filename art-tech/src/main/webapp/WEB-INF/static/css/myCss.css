@@ -26,6 +26,9 @@
 	height: 350px;
 	object-fit: contain;
 }
+.arttechnew-container {
+	background-color: #F8F8FF;
+}
 
 /*myDeposit.jsp*/
 
@@ -347,9 +350,39 @@
 
 /*co-buying/goods*/
 .goodsItem-div {
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 }
-
+.goods-items-div {
+	border: 1px solid #DCDCDC;
+	border-radius: 10px;
+}
+.goods-items-content-div .goods-title {
+	font-weight: bold;
+}
+.goods-items-content-div .goods-state1 {
+	border-radius: 10px;
+	background-color: #2F4F4F;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top : 5px;
+	padding-bottom : 5px ;
+	margin-bottom : 5px;
+	width: 85px;
+	color: white;
+	font-size: 10px;
+}
+.goods-items-content-div .goods-state2 {
+	border-radius: 10px;
+	background-color: #D3D3D3;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top : 5px;
+	padding-bottom : 5px ;
+	margin-bottom : 5px;
+	width: 85px;
+	color: #7C7C7C;
+	font-size: 10px;
+}
 /*co-buying/goodsDetail*/
 
 .goodsDetail_container {
@@ -1361,11 +1394,18 @@
 }
 
 .single_service .goodsImg {
-	height: 350px;
-	width: 210px;
+	padding-top : 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 330px;
+	width: 190px;
 	object-fit : contain;
 }
-
+.single_service .goods-items-content-div {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
 .bradcam_area .container .row .bradcam_text p {
 	font-size: 30px;
 	color: white;

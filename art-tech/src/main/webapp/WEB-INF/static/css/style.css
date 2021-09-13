@@ -2135,7 +2135,7 @@ h3 {
   background-repeat: no-repeat;
   */
   position: relative;
-  padding: 50px 0 0px 0;
+  padding: 50px 0 50px 0;
 }
 
 @media (max-width: 767px) {
@@ -5495,7 +5495,7 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus {
 
 /* line 40, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_service.scss */
 .service_area .single_service .service_info p {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   color: #919191;
   margin-bottom: 0;

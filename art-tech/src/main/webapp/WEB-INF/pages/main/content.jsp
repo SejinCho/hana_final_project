@@ -147,9 +147,9 @@
     <!-- counter_area  -->
     <div class="counter_area ">
       	<div class="section_title mb-50 text-center">
-             <h3>
+             <h4>
                 1023일 동안 <br> 누적 거래현황
-             </h3>
+             </h4>
              <p>2021.08.01 기준</p>
          </div>
         <div class="container">
@@ -262,7 +262,7 @@
     <!-- /testimonial_area  -->
 
 	<!-- service_area  -->
-    <div class="service_area">
+    <div class="service_area arttechnew-container">
     	<div class="section_title mb-50 text-center">
              <h3>
                  A.T 미디어
