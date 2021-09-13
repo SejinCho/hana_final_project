@@ -1242,12 +1242,22 @@
 .myHistory-disposal-card {
 	margin-top: 50px;
 }
-
-.myHistory-disposal-card .item img {
+.myHistory-disposal-card .single_service {
+	width: 320px;
+	height: 370px;
 	border-radius : 10px;
+	border: 1px solid #DCDCDC;
+}
+.myHistory-disposal-card .col-md-6 .front img{
+	padding-top : 10px;
+	padding-bottom : 10px;
+	padding-left : 10px; 
+	width: 300px;
+	height: 350px;
+	object-fit: contain;
 }
 .myHistory-disposal-card .col-md-6 {
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 .myHistory-disposal-card .col-md-6 {
 	/*position:relative;*/
@@ -1264,11 +1274,7 @@
 	transform: rotateY(0deg);
 	backface-visibility: hidden;
 }
-.myHistory-disposal-card .col-md-6 .front img{
-	width: 300px;
-	height: 350px;
-	object-fit: cover;
-}
+
 .myHistory-disposal-card .col-md-6 .back {
 	z-index:1;
 	transform: rotateY(180deg);

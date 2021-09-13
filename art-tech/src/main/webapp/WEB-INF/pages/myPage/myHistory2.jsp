@@ -30,8 +30,8 @@
 	    					datasets: [{ 
 	    						type : 'bar',
 	    						backgroundColor: [ 
-	    							'#B0C4DE',
-	    							'#778899'
+	    							'rgba(255, 99, 132, 1)',
+	    							'rgba(54, 162, 235, 1)'
 	    							], 
 	    						borderColor: 'rgb(255, 99, 132)',
 	    						data : [${disposalInfo.initiaCost}, ${disposalInfo.revenue}],
@@ -209,7 +209,7 @@
 	<div class="myHistory_main_title_container">
 		<p>거래내역</p>
 	</div>
-	<div class="container myDeposit_inout_container ">
+	<div class="container myDeposit_inout_container">
 		<div class="myHistory_menu_select_container">
 			<span class="myHistory_menu_select myHistory_menu_active">전체</span>
 			<span class="myHistory_menu_select">모집중</span>
