@@ -338,4 +338,9 @@ public class ArtworkServiceImpl implements ArtworkService{
 	public MemberVO getGenderNo() {
 		return memberDao.selectGenderNo();
 	}
+	//공동구매 참여 or 미참여
+	@Override
+	public MemberVO getCobuyingParticipation() {
+		return memberDao.selectCobuyingParticipation();
+	}
 }

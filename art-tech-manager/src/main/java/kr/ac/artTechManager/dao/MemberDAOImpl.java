@@ -31,4 +31,9 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO selectGenderNo() {
 		return sqlSession.selectOne("kr.ac.kopo.manage.member.selectGenderNo");
 	}
+	//공동구매 참여/미참여
+	@Override
+	public MemberVO selectCobuyingParticipation() {
+		return sqlSession.selectOne("kr.ac.kopo.manage.member.selectCobuyingParticipation");
+	}
 }

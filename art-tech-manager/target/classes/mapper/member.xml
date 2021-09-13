@@ -43,4 +43,13 @@
 		(select count(*) as manNo from sj_member where gender='F') f, 
 		(select count(*) as womanNo from sj_member where gender='M') m
 	</select>
+	<!-- 공동구매 참여/미참여 -->
+	<select id="selectCobuyingParticipation" resultType="member">
+		select 
+		(select count(*) from sj_member s
+		where s.id in (select p.member_id from sj_purchase_info p GROUP by p.member_id)) as participation,  
+		(select count(*) from sj_member s
+		where s.id not in (select p.member_id from sj_purchase_info p GROUP by p.member_id)) as nonParticipation
+		from dual
+	</select>
 </mapper>

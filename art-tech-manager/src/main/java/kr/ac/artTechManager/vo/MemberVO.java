@@ -38,4 +38,8 @@ public class MemberVO  {
 	public String manNo;
 	public String womanNo;
 	
+	//공동구매 참여/미참여
+	public String participation;
+	public String nonParticipation;
+	
 }

@@ -26,4 +26,5 @@ public interface ArtworkService {
 	public LinkedHashMap<String, Integer> getloginTime() throws Exception; //로그인 시간 데이터
 	public List<MemberVO> geLoginTopMemberList() throws Exception; //로그인 많이 한 회원
 	public MemberVO getGenderNo() ; //성별 수
+	public MemberVO getCobuyingParticipation();//공동구매 참여 or 미참여
 }

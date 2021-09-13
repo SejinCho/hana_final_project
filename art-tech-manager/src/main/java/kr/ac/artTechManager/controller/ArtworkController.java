@@ -126,6 +126,7 @@ public class ArtworkController {
 		}
 		
 		model.addAttribute("genderNo", service.getGenderNo());
+		model.addAttribute("cobuyingParticipation", service.getCobuyingParticipation());
 		return "manage/statistics";
 	}
 	

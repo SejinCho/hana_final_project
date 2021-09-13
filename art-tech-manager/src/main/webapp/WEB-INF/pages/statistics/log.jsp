@@ -57,7 +57,7 @@ $(document).ready(function(){
 				datasets: [{ 
 					data: [${genderNo.manNo},${genderNo.womanNo}],
 					backgroundColor: [ 
-						'#F0E68C',
+						'#5F9EA0',
 						'#F08080'], 
 					label: '성비', 
 				}] 
@@ -87,8 +87,52 @@ $(document).ready(function(){
 				
 			}
 		})
-	//성비 도넛 그래프 끝
 	document.getElementById('legend-div').innerHTML = chart1.generateLegend();
+	//성비 도넛 그래프 끝
+	var ctx2 = document.getElementById('genderDoughnut2').getContext('2d'); 
+        
+	var chart2 = new Chart(ctx2, 
+		{ 
+			type: 'doughnut', // 
+			data: { 
+				labels: ['참여', '미참여'], 
+				datasets: [{ 
+					data: [${cobuyingParticipation.participation},${cobuyingParticipation.nonParticipation}],
+					backgroundColor: [ 
+						'#BDB76B',
+						'#F08080'], 
+					label: '공동구매 참여', 
+				}] 
+			},  //data
+			options : {
+				//maintainAspectRatio: false,
+				responsive: false,
+				legend : {
+					display : false
+				},
+				pieceLabel: { 
+	                  mode:"percentage",
+	                  position:"default",
+	                  fontSize: 12,
+	                  fontColor : 'rgb(2,2,2)',
+	                  fontStyle: 'bold'
+	               },
+				legendCallback: customLegend,
+				plugins : {
+					datalabels: {
+				      align: 'top',
+						  formatter: function(context, chart_obj) {
+						  	return calculate(chart_obj.dataIndex)
+				  	  }
+					    }
+				},
+				
+			}
+		})
+	document.getElementById('legend-div2').innerHTML = chart2.generateLegend();
+	//공동구매 참여비율 시작
+	
+	//공동구매 참여비율 끝
 	
 	//작품 당 click 그래프
 	$.ajax({
@@ -377,56 +421,23 @@ $(document).ready(function(){
               </div>
             </div>
 			<!-- 끝 -->
-
+			
+			<!-- 공동구매 참여 미참여 시작 -->
             <div class="col-md-4 col-sm-4 ">
               <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
-                  <h2>Quick Settings</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Settings 1</a>
-                          <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
+                  <h2>공동구매 참여비율</h2>
+                  
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <div class="dashboard-widget-content">
-                    <ul class="quick-list">
-                      <li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
-                      </li>
-                      <li><i class="fa fa-bars"></i><a href="#">Subscription</a>
-                      </li>
-                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-                      </li>
-                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-                      </li>
-                      <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
-                      </li>
-                    </ul>
-
-                    <div class="sidebar-widget">
-                        <h4>Profile Completion</h4>
-                        <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
-                        <div class="goal-wrapper">
-                          <span id="gauge-text" class="gauge-value pull-left">0</span>
-                          <span class="gauge-value pull-left">%</span>
-                          <span id="goal-text" class="goal-value pull-right">100%</span>
-                        </div>
-                    </div>
-                  </div>
+                	<canvas class="canvasDoughnut" id="genderDoughnut2" height="200" width="250" style="margin: 15px 10px 10px 0"></canvas>
+                	<div id="legend-div2" class="legend-div"></div>
                 </div>
+                
               </div>
             </div>
+            <!-- 공동구매 참여 미참여 끝 -->
 
           </div>
 

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CoderDocs - Bootstrap 5 Documentation Template For Software Projects</title>
+    <title>Art Scan</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/artcoin/myCss.css">
 </head> 
 <body>
