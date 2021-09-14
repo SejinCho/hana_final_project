@@ -34,7 +34,7 @@ public class IndexController {
 		String resultJoin = (String) session.getAttribute("resultJoin");
 		if(resultJoin != null || resultJoin == "") {
 			session.removeAttribute("resultJoin");
-			mav.addObject("resultJoin", resultJoin); //회원가입 성공 시 success가 index로 감
+			mav.addObject("resultJoin", resultJoin); //회원가입 성공 시 success가 index로 간다.
 		}
 		
 		//뉴스기사 크롤링

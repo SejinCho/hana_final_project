@@ -128,13 +128,13 @@ public class ArtCoinService {
         ArtChain.UTXOs.put(artTransaction.outputs.get(0).id, artTransaction.outputs.get(0));
         Block block = null;
 
-        if(ArtChain.blockchain.size() == 0) { //블록이 없는 경우
+        if(ArtChain.blockchain.size() == 0) { //블록체인에 아무 것도 없는 경우
         	block = new Block("0"); //최초 블록 생성
-        } else {
-        	block = new Block(ArtChain.blockchain.get(ArtChain.blockchain.size()-1).hash);
+        } else { //있을 경우에
+        	block = new Block(ArtChain.blockchain.get(ArtChain.blockchain.size()-1).hash); //블록 생성
         }
         
-        if (block.addTransaction(artTransaction)) {
+        if (block.addTransaction(artTransaction)) { //블록체인에 해당 블록 추가(즉, 작품 등록시 1개의 트랜잭션만 있는 블록이 생성)
             ArtChain.addBlock(block);
         } else {
             throw new ArtChainException("block generated fail");
