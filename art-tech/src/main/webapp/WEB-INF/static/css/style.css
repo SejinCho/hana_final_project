@@ -1881,6 +1881,7 @@ h3 {
   font-size: 42px;
   font-weight: 500;
   color: #001D38;
+  
 }
 
 /* line 69, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_about.scss */
@@ -1893,8 +1894,11 @@ h3 {
 
 /* line 1, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_counter.scss */
 .counter_area {
+  margin-top : 80px;
   padding-bottom: 85px;
   padding-top: 12px;
+  background-image: url( "../img/banner/counter.png" );
+  background-size: cover;
 }
 
 
@@ -1920,7 +1924,7 @@ h3 {
 
 /* line 15, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_counter.scss */
 .counter_area .single_counter h3 {
-  color: #008485;
+  color: black;
   font-weight: 500;
   font-size: 46px;
   margin-bottom: 5px;
@@ -2135,7 +2139,7 @@ h3 {
   background-repeat: no-repeat;
   */
   position: relative;
-  padding: 50px 0 50px 0;
+  padding: 150px 0 100px 0;
 }
 
 @media (max-width: 767px) {

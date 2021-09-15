@@ -67,48 +67,9 @@
         </div>
     </div>
     <!-- slider_area_end -->
+    
+    
 
-	<!-- service_area start -->
-    <div class="service_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title mb-50 text-center">
-                        <h3>
-                            Art work
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="service_active owl-carousel">
-                    	<c:forEach items="${artworkList }" var="artwork" begin="0" end="4">
-                    	<!-- 한개 시작 -->
-                        <div class="single_service">
-                            <div class="thumb">
-                                <img  class="mainArtworkImg" src="/artworkImg/${artwork.artworkImg }" alt="">
-                            </div>
-                            <div class="service_info">
-                                <h3><a href="${pageContext.request.contextPath}/co-buying/goodsDetail/${artwork.id}">${artwork.title }</a></h3>
-                                <p>${artwork.writerName }</p>
-                            </div>
-                            <div class="progress">
-							  <div class="progress-bar" role="progressbar" style="width: ${artwork.achiePiece}%; background-color: #008485" aria-valuenow="${artwork.achiePiece}" aria-valuemin="0" aria-valuemax="${artwork.targetPiece }"></div>
-							</div>
-                            <p> ${artwork.achiePiece } / ${artwork.targetPiece } 조각 </p>
-                        </div>
-                        <!-- 한개 끝 -->
-                        </c:forEach>
-                        
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-	<!-- service_area end -->
-	
 	<c:if test="${not empty recommendArtworkInfoList }">
 		<!-- recommend_goods -->
 		<div class="recommend_goods_contain">
@@ -146,17 +107,17 @@
 
     <!-- counter_area  -->
     <div class="counter_area ">
-      	<div class="section_title mb-50 text-center">
+      	<div class="main-counter-title mb-50 text-center ">
              <h4>
                 1023일 동안 <br> 누적 거래현황
              </h4>
              <p>2021.08.01 기준</p>
          </div>
         <div class="container">
-            <div class="offcan_bg">
+            <div>
                 <div class="row">
                     <div class="col-xl-4 col-md-3">
-                        <div class="single_counter text-center">
+                        <div class="single_counter main-text-right">
                             <h3> <span class="counter">42</span> <span>+</span> </h3>
                             <p>총 판매금액</p>
                         </div>
@@ -168,7 +129,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-3">
-                        <div class="single_counter text-center">
+                        <div class="single_counter main-text-left">
                             <h3> <span class="counter">2342</span></h3>
                             <p>총 판매 조각 수</p>
                         </div>
@@ -178,7 +139,7 @@
                 
                 <div class="row">
                     <div class="col-xl-4 col-md-3">
-                        <div class="single_counter text-center">
+                        <div class="single_counter main-text-right">
                             <h3> <span class="counter">42</span> <span>+</span> </h3>
                             <p>총 매각 작품 수</p>
                         </div>
@@ -190,7 +151,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-3">
-                        <div class="single_counter text-center">
+                        <div class="single_counter main-text-left">
                             <h3> <span class="counter">2342</span></h3>
                             <p>연환산 평균 수익률</p>
                         </div>
