@@ -13,11 +13,15 @@ public class CollaborativeFilteringUtil {
 		
 		try {
 			RConnection conn = new RConnection();
-			conn.eval("source('C:/art-tech/rscript/collaborative-filtering-run.R')"); //스크립트 실행
-			
+			conn.eval("source('C:/art-tech/rscript/collaborative-filtering-model.R')"); //스크립트 실행
 			//리스트 받아오기 (try - catch문 사용)
+			System.out.println("member id : " + memberId);
 			conn.eval("who <- as.numeric(which(pivot_data$MEMBER_ID=='"+ memberId +"'))");
-			RList list = conn.eval("as(predict(rec_UBCF, matrix_data[who, ], type = 'topNList', n = 3), 'list')").asList();
+			conn.eval("who_analysis_data = analysis_data[who, ]");
+			conn.eval("who_analysis_data[who_analysis_data == 0] <- NA");
+			conn.eval("who_matrix_data <- as(as(who_analysis_data, 'matrix'), 'realRatingMatrix')");
+			
+			RList list = conn.eval("as(predict(rec_UBCF, who_matrix_data, type = 'topNList', n = 3), 'list')").asList();
 			String[] ids = list.at(0).asStrings();
 			result = new ArrayList<>();
 			for(String id : ids) {

@@ -25,11 +25,18 @@ public class Wallet {
     public void generateKeyPair() {
         try {
             Security.addProvider(new BouncyCastleProvider());
+            //KeyPairGenerator 클래스는 공개키와 비공개키의 페어를 생성하기 위해서 사용
+            //타원 곡선을 특정한 알고리즘(ECDSA)을 적용해 키를 생성
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("ECDSA","BC");
+            //SecureRandom : 예측할 수 없는 seed를 이용하여 난수를 생성
+            //SHA1PRNG 알고리즘을 사용
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+            //ECGenParameterSpec :해당 (미리 계산 된) 타원 곡선 도메인 매개 변수를 생성하기 위해 
+            //표준 (또는 미리 정의 된) 이름 stdName 을 사용하여 EC 매개 변수 생성을위한 매개 변수 사양 을 생성
             ECGenParameterSpec ecSpec = new ECGenParameterSpec("prime192v1");
             // Initialize the key generator and generate a KeyPair
             keyGen.initialize(ecSpec, random); //256
+            
             KeyPair keyPair = keyGen.generateKeyPair();
             // Set the public and private keys from the keyPair
             privateKey = keyPair.getPrivate();
