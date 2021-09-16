@@ -232,7 +232,7 @@
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 구입 금액</span>
-		    				<span class="content_middle">1224134원</span>
+		    				<span class="content_middle">1,241,660원</span>
 		    			</div>
 		    			
 		    		</div>
@@ -242,23 +242,19 @@
 		    		<div class="total_cobuying_summary">
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 매각 금액</span>
-		    				<span class="content_middle1">55.16%</span>
+		    				<span class="content_middle1">2,231,750원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 플랫폼 이용료</span>
-		    				<span class="content_long">123421원</span>
+		    				<span class="content_long">123,421원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 부가세</span>
-		    				<span class="content">334일</span>
-		    			</div>
-		    			<div class="total_cobuying_summary_one2">
-		    				<span class="title">총 양도세</span>
-		    				<span class="content">334일</span>
+		    				<span class="content">54,660원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 실 지급액</span>
-		    				<span class="content_middle1">334일</span>
+		    				<span class="content_middle1">2,034,150원</span>
 		    			</div>
 		    		</div>
 		    	</div>

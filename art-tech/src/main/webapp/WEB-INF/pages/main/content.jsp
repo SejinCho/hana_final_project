@@ -109,28 +109,28 @@
     <div class="counter_area ">
       	<div class="main-counter-title mb-50 text-center ">
              <h4>
-                1023일 동안 <br> 누적 거래현황
+                1051일 동안 <br> 누적 거래현황
              </h4>
-             <p>2021.08.01 기준</p>
+             <p>2021.09.16 기준</p>
          </div>
         <div class="container">
             <div>
                 <div class="row">
                     <div class="col-xl-4 col-md-3">
                         <div class="single_counter main-text-right">
-                            <h3> <span class="counter">42</span> <span>+</span> </h3>
+                            <h3> <span class="single_counter_text">4,360,170,100 </span> <span>KRW+</span> </h3>
                             <p>총 판매금액</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-3">
                         <div class="single_counter text-center">
-                            <h3> <span class="counter">97</span> <span>+</span> </h3>
+                            <h3> <span class="single_counter_text">90</span> <span>+</span> </h3>
                             <p>총 모집 작품 수</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-3">
                         <div class="single_counter main-text-left">
-                            <h3> <span class="counter">2342</span></h3>
+                            <h3> <span class="single_counter_text" >451,164조각</span></h3>
                             <p>총 판매 조각 수</p>
                         </div>
                     </div>
@@ -140,19 +140,19 @@
                 <div class="row">
                     <div class="col-xl-4 col-md-3">
                         <div class="single_counter main-text-right">
-                            <h3> <span class="counter">42</span> <span>+</span> </h3>
+                            <h3> <span class="single_counter_text">17</span> <span>+</span> </h3>
                             <p>총 매각 작품 수</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-3">
                         <div class="single_counter text-center">
-                            <h3> <span class="counter">97</span> <span>+</span> </h3>
+                            <h3> <span class="single_counter_text">52.36%</span> <span>+</span> </h3>
                             <p>매각 평균 수익률</p>
                         </div>
                     </div>
                     <div class="col-xl-4 col-md-3">
                         <div class="single_counter main-text-left">
-                            <h3> <span class="counter">2342</span></h3>
+                            <h3> <span class="single_counter_text">277.07</span>%</h3>
                             <p>연환산 평균 수익률</p>
                         </div>
                     </div>

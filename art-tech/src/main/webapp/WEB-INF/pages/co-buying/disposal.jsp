@@ -36,7 +36,7 @@
     <div class="disposal_summary_container">
     	<div class="container">
     		<div class="container_main_title">
-    			<span>아트하나의 공동구매 작품매각 진행현황을 한 눈에 확인하실 수 있습니다.</span>
+    			<span>하나아트의 공동구매 작품매각 진행현황을 한 눈에 확인하실 수 있습니다.</span>
     		</div>
 	    	<div class="row">
 		    	<div class="col-xl-6">

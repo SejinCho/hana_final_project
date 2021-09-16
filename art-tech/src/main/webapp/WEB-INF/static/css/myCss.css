@@ -1,7 +1,16 @@
+.myAccountList-h2-color {
+	background-color: #008485;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+
 /*index*/
 .main-counter-title {
 	padding-top : 60px;
 }
+
 .main-counter-title h4{
 	font-size: 25px;
 	font-weight: bold;

@@ -10,7 +10,7 @@
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/board/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/account/openBanking.css">
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
 	
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/js/myJs.js"></script>
@@ -23,7 +23,7 @@
 			<c:choose>
 				<c:when test="${status.index == 0 }"> <!-- 맨 처음 -->
 					<div class="openBanking-block">
-						<h2>${accountInfo.bankName } 계좌 조회</h2>
+						<h2 class="myAccountList-h2-color">${accountInfo.bankName } 계좌 조회</h2>
 						
 						<table class="table table-hover">
 							<thead>
@@ -61,7 +61,7 @@
 						<hr>
 					</div>
 					<div class="openBanking-block">
-						<h2>${accountInfo.bankName } 계좌 조회</h2>
+						<h2 class="myAccountList-h2-color">${accountInfo.bankName } 계좌 조회</h2>
 						
 						<table class="table table-hover">
 							<thead>
