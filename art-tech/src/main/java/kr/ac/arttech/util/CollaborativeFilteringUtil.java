@@ -21,7 +21,7 @@ public class CollaborativeFilteringUtil {
 			conn.eval("who_analysis_data[who_analysis_data == 0] <- NA");
 			conn.eval("who_matrix_data <- as(as(who_analysis_data, 'matrix'), 'realRatingMatrix')");
 			
-			RList list = conn.eval("as(predict(rec_UBCF, who_matrix_data, type = 'topNList', n = 3), 'list')").asList();
+			RList list = conn.eval("as(predict(recomm_best, who_matrix_data, type = 'topNList', n = 3), 'list')").asList();
 			String[] ids = list.at(0).asStrings();
 			result = new ArrayList<>();
 			for(String id : ids) {
