@@ -28,13 +28,13 @@
 			alert('여기요')
 			Kakao.Link.sendDefault({
 			  objectType: 'feed',
-			  content: { 
+			  content: { /artworkImg/${img.fileChanName }
 			    title: '하나아트 공동구매 작품 공유',
-			    description: '[${artworkInfo.writerName }] 화백의 작품 [${artworkInfo.title }]',
+			    description: '[ ${artworkInfo.writerName } ] 화백의 작품 [ ${artworkInfo.title } ]',
 			    imageUrl:
-			      'https://postfiles.pstatic.net/MjAyMTA5MTdfMSAg/MDAxNjMxODUzMzg1NTY0.v9lqKYFHvWN1FpTh0jWkMZaLlvPCGsb5Vli8sFKCeCQg.TX-Yjv6Ktgck5AuKNlVyAQAQnMVQVNpnaOphQm3o2HQg.JPEG.whtpwls777/%EC%82%AC%EC%9E%A5%EB%8B%98.jpg?type=w773',
+			      'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
 			    link: {
-			      mobileWebUrl: 'http://localhost:8080/arttech/co-buying/goodsDetail/${artworkInfo.id}',
+			      mobileWebUrl: 'https://developers.kakao.com',
 			      androidExecutionParams: 'test',
 			    },
 			  },
@@ -47,7 +47,7 @@
 			    {
 			      title: '웹으로 이동',
 			      link: {
-			        mobileWebUrl: 'http://192.168.43.55:8080/arttech/co-buying/goodsDetail/${artworkInfo.id}',
+			        mobileWebUrl: 'https://developers.kakao.com',
 			      },
 			    }
 			  ]
@@ -157,9 +157,10 @@
 							<hr>
 						</div>
 						<div class="buying_btn_center">
-							<span><img alt="" src="https://t1.daumcdn.net/cfile/tistory/99F7DC3359E9878E0F" width="50px;" height="50px;"style="margin-right: 20px;" onclick="javascript:kakaoShare()"> </span>
+						
 							<c:choose>
 								<c:when test="${artworkInfo.state == 0 }">
+									<span><img alt="" src="https://t1.daumcdn.net/cfile/tistory/99F7DC3359E9878E0F" width="50px;" height="50px;"style="margin-right: 20px;" onclick="javascript:kakaoShare()"> </span>
 									<span><button class="buying_btn" disabled="disabled">모집예정</button></span>
 								</c:when>
                         		<c:when test="${artworkInfo.state == 1 }">

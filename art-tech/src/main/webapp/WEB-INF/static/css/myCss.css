@@ -480,13 +480,14 @@
 	text-align: center;
 }
 .buying_btn {
-	padding : 15px 200px ;
+	padding : 15px 110px ;
 	margin: auto;
 	border: none;
 	background-color: #008485;
-	
 	color: white;
+	max-width: 430px;
 }
+
 
 .artworkInfo_title {
 	height: 60px;
