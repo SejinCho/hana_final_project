@@ -7,12 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myCss.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		Kakao.init('d1823ddd57768c060556deb5cad1d563');
     	Kakao.isInitialized();
+    	
+    	$('#modal1_cancel').click(function(){
+			$('#modal1').css('display','none')
+			$('body').css("overflow", "scroll");
+			updateAuto()
+		})
+		
+		$('#modal2_cancel').click(function(){
+			$('#modal2').css('display','none')
+			$('body').css("overflow", "scroll");
+		})
+    	
 	})
 	//변수 설정
 	var accountArr = []
@@ -34,13 +47,17 @@
 		} else {
 			$(this).prop("checked", false)
         	type='auto'
+	        
 			$('input:checkbox[name=chkList1]:checked').each(function (index) {
 		        accountArr.push($(this).parent().parent().children('#accountNumber_non').text())
 		        bankNameArr.push($(this).parent().parent().children('#bankName_non').text())
 		        bankCodeArr.push($(this).val())
 		        autoAmtArr.push( $(this).parent().parent().children().children('#setAutoAmt').val() )
+		        
+	     		$('#modal1').css('display','block')
+	    		$('body').css("overflow", "hidden");
 		    });
-	        updateAuto()
+			
 		}
 	}
 	
@@ -61,13 +78,17 @@
 		        bankNameArr.push($(this).parent().parent().children('#bankName_auto').text())
 		        bankCodeArr.push($(this).val())
 		        
+		        $('#modal1').css('display','block')
+	    		$('body').css("overflow", "hidden");
+		        
 		    });
-			updateAuto()
 		}
 	}
 	
 	//자동이체 취소 or 설정
 	function updateAuto() {
+		
+		
 		var objParams = {
 		"accountArr" : accountArr,
 		"bankNameArr" : bankNameArr,
@@ -98,6 +119,9 @@
 	        			kakaoDescription += bankNameArr[i] + ' ' + accountArr[i] + ' : ' + autoAmtArr[i] + '원 \n'
 		        	}
 		        }
+				
+				$('#modal2').css('display','block')
+	    		$('body').css("overflow", "hidden");
 				
 				//카카오 메시지
 				Kakao.API.request({
@@ -286,6 +310,34 @@
 					</tbody>
 				</table>
 				<!-- 자동이체 설정한 테이블 끝-->
+			</div>
+		</div>
+	</div>
+	
+	<!-- 간편 비밀번호 모달 -->
+	<div class="index_modal" id="modal1">
+		<div class="index_body" >  
+			
+			<div class="content">
+				<p id="index_content_p" class="easypw-title">간편 비밀번호를 입력해주세요.</p>
+				<input type="password" id="inputEasyPw">
+			</div>
+			<hr>
+			<div class="select">
+				<p class="index_modal_cancel" id="modal1_cancel">확인</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="index_modal" id="modal2">
+		<div class="index_body" >  
+			
+			<div class="content">
+				<p id="index_content_p" class="easypw-title">설정이 완료되었습니다.</p>
+			</div>
+			<hr>
+			<div class="select">
+				<p class="index_modal_cancel"id="modal2_cancel" >확인</p>
 			</div>
 		</div>
 	</div>
