@@ -156,11 +156,23 @@
     
 </head>
 <body>
+
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>마이갤러리</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
 	<div class="myGallery_contain">
 		<div class="container">
-			<div class="main_title">
-				<p>마이갤러리</p>
-			</div>
 			
 			<!-- 메뉴 -->
 			<div class="myGallery_menu_top">

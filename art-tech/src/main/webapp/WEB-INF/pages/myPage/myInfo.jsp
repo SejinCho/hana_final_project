@@ -138,18 +138,37 @@
     </script>
 </head>
 <body>
+
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>회원 정보</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
+    
 	<!-- container -->
 	<div class="container">
-		<div class="myPage_main_title">
-			<p>회원정보</p>
-		</div>
 		<form action="">
 		
 			<div class="myPage_container">
 				<div class="myInfoDetail">
-					<p id="name">${member.name }</p>
-					<p id="email">${member.email }</p>
-					<p><span>010-2523-5521</span><span class="phoneChange_span"><button type="button" class="phoneNumChange_btn">변경</button></span></p>
+					<div class="myInfo-memberInfo-container">
+						<p id="name">${member.name }</p>
+						<p id="email">${member.email }</p>
+						<p><span id="phone">010-2523-5521</span><span class="phoneChange_span"><button type="button" class="phoneNumChange_btn">변경</button></span></p>
+						
+					</div>
+					<div class="myInfo-hr-container">
+							<hr class="myInfo-hr">
+						</div>
 					<div class="addr_container">
 						<p class="dddr_title">주소</p>
 						<p>우편번호</p>
@@ -163,7 +182,7 @@
 						<p><input type="text" id="sample4_detailAddress" value="${member.addr2}"></p>
 					</div>
 				</div>
-				
+				<hr class="myInfo-hr">
 				<div class="sns_container">
 					<p class="my_sns_title">지갑</p>
 					<c:choose>

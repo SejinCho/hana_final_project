@@ -207,10 +207,24 @@
 </script>
 </head>
 <body>
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>예치금 자동이체 설정</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
 	<div class="autoTranDeposit_container">
 		<div class="container">
 			<div class="main_title">
-				<p>예치금 자동이체 설정</p>
+				<p>매일 오후 1시에 설정된 금액이 자동으로 이체됩니다.</p>
 			</div>
 			<div class="unselect_container">
 				<div class="sub_title">
@@ -221,9 +235,9 @@
 					<thead>
 					<tr>
 						<th>선택</th>
-						<th>은행</th>
-						<th>계좌번호</th>
-						<th>금액설정</th>
+						<th>&emsp;은행</th>
+						<th>&emsp;계좌번호</th>
+						<th>&emsp;&emsp;&emsp;&emsp;&emsp;금액설정</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -254,8 +268,8 @@
 					<thead>
 					<tr>
 						<th>선택</th>
-						<th>은행</th>
-						<th>계좌번호</th>
+						<th>&emsp;은행</th>
+						<th>&emsp;계좌번호</th>
 						<th>자동이체 금액</th>
 					</tr>
 					</thead>

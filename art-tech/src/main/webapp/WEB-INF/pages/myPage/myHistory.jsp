@@ -206,9 +206,20 @@
     </script>
 </head>
 <body>
-	<div class="myHistory_main_title_container">
-		<p>거래내역</p>
-	</div>
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>거래내역</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
 	<div class="container myDeposit_inout_container ">
 		<div class="myHistory_menu_select_container">
 			<span class="myHistory_menu_select myHistory_menu_active">전체</span>

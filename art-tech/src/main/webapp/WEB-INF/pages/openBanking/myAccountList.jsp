@@ -17,7 +17,20 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/board/bootstrap.js"></script>
 </head>
 <body>
-	
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>계좌조회</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
 	<div class="container qna-board-container">
 		<c:forEach items="${accountInfoList}" var="accountInfo" varStatus="status">
 			<c:choose>

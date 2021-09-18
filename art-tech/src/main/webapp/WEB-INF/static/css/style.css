@@ -5025,6 +5025,14 @@ span.ui-slider-handle.ui-corner-all.ui-state-default:focus {
   background-image: url(../img/banner/bradcam2.png);
 }
 
+.bradcam_bg_3 {
+  background-image: url(../img/banner/accountBanner.PNG);
+}
+
+.bradcam_bg_4 {
+  background-image: url(../img/banner/mypageBanner.png);
+}
+
 /* line 7, ../../Arafath/CL/Cl November/223. Transportation/HTML/scss/_bradcam.scss */
 .bradcam_area {
   background-size: cover;

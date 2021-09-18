@@ -105,14 +105,26 @@
 	</script>
 </head>
 <body>
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>예치금 내역</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
     
 	<div class="myDeposit_container">
 	
 	
 		<div class="container">
-			<div class="container_title">
-				<p>예치금 내역</p>
-			</div>
+			
 			<div class="row">
 				<div class="col-xl-6">
 					<div class="deposit_notice_container">

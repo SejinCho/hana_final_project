@@ -99,22 +99,19 @@
     <!--/ bradcam_area  -->
     <div class="purchase_container">
 	    <div class="container">
-	    	<div class="payment_title">
-	    		<p>결제하기</p>
-	    	</div>
-	    	<hr>
-	    	<div class="payment_artwork_info_container">
+	    	<div class="purchase_content_container">
+	    	
+	    	<div class="payment_artwork_info_container" >
 	    		<div class="title_container">
-	    			<p>작품 정보</p>
+	    			<p>결제하기</p>
 	    		</div>
 	    		<div class="content_container">
 	    			<form action="${pageContext.request.contextPath}/co-buying/purchase" onsubmit="return check()" method="post">
 	    			<input type="hidden" name="artworkInfoId" value="${artworkInfo.id }" >
+	    			<div class="purchase-img-th">
+	    				<img class="purchase-img" alt="" src="/artworkImg/${artworkInfo.artworkImg }">
+	    			</div>
 	    			<table class="artwork_content_info">
-	    				<tr>
-	    					<td>작품명</td>
-	    					<th>${artworkInfo.title }</th>
-	    				</tr>
 	    				<tr>
 	    					<td>작가명</td>
 	    					<th>${artworkInfo.writerName }</th>
@@ -133,7 +130,7 @@
 	    				</tr>
 	    			</table>
 	    			<hr class="purchase_hr_size">
-	    			<div class="artwork_purchase_info_container">
+	    			<div class="artwork_purchase_info_container payment_artwork_available_info">
 	    				<table class="artwork_purchase_info">
 	    					<tr>
 	    						<td>구입 가능</td>
@@ -223,6 +220,7 @@
 						</div>
 					</div>
 				</div>
+	    	</div>
 	    	</div>
 	    </div>
     </div>

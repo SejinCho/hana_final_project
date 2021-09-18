@@ -133,10 +133,21 @@
 	</script>
 </head>
 <body>
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>예치금 입금</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
 	<div class="transferDeposit_container">
-		<div class="transferDeposit_title">
-			<p>예치금 입금</p>
-		</div>
 		<div class="container">
 			<h4>출금정보</h4>
 			<form action="${pageContext.request.contextPath}/deposit/transferDeposit" method="post" >	

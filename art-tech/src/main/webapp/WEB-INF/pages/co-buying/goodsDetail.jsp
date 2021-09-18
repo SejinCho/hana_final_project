@@ -157,7 +157,6 @@
 							<hr>
 						</div>
 						<div class="buying_btn_center">
-							<span><img alt="" src="https://t1.daumcdn.net/cfile/tistory/99F7DC3359E9878E0F" width="50px;" height="50px;"style="margin-right: 20px;" onclick="javascript:kakaoShare()"> </span>
 							<c:choose>
 								<c:when test="${artworkInfo.state == 0 }">
 									<span><button class="buying_btn" disabled="disabled">모집예정</button></span>
@@ -170,6 +169,9 @@
                         		</c:otherwise>
                         	</c:choose>
 							
+						</div>
+						<div class="kakaoShare-btn-container">
+							카카오톡으로 공유하기  <img alt="" src="https://t1.daumcdn.net/cfile/tistory/99F7DC3359E9878E0F" width="40px;" height="40px;" onclick="javascript:kakaoShare()">
 						</div>
 					</div>
 				</div>
