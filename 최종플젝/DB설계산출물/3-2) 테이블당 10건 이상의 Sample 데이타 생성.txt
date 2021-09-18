@@ -1,0 +1,188 @@
+/*
+sj_member 사용자 정보 table insert
+*/
+--10번 반복
+insert into sj_member(id, user_id, password, name, phone, email, jumin_no,
+zipcode, address1, address2, gender, receive_sms_yn, privacy_agree_yn, fintech_use_no)
+values('member' || seq_sj_member.nextval, (SELECT DBMS_RANDOM.STRING('X', 10) STR FROM DUAL), '1234', (SELECT DBMS_RANDOM.STRING('L', 10) STR FROM DUAL),
+'010' || (select trunc(dbms_random.value(00000000, 99999999)) from dual),
+(SELECT DBMS_RANDOM.STRING('L', 8) STR FROM DUAL)||'@naver.com', (select trunc(dbms_random.value(1111111111111, 9999999999999)) from dual), 
+(select trunc(dbms_random.value(1000000, 9999999)) from dual) , 
+'의정부시 민락동', '10'|| (select trunc(dbms_random.value(10, 99)) from dual) ||'호', 'M', 'Y',
+'Y',(select trunc(dbms_random.value(000000000000000000000000, 999999999999999999999999)) from dual) );
+
+/*
+sj_account_info 계좌정보 insert
+*/
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('41291065266678','1111',1923456,'1','081','1', '9408121234567','조세진');
+
+insert into sj_account_info(account_number, account_password, balance,     
+account_type, bank_code,account_state , jumin_no , name )
+values('110420340932','1111',823456,'1','037','1', '9408121234567','조세진');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('110420340111','1111',1002454,'1','037','1', '9408121234567','조세진');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('41291065266607','1111',703456,'1','081','1', '9408121234569','왕하나');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('110420340999','1111',3911111,'1','002','1', '9308121234567','박종범');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('41291065261541','1111',1923456,'1','081','1', '9308121234567','박종범');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('41291065264485','1111',1923456,'1','081','1', '9408121235679','안성재');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('110488540999','1111',2911100,'1','003','1', '9408121235679','안성재');
+
+
+--다른사람
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('110420140111','1111',156,'1','002','1', '9408121212345','조세진');
+
+
+/*
+sj_bank 은행코드 table insert
+*/
+/*은행 코드*/
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('001', '한국은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('002', '산업은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('003', '기업은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('004', '국민은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('007', '수협은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('008', '수출입은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('011', '농협은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('012', '지역농․축협');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('020', '우리은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('023', 'SC제일은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('027', '한국씨티은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('031', '대구은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('032', '부산은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('034', '광주은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('035', '제주은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('037', '전북은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('039', '경남은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('041', '우리카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('044', '외환카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('045', '새마을금고중앙회');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('048', '신협');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('050', '저축은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('052', '모건스탠리은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('054', 'HSBC은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('055', '도이치은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('057', '제이피모간체이스은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('058', '미즈호은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('059', '엠유에프지은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('060', 'BOA은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('061', '비엔피파리바은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('062', '중국공상은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('063', '중국은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('064', '산림조합중앙회');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('065', '대화은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('066', '교통은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('067', '중국건설은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('071', '우체국');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('076', '신용보증기금');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('077', '기술보증기금');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('081', 'KEB하나은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('088', '신한은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('089', '케이뱅크');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('090', '카카오뱅크');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('101', '한국신용정보원');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('102', '대신저축은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('103', '에스비아이저축은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('104', '에이치케이저축은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('105', '웰컴저축은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('106', '신한저축은행');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('209', '유안타증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('218', 'KB증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('221', '상상인증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('222', '한양증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('223', '리딩투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('224', 'BNK투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('225', 'IBK투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('227', 'KTB투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('238', '미래에셋대우');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('240', '삼성증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('243', '한국투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('247', 'NH투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('261', '교보증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('262', '하이투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('263', '현대차증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('264', '키움증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('265', '이베스트투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('266', 'SK증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('267', '대신증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('269', '한화투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('270', '하나금융투자');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('278', '신한금융투자');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('279', 'DB금융투자');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('280', '유진투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('287', '메리츠종합금융증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('288', '바로투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('290', '부국증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('291', '신영증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('292', '케이프투자증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('293', '한국증권금융');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('294', '한국포스증권');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('295', '우리종합금융');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('299', '아주캐피탈');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('361', 'BC카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('364', '광주카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('365', '삼성카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('366', '신한카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('367', '현대카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('368', '롯데카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('369', '수협카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('370', '씨티카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('371', 'NH카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('372', '전북카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('373', '제주카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('374', '하나SK카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('381', 'KB국민카드');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('431', '미래에셋생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('432', '한화생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('433', '교보라이프플래닛생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('434', '푸본현대생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('435', '라이나생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('436', '교보생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('437', '에이비엘생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('438', '신한생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('439', 'KB생명보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('440', '농협생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('441', '삼성화재');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('442', '현대해상');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('443', 'DB손해보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('444', 'KB손해보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('445', '롯데손해보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('446', '오렌지라이프생명보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('447', '악사손해보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('448', '메리츠화재');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('449', '농협손해보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('450', '푸르덴셜생명보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('452', '삼성생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('453', '흥국생명');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('454', '한화손해보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('455', 'AIA생명보험 ');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('456', 'DGB생명보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('457', 'DB생명보험');
+INSERT INTO sj_bank (bank_code,bank_name) VALUES ('458', 'KDB생명보험');
+
+
+--회사 계좌 정보 테이블
+--회사 계좌 정보 테이블에 insert
+insert into sj_manage_account_info(id, name, jumin_no, account_number, bank_code, token)
+values(sj_seq_manage_account_info.nextval, '왕하나', '9408121234569', '41291065266607',
+'081', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhcnR0ZWNoIiwiaWF0IjoxNjMxOTU3NTcxLCJleHAiOjE2MzM0Mjg4MDAsIm5hbWUiOiLsmZXtlZjrgpgiLCJqdW1pbk5vIjoiOTQwODEyMTIzNDU2OSJ9.KOTbrkSQPXUxKtHjV7SJ0gpnoQQbyzEj3IL7qYCTKxM');

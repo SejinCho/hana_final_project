@@ -1,0 +1,29 @@
+
+/*오라클 피벗*/
+select * from 
+    (select member_id, artwork_info_id, piece_no from sj_purchase_info where type in ('1','2'))
+pivot xml(
+    sum(piece_no) for artwork_info_id in (select artwork_info_id from sj_purchase_info group by artwork_info_id)
+);
+
+
+/*그림 5개 이상 산 member만 추출 해야해!*/
+-- 각 회원당 그림 산 개수 
+select member_id , count(*) as artwork_buy_no from (select member_id,artwork_info_id from sj_purchase_info where type != 3 group by member_id,artwork_info_id)
+group by member_id;
+
+-- 5개 이상 산 친구들(member_id만 뽑아온거임)
+select member_id from 
+(select member_id , count(*) as artwork_buy_no from 
+(select member_id,artwork_info_id from sj_purchase_info where type != 3 group by member_id,artwork_info_id)
+group by member_id) 
+where artwork_buy_no >= 5;
+
+
+--5개 이상 산 친구들의 구매 정보들
+select * from sj_purchase_info where type != 3
+and member_id in (select member_id from 
+(select member_id , count(*) as artwork_buy_no from 
+(select member_id,artwork_info_id from sj_purchase_info where type != 3 group by member_id,artwork_info_id)
+group by member_id) 
+where artwork_buy_no >= 5);

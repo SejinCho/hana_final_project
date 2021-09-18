@@ -1,0 +1,17 @@
+api doc라이브러리로 스웨거 쓰고 테스트도 햇다
+
+데이터는 비동기로 받아오거나 포스트메시지로 받아와
+
+보안을 위해 API키, 토큰, 권한 등의 방식을 사용해 REST API의 보안성을 확보한 뒤 사용하는 것이 좋다.
+
+잔액 계산 bigdeciaml
+
+***************<참고>****************
+
+https://tora-it-kingdom.tistory.com/17
+
+<보안>
+https://azderica.github.io/05-springboot-restapi/
+
+<스프링 시큐리티>
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=anbv3&logNo=220456868221

@@ -1,0 +1,336 @@
+/*
+sequence drop 
+*/
+drop sequence seq_sj_wallet ;
+drop sequence seq_sj_member ;
+drop sequence seq_sj_artwork_info ;
+drop sequence seq_sj_artwork_info_img ;
+drop sequence seq_sj_like ;
+drop sequence seq_sj_purchase_info;
+drop sequence seq_sj_writer_info ;
+drop sequence seq_sj_artwork_amt ;
+drop sequence seq_sj_artwort_notice ;
+drop sequence seq_sj_artwork_notice_img ;
+drop sequence seq_sj_account_info ;
+drop sequence seq_sj_account_transfer_info  ;
+drop sequence seq_sj_manager ;
+drop sequence sj_seq_transfer_exception_log;
+drop sequence sj_seq_auto_tran_account ; 
+drop sequence sj_seq_manage_account_info ;
+drop sequence seq_sj_disposal_vote;
+drop sequence seq_sj_notice ;
+/*
+sequence create
+*/
+create sequence seq_sj_wallet ;
+create sequence seq_sj_member ;
+create sequence seq_sj_artwork_info ;
+create sequence seq_sj_artwork_info_img ;
+create sequence seq_sj_like ;
+create sequence seq_sj_purchase_info; --구매 정보 테이블(판매도 있음)
+create sequence seq_sj_writer_info ;
+create sequence seq_sj_artwork_amt ;  --작품 가격
+create sequence seq_sj_notice ; --공지
+create sequence seq_sj_artwork_notice_img;
+create sequence seq_sj_account_info; --계좌정보
+create sequence seq_sj_account_transfer_info; --거래내역
+create sequence seq_sj_manager; --매니저 테이블
+create sequence sj_seq_transfer_exception_log; --exception 테이블 시퀀스
+create sequence sj_seq_auto_tran_account ; 
+create sequence sj_seq_manage_account_info ;
+create sequence seq_sj_disposal_vote ; --투표 시퀀스
+
+
+/*
+table drop
+*/
+
+DROP TABLE sj_wallet CASCADE CONSTRAINTS ;
+DROP TABLE sj_member CASCADE CONSTRAINTS ;
+DROP TABLE sj_artwork_info CASCADE CONSTRAINTS ;
+DROP TABLE sj_artwork_info_img CASCADE CONSTRAINTS ;
+DROP TABLE sj_like CASCADE CONSTRAINTS ;
+DROP TABLE sj_buy_sell CASCADE CONSTRAINTS ;
+DROP TABLE sj_writer_info CASCADE CONSTRAINTS ;
+DROP TABLE sj_artwork_amt CASCADE CONSTRAINTS ;
+DROP TABLE sj_artwort_notice CASCADE CONSTRAINTS ;
+DROP TABLE sj_artwork_notice_img CASCADE CONSTRAINTS ;
+DROP TABLE sj_bank CASCADE CONSTRAINTS ;
+DROP TABLE sj_account_info CASCADE CONSTRAINTS ;
+DROP TABLE sj_account_transfer_info CASCADE CONSTRAINTS ;
+DROP TABLE sj_manager CASCADE CONSTRAINTS ;
+DROP TABLE sj_auto_tran_account CASCADE CONSTRAINTS ;
+drop table sj_disposal_vote CASCADE CONSTRAINTS ;
+drop table sj_purchase_info CASCADE CONSTRAINTS ;
+drop table sj_notice CASCADE CONSTRAINTS ;
+drop table sj_manage_account_info CASCADE CONSTRAINTS ;
+drop table sj_transfer_exception_log CASCADE CONSTRAINTS ;
+
+
+/*
+table create
+*/
+
+CREATE TABLE sj_member --사용자 정보 테이블
+(
+    id    VARCHAR2(40) NOT NULL, --pk
+    user_id    VARCHAR2(40) UNIQUE  NOT NULL, --사용자 id
+    password    VARCHAR2(100) NOT NULL, --사용자 비밀번호
+    name    VARCHAR2(20) NOT NULL, --사용자 이름
+    phone    CHAR(11) UNIQUE , --핸드폰 번호
+    email  varchar2(30) , --이메일
+    easy_password varchar2(100), --간편비밀번호
+    birth char(10), --생년월일
+    jumin_no char(13) UNIQUE  NOT NULL, --주민번호
+    zipcode    CHAR(7), --우편번호
+    addr1_load VARCHAR2(200), --도로명주소
+    addr1_jibun varchar2(200), --지번주소
+    addr2    VARCHAR2(200), --상세주소
+    gender    CHAR(1), --성별 남(M), 여(F)
+    public_key varchar2(2000),
+    private_key varchar2(2000),
+    kakao_id varchar2(20), --kakao_id 
+    reg_date    date DEFAULT sysdate, --회원가입 날짜
+    withdrawal_date    DATE, --회원탈퇴 날짜 
+    receive_kakao_yn    CHAR(1), -- 알림 받을건지 (Y/N)
+    mem_denied_yn    CHAR(1) DEFAULT 'N' , --차단된 회원 여부(Y/N)
+    privacy_agree_yn    CHAR(1) default 'N', --오픈뱅킹 정보제공 동의 여부(Y/N)
+    token varchar2(1000), -- 오픈뱅킹 토큰
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE sj_artwork_info  --작품정보 테이블
+(
+    id    VARCHAR2(40) NOT NULL, --PK
+    title    VARCHAR2(200), --작품명
+    writer_id    VARCHAR2(40) NOT NULL, --작가정보 테이블 id
+    material varchar2(1000), --재료
+    size_width    NUMBER(10,2), --작품 사이즈 가로
+    size_height    NUMBER(10,2),  --작품 사이즈 세로
+    production_year    CHAR(4),  --제작 연도
+    artwork_content    CLOB,  -- 작품 설명
+    reg_date    date DEFAULT sysdate,  --모집글 올린 날짜 
+    recruit_start_date    CHAR(10),  -- 모집 시작 날짜
+    recruit_end_date    CHAR(10), -- 모집 종료 날짜 (2시)
+    recruit_start_time    CHAR(5), --모집 시작 시간 (2시)
+    recruit_end_time    CHAR(5), --모집 종료 시간
+    target_piece    NUMBER(20) NOT NULL, --공동구매 목표 조각 개수
+    achie_piece    NUMBER(20) default 0, --공동구매 달성 조각 개수
+    estimated_price_max number(20), --공동구매 작품 추정가 max
+    estimated_price_min number(20), --공동구매 작품 추정가 min
+    state    CHAR(1) default 0, --진행현황(0: 모집예정, 1: 모집중/2.모집완료/3: 매각 투표/4: 투표 종료/5. 매각 중/6: 수익 분배/7: 매각완료)
+    sell_price    NUMBER(20), --매각 금액
+    total_transfer_tax number(20), --총 양도세(빼기)
+    sell_date    DATE, --매각일
+    sell_place    VARCHAR2(100), --매각처
+    PRIMARY KEY (id),
+    CONSTRAINT fk_sj_artwork_info FOREIGN KEY(writer_id)
+    REFERENCES sj_writer_info(id)
+);
+
+create table sj_disposal_vote ( --투표 정보
+	id varchar2(40) not null,
+	artwork_info_id varchar2(40) not null, 
+	agree_no number(20),
+	total_no number(20),
+	start_date char(10), --투표 시작 날짜
+	end_date char(10), --투표 끝 날짜
+	reg_date date default sysdate,
+	PRIMARY KEY (id),
+    	CONSTRAINT fk_sj_disposal_vote FOREIGN KEY(artwork_info_id)
+    	REFERENCES sj_artwork_info(id)
+);
+
+CREATE TABLE sj_artwork_info_img --작품정보 이미지
+(
+    id    VARCHAR2(40) NOT NULL, --pk
+    artwork_info_id    VARCHAR2(40) NOT NULL, --artwork_info 테이블 id
+    file_chan_name    VARCHAR2(1000) NOT NULL, --첨부파일 변경 명칭
+    file_path    VARCHAR2(1000) NOT NULL, --첨부파일 저장위치
+    orgn_file_name    VARCHAR2(1000) NOT NULL, --첨부파일 원파일명
+    file_size    NUMBER(10), --첨부파일 크기 
+    trns_err_msg    VARCHAR2(2000), --전송오류 내용
+    reg_date date default sysdate,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_sj_artwork_info_img FOREIGN KEY(artwork_info_id)
+    REFERENCES sj_artwork_info(id)
+);
+
+
+CREATE TABLE sj_like --좋아요(작품 좋아요)
+(
+    id    VARCHAR2(40) NOT NULL, --pk
+    artwork_info_id    VARCHAR2(40) NOT NULL, --artwork_info 테이블 id
+    member_id    VARCHAR2(40) NOT NULL, -- member 테이블 id
+    reg_date date DEFAULT sysdate, -- 좋아요 누른 날짜
+    PRIMARY KEY (id),
+    CONSTRAINT fk_sj_like_member FOREIGN KEY(artwork_info_id)
+    REFERENCES sj_artwork_info(id),
+    CONSTRAINT fk_sj_like_artwork FOREIGN KEY(member_id)
+    REFERENCES sj_member(id)
+);
+
+
+--매각 결정난 조각은 판매 불가 / 모집이 끝난 조각은 판매 불가
+CREATE TABLE sj_purchase_info --조각 구매/판매정보(공동구매)
+(
+    id    VARCHAR2(40) NOT NULL,
+    artwork_info_id    VARCHAR2(40) NOT NULL, --artwork_info 테이블 id
+    member_id    VARCHAR2(40) NOT NULL, --member 테이블 id
+    piece_no    NUMBER(10) NOT NULL, -- 조각 개수(판매면 마이너스로 들어가기)
+    reg_date    date DEFAULT sysdate, -- 날짜
+    piece_amt    NUMBER(10) default 10000, --조각당 금액
+    type    CHAR(1) NOT NULL, --1.공동 구매 - 구매/2.공동 구매 - 판매 / 3. 매각
+    platform_usage_fee number(10), --플랫폼 이용료(조각당 600원) - 3일땐 안적기 
+    vat number(10), --부가세(조각당 60원) 3일땐 안적기
+    transfer_tax number(10), --양도세 (빼기)
+    PRIMARY KEY (id),
+    CONSTRAINT fk_sj_buy_sell_artwork FOREIGN KEY(artwork_info_id)
+    REFERENCES sj_artwork_info(id),
+    CONSTRAINT fk_sj_buy_sell_member FOREIGN KEY(member_id)
+    REFERENCES sj_member(id)
+);
+
+
+CREATE TABLE sj_writer_info --작가 정보
+(
+    id    VARCHAR2(40) NOT NULL, --pk
+    writer_name    VARCHAR2(40) NOT NULL, --작가 이름
+    award_history    CLOB, --수상이력 
+    writer_info    CLOB, --작가 정보
+    career    CLOB, --전시이력
+    file_chan_name    VARCHAR2(1000) NOT NULL, --변경된 파일 이름
+    file_path    VARCHAR2(1000) NOT NULL, --파일 경로
+    orgn_file_name    VARCHAR2(1000) NOT NULL, --원파일명
+    file_size    NUMBER(10), --파일 크기
+    reg_date date DEFAULT  sysdate, --등록 날짜
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE sj_artwork_amt --미술품 변경되는 가격정보
+(
+    id    VARCHAR2(40) NOT NULL, --pk
+    artwork_info_id    VARCHAR2(40) NOT NULL, --artwork_info 테이블 id
+    reg_date    DATE default sysdate, --날짜
+    closing_price    NUMBER(20), --종가
+    PRIMARY KEY (id),
+    CONSTRAINT fk_sj_artwork_amt FOREIGN KEY(artwork_info_id)
+    REFERENCES sj_artwork_info(id)
+);
+
+
+CREATE TABLE sj_notice --전체 공지
+(
+    id    VARCHAR2(40) NOT NULL,
+    title    VARCHAR2(1000), --공지제목
+    type char(1), --이벤트(2), 공지(1)
+    manager_id varchar2(40), --글쓴 사람(관리자 id)
+    content    CLOB, --공지내용
+
+    view_no number(10) default 0, --조회수
+    file_chan_name    VARCHAR2(1000) , --첨부파일 변경 명칭
+    file_path    VARCHAR2(1000) , --첨부파일 저장위치
+    orgn_file_name    VARCHAR2(1000) , --첨부파일 원파일명
+    file_size    NUMBER(10), --첨부파일 크기 
+    reg_date    date DEFAULT sysdate, --공지 올린 날짜
+    PRIMARY KEY (id),
+    CONSTRAINT fk_sj_notice FOREIGN KEY(manager_id)
+    REFERENCES sj_manager(id)
+);
+
+
+
+CREATE TABLE sj_bank --은행정보
+(
+    bank_code    char(3) NOT NULL, --은행코드
+    bank_name    VARCHAR2(100), --은행이름
+    PRIMARY KEY (bank_code)
+);
+
+
+/* 계좌 정보 가져오는 것은 오픈 api로 구현 */
+--회사 주인 이름 : 왕하나
+--회사 주민 : 9408121234569
+--회사 계좌 : 41291065266607
+
+--회사 은행 : 081
+--회사 토큰 : 
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+
+CREATE TABLE sj_account_info --계좌정보
+(
+    account_number    VARCHAR2(20) NOT NULL, --계좌번호
+    account_password    char(4) NOT NULL, --비밀번호
+    balance    NUMBER(20) NOT NULL, --잔액
+    account_type  CHAR(1), --타입 (1: 수시입출금, 2: 예적금, 6: 수익증권 등...)
+    bank_code    char(3) NOT NULL, --은행코드
+    jumin_no char(13) not null, --주민
+    name varchar(20), -- 계좌 주인 이름 
+    reg_date    date DEFAULT sysdate, --계좌등록 날짜
+    account_state char(1) default 1, --계좌 상태(3.거래중지/ 2.휴면계좌 / 1.정상)
+    PRIMARY KEY (account_number) 
+);
+
+CREATE TABLE sj_account_transfer_info --거래내역
+(
+    id    VARCHAR2(40) NOT NULL,
+    inout_type    CHAR(1) NOT NULL, -- 입금(I), 출금(O)
+    tran_amt    NUMBER(38) NOT NULL, --거래 금액
+    tran_date    CHAR(10) DEFAULT to_char(sysdate,'yyyy-mm-dd') NOT NULL, --거래 일자
+    tran_time    CHAR(8) DEFAULT to_char(sysdate,'hh:mi:ss') NOT NULL, -- 거래 시간
+    account_number    VARCHAR2(20) NOT NULL, --계좌번호
+    bank_code    CHAR(3), --은행 코드
+    other_account_number    VARCHAR2(20), --다른 사람 계좌번호
+    other_bank_code    CHAR(3), --다른 사람 은행 코드 번호
+    token varchar2(1000), 
+    PRIMARY KEY (id) 
+);
+
+
+CREATE TABLE sj_manager --매니저
+(
+    id    VARCHAR2(40) NOT NULL,
+    manager_id    VARCHAR2(40) NOT NULL, --매니저 아이디
+    password    VARCHAR2(40) NOT NULL, --매니저 비밀번호
+    type    CHAR(1) NOT NULL, --super manager(S), 일반 매니저(B)
+    reg_date  date DEFAULT sysdate, 
+    PRIMARY KEY (id) 
+);
+
+--회사 계좌 
+create table sj_manage_account_info (
+	id varchar2(30) not null,
+	name varchar2(20),
+	jumin_no char(13),
+	account_number varchar2(20),
+	bank_code char(3),
+	token varchar2(1000),
+	reg_date date default sysdate,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE sj_transfer_exception_log
+(
+    id varchar2(30) NOT NULL,
+    log_date date DEFAULT sysdate,
+    log_time char(8) DEFAULT to_char(sysdate,'hh:mi:ss'),
+    program_name varchar2(100),
+    error_message varchar2(250),
+    description varchar2(1000),
+    PRIMARY KEY (id)
+);
+
+--자동이체 계좌 정보
+create table sj_auto_tran_account (  
+    id varchar2(30) NOT NULL ,
+    member_id varchar2(30) not null,
+    bank_code char(3),
+    bank_name varchar(30),
+    account_number varchar2(20),
+    auto_amt number(20),
+    reg_date date default sysdate,
+    primary key (id),
+    CONSTRAINT fk_sj_auto_tran_account FOREIGN KEY(member_id)
+    REFERENCES sj_member(id)
+);

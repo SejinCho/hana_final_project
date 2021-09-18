@@ -1,0 +1,19 @@
+
+install.packages("rJava")
+# install.packages("DBI")
+install.packages("RJDBC")
+
+library(rJava)
+# Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jre1.8.0_291')
+# library(DBI)
+library(RJDBC)
+
+# 1. Driver Loading
+drv<-JDBC(driverClass = "oracle.jdbc.driver.OracleDriver", classPath = "C:\\Users\\whtpw\\Desktop\\ojdbc8.jar")
+
+# 2. Connection
+conn <-dbConnect(drv, "jdbc:oracle:thin:@127.0.0.1:1521:xe", "library", "library")
+
+query <- "select * from sj_member"
+
+dbGetQuery(conn, query)

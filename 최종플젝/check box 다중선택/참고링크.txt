@@ -1,0 +1,5 @@
+//value 값 여러 개 주기
+https://8millimeters.tistory.com/13
+
+//다중선택 시 list로 값 가져오기
+http://b1ix.net/32
