@@ -15,10 +15,101 @@
     
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> <!-- your piecelabel -->
+	
+	<script src="${pageContext.request.contextPath}/static/js/palette.js"></script>
 	<script src="${pageContext.request.contextPath}/static/js/myJs.js"></script>
     <script type="text/javascript">
-    
+	    let myHistoryBuyPieceNo = []
+	    let myHistoryBuyArtworkId = []
+			
     	$(document).ready(function(){
+    		<c:forEach items='${myHistoryBuyPieceNo}' var='myInfo'>	
+				console.log(${myInfo.pieceNo})
+				myHistoryBuyPieceNo.push(${myInfo.pieceNo})
+				myHistoryBuyArtworkId.push('${myInfo.artworkInfoId}')
+			</c:forEach>
+				
+				
+    		//내가 산 총 조각 수
+    		let myChartOne5 = document.getElementById('myChartOne5').getContext('2d');
+        	let barChart5 = new Chart(myChartOne5, {
+            
+	            type : 'doughnut',
+	            data: {
+	               
+	               labels : myHistoryBuyArtworkId,
+	               datasets : [{
+	                  
+	                  data : myHistoryBuyPieceNo,
+	                  backgroundColor:
+	                	  palette('tol', myHistoryBuyArtworkId.length).map(function(hex) {
+	                	        return '#' + hex;
+	                	      })
+	               
+	               }]
+	            },
+	            options : {
+	               title : {
+	                  display : true,   
+	                  text : '내가 산 총 조각 수',
+	                  fontSize : 20,
+	               },
+	               legend : {
+	                  position : 'bottom'
+	                  
+	               },pieceLabel: { 
+	                  mode:"percentage",
+	                  position:"default",
+	                  fontSize: 12,
+	                  fontColor : 'rgb(2,2,2)',
+	                  fontStyle: 'bold'
+	                  }
+	            }
+	            
+	         })
+        	//내가 산 총 조각 수 그래프 끝
+        	
+        	//내가 얻은 총 수익 그래프
+    		let myChartOne6 = document.getElementById('myChartOne6').getContext('2d');
+        	let barChart6 = new Chart(myChartOne6, {
+            
+	            type : 'doughnut',
+	            data: {
+	               
+	               labels : myHistoryBuyArtworkId,
+	               datasets : [{
+	                  
+	                  data : myHistoryBuyPieceNo,
+	                  backgroundColor:
+	                	  palette('tol', myHistoryBuyArtworkId.length).map(function(hex) {
+	                	        return '#' + hex;
+	                	      })
+	               
+	               }]
+	            },
+	            options : {
+	               title : {
+	                  display : true,   
+	                  text : '나의 총 수익',
+	                  fontSize : 20,
+	               },
+	               legend : {
+	                  position : 'bottom'
+	                  
+	               },pieceLabel: { 
+	                  mode:"percentage",
+	                  position:"default",
+	                  fontSize: 12,
+	                  fontColor : 'rgb(2,2,2)',
+	                  fontStyle: 'bold'
+	                  }
+	            }
+	            
+	         })        	
+        	//내가 얻은 총 수익 그래프 끝
+    		
+    		
     		<c:forEach items='${myHistoryDisposalInfoList}' var='disposalInfo'>	
 	    		//그래프 그리기
 	    		var ctx = document.getElementById('${disposalInfo.artworkInfoId}').getContext('2d'); 
@@ -206,9 +297,20 @@
     </script>
 </head>
 <body>
-	<div class="myHistory_main_title_container">
-		<p>거래내역</p>
-	</div>
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <p>거래내역</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
 	<div class="container myDeposit_inout_container ">
 		<div class="myHistory_menu_select_container">
 			<span class="myHistory_menu_select myHistory_menu_active">전체</span>
@@ -232,7 +334,7 @@
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 구입 금액</span>
-		    				<span class="content_middle">1224134원</span>
+		    				<span class="content_middle">1,241,660원</span>
 		    			</div>
 		    			
 		    		</div>
@@ -242,27 +344,39 @@
 		    		<div class="total_cobuying_summary">
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 매각 금액</span>
-		    				<span class="content_middle1">55.16%</span>
+		    				<span class="content_middle1">2,231,750원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 플랫폼 이용료</span>
-		    				<span class="content_long">123421원</span>
+		    				<span class="content_long">123,421원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 부가세</span>
-		    				<span class="content">334일</span>
-		    			</div>
-		    			<div class="total_cobuying_summary_one2">
-		    				<span class="title">총 양도세</span>
-		    				<span class="content">334일</span>
+		    				<span class="content">54,660원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 실 지급액</span>
-		    				<span class="content_middle1">334일</span>
+		    				<span class="content_middle1">2,034,150원</span>
 		    			</div>
 		    		</div>
 		    	</div>
 	    	</div>
+	    	
+	    	<!-- 그래프 그리기 -->
+	    	<div class="row">
+		    	<div class="col-xl-6">
+		    		<div class="myHistoryTotalChart">
+		    			<canvas id="myChartOne5"></canvas>
+		    		</div>
+		    	</div>
+		    	<div class="col-xl-6">
+		    		<div class="myHistoryTotalChart">
+		    			<canvas id="myChartOne6"></canvas>
+		    		</div>
+		    	</div>
+	    	</div>
+	    	<!-- 그래프 그리기 끝 -->
+	    	
 	    	
 	    	<div class="myHistory-disposal-card">
 		    	<div class="container">
@@ -271,7 +385,10 @@
 				            <!-- 하나  -->
 				            <div class="col-md-6 col-lg-4">
 				                <div class="single_service">
-				                    <div class="item front"><img class="myHistory-card-img" src="/artworkImg/${disposalInfo.artworkImg }" alt="img front"/></div>
+				                    <div class="item front">
+				                    	<p class="item-artworkId-p">${disposalInfo.artworkInfoId }</p>	
+				                    	<img class="myHistory-card-img" src="/artworkImg/${disposalInfo.artworkImg }" alt="img front"/>
+			                    	</div>
 		       						<div class="item back">
 		       							<canvas id="${disposalInfo.artworkInfoId }"></canvas> 
 		       							<p id="yield">수익률 : ${disposalInfo.yield }%</p>

@@ -15,10 +15,112 @@
     
 	<script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> <!-- your piecelabel -->
+	
+	<script src="${pageContext.request.contextPath}/static/js/palette.js"></script>
 	<script src="${pageContext.request.contextPath}/static/js/myJs.js"></script>
     <script type="text/javascript">
-    
+	    let myHistoryBuyPieceNo = []
+	    let myHistoryBuyArtworkId = []
+	    
+	    let myHistoryTotalRevenue = []
+	    let myHistoryTotalRevenueArtworkId = []
+	    
+			
     	$(document).ready(function(){
+    		<c:forEach items='${myHistoryBuyPieceNo}' var='myInfo'>	
+				console.log(${myInfo.pieceNo})
+				myHistoryBuyPieceNo.push(${myInfo.pieceNo})
+				myHistoryBuyArtworkId.push('${myInfo.artworkInfoId}')
+			</c:forEach>
+				
+				
+    		//내가 산 총 조각 수
+    		let myChartOne5 = document.getElementById('myChartOne5').getContext('2d');
+        	let barChart5 = new Chart(myChartOne5, {
+            
+	            type : 'doughnut',
+	            data: {
+	               
+	               labels : myHistoryBuyArtworkId,
+	               datasets : [{
+	                  
+	                  data : myHistoryBuyPieceNo,
+	                  backgroundColor:
+	                	  palette('tol', myHistoryBuyArtworkId.length).map(function(hex) {
+	                	        return '#' + hex;
+	                	      })
+	               
+	               }]
+	            },
+	            options : {
+	               title : {
+	                  display : true,   
+	                  text : '내가 산 총 조각 수',
+	                  fontSize : 20,
+	               },
+	               legend : {
+	                  position : 'bottom'
+	                  
+	               },pieceLabel: { 
+	                  mode:"percentage",
+	                  position:"default",
+	                  fontSize: 12,
+	                  fontColor : 'rgb(2,2,2)',
+	                  fontStyle: 'bold'
+	                  }
+	            }
+	            
+	         })
+        	//내가 산 총 조각 수 그래프 끝
+        	
+        	//내가 얻은 총 수익 그래프
+        	
+        	<c:forEach items='${myHistoryDisposalInfoList}' var='myInfo'>	
+				console.log(${myInfo.pieceNo})
+				myHistoryTotalRevenue.push(${myInfo.revenue - myInfo.initiaCost})
+				myHistoryTotalRevenueArtworkId.push('${myInfo.artworkInfoId}')
+			</c:forEach>
+				
+    		let myChartOne6 = document.getElementById('myChartOne6').getContext('2d');
+        	let barChart6 = new Chart(myChartOne6, {
+            
+	            type : 'doughnut',
+	            data: {
+	               
+	               labels : myHistoryTotalRevenueArtworkId,
+	               datasets : [{
+	                  
+	                  data : myHistoryTotalRevenue,
+	                  backgroundColor:
+	                	  palette('tol', myHistoryTotalRevenueArtworkId.length).map(function(hex) {
+	                	        return '#' + hex;
+	                	      })
+	               
+	               }]
+	            },
+	            options : {
+	               title : {
+	                  display : true,   
+	                  text : '내가 얻은 총 수익',
+	                  fontSize : 20,
+	               },
+	               legend : {
+	                  position : 'bottom'
+	                  
+	               },pieceLabel: { 
+	                  mode:"percentage",
+	                  position:"default",
+	                  fontSize: 12,
+	                  fontColor : 'rgb(2,2,2)',
+	                  fontStyle: 'bold'
+	                  }
+	            }
+	            
+	         })        	
+        	//내가 얻은 총 수익 그래프 끝
+    		
+    		
     		<c:forEach items='${myHistoryDisposalInfoList}' var='disposalInfo'>	
 	    		//그래프 그리기
 	    		var ctx = document.getElementById('${disposalInfo.artworkInfoId}').getContext('2d'); 
@@ -36,7 +138,7 @@
 	    						borderColor: 'rgb(255, 99, 132)',
 	    						data : [${disposalInfo.initiaCost}, ${disposalInfo.revenue}],
 	    						datalabels: {
-	    							  display: true,
+	    							  display: false,
 	    							  align : 'end'
 	   							}
 	    					}, {
@@ -46,7 +148,10 @@
 	    						backgroundColor: 'rgb(089, 089, 089)',
 	    	                    borderColor: 'rgb(089, 089, 089)',
 	    	                    borderWidth: 1, // 선 굵기
-	    						data : [${disposalInfo.initiaCost}, ${disposalInfo.revenue}]
+	    						data : [${disposalInfo.initiaCost}, ${disposalInfo.revenue}],
+	    						datalabels: {
+	    							  display: false,
+	   							}
 	    					}] 
 	    				},  //data
 	    				options : {
@@ -77,14 +182,7 @@
 	    							}
 	    						}]
 	    					},
-	    					plugins : {
-	    						datalabels: {
-	    					      align: 'top',
-	  							  formatter: function(context, chart_obj) {
-									  	return calculate(chart_obj.dataIndex)
-							  	  }
-	 						    }
-	    					},
+	    					
 	    					animation: {
 	   		                  duration: 1,
 	   		                  onComplete: function () {
@@ -271,6 +369,22 @@
 		    	</div>
 	    	</div>
 	    	
+	    	<!-- 그래프 그리기 -->
+	    	<div class="row">
+		    	<div class="col-xl-6">
+		    		<div class="myHistoryTotalChart">
+		    			<canvas id="myChartOne5"></canvas>
+		    		</div>
+		    	</div>
+		    	<div class="col-xl-6">
+		    		<div class="myHistoryTotalChart">
+		    			<canvas id="myChartOne6"></canvas>
+		    		</div>
+		    	</div>
+	    	</div>
+	    	<!-- 그래프 그리기 끝 -->
+	    	
+	    	
 	    	<div class="myHistory-disposal-card">
 		    	<div class="container">
 			        <div class="row">
@@ -278,7 +392,10 @@
 				            <!-- 하나  -->
 				            <div class="col-md-6 col-lg-4">
 				                <div class="single_service">
-				                    <div class="item front"><img class="myHistory-card-img" src="/artworkImg/${disposalInfo.artworkImg }" alt="img front"/></div>
+				                    <div class="item front">
+				                    	<p class="item-artworkId-p">${disposalInfo.artworkInfoId }</p>	
+				                    	<img class="myHistory-card-img" src="/artworkImg/${disposalInfo.artworkImg }" alt="img front"/>
+			                    	</div>
 		       						<div class="item back">
 		       							<canvas id="${disposalInfo.artworkInfoId }"></canvas> 
 		       							<p id="yield">수익률 : ${disposalInfo.yield }%</p>

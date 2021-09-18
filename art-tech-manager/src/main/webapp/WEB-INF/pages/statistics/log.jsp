@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/myModal.css">
 <script src="${pageContext.request.contextPath}/static/js/jquery-3.6.0.min.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 
 <!-- Bootstrap -->
 <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
@@ -81,7 +81,7 @@ $(document).ready(function(){
 				      align: 'top',
 						  formatter: function(context, chart_obj) {
 						  	return calculate(chart_obj.dataIndex)
-				  	  }
+				  	  		}
 					    }
 				},
 				

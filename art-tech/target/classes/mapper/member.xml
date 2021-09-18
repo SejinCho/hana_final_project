@@ -120,6 +120,7 @@
 		and a.state in ('2','3','4','5','6')
 		order by p.reg_date desc
 	</select>
+	
 	<!-- myHistory 매각작품 -->
 	<select id="selectMyHistoryDisposalInfoList" parameterType="String" resultType="myHistory">
 		select p.artwork_info_id as artworkInfoId, p.revenue, p.initiaCost, i.artwork_img as artworkImg, 
@@ -142,6 +143,16 @@
 		and p.artwork_info_id = a.id
 		and a.writer_id = w.id
 	</select>
+	<!-- myhistory 내가 산 조각 수 -->
+	<select id="selectMyHistoryBuyPieceNo" parameterType="String" resultType="myHistory">
+		select a.id as artworkInfoId, sum(p.piece_no) as pieceNo from sj_purchase_info p, sj_artwork_info a 
+		where p.artwork_info_id = a.id 
+		and member_id = #{memberId}
+		and a.state = '7'
+		and p.type != '3'
+		group by a.id
+	</select>
+	
 	
 	<!-- 마이갤러리(myGallery) sql -->
 	<sql id="selectMyGallery">
@@ -201,5 +212,7 @@
 	<update id="updateKakaoId" parameterType="hashmap">
 		update sj_member set kakao_id = #{kakaoId} where id = #{memberId}
 	</update>
+	
+	
 	
 </mapper>
