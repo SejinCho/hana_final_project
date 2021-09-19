@@ -232,8 +232,19 @@
          </div>
         <div class="container">
             <div class="row">
-            
-            	<c:forEach items="${newsList}" var="news" begin="0" end="2">
+            	<!-- 하나 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="single_service">
+                        <div class="thumb">
+                            <img src="${pageContext.request.contextPath }/static/img/KakaoTalk_20210726_160711678.png" alt="">
+                        </div>
+                        <div class="service_info">
+                            <p><a href="${news.newsLink }" target="_blank">kopo 정현석 작가, 하금티 정규직 되면서 작품 가격 상승!</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 하나 끝 -->
+            	<c:forEach items="${newsList}" var="news" begin="0" end="4">
 	            	<!-- 하나 -->
 	                <div class="col-md-6 col-lg-4">
 	                    <div class="single_service">

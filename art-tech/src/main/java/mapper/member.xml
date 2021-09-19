@@ -158,7 +158,8 @@
 		select p.artwork_info_id, to_char(p.total_piece_no,'999,999,999') as total_piece_no, p.first_reg_date, a.title,
 		w.writer_name, i.artwork_img, a.state from 
 		(select artwork_info_id, sum(piece_no) as total_piece_no,
-		to_char(min(reg_date),'yyyy-mm-dd') as first_reg_date
+		to_char(min(reg_date),'yyyy-mm-dd') as first_reg_date,
+		min(reg_date) as min_order
 		from sj_purchase_info
 		where member_id = #{memberId}
 		GROUP by artwork_info_id) p, 
@@ -187,25 +188,25 @@
 	<!-- 마이갤러리 all -->
 	<select id="selectMyGalleryAll" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
-		order by p.first_reg_date desc
+		order by p.min_order desc
 	</select>
 	<!-- 마이갤러리 모집중 -->
 	<select id="selectMyGalleryRecruit" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
 		and a.state = '1'
-		order by p.first_reg_date desc
+		order by p.min_order desc
 	</select>
 	<!-- 마이갤러리 모집완료 -->
 	<select id="selectMyGalleryRecruitEnd" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
 		and a.state in ('2','3','4','5','6')
-		order by p.first_reg_date desc
+		order by p.min_order desc
 	</select>
 	<!-- 마이갤러리 매각완료 -->
 	<select id="selectMyGalleryDisposal" parameterType="String" resultMap="myGalleryMap">
 		<include refid="selectMyGallery"/>
 		and a.state = '7'
-		order by p.first_reg_date desc
+		order by p.min_order desc
 	</select>
 	
 	<!-- 카카오id update -->

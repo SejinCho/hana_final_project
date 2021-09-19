@@ -21,7 +21,7 @@
 					
 					let artTitle = `
 						<div class="address-title-container" id=`+ key +`>
-				    		<p>Art Id : `+ key +` ( total `+ value +`pieces )</p>
+				    		<p class="myWallet-title-p">Art Id : `+ key +` ( total `+ value +`pieces )</p>
 				    	</div>
 					`
 					$('.justify-content-center').append(artTitle)
@@ -39,7 +39,7 @@
 								console.log(tx.transactionId)
 								let rowData = `
 									<tr onclick="location.href='${pageContext.request.contextPath}/artscan/txnDetail/` + tx.transactionId + `'">
-							    		<td>`+tx.transactionId+`</td>
+							    		<td class="mywalletTranTd">`+tx.transactionId+`</td>
 							    	</tr>
 								`
 								$('.justify-content-center').append(rowData)

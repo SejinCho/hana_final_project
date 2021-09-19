@@ -133,6 +133,7 @@ public class CobuyingServiceImpl implements CobuyingService {
 	//협업필터링으로 추천한 작품 정보 리스트
 	@Override
 	public List<ArtworkInfoVO> getRecommendArtworkInfoList(String memberId) {
+		System.out.println("여기오낭? cobuying 서비스 : " + memberId);
 		List<String> ids = CollaborativeFilteringUtil.getRecommendArtwork(memberId);
 		if(ids == null) {
 			return null;
