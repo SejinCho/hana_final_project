@@ -73,8 +73,8 @@
     				
     				//tran data
     				for(let i = 0; i < (result.data.length <= 10 ? result.data.length : 10) ; ++i) {
-    					//let tx = result.data[result.data.length - i - 1]
-    					let tx = result.data[i]
+    					let tx = result.data[result.data.length - i - 1]
+    					//let tx = result.data[i]
     					console.log(tx)
     					let txRowData = `
 	    					<tr>

@@ -40,6 +40,15 @@ values('41291065261541','1111',1923456,'1','081','1', '9308121234567','박종범
 
 insert into sj_account_info(account_number, account_password, balance,
 account_type, bank_code,account_state , jumin_no , name )
+values('41291065376610','1111',2223450,'1','081','1', '9501246445154','구본성');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('41291065556618','1111',2223450,'1','081','1', '9408121357945','하금티');
+
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
 values('41291065264485','1111',1923456,'1','081','1', '9408121235679','안성재');
 
 insert into sj_account_info(account_number, account_password, balance,

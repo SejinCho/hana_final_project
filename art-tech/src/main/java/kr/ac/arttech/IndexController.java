@@ -46,6 +46,7 @@ public class IndexController {
 		//공지사항
 		mav.addObject("noticeList", noticeService.getNoticeList());
 		
+		/*
 		//협업필터링(작품 추천)
 		if(memberId != "" || memberId != null) {
 			List<ArtworkInfoVO> recommendArtworkInfoList = cobuyingService.getRecommendArtworkInfoList(memberId);
@@ -53,7 +54,7 @@ public class IndexController {
 				mav.addObject("recommendArtworkInfoList", cobuyingService.getRecommendArtworkInfoList(memberId));
 			}
 		}
-		
+		*/
 		mav.setViewName("index");
 		return mav;
 	}

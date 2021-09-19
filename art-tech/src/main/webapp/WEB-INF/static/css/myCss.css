@@ -512,13 +512,15 @@
 	color: white;
 }
 .table-boarder {
-	width: 500px;
+	width: 1000px;
 	border-collapse: separate;
 	border-spacing : 15px;
 	margin-left: 30px;
 	margin-bottom: 20px;
 }
-
+.goodsDetail_container .table-boarder th {
+	width: 100px;
+}
 
 .table-boarder tbody tr th, .table-boarder tbody tr,
 .table-boarder tbody tr td {

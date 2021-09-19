@@ -20,7 +20,7 @@
 				$.each(result.data, function(key, value){
 					
 					let artTitle = `
-						<div class="address-title-container" id=`+ key +`>
+						<div class="address-title-container">
 				    		<p>Art Id : `+ key +` ( total `+ value +`pieces )</p>
 				    	</div>
 					`
@@ -39,10 +39,11 @@
 								console.log(tx.transactionId)
 								let rowData = `
 									<tr onclick="location.href='${pageContext.request.contextPath}/artscan/txnDetail/` + tx.transactionId + `'">
+							    		<th>Txn Hash</th>
 							    		<td>`+tx.transactionId+`</td>
 							    	</tr>
 								`
-								$('.justify-content-center').append(rowData)
+								$('.table').append(rowData)
 							})
 							$('.justify-content-center').append('</table>')
 					        

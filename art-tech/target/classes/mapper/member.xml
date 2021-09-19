@@ -140,6 +140,7 @@
 		where p.artwork_info_id = i.artwork_info_id
 		and p.artwork_info_id = a.id
 		and a.writer_id = w.id
+		order by a.sell_date desc
 	</select>
 	<!-- myhistory 내가 산 조각 수 -->
 	<select id="selectMyHistoryBuyPieceNo" parameterType="String" resultType="myHistory">
@@ -172,6 +173,7 @@
 		where p.artwork_info_id = a.id
 		and a.writer_id = w.id
 		and i.artwork_info_id = p.artwork_info_id
+		
 	</sql>
 	<resultMap type="myGallery" id="myGalleryMap">
 		<result column="artwork_info_id" property="artworkInfoId"/>
