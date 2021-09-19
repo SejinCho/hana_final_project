@@ -12,7 +12,6 @@ public class CollaborativeFilteringUtil {
 		List<String> result = null;
 		
 		try {
-			/*
 			RConnection conn = new RConnection();
 			System.out.println("member id : " + memberId);
 			conn.eval("source('C:/art-tech/rscript/collaborative-filtering-model.R')"); //스크립트 실행
@@ -26,9 +25,7 @@ public class CollaborativeFilteringUtil {
 			RList list = conn.eval("as(predict(recomm_best, who_matrix_data, type = 'topNList', n = 3), 'list')").asList();
 			String[] ids = list.at(0).asStrings();
 			result = new ArrayList<>();
-			*/
 			
-			String[] ids = {"artwork24","artwork26","artwork23"}; //나중에 삭제해야함
 			for(String id : ids) {
 				result.add(id);
 				System.out.println("id : " + id);

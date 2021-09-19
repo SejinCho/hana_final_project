@@ -157,7 +157,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 				String email = member.getEmail();
 				String phone = member.getPhone();
 				//AuthUtil.authEmail(vote, email);
-				//AuthUtil.authPhone(vote, phone);
+				AuthUtil.authPhone(vote, phone);
 			});
 			result = "success";
 		}
@@ -204,7 +204,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 					String email = member.getEmail();
 					String phone = member.getPhone();
 					//AuthUtil.authEmail(vote, email);
-					//AuthUtil.authPhone(vote, phone);
+					AuthUtil.authPhone(vote, phone);
 				});
 				
 				if(cnt == 2) {
@@ -253,7 +253,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 				String email = member.getEmail();
 				String phone = member.getPhone();
 				//AuthUtil.authEmail(vote, email);
-				//AuthUtil.authPhone(vote, phone);
+				AuthUtil.authPhone(vote, phone);
 			});
 			break;
 		
@@ -271,7 +271,7 @@ public class ArtworkServiceImpl implements ArtworkService{
 				String email = member.getEmail();
 				String phone = member.getPhone();
 				//AuthUtil.authEmail(vote, email);
-				//AuthUtil.authPhone(vote, phone);
+				AuthUtil.authPhone(vote, phone);
 			});
 			
 			result = "4";

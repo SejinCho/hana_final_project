@@ -56,7 +56,7 @@
 	            options : {
 	               title : {
 	                  display : true,   
-	                  text : '내가 산 총 조각 수',
+	                  text : '매각된 총 조각 수',
 	                  fontSize : 20,
 	               },
 	               legend : {
@@ -102,7 +102,7 @@
 	            options : {
 	               title : {
 	                  display : true,   
-	                  text : '내가 얻은 총 수익',
+	                  text : '그림별 수익 비율',
 	                  fontSize : 20,
 	               },
 	               legend : {
@@ -110,7 +110,8 @@
 	                  
 	               },pieceLabel: { 
 	                  mode:"percentage",
-	                  position:"default",
+	                 // position:"default",
+	                  position:"bottom",
 	                  fontSize: 12,
 	                  fontColor : 'rgb(2,2,2)',
 	                  fontStyle: 'bold'
@@ -181,6 +182,10 @@
 	    								display : false
 	    							}
 	    						}]
+	    					}, 
+	    					
+	    					pieceLabel : {
+	    						display : false
 	    					},
 	    					
 	    					animation: {
@@ -333,15 +338,15 @@
 		    		<div class="total_cobuying_summary">
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">매각 수익률</span>
-		    				<span class="content_middle">34%</span>
+		    				<span class="content_middle">44%</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">매각 작품 수</span>
-		    				<span class="content_middle">4건</span>
+		    				<span class="content_middle">6건</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 구입 금액</span>
-		    				<span class="content_middle">1,241,660원</span>
+		    				<span class="content_middle">42,241,660원</span>
 		    			</div>
 		    			
 		    		</div>
@@ -351,15 +356,15 @@
 		    		<div class="total_cobuying_summary">
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 매각 금액</span>
-		    				<span class="content_middle1">2,231,750원</span>
+		    				<span class="content_middle1">87,231,750원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 플랫폼 이용료</span>
-		    				<span class="content_long">123,421원</span>
+		    				<span class="content_long">583,421원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 부가세</span>
-		    				<span class="content">54,660원</span>
+		    				<span class="content">154,660원</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one2">
 		    				<span class="title">총 실 지급액</span>

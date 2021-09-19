@@ -1,15 +1,7 @@
 /*
-sj_member 사용자 정보 table insert
+거래내역
 */
---10번 반복
-insert into sj_member(id, user_id, password, name, phone, email, jumin_no,
-zipcode, address1, address2, gender, receive_sms_yn, privacy_agree_yn, fintech_use_no)
-values('member' || seq_sj_member.nextval, (SELECT DBMS_RANDOM.STRING('X', 10) STR FROM DUAL), '1234', (SELECT DBMS_RANDOM.STRING('L', 10) STR FROM DUAL),
-'010' || (select trunc(dbms_random.value(00000000, 99999999)) from dual),
-(SELECT DBMS_RANDOM.STRING('L', 8) STR FROM DUAL)||'@naver.com', (select trunc(dbms_random.value(1111111111111, 9999999999999)) from dual), 
-(select trunc(dbms_random.value(1000000, 9999999)) from dual) , 
-'의정부시 민락동', '10'|| (select trunc(dbms_random.value(10, 99)) from dual) ||'호', 'M', 'Y',
-'Y',(select trunc(dbms_random.value(000000000000000000000000, 999999999999999999999999)) from dual) );
+insert into sj_account_transfer_info(id, inout_type, tran_amt, tran_amt, account_number,
 
 /*
 sj_account_info 계좌정보 insert
@@ -49,12 +41,21 @@ values('41291065556618','1111',2223450,'1','081','1', '9408121357945','하금티
 
 insert into sj_account_info(account_number, account_password, balance,
 account_type, bank_code,account_state , jumin_no , name )
-values('41291065264485','1111',1923456,'1','081','1', '9408121235679','안성재');
+values('41291065264485','1111',2923456,'1','081','1', '9408121235679','안성재');
+
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('41291031564485','1111',1923456,'1','081','1', '9408121235679','안성재');
 
 insert into sj_account_info(account_number, account_password, balance,
 account_type, bank_code,account_state , jumin_no , name )
 values('110488540999','1111',2911100,'1','003','1', '9408121235679','안성재');
 
+insert into sj_account_info(account_number, account_password, balance,
+account_type, bank_code,account_state , jumin_no , name )
+values('340488540999','1111',8911130,'1','004','1', '9408121235679','안성재');
+
+01053701654
 
 --다른사람
 insert into sj_account_info(account_number, account_password, balance,

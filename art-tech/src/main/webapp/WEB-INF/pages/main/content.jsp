@@ -228,7 +228,6 @@
              <h3>
                  A.T 미디어
              </h3>
-             <p>더보기 +<p> 
          </div>
         <div class="container">
             <div class="row">

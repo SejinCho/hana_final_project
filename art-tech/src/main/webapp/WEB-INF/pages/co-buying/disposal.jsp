@@ -43,7 +43,7 @@
 		    		<div class="total_cobuying_summary">
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 공동구매 작품 수</span>
-		    				<span class="content">84작품</span>
+		    				<span class="content">21작품</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 공동구매 구매금액</span>
@@ -51,7 +51,7 @@
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 매각 작품 수</span>
-		    				<span class="content_middle">15작품</span>
+		    				<span class="content_middle">12작품</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">총 매각예정 작품 수</span>
@@ -64,7 +64,7 @@
 		    		<div class="total_cobuying_summary">
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">평균 수익률</span>
-		    				<span class="content_short">55.16%</span>
+		    				<span class="content_short">45.16%</span>
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">평균 기간환산 수익률(연)</span>
@@ -72,7 +72,7 @@
 		    			</div>
 		    			<div class="total_cobuying_summary_one">
 		    				<span class="title">평균 보유기간</span>
-		    				<span class="content_middle">334일</span>
+		    				<span class="content_middle">124일</span>
 		    			</div>
 		    		</div>
 		    	</div>
