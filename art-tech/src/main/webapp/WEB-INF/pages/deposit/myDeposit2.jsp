@@ -165,7 +165,7 @@
 						<div class="deposit_account_content">
 							<span>가상 계좌번호</span><span class="text_right_one">하나은행 412-910652-66607</span><br>
 							
-							<span>예치금</span><span class="text_right_two">60,000 KRW</span>
+							<span>예치금</span><span class="text_right_two">${totalDeposit } KRW</span>
 						</div>
 					</div>	
 					<div class="withdraw_request_container">
@@ -180,7 +180,7 @@
 									<option>하나은행 1232-1411-2412</option>
 								</select>
 							</span><br>
-							<span>출금 가능액</span><span class="text_right_two"></span>60,000 KRW<br>
+							<span>출금 가능액</span><span class="text_right_two"></span>${totalDeposit } KRW<br>
 							<span>출금 금액</span><span class="text_right_three"><input type="text"></span> <br>
 							<div class="deposit_out">
 								<button type="button" class="deposit_out_btn">출금신청</button>
