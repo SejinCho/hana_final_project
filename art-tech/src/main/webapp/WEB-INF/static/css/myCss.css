@@ -931,7 +931,13 @@
 	font-weight: bold;
 	font-size: 15px;
 }
-
+.div_right .disposal_revenue .content2 {
+	font-weight: bold;
+}
+.div_right .disposal_revenue .revenueContent {
+	color: red;
+	font-weight: bold;
+}
 /* co-buying/purchase */
 .purchase-img-th {
 	text-align: center;
@@ -1087,12 +1093,21 @@
 .container .myPage_container {
 	text-align : center;
 	margin-top : 50px;
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-left: 10%;
+	margin-right: 10%;
 	border: 1px solid #D3D3D3;
 	padding-left: 60px;
 	padding-right: 60px;
 	padding-top: 50px;
+}
+.myPage-addr-table th{
+	text-align: center;
+	font-size: 20px;
+	width: 350px;
+}
+.myPage-addr-table td{
+	text-align: left;
+	font-size: 20px;
 }
 .myPage_container .myInfoDetail #name {
 	margin-bottom: 15px;
@@ -1102,10 +1117,12 @@
 .myPage_container .myInfoDetail #email {
 	margin-bottom: 15px;
 	font-size: 20px;
+	font-weight: bold;
 }
 .myPage_container .myInfoDetail #phone {
 	margin-bottom: 15px;
 	font-size: 20px;
+	font-weight: bold;
 }
 .myInfo-hr-container {
 	margin-top: 10px;
@@ -1153,6 +1170,20 @@
 	color: white;
 }
 
+.publickeyAddress_p {
+	display: inline-block; 
+	text-align: center;
+	width: 20%; 
+	text-align: right;
+	font-size: 20px;
+	background-color: #008485;
+	margin-left: 20px;
+	width: 200px;
+	border-radius: 10px; 
+	text-align: center;
+	font-weight: bold;
+	color: white;
+}
 .myPage_container .myInfoDetail .addr_container input {
 	border: 1px solid #DCDCDC;
 	width: 300px;
@@ -1170,10 +1201,39 @@
 	padding-right : 10px;
 	background-color: #F5F5F5;
 }
+.myPage_container .sns_container2 {
+	margin-top: 30px;
+	padding-top : 15px;
+	padding-bottom : 15px;
+	padding-left : 10px;
+	padding-right : 10px;
+}
 .myPage_container .sns_container .my_sns_title {
 	font-weight: bold;
 	margin-bottom: 0px;
+	margin-top : 15px;
 	font-size: 25px;
+	padding-bottom: 20px;
+}
+.myPage_container .sns_container2 .my_sns_title {
+	font-weight: bold;
+	margin-bottom: 0px;
+	margin-top : 15px;
+	font-size: 25px;
+	padding-bottom: 20px;
+}
+.myPage_container .sns_container .kakao_p {
+	display: inline-block; 
+	text-align: center;
+	width: 20%; 
+	text-align: right;
+	font-size: 20px;
+	margin-left: 20px;
+	width: 200px;
+	border-radius: 10px; 
+	text-align: center;
+	font-weight: bold;
+	color: white;
 }
 .myPage_container .sns_container .kakao_p a {
 	color: black;
