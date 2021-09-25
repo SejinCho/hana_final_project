@@ -34,7 +34,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.ac.kopo" />
-	
 	<!-- =====================db관련 작업============================== -->
 	<beans:bean id="ds"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
