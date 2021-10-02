@@ -61,7 +61,7 @@
 		from sj_account_transfer_info a
 		<where>
 			tran_date between #{startDate} and #{endDate}
-			and token = #{token}
+			and fintech_no = #{fintechNo}
 			<choose>
 				<when test='selectDepositYn == "Y"'>
 					and OTHER_ACCOUNT_NUMBER = '41291065266607'
@@ -98,13 +98,13 @@
 			nvl((select sum(tran_amt) from sj_account_transfer_info 
 			where other_account_number = '41291065266607' -- other이 회사
 			and other_bank_code = '081'
-			and token = #{token}
+			and fintech_no = #{fintechNo}
 			group by inout_type
 			having inout_type = 'O'),0) - 
 			nvl((select sum(tran_amt)  from sj_account_transfer_info 
 			where other_account_number = '41291065266607' -- other이 회사
 			and other_bank_code = '081'
-			and token = #{token}
+			and fintech_no = #{fintechNo}
 			group by inout_type
 			having inout_type = 'I'),0)
 			as total_deposit from dual
@@ -131,4 +131,16 @@
 		
 	</select>
 	
+	<!-- 오픈뱅킹 테이블에 인증 확인상태로 update -->
+	<update id="updateAuthAgree" parameterType="String">
+		update sj_openBanking set auth_yn = 'Y' where phone = #{phone}
+	</update>
+	<!-- 오픈뱅킹 시퀀스값 가져오기 -->
+	<select id="selectOpenbankingSeq" parameterType="String" resultType="String">
+		select id from sj_openBanking where phone = #{phone}
+	</select>	
+	<!-- 오픈뱅킹 멤버 정보 가져오기 -->
+	<select id="getMemberInfo" parameterType="String" resultType="member">
+		select id, name, jumin_no as juminNo, phone from sj_openBanking where id = #{id}
+	</select>
 </mapper>

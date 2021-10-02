@@ -23,6 +23,25 @@ public class BankController {
 	
 	//토큰 생성
 	@PostMapping("/newToken")
+	public Response<?> createToken() {
+		return Response.builder()
+				.code(1)
+				.msg("sucess")
+				.data(service.createToken())
+				.build();
+	}
+	/*
+	@PostMapping("/newToken")
+	public Response<?> createToken(@RequestBody String id) {
+		return Response.builder()
+				.code(1)
+				.msg("sucess")
+				.data(service.createToken(id))
+				.build();
+	}
+	*/
+	/*
+	@PostMapping("/newToken")
 	public Response<?> createToken(@RequestBody String nameJuminNo) {
 		return Response.builder()
 				.code(1)
@@ -30,6 +49,7 @@ public class BankController {
 				.data(service.createToken(nameJuminNo))
 				.build();
 	}
+	*/
 	
 	//계좌 리스트 가져오기
 	@PostMapping("/accountList")
@@ -40,7 +60,16 @@ public class BankController {
 				.data(service.getAccountList(memberInfoDTO))
 				.build();
 	}
-	
+	/*
+	@PostMapping("/accountList")
+	public Response<?> getAccountList(@RequestBody MemberInfoDTO memberInfoDTO) {
+		return Response.builder()
+				.code(1)
+				.msg("sucess")
+				.data(service.getAccountList(memberInfoDTO))
+				.build();
+	}
+	*/
 	//특정 계좌의 정보 가져오기
 	@PostMapping("/accountInfo")
 	public Response<?> getAccountInfo(@RequestBody Map<String, String> map) {
@@ -61,7 +90,17 @@ public class BankController {
 				.build();
 	}
 	
+	
 	//예치금 총 금액 가져오기
+	@PostMapping("/totalDeposit")
+	public Response<?> getTotalDeposit(@RequestBody MemberInfoDTO memberInfoDTO) {
+		return Response.builder()
+				.code(1)
+				.msg("sucess")
+				.data(service.getTotalDeposit(memberInfoDTO))
+				.build();
+	}
+	/*
 	@PostMapping("/totalDeposit")
 	public Response<?> getTotalDeposit(@RequestBody String token) {
 		return Response.builder()
@@ -70,6 +109,7 @@ public class BankController {
 				.data(service.getTotalDeposit(token))
 				.build();
 	}
+	*/
 	
 	//자동이체 진행하기
 	@PostMapping("/tran")
@@ -80,5 +120,7 @@ public class BankController {
 				.data(service.addTranInfo(accountTranInfoList))
 				.build();
 	}
+	
+	
 	
 }

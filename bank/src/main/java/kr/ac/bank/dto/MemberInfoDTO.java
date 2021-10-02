@@ -12,4 +12,5 @@ public class MemberInfoDTO {
 	private String name;
 	private String juminNo;
 	private String token;
+	private String id; //핀테크 이용번호
 }

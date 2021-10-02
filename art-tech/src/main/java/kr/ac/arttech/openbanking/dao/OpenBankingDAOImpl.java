@@ -30,6 +30,11 @@ public class OpenBankingDAOImpl implements OpenBankingDAO{
 	public int updateServiceAgreeState(MemberVO member) {
 		return sqlSession.update("kr.ac.arttech.openbanking.updateServiceAgreeState", member);
 	}
+	//오픈뱅킹 동의(Y로 바꾸기)
+	@Override
+	public int updateOpenbankingAgree(String memberId) {
+		return sqlSession.update("kr.ac.arttech.openbanking.updateOpenbankingAgree", memberId);
+	}
 	
 	//오픈뱅킹 토큰 생성을 위한 정보 가져오기 
 	@Override
@@ -93,5 +98,25 @@ public class OpenBankingDAOImpl implements OpenBankingDAO{
 	@Override
 	public List<AutoTranInfoSMSVO> selectAutoTranInfoSMS() {
 		return sqlSession.selectList("kr.ac.arttech.openbanking.selectAutoTranInfoSMS");
+	}
+	//회사토큰 db에 저장
+	@Override
+	public int insertOpenBankingToken(String token) {
+		return sqlSession.insert("kr.ac.arttech.openbanking.insertOpenBankingToken");
+	}
+	//회사토큰 가져오기
+	@Override
+	public String selectOpenBankingToken() {
+		return sqlSession.selectOne("kr.ac.arttech.openbanking.selectOpenBankingToken");
+	}
+	//핀테크 이용번호 추가
+	@Override
+	public int updateFintechNo(MemberVO member) {
+		return sqlSession.update("kr.ac.arttech.openbanking.updateFintechNo",member );
+	}
+	//핀테크 이용번호 가져오기
+	@Override
+	public String selectFintechNo(String memberId) {
+		return sqlSession.selectOne("kr.ac.arttech.openbanking.selectFintechNo",memberId );
 	}
 }

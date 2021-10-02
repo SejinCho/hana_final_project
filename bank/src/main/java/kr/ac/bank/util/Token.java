@@ -11,6 +11,18 @@ import kr.ac.bank.dto.MemberInfoDTO;
 public class Token {
 	
 	//토큰 생성
+	public static String createToken() {
+		Date now = new Date();
+		return Jwts.builder()
+				.setHeaderParam(Header.TYPE, Header.JWT_TYPE) //header의 타입
+				.setIssuer("arttech") //토큰 발급자
+				.setIssuedAt(now) //발급 시간
+				.setExpiration(new Date(System.currentTimeMillis() + 1 * (1000 * 60 * 60 * 24 * 365))) //만료시간
+				.claim("company", "hanaArt")
+				.signWith(SignatureAlgorithm.HS256, "secret")
+				.compact();
+	}
+	/*
 	public static String createToken(MemberInfoDTO memberInfoDTO) {
 		Date now = new Date();
 		return Jwts.builder()
@@ -23,7 +35,7 @@ public class Token {
 				.signWith(SignatureAlgorithm.HS256, "secret")
 				.compact();
 	}
-	
+	*/
 	//토큰 파싱
 	public static Claims parseToken(String authorizationHeader) {
 		//validationAuthorizationHeader(authorizationHeader); // (1)
@@ -37,6 +49,10 @@ public class Token {
 	}
 	
 	//정보 가져오기
+	public static String getId(String token) {
+		return parseToken(token).get("id").toString();
+	}
+	
 	public static String getJuminNo(MemberInfoDTO memberInfoDTO) {
 		return parseToken(memberInfoDTO.getToken()).get("juminNo").toString();
 	}
@@ -46,6 +62,16 @@ public class Token {
 	}
 	
 	//만료기간 확인
+	public static boolean checkExpToken(String token) {
+		int diff = (Integer)parseToken(token).get("iat") - (Integer)parseToken(token).get("exp");
+		if(diff < 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	/*
+	
 	public static boolean checkExpToken(MemberInfoDTO memberInfoDTO) {
 		int diff = (Integer)parseToken(memberInfoDTO.getToken()).get("iat") - (Integer)parseToken(memberInfoDTO.getToken()).get("exp");
 		if(diff < 0) {
@@ -53,5 +79,6 @@ public class Token {
 		}
 		return false;
 	}
+	*/
 	
 }

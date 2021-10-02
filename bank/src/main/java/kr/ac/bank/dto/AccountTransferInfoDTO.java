@@ -34,4 +34,5 @@ public class AccountTransferInfoDTO {
 	private String orderBy;
 	private String selectInOutType; //입금or출금orall
 	private String selectDepositYn; //예치금이면  Y, 아니면 N
+	private String fintechNo; //핀테크 번호
 }

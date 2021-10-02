@@ -22,11 +22,18 @@ public interface BankMapper {
 	public List<AccountTransferInfoDTO> selectTranInfoList(AccountTransferInfoDTO tranInfo);
 	
 	//총 예치금 금액
-	public String selectTotalDeposit(String token);
+	public String selectTotalDeposit(String fintechNo);
 	
 	//거래내역 테이블 시퀀스 가져오기
 	public int selectAccountTranInfoSeq();
 	
 	//거래내역 insert
 	public int insertAccountTranInfo(AccountTransferInfoDTO accountTranInfo);
+	
+	//오픈뱅킹 table update
+	public int updateAuthAgree(String phone);
+	//오픈뱅킹 table id 가져오기
+	public String selectOpenbankingSeq(String phone);
+	//오픈뱅킹 주민, 이름 정보 가져오기
+	public MemberInfoDTO getMemberInfo(String id);
 }

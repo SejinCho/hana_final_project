@@ -39,7 +39,8 @@ create sequence sj_seq_transfer_exception_log; --exception 테이블 시퀀스
 create sequence sj_seq_auto_tran_account ; 
 create sequence sj_seq_manage_account_info ;
 create sequence seq_sj_disposal_vote ; --투표 시퀀스
-
+create sequence seq_sj_openbanking ; --오픈뱅킹 테이블 
+create sequence seq_sj_hanaart_info ; --회사 정보 table
 
 /*
 table drop
@@ -95,7 +96,8 @@ CREATE TABLE sj_member --사용자 정보 테이블
     receive_kakao_yn    CHAR(1), -- 알림 받을건지 (Y/N)
     mem_denied_yn    CHAR(1) DEFAULT 'N' , --차단된 회원 여부(Y/N)
     privacy_agree_yn    CHAR(1) default 'N', --오픈뱅킹 정보제공 동의 여부(Y/N)
-    token varchar2(1000), -- 오픈뱅킹 토큰
+    token varchar2(1000), -- 오픈뱅킹 토큰(이건필요없음 이제)
+    fintech_no varchar2(2000), --핀테크 이용번호
     PRIMARY KEY (id)
 );
 
@@ -283,7 +285,7 @@ CREATE TABLE sj_account_transfer_info --거래내역
     bank_code    CHAR(3), --은행 코드
     other_account_number    VARCHAR2(20), --다른 사람 계좌번호
     other_bank_code    CHAR(3), --다른 사람 은행 코드 번호
-    token varchar2(1000), 
+    fintech_no varchar2(1000), 
     PRIMARY KEY (id) 
 );
 
@@ -333,4 +335,22 @@ create table sj_auto_tran_account (
     primary key (id),
     CONSTRAINT fk_sj_auto_tran_account FOREIGN KEY(member_id)
     REFERENCES sj_member(id)
+);
+
+--오픈뱅킹
+create table sj_openBanking(
+    id varchar2(40),
+    name varchar2(20),
+    jumin_no char(13),
+    phone varchar2(12),
+    auth_yn char(1) DEFAULT 'N',
+    PRIMARY KEY (id)
+);
+
+--회사정보 테이블
+create table sj_hanaart_info(
+	id varchar2(40),
+	token varchar2(2000),
+	reg_date date default sysdate,
+	PRIMARY KEY (id)
 );

@@ -7,7 +7,12 @@ spring:
     url: jdbc:oracle:thin:@127.0.0.1:1521:xe
     username: library
     password: library
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
     
 mybatis:
   type-aliases-package: kr.ac.bank.dto
   mapper-locations: classpath:mappers/*.xml
+  
