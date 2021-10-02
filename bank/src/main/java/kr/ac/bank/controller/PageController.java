@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 	
-	@GetMapping("/phoneAuth")
+	@GetMapping("/OAuth")
 	public String test() {
 		System.out.println("여기 오나요?");
 		return "phoneAuth";

@@ -21,7 +21,7 @@
 		function phoneAuth() {
 			//핸드폰 인증 창 띄우기
 			var w = window.open("about:blank","_blank", "width=400,height=610");
-			w.location.href = "http://localhost:18081/phoneAuth";
+			w.location.href = "http://192.168.0.2:18081/OAuth";
 			/*
 			$.ajax({
 				type: "get",

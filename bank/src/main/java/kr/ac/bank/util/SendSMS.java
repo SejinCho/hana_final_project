@@ -13,8 +13,6 @@ public class SendSMS {
 		
 		String ranNo = RandomNO.getRanNo(6, 1);
 		
-		/*
-		
 		String api_key = "NCSYPTNBUIL12T6I";
 	    String api_secret = "MJBLDTP2MEQBH6UTOO4C8F5D1PIEO94Q";
 	    Message coolsms = new Message(api_key, api_secret);
@@ -39,7 +37,7 @@ public class SendSMS {
 	      System.out.println(e.getCode());
 	    }
 	    
-	    */
+	    
 	    System.out.println("랜덤 수 : " + ranNo);
 	    return ranNo ;
 	}

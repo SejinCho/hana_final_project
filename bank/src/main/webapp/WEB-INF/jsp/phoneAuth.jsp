@@ -10,15 +10,18 @@
 .auth-container {
 	margin-left: 0;
 	margin-right: 0;
-	border: 1px solid black;
+	border: 3px solid black;
 	margin-top: 15px;
 	padding-bottom: 15px;
 }
 .auth-content .main-title {
 	text-align: center;
 }
+.sub-title {
+	text-align: center;
+}
 .auth-content .main-title p {
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: bold;
 	margin-top: 30px;
 }
@@ -50,6 +53,14 @@ table td {
 	background-color: #4682B4;
 	border-radius: 10px;
 	color: white;
+}
+#phoneBtn {
+	background-color: #4682B4;
+    border-radius: 10px;
+}
+.agreeText {
+	font-size: 13px;
+	font-weight: bold;
 }
 </style>
 <script type="text/javascript">
@@ -104,8 +115,11 @@ table td {
 	<div class="auth-container">
 		<div class="auth-content">
 			<div class="main-title">
-				<p>핸드폰 인증</p>
+				<p>PASS</p>
 			</div>
+            <div class="sub-title">
+            	<p>이용 중인 통신사를 선택하세요.</p>
+            </div>
 			<table>
 				<tr>
 					<td class="imgTd" >
@@ -140,16 +154,21 @@ table td {
 					</td>
 				</tr>
 				<tr>
+                	<td>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" name="phone" id="phone"> <button onclick="sendSms()">인증번호</button>
+						<input type="text" name="phone" id="phone"> <button onclick="sendSms()" id="phoneBtn">인증번호전송</button>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">인증번호  : <input type="text" name="inputRanNo" id="inputRanNo"></td>
 				</tr>
 			</table>
+            <div>
+            	<p class="agreeText">&nbsp;&nbsp;&nbsp;<input type="checkbox">&nbsp;<a href="#">본인확인을 하기 위한 필수사항에 전체 동의합니다.</a></p>
+            </div>
 			<div class="auth-btn-container">
 				<p id="authCheckBtn">인증하기</p>
 			</div>
