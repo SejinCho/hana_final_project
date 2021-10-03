@@ -26,8 +26,8 @@ public class BankServiceImpl implements BankService{
 	
 	//토큰 생성
 	@Override
-	public String createToken() {
-		return Token.createToken();
+	public String createToken(String id) {
+		return Token.createToken(id);
 	}
 	
 	
@@ -37,12 +37,9 @@ public class BankServiceImpl implements BankService{
 		List<AccountInfoDTO> getAccountList = null;
 		if(Token.checkExpToken(memberInfoDTO.getToken())) {
 			//정보 가져오기
-			String id = memberInfoDTO.getId();
-			System.out.println("은행 서버 계좌리스트 서비스 id : " + id);
+			String id = Token.getId(memberInfoDTO.getToken());
 			MemberInfoDTO member = mapper.getMemberInfo(id);
-			System.out.println("은행 서버 계좌리스트 서비스 member : " + member);
 			getAccountList = mapper.selectAccountInfoList(member);
-			System.out.println("은행 서버 계좌리스트 서비스 getAccountList : " + getAccountList);
 			
 		}
 		
@@ -58,7 +55,7 @@ public class BankServiceImpl implements BankService{
 		String token = map.get("token") ;
 		if(Token.checkExpToken(token) ) {
 			//정보 가져오기
-			String id = map.get("id");
+			String id = Token.getId(token);
 			//주민 아이디 가져오기
 			MemberInfoDTO member = mapper.getMemberInfo(id);
 			
@@ -70,24 +67,7 @@ public class BankServiceImpl implements BankService{
 		
 		return accountInfoList;
 	}
-	/*
-	@Override
-	public List<AccountInfoDTO> getAccount(Map<String, String> map) {
-		List<AccountInfoDTO> accountInfoList = new ArrayList<AccountInfoDTO>();
-		MemberInfoDTO memberInfoDTO = new MemberInfoDTO();
-		memberInfoDTO.setToken(map.get("token"));
-		
-		if(Token.checkExpToken(memberInfoDTO) ) {
-			//정보 가져오기
-			map.put("juminNo", Token.getJuminNo(memberInfoDTO));
-			map.put("name", Token.getName(memberInfoDTO));
-			
-			accountInfoList.add(mapper.selectAccountInfo(map));
-		}
-		
-		return accountInfoList;
-	}
-	*/
+	
 	
 	@Override
 	public List<AccountTransferInfoDTO> getTranInfoList(AccountTransferInfoDTO tranInfo) {
@@ -95,7 +75,9 @@ public class BankServiceImpl implements BankService{
 		
 		String token = tranInfo.getToken();
 		if(Token.checkExpToken(token) ) {
-			
+			//정보 가져오기
+			String id = Token.getId(token);
+			tranInfo.setId(id);
 			tranInfoList = mapper.selectTranInfoList(tranInfo);
 		}
 		
@@ -112,35 +94,13 @@ public class BankServiceImpl implements BankService{
 		
 		if(Token.checkExpToken(token) ) {
 			//정보 가져오기
+			String id = Token.getId(token);
+			memberInfoDTO.setId(id);
 			total = mapper.selectTotalDeposit(memberInfoDTO.getId());
 		}
 		
 		return total;
 	}
-	/*
-	@Override
-	public String getTotalDeposit(String token) {
-		String paramToken = "";
-		try {
-			JSONObject jObject = new JSONObject(token);
-			paramToken = jObject.getString("token");
-			
-			
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		String total = "";
-		MemberInfoDTO memberInfoDTO = new MemberInfoDTO();
-		memberInfoDTO.setToken(paramToken);
-		
-		if(Token.checkExpToken(memberInfoDTO) ) {
-			//정보 가져오기
-			total = mapper.selectTotalDeposit(paramToken);
-		}
-		
-		return total;
-	}
-	*/
 	
 	//이체
 	@Override
@@ -159,11 +119,13 @@ public class BankServiceImpl implements BankService{
 			if(Token.checkExpToken(accountTranInfo.getToken()) ) {
 				//정보 가져오기
 				String id = "transfer" + mapper.selectAccountTranInfoSeq(); //시퀀스값 가져오기
+				String fintechNo = Token.getId(accountTranInfo.getToken());
 				
 				//추가 정보 넣기
 				accountTranInfo.setId(id);
-				accountTranInfo.setJuminNo(Token.getJuminNo(memberInfoDTO));
-				accountTranInfo.setName(Token.getName(memberInfoDTO));
+				accountTranInfo.setJuminNo(mapper.getMemberInfo(fintechNo).getJuminNo());
+				accountTranInfo.setName(mapper.getMemberInfo(fintechNo).getName());
+				accountTranInfo.setFintechNo(fintechNo);
 				
 				//이체 테이블에 insert
 				cnt += mapper.insertAccountTranInfo(accountTranInfo);
@@ -179,44 +141,6 @@ public class BankServiceImpl implements BankService{
 		
 		return result;
 	}
-	/*
-	@Override
-	public String addTranInfo(List<AccountTransferInfoDTO> accountTranInfoList) {
-		String result = "fail";
-		
-		//dao로 가져갈 파라미터 생성
-		List<AccountTransferInfoDTO> param = new ArrayList<>();
-		
-		int cnt = 0;
-		for(AccountTransferInfoDTO accountTranInfo : accountTranInfoList) {
-			//토큰 유효한지 확인
-			MemberInfoDTO memberInfoDTO = new MemberInfoDTO();
-			memberInfoDTO.setToken(accountTranInfo.getToken());
-			
-			if(Token.checkExpToken(memberInfoDTO) ) {
-				//정보 가져오기
-				String id = "transfer" + mapper.selectAccountTranInfoSeq(); //시퀀스값 가져오기
-				
-				//추가 정보 넣기
-				accountTranInfo.setId(id);
-				accountTranInfo.setJuminNo(Token.getJuminNo(memberInfoDTO));
-				accountTranInfo.setName(Token.getName(memberInfoDTO));
-				
-				//이체 테이블에 insert
-				cnt += mapper.insertAccountTranInfo(accountTranInfo);
-				
-			}
-			
-		}
-		
-		if(cnt == accountTranInfoList.size()) {
-			result = "success";
-		}
-		
-		
-		return result;
-	}
-	 */
 	
 	//핸드폰 인증
 	@Override

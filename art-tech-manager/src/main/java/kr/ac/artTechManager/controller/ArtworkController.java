@@ -132,7 +132,7 @@ public class ArtworkController {
 	
 	//투표중(3) -> 투표종료(4)
 	//현재날짜 = 투표종료 날짜
-	//@Scheduled(cron="0 0 24 * * * ")
+	@Scheduled(cron="0 0 24 * * * ")
 	public void updateStateVote() {
 		int result = service.modifyStateVote();
 		System.out.println("총 " + result + "개의 상태가 update");

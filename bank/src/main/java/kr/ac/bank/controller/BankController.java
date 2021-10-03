@@ -22,6 +22,7 @@ public class BankController {
 	private final BankService service;
 	
 	//토큰 생성
+	/*
 	@PostMapping("/newToken")
 	public Response<?> createToken() {
 		return Response.builder()
@@ -30,7 +31,7 @@ public class BankController {
 				.data(service.createToken())
 				.build();
 	}
-	/*
+	*/
 	@PostMapping("/newToken")
 	public Response<?> createToken(@RequestBody String id) {
 		return Response.builder()
@@ -39,17 +40,6 @@ public class BankController {
 				.data(service.createToken(id))
 				.build();
 	}
-	*/
-	/*
-	@PostMapping("/newToken")
-	public Response<?> createToken(@RequestBody String nameJuminNo) {
-		return Response.builder()
-				.code(1)
-				.msg("sucess")
-				.data(service.createToken(nameJuminNo))
-				.build();
-	}
-	*/
 	
 	//계좌 리스트 가져오기
 	@PostMapping("/accountList")

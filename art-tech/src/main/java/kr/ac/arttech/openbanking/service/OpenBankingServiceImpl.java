@@ -95,17 +95,13 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		List<AccountInfoVO> accountInfo = null;
 		
 		//토큰 가져오기
-		String token = dao.selectOpenBankingToken();
-		//핀테크 이용번호 가져오기
-		String fintechNo = dao.selectFintechNo(memberId);
-		
+		String token = dao.selectToken(memberId);
 		
 		//토큰과 핀테크 이용번호로 은행 api로 계좌리스트 가져오기
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		JsonObject parameters = new	JsonObject();
 		parameters.addProperty("token", token);
-		parameters.addProperty("id", fintechNo);
 		HttpEntity<Object> entity = new HttpEntity<Object>(parameters.toString(), headers);
 		
 		String url = "http://localhost:18081/accountList";
@@ -125,10 +121,7 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		
 		
 		//토큰 가져오기
-		String token = dao.selectOpenBankingToken();
-		
-		//핀테크 이용번호 가져오기
-		String fintechNo = dao.selectFintechNo(memberId);	
+		String token = dao.selectToken(memberId);
 		
 		//토큰으로 은행 api에서 특정 계좌 정보 가져오기
 		HttpHeaders headers = new HttpHeaders();
@@ -137,7 +130,6 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		parameters.addProperty("token", token);
 		parameters.addProperty("accountNumber", accountInfo.getAccountNumber());
 		parameters.addProperty("bankCode", accountInfo.getBankCode());
-		parameters.addProperty("id", fintechNo);
 		
 		
 		HttpEntity<Object> entity = new HttpEntity<Object>(parameters.toString(), headers);
@@ -158,10 +150,8 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		List<AccountTransferInfoVO> tranInfoList = null;
 		
 		//토큰 가져오기
-		String token = dao.selectOpenBankingToken();
+		String token = dao.selectToken(memberId);
 		
-		//핀테크 이용번호 가져오기
-		String fintechNo = dao.selectFintechNo(memberId);	
 		
 		//토큰으로 은행 api에서 특정 계좌의 거래내역 가져오기
 		HttpHeaders headers = new HttpHeaders();
@@ -170,7 +160,6 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		parameters.addProperty("accountNumber", tranInfo.getAccountNumber());
 		parameters.addProperty("bankCode", tranInfo.getBankCode());
 		parameters.addProperty("token", token);
-		parameters.addProperty("fintechNo", fintechNo);
 		parameters.addProperty("startDate", tranInfo.getStartDate());
 		parameters.addProperty("endDate", tranInfo.getEndDate());
 		parameters.addProperty("orderBy", tranInfo.getOrderBy());
@@ -256,18 +245,13 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		String result = "";
 		
 		//토큰 가져오기
-		String token = dao.selectOpenBankingToken();
-		
-		//핀테크 이용번호 가져오기
-		String fintechNo = dao.selectFintechNo(memberId);	
-		
+		String token = dao.selectToken(memberId);
 		
 		//토큰으로 은행 api에서 예치금 총 금액 가져오기
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		JsonObject parameters = new	JsonObject();
 		parameters.addProperty("token", token);
-		parameters.addProperty("id", fintechNo);
 		
 		HttpEntity<Object> entity = new HttpEntity<Object>(parameters.toString(), headers);
 		
@@ -287,39 +271,6 @@ public class OpenBankingServiceImpl implements OpenBankingService {
 		return result;
 	}
 	
-	/*
-	@Override
-	public String getDeposit(String memberId) {
-		String result = "";
-		//토큰 가져오기
-		String token = AuthenticationResponse.jwt ;	
-		
-		
-		//토큰으로 은행 api에서 예치금 총 금액 가져오기
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		JsonObject parameters = new	JsonObject();
-		parameters.addProperty("token", token);
-
-		
-		HttpEntity<Object> entity = new HttpEntity<Object>(parameters.toString(), headers);
-		
-		String url = "http://localhost:18081/totalDeposit";
-		RestTemplate restTemplate = new RestTemplate();
-		//Map<String, Object> data = (Map<String, Object>) restTemplate.postForObject(url,entity, Object.class);
-		Map<String, Object> data = (Map<String, Object>) restTemplate.postForObject(url,entity, Object.class);
-		
-		String totalDeposit = (String) data.get("data"); 
-		//미술품 산 거 빼야지
-		String totalPurchaseAmt = cobuyingDao.selectTotalPurchaseAmt(memberId);
-		
-		long resultInt = Long.parseLong(totalDeposit) - Long.parseLong(totalPurchaseAmt);
-		DecimalFormat decFormat = new DecimalFormat("###,###");
-		result = decFormat.format(resultInt);
-		
-		return result;
-	}
-	*/
 	
 	//자동으로 예치금 충전
 	@Override

@@ -11,31 +11,18 @@ import kr.ac.bank.dto.MemberInfoDTO;
 public class Token {
 	
 	//토큰 생성
-	public static String createToken() {
+	public static String createToken(String id) {
 		Date now = new Date();
 		return Jwts.builder()
 				.setHeaderParam(Header.TYPE, Header.JWT_TYPE) //header의 타입
 				.setIssuer("arttech") //토큰 발급자
 				.setIssuedAt(now) //발급 시간
 				.setExpiration(new Date(System.currentTimeMillis() + 1 * (1000 * 60 * 60 * 24 * 365))) //만료시간
-				.claim("company", "hanaArt")
+				.claim("id", id)
 				.signWith(SignatureAlgorithm.HS256, "secret")
 				.compact();
 	}
-	/*
-	public static String createToken(MemberInfoDTO memberInfoDTO) {
-		Date now = new Date();
-		return Jwts.builder()
-				.setHeaderParam(Header.TYPE, Header.JWT_TYPE) //header의 타입
-				.setIssuer("arttech") //토큰 발급자
-				.setIssuedAt(now) //발급 시간
-				.setExpiration(new Date(System.currentTimeMillis() + 1 * (1000 * 60 * 60 * 24 * 365))) //만료시간
-				.claim("name", memberInfoDTO.getName())
-				.claim("juminNo", memberInfoDTO.getJuminNo())
-				.signWith(SignatureAlgorithm.HS256, "secret")
-				.compact();
-	}
-	*/
+	
 	//토큰 파싱
 	public static Claims parseToken(String authorizationHeader) {
 		//validationAuthorizationHeader(authorizationHeader); // (1)
@@ -53,13 +40,6 @@ public class Token {
 		return parseToken(token).get("id").toString();
 	}
 	
-	public static String getJuminNo(MemberInfoDTO memberInfoDTO) {
-		return parseToken(memberInfoDTO.getToken()).get("juminNo").toString();
-	}
-	
-	public static String getName(MemberInfoDTO memberInfoDTO) {
-		return parseToken(memberInfoDTO.getToken()).get("name").toString();
-	}
 	
 	//만료기간 확인
 	public static boolean checkExpToken(String token) {

@@ -47,6 +47,11 @@ public class OpenBankingDAOImpl implements OpenBankingDAO{
 	public String selectToken(String memberId) {
 		return sqlSession.selectOne("kr.ac.arttech.openbanking.selectToken",memberId);
 	}
+	//토큰 저장
+	@Override
+	public int updateOpenbankingToken(String memberId) {
+		return sqlSession.update("kr.ac.arttech.openbanking.updateOpenbankingToken",memberId);
+	}
 	
 	//자동예치금 설정한 계좌(유저 1명에 대해서)
 	@Override

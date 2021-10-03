@@ -10,10 +10,10 @@ create or replace function transfer_fun
     
     n_other_account_number in sj_account_transfer_info.other_account_number%type,
     n_other_bank_code in sj_account_transfer_info.other_bank_code%type,
-    n_token in sj_account_transfer_info.token%type,
     
     n_jumin_no in sj_account_info.jumin_no%type,
-    n_name in sj_account_info.name%type
+    n_name in sj_account_info.name%type,
+    n_fintech_no sj_account_info.fintech_no%type
 )
 return number  
 is
@@ -23,9 +23,9 @@ is
 begin
     --insert
     insert into sj_account_transfer_info(id, inout_type, tran_amt, account_number, 
-    bank_code, other_account_number, other_bank_code, token) 
+    bank_code, other_account_number, other_bank_code, fintech_no) 
     values(n_id, n_inout_type, n_tran_amt, n_account_number,
-    n_bank_code, n_other_account_number, n_other_bank_code, n_token); 
+    n_bank_code, n_other_account_number, n_other_bank_code, n_fintech_no); 
     
     --update
     case 

@@ -18,6 +18,7 @@ public interface OpenBankingDAO {
 	
 	public MemberVO selectMemberNameJumin(String memberId); //오픈뱅킹 토큰 생성을 위한 정보 가져오기 
 	public String selectToken(String memberId) ; //토큰 가져오기 
+	public int updateOpenbankingToken(String memberId);//토큰 저장
 	
 	public List<AutoTranAccountVO> selectAutoAccountList(String memberId);  //자동예치금 설정한 계좌 리스트(한명)
 	public List<AccountInfoVO> selectNonAutoAccountList(Map<String, String> map); //설정 안한 계좌 리스트(한명)
